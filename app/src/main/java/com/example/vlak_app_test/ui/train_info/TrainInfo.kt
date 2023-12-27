@@ -38,7 +38,7 @@ fun MakeTrainInfo(data: TrainInfoTable, modifier: Modifier = Modifier) {
     ) {
 
         MakeTopBar(
-            titleText = "Train info",
+            titleText = "Train info11",
             haveCancelButton = false
         )
 
