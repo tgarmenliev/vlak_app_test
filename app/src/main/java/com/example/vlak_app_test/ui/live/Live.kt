@@ -78,7 +78,7 @@ fun MakeLiveScreen(data: LiveTable, modifier: Modifier = Modifier) {
                     .fillMaxHeight(0.8f)
                     .padding(16.dp)
                     .clip(RoundedCornerShape(20.dp))
-                    .border(width = 3.dp, color = Color.Black, shape = RoundedCornerShape(20.dp))
+                    .border(width = 2.dp, color = Color.Black, shape = RoundedCornerShape(20.dp))
                     .background(color = Color.White)
             ) {
                 LazyColumn(
@@ -92,7 +92,7 @@ fun MakeLiveScreen(data: LiveTable, modifier: Modifier = Modifier) {
                         Row(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(4.dp)
+                                .padding(3.dp)
                         ) {
                             Text(
                                 text = "Time",
@@ -128,7 +128,7 @@ fun MakeLiveScreen(data: LiveTable, modifier: Modifier = Modifier) {
                         Row(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(4.dp)
+                                .padding(3.dp)
                         ) {
                             if (train.isDelayed) {
                                 Row (
@@ -144,8 +144,9 @@ fun MakeLiveScreen(data: LiveTable, modifier: Modifier = Modifier) {
                                             .padding(top = 4.dp),
                                         tint = redLate
                                     )
+                                    Text(text = " ")
                                     Text(
-                                        text = " ${train.time}",
+                                        text = "${train.time}",
                                         style = MaterialTheme.typography.bodyLarge.copy(
                                             color = redLate,
                                             textDecoration = TextDecoration.Underline
