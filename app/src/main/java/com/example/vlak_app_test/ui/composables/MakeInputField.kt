@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -61,18 +62,18 @@ fun MakeSimpleInputField(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(top = 16.dp, bottom = 16.dp),
-                    textStyle = TextStyle(
+                    textStyle = MaterialTheme.typography.labelLarge.copy(
                         color = Color.Black,
-                        fontSize = 26.sp
                     ),
                     cursorBrush = SolidColor(Color.Black),
                     decorationBox = { innerTextField ->
                         if (titleText.isEmpty()) {
                             Text(
                                 text = hintText,
-                                color = Color.Gray,
                                 modifier = Modifier.padding(end = 8.dp),
-                                fontSize = 24.sp
+                                style = MaterialTheme.typography.labelLarge.copy(
+                                    color = Color.Gray,
+                                )
                             )
                         }
                         innerTextField()

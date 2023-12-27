@@ -14,6 +14,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -32,13 +33,12 @@ import com.example.vlak_app_test.ui.theme.Vlak_app_testTheme
 
 @Composable
 fun MakeTrainInfo(data: TrainInfoTable, modifier: Modifier = Modifier) {
-
     Column(
         Modifier.fillMaxSize()
     ) {
 
         MakeTopBar(
-            titleText = "Train info11",
+            titleText = "Train info",
             haveCancelButton = false
         )
 
@@ -54,11 +54,9 @@ fun MakeTrainInfo(data: TrainInfoTable, modifier: Modifier = Modifier) {
                     .padding(top = 10.dp, start = 16.dp, end = 16.dp)
             ) {
                 Text(
-                    text = "Train ${data.trainType} ${data.trainNum}",
-                    style = TextStyle(
-                        fontSize = 26.sp,
+                    text = "${data.trainType} ${data.trainNum}",
+                    style = MaterialTheme.typography.headlineLarge.copy(
                         color = Color.Black,
-                        fontWeight = FontWeight.Bold
                     )
                 )
             }
@@ -70,7 +68,7 @@ fun MakeTrainInfo(data: TrainInfoTable, modifier: Modifier = Modifier) {
                     .padding(16.dp)
                     .clip(RoundedCornerShape(20.dp))
                     .border(
-                        width = 5.dp,
+                        width = 3.dp,
                         color = Color.Black,
                         shape = RoundedCornerShape(20.dp)
                     )
@@ -87,11 +85,11 @@ fun MakeTrainInfo(data: TrainInfoTable, modifier: Modifier = Modifier) {
                         Row(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(8.dp)
+                                .padding(4.dp)
                         ) {
-                            Text(text = "Station", modifier = Modifier.weight(3f))
-                            Text(text = "Arrival Time", modifier = Modifier.weight(1f))
-                            Text(text = "Departure Time", modifier = Modifier.weight(1f))
+                            Text(text = "Station", modifier = Modifier.weight(3f), style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.SemiBold))
+                            Text(text = "Arrive", modifier = Modifier.weight(1.3f), style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.SemiBold))
+                            Text(text = "Depart", modifier = Modifier.weight(1.3f), style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.SemiBold))
                         }
                     }
 
@@ -100,11 +98,11 @@ fun MakeTrainInfo(data: TrainInfoTable, modifier: Modifier = Modifier) {
                         Row(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(8.dp)
+                                .padding(4.dp)
                         ) {
                             Text(text = trainInfo.station, modifier = Modifier.weight(3f))
-                            Text(text = trainInfo.arrive, modifier = Modifier.weight(1f))
-                            Text(text = trainInfo.depart, modifier = Modifier.weight(1f))
+                            Text(text = trainInfo.arrive, modifier = Modifier.weight(1.3f))
+                            Text(text = trainInfo.depart, modifier = Modifier.weight(1.3f))
                         }
                     }
                 }

@@ -5,6 +5,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -35,8 +36,7 @@ fun MakeButton(
             modifier = Modifier
                 .align(Alignment.CenterVertically)
                 .padding(6.dp),
-            style = TextStyle(
-                fontSize = 24.sp,
+            style = MaterialTheme.typography.labelLarge.copy(
                 color = Color.White
             ),
             textAlign = TextAlign.Center
