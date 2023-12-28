@@ -96,7 +96,7 @@ class MainActivity : ComponentActivity() {
 //                        println("Selected date: $selectedDate")
 //                })
 
-                //MakeDatePickerScreen(topBarText = "Schedule")
+                MakeDatePickerScreen(topBarText = "Schedule")
             }
         }
     }

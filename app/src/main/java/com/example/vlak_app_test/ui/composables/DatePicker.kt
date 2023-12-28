@@ -1,23 +1,15 @@
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.DatePicker
 import androidx.compose.material3.DatePickerDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SelectableDates
-import androidx.compose.material3.Text
 import androidx.compose.material3.rememberDatePickerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.dp
-import java.text.SimpleDateFormat
+import com.example.vlak_app_test.ui.theme.PrimaryDarkColor
+import com.example.vlak_app_test.ui.theme.SecondaryDarkColor
 import java.util.Calendar
-import java.util.Date
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -50,24 +42,16 @@ fun DatePickerView(
         }
     }
 
-    Column(horizontalAlignment = Alignment.CenterHorizontally) {
-        DatePicker(
-            state = datePickerState,
-            showModeToggle = false,
-            modifier = modifier,
-            title = null,
+    DatePicker(
+        state = datePickerState,
+        showModeToggle = false,
+        modifier = modifier,
+        title = null,
+        colors = DatePickerDefaults.colors(
+            selectedDayContainerColor = PrimaryDarkColor,
+            selectedDayContentColor = Color.White,
+            todayDateBorderColor = SecondaryDarkColor,
+            todayContentColor = Color.Black
         )
-        /*
-        Spacer(
-            modifier = Modifier.height(
-                32.dp
-            )
-        )
-        Text(
-            text = datePickerState.selectedDateMillis?.let {
-                convertMillisToDate(it)
-            } ?: "No date selected",
-            color = Color.Red
-        )*/
-    }
+    )
 }

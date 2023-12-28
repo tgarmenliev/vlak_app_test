@@ -12,7 +12,10 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.requiredHeight
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
@@ -27,6 +30,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import com.example.vlak_app_test.ui.theme.PrimaryDarkColor
@@ -47,9 +51,15 @@ fun MakeDatePickerScreen(
             haveCancelButton = true
         )
 
+        val configuration = LocalConfiguration.current
+        val screenWidthDp = configuration.screenWidthDp
+
+        val datePickerWidth = (screenWidthDp * 0.8).dp
+
         Column(
             modifier = Modifier
-                .fillMaxWidth(),
+                .fillMaxWidth()
+                .verticalScroll(rememberScrollState()),
         ) {
 
             Text(text = "Select date:",
@@ -69,9 +79,10 @@ fun MakeDatePickerScreen(
                     formattedDate = convertMillisToDate(it)
                 },
                 modifier = Modifier
-                    .fillMaxWidth(0.95f)
-                    .padding(0.dp)
+                    .fillMaxWidth()
+                    .padding(top = 10.dp)
                     .align(Alignment.CenterHorizontally)
+                    .width(datePickerWidth)
             )
 
             MakeButton(
@@ -79,14 +90,12 @@ fun MakeDatePickerScreen(
                 onClick = { /*TODO*/ },
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(top = 10.dp, start = 65.dp, end = 65.dp, bottom = 10.dp),
+                    .padding(start = 65.dp, end = 65.dp, bottom = 10.dp),
                 colors = ButtonDefaults.buttonColors(
                     PrimaryDarkColor
                 ),
                 enabled = true
             )
-
-            Spacer(modifier = Modifier.requiredHeight(10.dp))
 
             Text(
                 text = "Date: $formattedDate",
