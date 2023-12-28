@@ -55,7 +55,7 @@ fun MakeTopBar(
                         end.linkTo(parent.end)
                     }
                     .fillMaxWidth()
-                    .fillMaxHeight(0.16f)
+                    .fillMaxHeight(0.12f)
                     .clip(RoundedCornerShape(bottomStart = 20.dp, bottomEnd = 20.dp))
                     .background(color = PrimaryDarkColor)
                     .padding(16.dp)

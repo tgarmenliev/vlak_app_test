@@ -57,6 +57,7 @@ fun MakeTrainInfo(data: TrainInfoTable, modifier: Modifier = Modifier) {
                     text = "${data.trainType} ${data.trainNum}",
                     style = MaterialTheme.typography.bodyLarge.copy(
                         color = Color.Black,
+                        fontWeight = FontWeight.Bold
                     )
                 )
             }

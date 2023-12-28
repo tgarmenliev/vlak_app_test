@@ -80,7 +80,7 @@ fun MakeLiveSearchScreen(): String {
 
             Text(
                 text = "Choose station:",
-                style = MaterialTheme.typography.labelLarge.copy(
+                style = MaterialTheme.typography.bodyLarge.copy(
                     color = Color.Black,
                     fontWeight = FontWeight.Bold,
                 )

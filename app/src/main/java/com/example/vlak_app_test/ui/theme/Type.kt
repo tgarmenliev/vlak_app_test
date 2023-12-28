@@ -21,14 +21,14 @@ val Typography = Typography(
     bodyLarge = TextStyle(
         fontFamily = fontFamilyJost,
         fontWeight = FontWeight.Normal,
-        fontSize = 20.sp,
+        fontSize = 22.sp,
         lineHeight = 24.sp,
         letterSpacing = 0.5.sp
     ),
     bodyMedium = TextStyle(
         fontFamily = fontFamilyJost,
         fontWeight = FontWeight.Medium,
-        fontSize = 14.sp,
+        fontSize = 16.sp,
         lineHeight = 20.sp,
         letterSpacing = 0.5.sp
     ),
@@ -36,28 +36,28 @@ val Typography = Typography(
     titleLarge = TextStyle(
         fontFamily = fontFamilyJost,
         fontWeight = FontWeight.Normal,
-        fontSize = 20.sp,
+        fontSize = 22.sp,
         lineHeight = 28.sp,
         letterSpacing = 0.sp
     ),
     labelSmall = TextStyle(
         fontFamily = fontFamilyJost,
         fontWeight = FontWeight.Medium,
-        fontSize = 12.sp,
+        fontSize = 14.sp,
         lineHeight = 16.sp,
         letterSpacing = 0.5.sp
     ),
     labelLarge = TextStyle(
         fontFamily = fontFamilyJost,
         fontWeight = FontWeight.Normal,
-        fontSize = 16.sp,
+        fontSize = 18.sp,
         lineHeight = 20.sp,
         letterSpacing = 0.5.sp
     ),
     labelMedium = TextStyle(
         fontFamily = fontFamilyJost,
         fontWeight = FontWeight.Medium,
-        fontSize = 14.sp,
+        fontSize = 16.sp,
         lineHeight = 20.sp,
         letterSpacing = 0.5.sp
     ),

@@ -79,7 +79,7 @@ fun MakeTrainInfoScreen(): String {
 
             Text(
                 text = "Enter train number:",
-                style = MaterialTheme.typography.labelLarge.copy(
+                style = MaterialTheme.typography.bodyLarge.copy(
                     color = Color.Black,
                     fontWeight = FontWeight.Bold,
                 )

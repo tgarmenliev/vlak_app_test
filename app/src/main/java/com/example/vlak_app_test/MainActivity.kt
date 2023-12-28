@@ -88,7 +88,7 @@ class MainActivity : ComponentActivity() {
                 //MakeTrainInfo(data = sampleTrainInfo)
                 //MakeTrainInfoScreen()
                 //MakeLiveSearchScreen()
-                MakeLiveScreen(sampleLiveInfo)
+                //MakeLiveScreen(sampleLiveInfo)
                 //var selectedDate by remember { mutableStateOf(Calendar.getInstance().timeInMillis) }
 //                DatePickerView(selectedDate,
 //                    onDateSelected = {
