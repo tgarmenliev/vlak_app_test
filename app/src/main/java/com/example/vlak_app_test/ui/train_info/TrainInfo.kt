@@ -1,5 +1,6 @@
 package com.example.vlak_app_test.ui.train_info
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
@@ -21,10 +22,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.vlak_app_test.R
 import com.example.vlak_app_test.ui.theme.PrimaryDarkColor
 import com.example.vlak_app_test.viewmodels.train_info.TrainInfo.TrainInfoTable
 import com.example.vlak_app_test.ui.composables.MakeButton
@@ -33,116 +37,129 @@ import com.example.vlak_app_test.ui.theme.Vlak_app_testTheme
 
 @Composable
 fun MakeTrainInfo(data: TrainInfoTable, modifier: Modifier = Modifier) {
-    Column(
-        Modifier.fillMaxSize()
-    ) {
+    Box(modifier = Modifier.fillMaxSize())
+    {
 
-        MakeTopBar(
-            titleText = "Train info",
-            haveCancelButton = false
+        Image(
+            painter = painterResource(id = R.drawable.live_back),
+            contentDescription = "Background image",
+            contentScale = ContentScale.Crop,
+            modifier = Modifier
+                .fillMaxSize()
         )
 
         Column(
-            modifier = Modifier
-                .fillMaxWidth(),
-            horizontalAlignment = Alignment.CenterHorizontally
+            Modifier.fillMaxSize()
         ) {
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .requiredHeight(40.dp)
-                    .padding(top = 10.dp, start = 16.dp, end = 16.dp)
-            ) {
-                Text(
-                    text = "${data.trainType} ${data.trainNum}",
-                    style = MaterialTheme.typography.bodyLarge.copy(
-                        color = Color.Black,
-                        fontWeight = FontWeight.Bold
-                    )
-                )
-            }
 
-            Box(
+            MakeTopBar(
+                titleText = "Train info",
+                haveCancelButton = false
+            )
+
+            Column(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .fillMaxHeight(0.8f)
-                    .padding(16.dp)
-                    .clip(RoundedCornerShape(20.dp))
-                    .border(
-                        width = 3.dp,
-                        color = Color.Black,
-                        shape = RoundedCornerShape(20.dp)
-                    )
-                    .background(color = Color.White)
+                    .fillMaxWidth(),
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                LazyColumn(
+                Box(
                     modifier = Modifier
-                        .padding(16.dp)
                         .fillMaxWidth()
-                )
-                {
-                    // Table header
-                    item {
-                        Row(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(4.dp)
-                        ) {
-                            Text(
-                                text = "Station",
-                                modifier = Modifier.weight(3f),
-                                style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.SemiBold)
-                            )
-                            Text(
-                                text = "Arrive",
-                                modifier = Modifier.weight(1.3f),
-                                style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.SemiBold)
-                            )
-                            Text(
-                                text = "Depart",
-                                modifier = Modifier.weight(1.3f),
-                                style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.SemiBold))
-                        }
-                    }
+                        .requiredHeight(40.dp)
+                        .padding(top = 10.dp, start = 16.dp, end = 16.dp)
+                ) {
+                    Text(
+                        text = "${data.trainType} ${data.trainNum}",
+                        style = MaterialTheme.typography.headlineLarge.copy(
+                            color = Color.White,
+                            fontWeight = FontWeight.Bold
+                        )
+                    )
+                }
 
-                    // Table rows
-                    items(data.stations) { trainInfo ->
-                        Row(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(4.dp)
-                        ) {
-                            Text(
-                                text = trainInfo.station,
-                                modifier = Modifier.weight(3f),
-                                style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.Normal)
-                            )
-                            Text(
-                                text = trainInfo.arrive,
-                                modifier = Modifier.weight(1.3f),
-                                style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.Normal)
-                            )
-                            Text(
-                                text = trainInfo.depart,
-                                modifier = Modifier.weight(1.3f),
-                                style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.Normal)
-                            )
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .fillMaxHeight(0.8f)
+                        .padding(16.dp)
+                        .clip(RoundedCornerShape(20.dp))
+                        .border(
+                            width = 3.dp,
+                            color = Color.Black,
+                            shape = RoundedCornerShape(20.dp)
+                        )
+                        .background(color = Color.White)
+                ) {
+                    LazyColumn(
+                        modifier = Modifier
+                            .padding(16.dp)
+                            .fillMaxWidth()
+                    )
+                    {
+                        // Table header
+                        item {
+                            Row(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(4.dp)
+                            ) {
+                                Text(
+                                    text = "Station",
+                                    modifier = Modifier.weight(3f),
+                                    style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.SemiBold)
+                                )
+                                Text(
+                                    text = "Arrive",
+                                    modifier = Modifier.weight(1.3f),
+                                    style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.SemiBold)
+                                )
+                                Text(
+                                    text = "Depart",
+                                    modifier = Modifier.weight(1.3f),
+                                    style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.SemiBold)
+                                )
+                            }
+                        }
+
+                        // Table rows
+                        items(data.stations) { trainInfo ->
+                            Row(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(4.dp)
+                            ) {
+                                Text(
+                                    text = trainInfo.station,
+                                    modifier = Modifier.weight(3f),
+                                    style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.Normal)
+                                )
+                                Text(
+                                    text = trainInfo.arrive,
+                                    modifier = Modifier.weight(1.3f),
+                                    style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.Normal)
+                                )
+                                Text(
+                                    text = trainInfo.depart,
+                                    modifier = Modifier.weight(1.3f),
+                                    style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.Normal)
+                                )
+                            }
                         }
                     }
                 }
-            }
 
-            MakeButton(
-                text = "Home",
-                onClick = { /*TODO*/ },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 10.dp, start = 65.dp, end = 65.dp, bottom = 10.dp),
-                colors = ButtonDefaults.buttonColors(
-                    PrimaryDarkColor
-                ),
-                enabled = true
-            )
+                MakeButton(
+                    text = "Home",
+                    onClick = { /*TODO*/ },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 10.dp, start = 65.dp, end = 65.dp, bottom = 10.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        PrimaryDarkColor
+                    ),
+                    enabled = true
+                )
+            }
         }
     }
 }

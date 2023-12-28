@@ -41,7 +41,7 @@ fun SearchTrainInfoScreen(): String {
 
         Image(
             painter = painterResource(id = R.drawable.live_back),
-            contentDescription = "Backgroud image",
+            contentDescription = "Background image",
             contentScale = ContentScale.Crop,
             modifier = Modifier
                 .fillMaxSize()
