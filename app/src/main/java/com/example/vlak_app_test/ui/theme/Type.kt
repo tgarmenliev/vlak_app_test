@@ -36,7 +36,7 @@ val Typography = Typography(
     titleLarge = TextStyle(
         fontFamily = fontFamilyJost,
         fontWeight = FontWeight.Normal,
-        fontSize = 36.sp,
+        fontSize = 20.sp,
         lineHeight = 28.sp,
         letterSpacing = 0.sp
     ),
@@ -50,7 +50,14 @@ val Typography = Typography(
     labelLarge = TextStyle(
         fontFamily = fontFamilyJost,
         fontWeight = FontWeight.Normal,
-        fontSize = 24.sp,
+        fontSize = 16.sp,
+        lineHeight = 20.sp,
+        letterSpacing = 0.5.sp
+    ),
+    labelMedium = TextStyle(
+        fontFamily = fontFamilyJost,
+        fontWeight = FontWeight.Medium,
+        fontSize = 14.sp,
         lineHeight = 20.sp,
         letterSpacing = 0.5.sp
     ),
@@ -63,27 +70,27 @@ val Typography = Typography(
     ),
 )
 
-val JostFont = FontFamily(
-    fonts = listOf(
-        Font(
-            resId = R.font.jost_regular,
-            weight = FontWeight.Normal
-        ),
-        Font(
-            resId = R.font.jost_medium,
-            weight = FontWeight.Medium
-        ),
-        Font(
-            resId = R.font.jost_semibold,
-            weight = FontWeight.SemiBold
-        ),
-        Font(
-            resId = R.font.jost_bold,
-            weight = FontWeight.Bold
-        ),
-        Font(
-            resId = R.font.jost_black,
-            weight = FontWeight.Black
-        )
-    )
-)
+//val JostFont = FontFamily(
+//    fonts = listOf(
+//        Font(
+//            resId = R.font.jost_regular,
+//            weight = FontWeight.Normal
+//        ),
+//        Font(
+//            resId = R.font.jost_medium,
+//            weight = FontWeight.Medium
+//        ),
+//        Font(
+//            resId = R.font.jost_semibold,
+//            weight = FontWeight.SemiBold
+//        ),
+//        Font(
+//            resId = R.font.jost_bold,
+//            weight = FontWeight.Bold
+//        ),
+//        Font(
+//            resId = R.font.jost_black,
+//            weight = FontWeight.Black
+//        )
+//    )
+//)
