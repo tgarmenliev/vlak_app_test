@@ -6,6 +6,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -49,9 +50,14 @@ fun MakeDatePickerScreen(
         Column(
             modifier = Modifier
                 .fillMaxWidth(),
-            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Spacer(modifier = Modifier.requiredHeight(20.dp))
+
+            Text(text = "Select date:",
+                style = MaterialTheme.typography.headlineLarge.copy(
+                    color = Color.Black,
+                ),
+                modifier = Modifier.padding(horizontal = 20.dp, vertical = 10.dp)
+            )
 
             var selectedDate by remember { mutableStateOf(Calendar.getInstance().timeInMillis) }
             var formattedDate by remember { mutableStateOf(convertMillisToDate(selectedDate)) }
@@ -63,8 +69,9 @@ fun MakeDatePickerScreen(
                     formattedDate = convertMillisToDate(it)
                 },
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(start = 16.dp, end = 16.dp)
+                    .fillMaxWidth(0.95f)
+                    .padding(0.dp)
+                    .align(Alignment.CenterHorizontally)
             )
 
             MakeButton(
@@ -79,13 +86,14 @@ fun MakeDatePickerScreen(
                 enabled = true
             )
 
-            Spacer(modifier = Modifier.requiredHeight(20.dp))
+            Spacer(modifier = Modifier.requiredHeight(10.dp))
 
             Text(
                 text = "Date: $formattedDate",
                 style = MaterialTheme.typography.bodyMedium.copy(
                     color = Color.Black,
-                )
+                ),
+                modifier = Modifier.align(Alignment.CenterHorizontally)
             )
         }
     }

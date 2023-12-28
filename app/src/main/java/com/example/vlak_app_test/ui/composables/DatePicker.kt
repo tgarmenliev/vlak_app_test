@@ -1,7 +1,9 @@
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.DatePicker
+import androidx.compose.material3.DatePickerDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SelectableDates
@@ -53,14 +55,7 @@ fun DatePickerView(
             state = datePickerState,
             showModeToggle = false,
             modifier = modifier,
-            title = {
-                Text(
-                    text = "Choose date:",
-                    style = MaterialTheme.typography.headlineLarge.copy(
-                        color = Color.Black,
-                    )
-                )
-            },
+            title = null,
         )
         /*
         Spacer(
