@@ -19,19 +19,23 @@ fun DatePickerView(
     modifier: Modifier = Modifier
 ) {
     val todayCalendar = Calendar.getInstance()
+    val MonthLaterCalendar = todayCalendar.clone() as Calendar
+    MonthLaterCalendar.add(Calendar.MONTH, 1)
+
     val datePickerState = rememberDatePickerState(
         initialSelectedDateMillis = todayCalendar.timeInMillis,
         selectableDates = object : SelectableDates {
             override fun isSelectableDate(utcTimeMillis: Long): Boolean {
-                val todayMillis = todayCalendar.apply {
+                val startOfToday = todayCalendar.apply {
                     set(Calendar.HOUR_OF_DAY, 0)
                     set(Calendar.MINUTE, 0)
                     set(Calendar.SECOND, 0)
                     set(Calendar.MILLISECOND, 0)
                 }.timeInMillis
-                return utcTimeMillis >= todayMillis
+                return utcTimeMillis in startOfToday..MonthLaterCalendar.timeInMillis
             }
-        }
+        },
+        yearRange = todayCalendar.get(Calendar.YEAR)..MonthLaterCalendar.get(Calendar.YEAR)
     )
 
     LaunchedEffect(datePickerState.selectedDateMillis) {

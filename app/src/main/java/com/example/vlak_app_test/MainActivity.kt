@@ -7,6 +7,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.vlak_app_test.ui.composables.MakeDatePickerScreen
 import com.example.vlak_app_test.ui.theme.Vlak_app_testTheme
 import com.example.vlak_app_test.ui.train_info.SearchTrainInfoScreen
 import com.example.vlak_app_test.viewmodels.live.Live
@@ -75,7 +76,7 @@ class MainActivity : ComponentActivity() {
 
 
                 //MakeTrainInfo(data = sampleTrainInfo)
-                SearchTrainInfoScreen()
+                //SearchTrainInfoScreen()
                 //MakeLiveSearchScreen()
                 //MakeLiveScreen(sampleLiveInfo)
                 //var selectedDate by remember { mutableStateOf(Calendar.getInstance().timeInMillis) }
@@ -85,7 +86,7 @@ class MainActivity : ComponentActivity() {
 //                        println("Selected date: $selectedDate")
 //                })
 
-                //MakeDatePickerScreen(topBarText = "Schedule")
+                MakeDatePickerScreen(topBarText = "Schedule")
             }
         }
     }
