@@ -21,6 +21,7 @@ import com.example.vlak_app_test.viewmodels.live.Live
 import com.example.vlak_app_test.viewmodels.train_info.*
 import java.util.Calendar
 import androidx.compose.runtime.mutableStateOf
+import com.example.vlak_app_test.ui.composables.MakeDatePickerScreen
 
 
 class MainActivity : ComponentActivity() {
@@ -88,8 +89,14 @@ class MainActivity : ComponentActivity() {
                 //MakeTrainInfoScreen()
                 //MakeLiveSearchScreen()
                 //MakeLiveScreen(sampleLiveInfo)
-                var selectedDate by remember { mutableStateOf(Calendar.getInstance().timeInMillis) }
-                DatePickerView(selectedDate, onDateSelected = { selectedDate = it })
+                //var selectedDate by remember { mutableStateOf(Calendar.getInstance().timeInMillis) }
+//                DatePickerView(selectedDate,
+//                    onDateSelected = {
+//                    selectedDate = it
+//                        println("Selected date: $selectedDate")
+//                })
+
+                MakeDatePickerScreen(topBarText = "Schedule")
             }
         }
     }
