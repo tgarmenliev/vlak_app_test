@@ -8,6 +8,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.vlak_app_test.ui.composable_screens.MakeDatePickerScreen
+import com.example.vlak_app_test.ui.live.MakeLiveScreen
+import com.example.vlak_app_test.ui.live.MakeLiveSearchScreen
 import com.example.vlak_app_test.ui.theme.Vlak_app_testTheme
 import com.example.vlak_app_test.ui.train_info.MakeTrainInfo
 import com.example.vlak_app_test.viewmodels.live.Live
@@ -47,9 +49,9 @@ class MainActivity : ComponentActivity() {
                     station = "Пловдив",
                     trains = listOf(
                         Live.Trains(
-                            direction = "Sofia",
-                            trainNum = "1234",
-                            trainType = "BV",
+                            direction = "София",
+                            trainNum = "8602",
+                            trainType = "БВ",
                             time = "10:00",
                             isDelayed = true,
                             delayedTime = "10:15",
@@ -60,15 +62,15 @@ class MainActivity : ComponentActivity() {
                             )
                         ),
                         Live.Trains(
-                            direction = "Sofia",
-                            trainNum = "1224",
-                            trainType = "PV",
+                            direction = "Бургас",
+                            trainNum = "8601",
+                            trainType = "БВ",
                             time = "16:00",
                         ),
                         Live.Trains(
-                            direction = "Sofia",
-                            trainNum = "1237",
-                            trainType = "BV",
+                            direction = "Септември",
+                            trainNum = "10114",
+                            trainType = "ПВ",
                             time = "19:00",
                         )
                     )
@@ -78,7 +80,7 @@ class MainActivity : ComponentActivity() {
                 //MakeTrainInfo(data = sampleTrainInfo)
                 //SearchTrainInfoScreen()
                 //MakeLiveSearchScreen()
-                //MakeLiveScreen(sampleLiveInfo)
+                MakeLiveScreen(sampleLiveInfo)
                 //var selectedDate by remember { mutableStateOf(Calendar.getInstance().timeInMillis) }
 //                DatePickerView(selectedDate,
 //                    onDateSelected = {

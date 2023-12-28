@@ -24,16 +24,13 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.example.vlak_app_test.R
 import com.example.vlak_app_test.ui.theme.PrimaryDarkColor
 import com.example.vlak_app_test.viewmodels.train_info.TrainInfo.TrainInfoTable
 import com.example.vlak_app_test.ui.composables.MakeButton
 import com.example.vlak_app_test.ui.composables.MakeTopBar
-import com.example.vlak_app_test.ui.theme.Vlak_app_testTheme
 
 @Composable
 fun MakeTrainInfo(data: TrainInfoTable, modifier: Modifier = Modifier) {
@@ -41,7 +38,7 @@ fun MakeTrainInfo(data: TrainInfoTable, modifier: Modifier = Modifier) {
     {
 
         Image(
-            painter = painterResource(id = R.drawable.live_back),
+            painter = painterResource(id = R.drawable.tr_info_back),
             contentDescription = "Background image",
             contentScale = ContentScale.Crop,
             modifier = Modifier

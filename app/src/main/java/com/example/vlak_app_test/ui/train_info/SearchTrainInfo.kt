@@ -16,7 +16,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
-import androidx.constraintlayout.compose.ConstraintLayout
 import com.example.vlak_app_test.ui.composables.MakeSimpleInputField
 import com.example.vlak_app_test.ui.theme.PrimaryDarkColor
 import androidx.compose.runtime.mutableStateOf
@@ -40,7 +39,7 @@ fun SearchTrainInfoScreen(): String {
     ) {
 
         Image(
-            painter = painterResource(id = R.drawable.live_back),
+            painter = painterResource(id = R.drawable.tr_info_back),
             contentDescription = "Background image",
             contentScale = ContentScale.Crop,
             modifier = Modifier

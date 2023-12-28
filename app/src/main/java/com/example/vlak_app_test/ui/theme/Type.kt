@@ -64,7 +64,7 @@ val Typography = Typography(
     headlineLarge = TextStyle(
         fontFamily = fontFamilyJost,
         fontWeight = FontWeight.Bold,
-        fontSize = 26.sp,
+        fontSize = 28.sp,
         lineHeight = 28.sp,
         letterSpacing = 0.sp
     ),
