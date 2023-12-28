@@ -8,6 +8,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import com.example.vlak_app_test.ui.theme.PrimaryDarkColor
+import com.example.vlak_app_test.ui.theme.PrimaryLightColor
 import com.example.vlak_app_test.ui.theme.SecondaryDarkColor
 import java.util.Calendar
 
@@ -55,7 +56,13 @@ fun DatePickerView(
             selectedDayContainerColor = PrimaryDarkColor,
             selectedDayContentColor = Color.White,
             todayDateBorderColor = SecondaryDarkColor,
-            todayContentColor = Color.Black
+            todayContentColor = Color.Black,
+            headlineContentColor = PrimaryLightColor,
+            containerColor = Color.White,
+            dayContentColor = Color.White,
+            disabledDayContentColor = Color.Gray,
+            weekdayContentColor = Color.White,
+            navigationContentColor = Color.White,
         )
     )
 }
