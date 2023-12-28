@@ -1,27 +1,16 @@
 package com.example.vlak_app_test
 
-import DatePickerView
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.setValue
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.vlak_app_test.ui.live.MakeLiveScreen
-import com.example.vlak_app_test.ui.live.MakeLiveSearchScreen
 import com.example.vlak_app_test.ui.theme.Vlak_app_testTheme
-import com.example.vlak_app_test.ui.train_info.MakeTrainInfo
-import com.example.vlak_app_test.ui.train_info.MakeTrainInfoScreen
+import com.example.vlak_app_test.ui.train_info.SearchTrainInfoScreen
 import com.example.vlak_app_test.viewmodels.live.Live
 import com.example.vlak_app_test.viewmodels.train_info.*
-import java.util.Calendar
-import androidx.compose.runtime.mutableStateOf
-import com.example.vlak_app_test.ui.composables.MakeDatePickerScreen
 
 
 class MainActivity : ComponentActivity() {
@@ -86,7 +75,7 @@ class MainActivity : ComponentActivity() {
 
 
                 //MakeTrainInfo(data = sampleTrainInfo)
-                //MakeTrainInfoScreen()
+                SearchTrainInfoScreen()
                 //MakeLiveSearchScreen()
                 //MakeLiveScreen(sampleLiveInfo)
                 //var selectedDate by remember { mutableStateOf(Calendar.getInstance().timeInMillis) }
@@ -96,7 +85,7 @@ class MainActivity : ComponentActivity() {
 //                        println("Selected date: $selectedDate")
 //                })
 
-                MakeDatePickerScreen(topBarText = "Schedule")
+                //MakeDatePickerScreen(topBarText = "Schedule")
             }
         }
     }
