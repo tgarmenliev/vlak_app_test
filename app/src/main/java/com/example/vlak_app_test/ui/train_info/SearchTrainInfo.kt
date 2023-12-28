@@ -37,7 +37,6 @@ fun SearchTrainInfoScreen(): String {
         modifier = Modifier
             .fillMaxSize(),
     ) {
-
         Image(
             painter = painterResource(id = R.drawable.tr_info_back),
             contentDescription = "Background image",
