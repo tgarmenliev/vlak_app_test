@@ -55,7 +55,7 @@ fun MakeTrainInfo(data: TrainInfoTable, modifier: Modifier = Modifier) {
             ) {
                 Text(
                     text = "${data.trainType} ${data.trainNum}",
-                    style = MaterialTheme.typography.headlineLarge.copy(
+                    style = MaterialTheme.typography.bodyLarge.copy(
                         color = Color.Black,
                     )
                 )
@@ -87,9 +87,20 @@ fun MakeTrainInfo(data: TrainInfoTable, modifier: Modifier = Modifier) {
                                 .fillMaxWidth()
                                 .padding(4.dp)
                         ) {
-                            Text(text = "Station", modifier = Modifier.weight(3f), style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.SemiBold))
-                            Text(text = "Arrive", modifier = Modifier.weight(1.3f), style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.SemiBold))
-                            Text(text = "Depart", modifier = Modifier.weight(1.3f), style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.SemiBold))
+                            Text(
+                                text = "Station",
+                                modifier = Modifier.weight(3f),
+                                style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.SemiBold)
+                            )
+                            Text(
+                                text = "Arrive",
+                                modifier = Modifier.weight(1.3f),
+                                style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.SemiBold)
+                            )
+                            Text(
+                                text = "Depart",
+                                modifier = Modifier.weight(1.3f),
+                                style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.SemiBold))
                         }
                     }
 
@@ -100,9 +111,21 @@ fun MakeTrainInfo(data: TrainInfoTable, modifier: Modifier = Modifier) {
                                 .fillMaxWidth()
                                 .padding(4.dp)
                         ) {
-                            Text(text = trainInfo.station, modifier = Modifier.weight(3f))
-                            Text(text = trainInfo.arrive, modifier = Modifier.weight(1.3f))
-                            Text(text = trainInfo.depart, modifier = Modifier.weight(1.3f))
+                            Text(
+                                text = trainInfo.station,
+                                modifier = Modifier.weight(3f),
+                                style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.Normal)
+                            )
+                            Text(
+                                text = trainInfo.arrive,
+                                modifier = Modifier.weight(1.3f),
+                                style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.Normal)
+                            )
+                            Text(
+                                text = trainInfo.depart,
+                                modifier = Modifier.weight(1.3f),
+                                style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.Normal)
+                            )
                         }
                     }
                 }

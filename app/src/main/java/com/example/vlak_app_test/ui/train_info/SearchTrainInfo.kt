@@ -15,6 +15,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -78,8 +79,7 @@ fun MakeTrainInfoScreen(): String {
 
             Text(
                 text = "Enter train number:",
-                style = TextStyle(
-                    fontSize = 32.sp,
+                style = MaterialTheme.typography.labelLarge.copy(
                     color = Color.Black,
                     fontWeight = FontWeight.Bold,
                 )

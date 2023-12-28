@@ -92,12 +92,11 @@ fun MakeLiveScreen(data: LiveTable, modifier: Modifier = Modifier) {
                         Row(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(3.dp)
                         ) {
                             Text(
                                 text = "Time",
                                 modifier = Modifier.weight(2f),
-                                style = MaterialTheme.typography.bodyLarge.copy(
+                                style = MaterialTheme.typography.labelLarge.copy(
                                     color = Color.Black,
                                     fontWeight = FontWeight.SemiBold
                                 ),
@@ -105,7 +104,7 @@ fun MakeLiveScreen(data: LiveTable, modifier: Modifier = Modifier) {
                             Text(
                                 text = "Direction",
                                 modifier = Modifier.weight(3f),
-                                style = MaterialTheme.typography.bodyLarge.copy(
+                                style = MaterialTheme.typography.labelLarge.copy(
                                     color = Color.Black,
                                     fontWeight = FontWeight.SemiBold
                                 ),
@@ -113,7 +112,7 @@ fun MakeLiveScreen(data: LiveTable, modifier: Modifier = Modifier) {
                             Text(
                                 text = "Train #",
                                 modifier = Modifier.weight(1.5f),
-                                style = MaterialTheme.typography.bodyLarge.copy(
+                                style = MaterialTheme.typography.labelLarge.copy(
                                     color = Color.Black,
                                     fontWeight = FontWeight.SemiBold
                                 ),
@@ -128,7 +127,6 @@ fun MakeLiveScreen(data: LiveTable, modifier: Modifier = Modifier) {
                         Row(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(3.dp)
                         ) {
                             if (train.isDelayed) {
                                 Row (
@@ -144,10 +142,9 @@ fun MakeLiveScreen(data: LiveTable, modifier: Modifier = Modifier) {
                                             .padding(top = 4.dp),
                                         tint = redLate
                                     )
-                                    Text(text = " ")
                                     Text(
                                         text = "${train.time}",
-                                        style = MaterialTheme.typography.bodyLarge.copy(
+                                        style = MaterialTheme.typography.labelLarge.copy(
                                             color = redLate,
                                             textDecoration = TextDecoration.Underline
                                         ),
@@ -168,8 +165,8 @@ fun MakeLiveScreen(data: LiveTable, modifier: Modifier = Modifier) {
                                         tint = greenOnTime
                                     )
                                     Text(
-                                        text = " ${train.time}",
-                                        style = MaterialTheme.typography.bodyLarge.copy(
+                                        text = "${train.time}",
+                                        style = MaterialTheme.typography.labelLarge.copy(
                                             color = greenOnTime,
                                         ),
                                     )
@@ -179,7 +176,7 @@ fun MakeLiveScreen(data: LiveTable, modifier: Modifier = Modifier) {
                             Text(
                                 text = train.direction,
                                 modifier = Modifier.weight(3f),
-                                style = MaterialTheme.typography.bodyLarge.copy(
+                                style = MaterialTheme.typography.labelLarge.copy(
                                     color = Color.Black,
                                 ),
                             )
@@ -190,13 +187,13 @@ fun MakeLiveScreen(data: LiveTable, modifier: Modifier = Modifier) {
                             ) {
                                 Text(
                                     text = train.trainType,
-                                    style = MaterialTheme.typography.bodyLarge.copy(
+                                    style = MaterialTheme.typography.labelLarge.copy(
                                         color = Color.Black,
                                     ),
                                 )
                                 Text(
                                     text = train.trainNum,
-                                    style = MaterialTheme.typography.bodyLarge.copy(
+                                    style = MaterialTheme.typography.labelLarge.copy(
                                         color = Color.Black,
                                     ),
                                 )

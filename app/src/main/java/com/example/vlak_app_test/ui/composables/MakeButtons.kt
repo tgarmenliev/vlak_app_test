@@ -35,8 +35,8 @@ fun MakeButton(
             text = text,
             modifier = Modifier
                 .align(Alignment.CenterVertically)
-                .padding(6.dp),
-            style = MaterialTheme.typography.labelLarge.copy(
+                .padding(3.dp),
+            style = MaterialTheme.typography.labelMedium.copy(
                 color = Color.White
             ),
             textAlign = TextAlign.Center

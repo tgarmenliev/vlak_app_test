@@ -71,7 +71,7 @@ fun MakeSimpleInputField(
                             Text(
                                 text = hintText,
                                 modifier = Modifier.padding(end = 8.dp),
-                                style = MaterialTheme.typography.labelLarge.copy(
+                                style = MaterialTheme.typography.labelMedium.copy(
                                     color = Color.Gray,
                                 )
                             )
