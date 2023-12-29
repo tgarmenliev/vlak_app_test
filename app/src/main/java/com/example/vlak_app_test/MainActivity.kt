@@ -9,6 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.vlak_app_test.ui.composable_screens.MakeDatePickerScreen
+import com.example.vlak_app_test.ui.composable_screens.MakeStationsPickerScreen
 import com.example.vlak_app_test.ui.live.MakeLiveScreen
 import com.example.vlak_app_test.ui.live.MakeLiveSearchScreen
 import com.example.vlak_app_test.ui.theme.Vlak_app_testTheme
@@ -89,7 +90,15 @@ class MainActivity : ComponentActivity() {
 //                        println("Selected date: $selectedDate")
 //                })
 
-                MakeDatePickerScreen(topBarText = "Schedule", backgroundImage = painterResource(id = R.drawable.schedule_back))
+                //MakeDatePickerScreen(topBarText = "Schedule", backgroundImage = painterResource(id = R.drawable.schedule_back))
+
+                MakeStationsPickerScreen(
+                    onStationOneSelected = { /*TODO*/ },
+                    onStationTwoSelected = { /*TODO*/ },
+                    onBackButtonPressed = { /*TODO*/ },
+                    backgroundImage = painterResource(id = R.drawable.schedule_back),
+                    topBarText = "Schedule"
+                )
             }
         }
     }
