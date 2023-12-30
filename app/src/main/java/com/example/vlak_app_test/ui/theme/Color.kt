@@ -15,6 +15,7 @@ val SecondaryDarkColor = Color(0xFF49939D)
 val ThirdDarkColor = Color(0xFFD3E1E2)
 val PrimaryLightColor = Color(0xFFD2E2E1)
 val BackgroundColor = Color(0xFFEEF2F5)
+val TextDarkColor = Color(0xFF254C52)
 
 val greenOnTime = Color(0xFF087108)
 val redLate = Color(0xFFAC1010)
