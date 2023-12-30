@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.requiredHeight
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -97,6 +98,7 @@ fun MakeLiveScreen(data: LiveTable, modifier: Modifier = Modifier) {
                             shape = RoundedCornerShape(20.dp)
                         )
                         .background(color = Color.White)
+                        .wrapContentSize()
                 ) {
                     LazyColumn(
                         modifier = Modifier
