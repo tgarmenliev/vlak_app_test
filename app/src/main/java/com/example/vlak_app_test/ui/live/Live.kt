@@ -98,7 +98,6 @@ fun MakeLiveScreen(data: LiveTable, modifier: Modifier = Modifier) {
                             shape = RoundedCornerShape(20.dp)
                         )
                         .background(color = Color.White)
-                        .wrapContentSize()
                 ) {
                     LazyColumn(
                         modifier = Modifier
