@@ -9,6 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.vlak_app_test.ui.composable_screens.MakeDatePickerScreen
+import com.example.vlak_app_test.ui.composable_screens.MakeScheduleOptionScreen
 import com.example.vlak_app_test.ui.composable_screens.MakeScheduleScreen
 import com.example.vlak_app_test.ui.composable_screens.MakeStationsPickerScreen
 import com.example.vlak_app_test.ui.live.MakeLiveScreen
@@ -105,10 +106,18 @@ class MainActivity : ComponentActivity() {
 
 
 
-                MakeScheduleScreen(
+//                MakeScheduleScreen(
+//                    onBackButtonPressed = { /*TODO*/ },
+//                    backgroundImage = painterResource(id = R.drawable.schedule_back),
+//                    data = sampleScheduleInfo
+//                )
+
+                MakeScheduleOptionScreen(
+                    onAddToTripsButtonPressed = { /*TODO*/ },
                     onBackButtonPressed = { /*TODO*/ },
-                    backgroundImage = painterResource(id = R.drawable.schedule_back),
-                    data = sampleScheduleInfo
+                    getTrainInfo = { /*TODO*/ },
+                    data = sampleScheduleInfo.options[0],
+                    route = "София - Пловдив",
                 )
             }
         }

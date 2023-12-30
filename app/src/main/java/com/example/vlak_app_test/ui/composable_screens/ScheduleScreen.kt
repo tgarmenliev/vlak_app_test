@@ -37,6 +37,7 @@ import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
@@ -61,7 +62,7 @@ fun MakeScheduleScreen(
     {
 
         backgroundImage?.let {
-            androidx.compose.foundation.Image(
+            Image(
                 painter = it,
                 contentDescription = "Background image",
                 contentScale = androidx.compose.ui.layout.ContentScale.Crop,
@@ -115,11 +116,11 @@ fun MakeScheduleScreen(
                                 .fillMaxWidth()
                                 .clickable { /*TODO*/ }
                                 .clip(RoundedCornerShape(20.dp))
-//                                .border(
-//                                    width = 2.dp,
-//                                    color = Color.Black,
-//                                    shape = RoundedCornerShape(20.dp)
-//                                )
+                                .border(
+                                    width = 2.dp,
+                                    color = TextDarkColor,
+                                    shape = RoundedCornerShape(20.dp)
+                                )
                                 .background(PrimaryDarkColor),
                         ) {
 
@@ -165,82 +166,12 @@ fun MakeScheduleScreen(
                                         horizontalArrangement = Arrangement.SpaceBetween
                                     ) {
 
-                                        Row {
-                                            Text(
-                                                text = option.departureTime,
-                                                style = MaterialTheme.typography.bodyMedium.copy(
-                                                    color = Color.Black,
-                                                    fontWeight = FontWeight.Bold
-                                                ),
-                                                modifier = Modifier
-                                                    .padding(start = 4.dp, end = 4.dp)
-                                            )
+                                        MakeDepartArriveTime(option = option)
 
-                                            Image(
-                                                painter = painterResource(id = R.drawable.next),
-                                                contentDescription = "Arrow",
-                                                modifier = Modifier
-                                                    .size(24.dp)
-                                            )
-
-                                            Text(
-                                                text = option.arrivalTime,
-                                                style = MaterialTheme.typography.bodyMedium.copy(
-                                                    color = Color.Black,
-                                                    fontWeight = FontWeight.Bold
-                                                ),
-                                                modifier = Modifier
-                                                    .padding(start = 4.dp)
-                                            )
-                                        }
-
-                                        Row() {
-
-                                            Image(
-                                                painter = painterResource(id = R.drawable.duration),
-                                                contentDescription = "Duration",
-                                                modifier = Modifier
-                                                    .size(24.dp)
-                                            )
-
-                                            Text(
-                                                text = option.duration,
-                                                style = MaterialTheme.typography.bodyMedium.copy(
-                                                    color = Color.Black,
-                                                    fontWeight = FontWeight.Bold
-                                                ),
-                                                modifier = Modifier
-                                                    .padding(start = 4.dp, end = 4.dp)
-                                            )
-                                        }
+                                        MakeDuration(duration = option.duration)
                                     }
 
-                                    Row(
-                                        modifier = Modifier
-                                            .padding(start = 12.dp, top = 8.dp, bottom = 8.dp),
-                                    ) {
-                                        Image(
-                                            painter = painterResource(id = R.drawable.transfer),
-                                            contentDescription = "Transfers",
-                                            modifier = Modifier
-                                                .size(24.dp)
-                                        )
-
-                                        Text(
-                                            text =
-                                                if (option.numOfTransfers == 0) {
-                                                    " Директен влак"
-                                                } else if (option.numOfTransfers == 1) {
-                                                    " " + option.numOfTransfers.toString() + " прекачване"
-                                                } else {
-                                                    " " + option.numOfTransfers.toString() + " прекачвания"
-                                                }
-                                            ,
-                                            style = MaterialTheme.typography.bodyMedium.copy(
-                                                color = Color.Black,
-                                            ),
-                                        )
-                                    }
+                                    MakeTransfers(transfers = option.numOfTransfers, modifier = Modifier.padding(start = 12.dp, bottom = 8.dp))
 
                                 }
                             }
@@ -265,4 +196,102 @@ private fun RouteMaker(trains: List<Schedule.Trains>): String {
         }
     }
     return route
+}
+
+@Composable
+fun MakeDepartArriveTime(
+    option: Schedule.Options,
+    modifier: Modifier = Modifier
+) {
+    Row {
+        Text(
+            text = option.departureTime,
+            style = MaterialTheme.typography.bodyMedium.copy(
+                color = Color.Black,
+                fontWeight = FontWeight.Bold
+            ),
+            modifier = Modifier
+                .padding(start = 4.dp, end = 4.dp)
+        )
+
+        Image(
+            painter = painterResource(id = R.drawable.next),
+            contentDescription = "Arrow",
+            modifier = Modifier
+                .size(24.dp)
+        )
+
+        Text(
+            text = option.arrivalTime,
+            style = MaterialTheme.typography.bodyMedium.copy(
+                color = Color.Black,
+                fontWeight = FontWeight.Bold
+            ),
+            modifier = Modifier
+                .padding(start = 4.dp)
+        )
+    }
+}
+
+@Composable
+fun MakeDuration(
+    duration: String,
+    modifier: Modifier = Modifier,
+    textStyle: TextStyle = MaterialTheme.typography.bodyMedium.copy(
+        color = Color.Black,
+    ),
+) {
+    Row(
+        modifier = modifier,
+    ) {
+
+        Image(
+            painter = painterResource(id = R.drawable.duration),
+            contentDescription = "Duration",
+            modifier = Modifier
+                .size(26.dp)
+                .padding(top = 2.dp)
+        )
+
+        Text(
+            text = duration,
+            style = textStyle,
+            modifier = Modifier
+                .padding(start = 4.dp, end = 4.dp)
+        )
+    }
+}
+
+@Composable
+fun MakeTransfers(
+    transfers: Int = 0,
+    modifier: Modifier = Modifier,
+    textStyle: TextStyle = MaterialTheme.typography.bodyMedium.copy(
+        color = Color.Black,
+    ),
+) {
+    Row(
+        modifier = modifier,
+    ) {
+        Image(
+            painter = painterResource(id = R.drawable.transfer),
+            contentDescription = "Transfers",
+            modifier = Modifier
+                .size(26.dp)
+                .padding(top = 2.dp)
+        )
+
+        Text(
+            text =
+            if (transfers == 0) {
+                " Директен влак"
+            } else if (transfers == 1) {
+                " $transfers прекачване"
+            } else {
+                " $transfers прекачвания"
+            }
+            ,
+            style = textStyle,
+        )
+    }
 }
