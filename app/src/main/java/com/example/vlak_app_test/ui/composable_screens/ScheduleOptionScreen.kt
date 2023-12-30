@@ -1,12 +1,11 @@
 package com.example.vlak_app_test.ui.composable_screens
 
-import android.widget.Space
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
@@ -20,7 +19,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -31,15 +33,13 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.PathEffect
-import androidx.compose.ui.graphics.drawscope.Stroke
-import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.LineHeightStyle
 import androidx.compose.ui.text.style.TextDecoration
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.example.vlak_app_test.R
+import com.example.vlak_app_test.ui.composables.MakeButton
 import com.example.vlak_app_test.ui.composables.MakeTopBar
 import com.example.vlak_app_test.ui.theme.PrimaryDarkColor
 import com.example.vlak_app_test.ui.theme.TextDarkColor
@@ -69,77 +69,112 @@ fun MakeScheduleOptionScreen(
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(8.dp),
+                .verticalScroll(rememberScrollState()),
         ) {
 
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .clip(RoundedCornerShape(20.dp))
-                    .border(
-                        width = 2.dp,
-                        color = TextDarkColor,
-                        shape = RoundedCornerShape(20.dp)
-                    )
-                    .background(Color.White)
-                    .padding(4.dp),
+                    .padding(8.dp)
             ) {
 
-                Text(
-                    text = route,
-                    style = MaterialTheme.typography.titleLarge.copy(
-                        color = TextDarkColor,
-                        fontWeight = FontWeight.Bold
-                    ),
-                    modifier = Modifier
-                        .padding(8.dp)
-                )
-
-                Divider(
+                Box(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(horizontal = 8.dp),
-                    thickness = 1.dp,
-                    color = Color.Gray
-                )
+                        .clip(RoundedCornerShape(20.dp))
+                        .border(
+                            width = 2.dp,
+                            color = TextDarkColor,
+                            shape = RoundedCornerShape(20.dp)
+                        )
+                        .background(Color.White)
+                        .padding(4.dp),
+                ) {
+                    Column(
+                        modifier = Modifier
+                    ) {
 
-                if (data.numOfTransfers == 0) {
-                    MakeTrainNumber(getTrainInfo = getTrainInfo, data = data.trains[0])
+                        Text(
+                            text = route,
+                            style = MaterialTheme.typography.titleLarge.copy(
+                                color = TextDarkColor,
+                                fontWeight = FontWeight.Bold
+                            ),
+                            modifier = Modifier
+                                .padding(8.dp)
+                        )
+
+                        Divider(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(horizontal = 8.dp),
+                            thickness = 1.dp,
+                            color = Color.Gray
+                        )
+
+                        if (data.numOfTransfers == 0) {
+                            MakeTrainNumber(getTrainInfo = getTrainInfo, data = data.trains[0])
+                        }
+
+                        MakeTransfers(
+                            transfers = data.numOfTransfers,
+                            modifier = Modifier.padding(start = 8.dp, top = 8.dp),
+                            textStyle = MaterialTheme.typography.titleMedium.copy(
+                                color = Color.Black,
+                            ),
+                        )
+
+                        MakeDuration(
+                            duration = data.duration,
+                            modifier = Modifier.padding(start = 8.dp, top = 8.dp, bottom = 8.dp),
+                            textStyle = MaterialTheme.typography.titleMedium.copy(
+                                color = Color.Black,
+                            ),
+                        )
+
+                        Divider(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(horizontal = 8.dp),
+                            thickness = 1.dp,
+                            color = Color.Gray
+                        )
+
+                        for (index in data.trains.indices) {
+                            MakeTrainOnTransfer(data = data.trains[index])
+
+                            if (index != data.trains.size - 1) {
+                                MakeTransferComposable(timeToWaitNext = data.trains[index].timeToWaitNext)
+                            }
+                        }
+
+//                    LazyColumn(content = {
+//                        items(data.trains.size) { index ->
+//                            MakeTrainOnTransfer(data = data.trains[index])
+//
+//                            if (index != data.trains.size - 1) {
+//                                MakeTransferComposable(timeToWaitNext = data.trains[index].timeToWaitNext)
+//                            }
+//                        }
+//                    })
+                    }
                 }
 
-                MakeTransfers(
-                    transfers = data.numOfTransfers,
-                    modifier = Modifier.padding(start = 8.dp, top = 8.dp),
-                    textStyle = MaterialTheme.typography.titleMedium.copy(
-                        color = Color.Black,
-                    ),
-                )
+                Spacer(modifier = Modifier.padding(vertical = 8.dp))
 
-                MakeDuration(
-                    duration = data.duration,
-                    modifier = Modifier.padding(start = 8.dp, top = 8.dp, bottom = 8.dp),
-                    textStyle = MaterialTheme.typography.titleMedium.copy(
-                        color = Color.Black,
-                    ),
-                )
-
-                Divider(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 8.dp),
-                    thickness = 1.dp,
-                    color = Color.Gray
-                )
-
-                LazyColumn(content = {
-                    items(data.trains.size) { index ->
-                        MakeTrainOnTransfer(data = data.trains[index])
-
-                        if (index != data.trains.size - 1) {
-                            MakeTransferComposable(timeToWaitNext = data.trains[index].timeToWaitNext)
-                        }
-                    }
-                })
+                Box(
+                    modifier = Modifier.align(Alignment.CenterHorizontally)
+                ) {
+                    MakeButton(
+                        text = "Add to trips",
+                        onClick = onAddToTripsButtonPressed,
+                        modifier = Modifier
+                            .fillMaxWidth(0.6f),
+                        colors = ButtonDefaults.buttonColors(
+                            PrimaryDarkColor
+                        )
+                    )
+                }
             }
         }
     }
