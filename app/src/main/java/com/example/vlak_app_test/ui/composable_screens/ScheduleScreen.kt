@@ -44,6 +44,7 @@ import com.example.vlak_app_test.R
 import com.example.vlak_app_test.ui.composables.MakeButton
 import com.example.vlak_app_test.ui.composables.MakeTopBar
 import com.example.vlak_app_test.ui.theme.PrimaryDarkColor
+import com.example.vlak_app_test.ui.theme.TextDarkColor
 import com.example.vlak_app_test.ui.theme.greenOnTime
 import com.example.vlak_app_test.ui.theme.redLate
 import com.example.vlak_app_test.viewmodels.schedule.Schedule
@@ -114,12 +115,12 @@ fun MakeScheduleScreen(
                                 .fillMaxWidth()
                                 .clickable { /*TODO*/ }
                                 .clip(RoundedCornerShape(20.dp))
-                                .border(
-                                    width = 2.dp,
-                                    color = Color.Black,
-                                    shape = RoundedCornerShape(20.dp)
-                                )
-                                .background(Color.Gray),
+//                                .border(
+//                                    width = 2.dp,
+//                                    color = Color.Black,
+//                                    shape = RoundedCornerShape(20.dp)
+//                                )
+                                .background(PrimaryDarkColor),
                         ) {
 
                             Box(
@@ -143,7 +144,7 @@ fun MakeScheduleScreen(
                                     Text(
                                         text = routeMaker,
                                         style = MaterialTheme.typography.headlineMedium.copy(
-                                            color = Color.Black,
+                                            color = TextDarkColor,
                                             fontWeight = FontWeight.Bold
                                         ),
                                         modifier = Modifier
@@ -154,7 +155,7 @@ fun MakeScheduleScreen(
                                         modifier = Modifier
                                             .fillMaxWidth()
                                             .height(1.dp)
-                                            .background(Color.Black)
+                                            .background(Color.Gray)
                                     )
 
                                     Row(
