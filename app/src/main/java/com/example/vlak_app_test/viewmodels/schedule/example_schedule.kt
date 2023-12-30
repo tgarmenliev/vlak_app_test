@@ -5,12 +5,12 @@ val sampleScheduleInfo = Schedule.ScheduleTable(
     route = "София - Пловдив",
     options = listOf(
         Schedule.Options(
-            duration = "1:30",
+            duration = "3:10",
             departureTime = "10:00",
-            arrivalTime = "11:30",
+            arrivalTime = "13:10",
             departureDate = "2021-10-10",
             arrivalDate = "2021-10-10",
-            numOfTransfers = 0,
+            numOfTransfers = 1,
             trains = listOf(
                 Schedule.Trains(
                     from = "София",
@@ -22,6 +22,18 @@ val sampleScheduleInfo = Schedule.ScheduleTable(
                     trainType = "ПВ",
                     trainNum = "30121",
                     duration = "1:30",
+                    timeToWaitNext = "0:20"
+                ),
+                Schedule.Trains(
+                    from = "Пловдив",
+                    to = "Карлово",
+                    depart = "11:50",
+                    arrive = "13:10",
+                    departDate = "2021-10-10",
+                    arriveDate = "2021-10-10",
+                    trainType = "ПВ",
+                    trainNum = "30143",
+                    duration = "1:20",
                     timeToWaitNext = "0:00"
                 )
             )

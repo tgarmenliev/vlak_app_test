@@ -104,8 +104,6 @@ class MainActivity : ComponentActivity() {
 //                    topBarText = "Schedule"
 //                )
 
-
-
 //                MakeScheduleScreen(
 //                    onBackButtonPressed = { /*TODO*/ },
 //                    backgroundImage = painterResource(id = R.drawable.schedule_back),

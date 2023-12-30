@@ -254,7 +254,7 @@ fun MakeDuration(
         )
 
         Text(
-            text = duration,
+            text = "${duration} ч.",
             style = textStyle,
             modifier = Modifier
                 .padding(start = 4.dp, end = 4.dp)
