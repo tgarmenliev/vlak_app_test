@@ -12,6 +12,7 @@ import com.example.vlak_app_test.ui.composable_screens.MakeDatePickerScreen
 import com.example.vlak_app_test.ui.composable_screens.MakeScheduleOptionScreen
 import com.example.vlak_app_test.ui.composable_screens.MakeScheduleScreen
 import com.example.vlak_app_test.ui.composable_screens.MakeStationsPickerScreen
+import com.example.vlak_app_test.ui.guide.CarouselScreen
 import com.example.vlak_app_test.ui.live.MakeLiveScreen
 import com.example.vlak_app_test.ui.live.MakeLiveSearchScreen
 import com.example.vlak_app_test.ui.theme.Vlak_app_testTheme
@@ -110,13 +111,21 @@ class MainActivity : ComponentActivity() {
 //                    data = sampleScheduleInfo
 //                )
 
-                MakeScheduleOptionScreen(
-                    onAddToTripsButtonPressed = { /*TODO*/ },
-                    onBackButtonPressed = { /*TODO*/ },
-                    getTrainInfo = { /*TODO*/ },
-                    data = sampleScheduleInfo.options[0],
-                    route = "София - Пловдив",
+//                MakeScheduleOptionScreen(
+//                    onAddToTripsButtonPressed = { /*TODO*/ },
+//                    onBackButtonPressed = { /*TODO*/ },
+//                    getTrainInfo = { /*TODO*/ },
+//                    data = sampleScheduleInfo.options[0],
+//                    route = "София - Пловдив",
+//                )
+
+                val photos = listOf(
+                    painterResource(id = R.drawable.train_one),
+                    painterResource(id = R.drawable.train_two),
+                    painterResource(id = R.drawable.train_three),
                 )
+
+                CarouselScreen(data = photos)
             }
         }
     }
