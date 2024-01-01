@@ -26,6 +26,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import com.example.vlak_app_test.R
 import com.example.vlak_app_test.ui.composables.MakeButton
 import com.example.vlak_app_test.ui.composables.MakeTopBar
@@ -45,14 +46,6 @@ fun MakeLiveSearchScreen(): String {
             contentScale = ContentScale.Crop,
             modifier = Modifier
                 .fillMaxSize()
-        )
-
-        MakeTopBar(
-            titleText = "Live",
-            haveCancelButton = true,
-            onCancelButtonPressed = {
-                titleText = ""
-            }
         )
 
         Column(
@@ -94,4 +87,10 @@ fun MakeLiveSearchScreen(): String {
     }
 
     return "TrainInfoScreen"
+}
+
+@Preview(showBackground = true)
+@Composable
+fun DefaultPreview() {
+    MakeLiveSearchScreen()
 }

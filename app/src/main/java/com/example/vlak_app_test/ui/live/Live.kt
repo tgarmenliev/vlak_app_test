@@ -33,15 +33,18 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.vlak_app_test.R
 import com.example.vlak_app_test.ui.theme.PrimaryDarkColor
 import com.example.vlak_app_test.viewmodels.train_info.TrainInfo.TrainInfoTable
 import com.example.vlak_app_test.ui.composables.MakeButton
+import com.example.vlak_app_test.ui.composables.MakeImageHeader
 import com.example.vlak_app_test.ui.composables.MakeTopBar
 import com.example.vlak_app_test.ui.theme.greenOnTime
 import com.example.vlak_app_test.ui.theme.redLate
+import com.example.vlak_app_test.viewmodels.live.Live
 import com.example.vlak_app_test.viewmodels.live.Live.LiveTable
 
 @Composable
@@ -50,21 +53,14 @@ fun MakeLiveScreen(data: LiveTable, modifier: Modifier = Modifier) {
     Box(modifier = Modifier.fillMaxSize())
     {
 
-        Image(
-            painter = painterResource(id = R.drawable.live_back),
-            contentDescription = "Background image",
-            contentScale = ContentScale.Crop,
-            modifier = Modifier
-                .fillMaxSize()
-        )
-
         Column(
             Modifier.fillMaxSize()
         ) {
 
-            MakeTopBar(
-                titleText = "Live",
-                haveCancelButton = false
+            MakeImageHeader(
+                text = "Електронно табло",
+                image = painterResource(id = R.drawable.live_back),
+                modifier = Modifier.fillMaxHeight(0.15f)
             )
 
             Column(
@@ -75,13 +71,14 @@ fun MakeLiveScreen(data: LiveTable, modifier: Modifier = Modifier) {
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .requiredHeight(40.dp)
+                        .requiredHeight(50.dp)
                         .padding(top = 10.dp, start = 16.dp, end = 16.dp)
                 ) {
                     Text(
                         text = data.station,
                         style = MaterialTheme.typography.headlineLarge.copy(
                             color = Color.White,
+                            fontWeight = FontWeight.Bold
                         )
                     )
                 }
@@ -220,19 +217,13 @@ fun MakeLiveScreen(data: LiveTable, modifier: Modifier = Modifier) {
                         }
                     }
                 }
-
-                MakeButton(
-                    text = "Home",
-                    onClick = { /*TODO*/ },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(top = 10.dp, start = 65.dp, end = 65.dp, bottom = 10.dp),
-                    colors = ButtonDefaults.buttonColors(
-                        PrimaryDarkColor
-                    ),
-                    enabled = true
-                )
             }
         }
     }
+}
+
+@Preview
+@Composable
+fun MakeLiveScreenPreview() {
+    MakeLiveScreen(data = sampleLiveInfo)
 }

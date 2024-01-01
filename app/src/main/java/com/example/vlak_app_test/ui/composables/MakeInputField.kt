@@ -42,7 +42,7 @@ fun MakeSimpleInputField(
                 .fillMaxWidth()
                 .background(color = Color.White, shape = RoundedCornerShape(16.dp))
                 .border(
-                    width = 5.dp,
+                    width = 3.dp,
                     color = Color.Black,
                     shape = RoundedCornerShape(16.dp)
                 )
@@ -71,7 +71,7 @@ fun MakeSimpleInputField(
                             Text(
                                 text = hintText,
                                 modifier = Modifier.padding(end = 8.dp),
-                                style = MaterialTheme.typography.labelMedium.copy(
+                                style = MaterialTheme.typography.labelLarge.copy(
                                     color = Color.Gray,
                                 )
                             )

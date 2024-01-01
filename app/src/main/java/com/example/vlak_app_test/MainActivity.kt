@@ -1,20 +1,32 @@
 package com.example.vlak_app_test
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountCircle
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.outlined.AccountCircle
+import androidx.compose.material.icons.outlined.Home
+import androidx.compose.material.icons.outlined.Settings
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.vlak_app_test.ui.composable_screens.MakeDatePickerScreen
-import com.example.vlak_app_test.ui.composable_screens.MakeScheduleOptionScreen
-import com.example.vlak_app_test.ui.composable_screens.MakeScheduleScreen
-import com.example.vlak_app_test.ui.composable_screens.MakeStationsPickerScreen
+import com.example.vlak_app_test.ui.composables.BottomBarItem
+import com.example.vlak_app_test.ui.composables.MakeBottomBar
 import com.example.vlak_app_test.ui.guide.CarouselScreen
+import com.example.vlak_app_test.ui.guide.MakeGuideScreen
 import com.example.vlak_app_test.ui.live.MakeLiveScreen
 import com.example.vlak_app_test.ui.live.MakeLiveSearchScreen
+import com.example.vlak_app_test.ui.schedule.MakeScheduleOptionScreenSec
+import com.example.vlak_app_test.ui.schedule.MakeScheduleScreenSearch
+import com.example.vlak_app_test.ui.schedule.MakeScheduleScreenSec
 import com.example.vlak_app_test.ui.theme.Vlak_app_testTheme
 import com.example.vlak_app_test.ui.train_info.MakeTrainInfo
 import com.example.vlak_app_test.viewmodels.live.Live
@@ -24,6 +36,7 @@ import com.example.vlak_app_test.viewmodels.train_info.*
 
 
 class MainActivity : ComponentActivity() {
+    @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -125,7 +138,54 @@ class MainActivity : ComponentActivity() {
                     painterResource(id = R.drawable.train_three),
                 )
 
-                CarouselScreen(data = photos)
+                //CarouselScreen(data = photos)
+
+                val sampleBottomBarInfo = listOf(
+                    BottomBarItem(
+                        title = "Home",
+                        filledIcon = painterResource(id = R.drawable.home_filled),
+                        outlinedIcon = painterResource(id = R.drawable.home_outlined),
+                        route = "home"
+                    ),
+                    BottomBarItem(
+                        title = "Schedule",
+                        filledIcon = painterResource(id = R.drawable.schedule_filled),
+                        outlinedIcon = painterResource(id = R.drawable.schedule_outlined),
+                        route = "schedule"
+                    ),
+                    BottomBarItem(
+                        title = "Live",
+                        filledIcon = painterResource(id = R.drawable.clock_filled),
+                        outlinedIcon = painterResource(id = R.drawable.clock_outlined),
+                        route = "live"
+                    ),
+                    BottomBarItem(
+                        title = "Guide",
+                        filledIcon = painterResource(id = R.drawable.guide_filled),
+                        outlinedIcon = painterResource(id = R.drawable.guide_outlined),
+                        route = "guide"
+                    ),
+                )
+
+                //MakeBottomBar(items = sampleBottomBarInfo)
+
+                //MakeGuideScreen(data = photos, dataBottomBar = sampleBottomBarInfo)
+
+                Scaffold(
+                    bottomBar = {
+                        MakeBottomBar(items = sampleBottomBarInfo)
+                    }
+                ) {
+                    //MakeGuideScreen(data = photos)
+                    //MakeScheduleScreenSearch()
+                    //MakeScheduleScreenSec(data = sampleScheduleInfo)
+                    MakeScheduleOptionScreenSec(
+                        onAddToTripsButtonPressed = { /*TODO*/ },
+                        getTrainInfo = { /*TODO*/ },
+                        data = sampleScheduleInfo.options[0],
+                        route = "София - Пловдив"
+                    )
+                }
             }
         }
     }

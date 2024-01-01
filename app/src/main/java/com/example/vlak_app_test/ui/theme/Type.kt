@@ -82,6 +82,13 @@ val Typography = Typography(
         lineHeight = 24.sp,
         letterSpacing = 0.sp
     ),
+    headlineSmall = TextStyle(
+        fontFamily = fontFamilyJost,
+        fontWeight = FontWeight.Bold,
+        fontSize = 18.sp,
+        lineHeight = 20.sp,
+        letterSpacing = 0.sp
+    ),
 )
 
 //val JostFont = FontFamily(
