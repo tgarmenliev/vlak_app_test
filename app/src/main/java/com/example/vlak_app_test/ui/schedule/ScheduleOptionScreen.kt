@@ -58,15 +58,10 @@ fun MakeScheduleOptionScreenSec(
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .fillMaxHeight(0.9f)
+            .fillMaxHeight()
+            .padding(top = 100.dp)
             .verticalScroll(rememberScrollState()),
     ) {
-
-        MakeImageHeader(
-            text = "Разписание",
-            image = painterResource(id = R.drawable.schedule_back),
-            modifier = Modifier.height(150.dp)
-        )
 
         Column(
             modifier = Modifier

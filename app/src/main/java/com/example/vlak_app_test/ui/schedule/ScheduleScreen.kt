@@ -49,15 +49,10 @@ fun MakeScheduleScreenSec(
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .fillMaxHeight(0.9f),
+            .fillMaxHeight()
+            .padding(top = 100.dp),
         verticalArrangement = Arrangement.Center,
     ) {
-
-        MakeImageHeader(
-            text = "Разписание",
-            image = painterResource(id = R.drawable.schedule_back),
-            modifier = Modifier.fillMaxHeight(0.15f)
-        )
 
         Box(
             modifier = Modifier
@@ -152,7 +147,6 @@ fun MakeScheduleScreenSec(
                 Spacer(modifier = Modifier.height(10.dp))
             }
         }
-        Spacer(modifier = Modifier.height(100.dp))
     }
 }
 

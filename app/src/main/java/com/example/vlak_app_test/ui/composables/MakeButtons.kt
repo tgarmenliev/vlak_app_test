@@ -15,12 +15,15 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.vlak_app_test.ui.theme.PrimaryDarkColor
 
 @Composable
 fun MakeButton(
     modifier: Modifier = Modifier,
     text: String,
-    colors: ButtonColors = ButtonDefaults.buttonColors(),
+    colors: ButtonColors = ButtonDefaults.buttonColors(
+        containerColor = PrimaryDarkColor
+    ),
     onClick: () -> Unit,
     enabled: Boolean = true
 ) {

@@ -20,10 +20,12 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.vlak_app_test.ui.composables.BottomBarItem
 import com.example.vlak_app_test.ui.composables.MakeBottomBar
+import com.example.vlak_app_test.ui.composables.MakeTopBar
 import com.example.vlak_app_test.ui.guide.CarouselScreen
 import com.example.vlak_app_test.ui.guide.MakeGuideScreen
 import com.example.vlak_app_test.ui.live.MakeLiveScreen
 import com.example.vlak_app_test.ui.live.MakeLiveSearchScreen
+import com.example.vlak_app_test.ui.live.sampleLiveInfo
 import com.example.vlak_app_test.ui.schedule.MakeScheduleOptionScreenSec
 import com.example.vlak_app_test.ui.schedule.MakeScheduleScreenSearch
 import com.example.vlak_app_test.ui.schedule.MakeScheduleScreenSec
@@ -64,38 +66,6 @@ class MainActivity : ComponentActivity() {
                         )
                     )
                 )
-
-                val sampleLiveInfo = Live.LiveTable(
-                    station = "Пловдив",
-                    trains = listOf(
-                        Live.Trains(
-                            direction = "София",
-                            trainNum = "8602",
-                            trainType = "БВ",
-                            time = "10:00",
-                            isDelayed = true,
-                            delayedTime = "10:15",
-                            delayInfo = Live.DelayInfo(
-                                delayMinutes = 15,
-                                delayString = "15 min",
-                                delayInfo = "Delayed"
-                            )
-                        ),
-                        Live.Trains(
-                            direction = "Бургас",
-                            trainNum = "8601",
-                            trainType = "БВ",
-                            time = "16:00",
-                        ),
-                        Live.Trains(
-                            direction = "Септември",
-                            trainNum = "10114",
-                            trainType = "ПВ",
-                            time = "19:00",
-                        )
-                    )
-                )
-
 
                 //MakeTrainInfo(data = sampleTrainInfo)
                 //SearchTrainInfoScreen()
@@ -171,13 +141,21 @@ class MainActivity : ComponentActivity() {
 
                 //MakeGuideScreen(data = photos, dataBottomBar = sampleBottomBarInfo)
 
+//                Scaffold(
+//                    bottomBar = {
+//                        MakeBottomBar(items = sampleBottomBarInfo)
+//                    }
+//                ) {
+//                    //MakeGuideScreen(data = photos)
+//                    //MakeScheduleScreenSearch()
+//                    //MakeLiveSearchScreen()
+//                }
+
                 Scaffold(
-                    bottomBar = {
-                        MakeBottomBar(items = sampleBottomBarInfo)
+                    topBar = {
+                        MakeTopBar(titleText = "Разписание")
                     }
                 ) {
-                    MakeGuideScreen(data = photos)
-                    //MakeScheduleScreenSearch()
                     //MakeScheduleScreenSec(data = sampleScheduleInfo)
 //                    MakeScheduleOptionScreenSec(
 //                        onAddToTripsButtonPressed = { /*TODO*/ },
@@ -185,6 +163,7 @@ class MainActivity : ComponentActivity() {
 //                        data = sampleScheduleInfo.options[0],
 //                        route = "София - Пловдив"
 //                    )
+                    MakeLiveScreen(data = sampleLiveInfo)
                 }
             }
         }
