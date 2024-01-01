@@ -34,7 +34,7 @@ fun MakeImageHeader(
         )
         Text(
             text = text,
-            style = MaterialTheme.typography.headlineSmall.copy(
+            style = MaterialTheme.typography.headlineLarge.copy(
                 color = Color.White,
                 fontWeight = FontWeight.Bold
             ),

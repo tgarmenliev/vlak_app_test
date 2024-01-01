@@ -5,6 +5,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -29,43 +30,43 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.vlak_app_test.R
 import com.example.vlak_app_test.ui.composables.MakeButton
+import com.example.vlak_app_test.ui.composables.MakeImageHeader
 import com.example.vlak_app_test.ui.composables.MakeTopBar
 
 @Composable
-fun MakeLiveSearchScreen(): String {
+fun MakeLiveSearchScreen() {
     var titleText by rememberSaveable { mutableStateOf("") }
 
-    Box(
+    Column(
         modifier = Modifier
             .fillMaxSize()
     ) {
 
-        Image(
-            painter = painterResource(id = R.drawable.live_back),
-            contentDescription = "Background image",
-            contentScale = ContentScale.Crop,
-            modifier = Modifier
-                .fillMaxSize()
+        MakeImageHeader(
+            text = "Електронно табло",
+            image = painterResource(id = R.drawable.live_back),
+            modifier = Modifier.fillMaxHeight(0.3f)
         )
 
         Column(
             modifier = Modifier
                 .fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
         ) {
 
             Text(
                 text = "Choose station:",
                 style = MaterialTheme.typography.bodyLarge.copy(
-                    color = Color.White,
+                    color = Color.Black,
                     fontWeight = FontWeight.Bold,
-                )
+                ),
+                modifier = Modifier
+                    .padding(top = 20.dp)
             )
 
             MakeSimpleInputField(
                 modifier = Modifier
-                    .padding(40.dp),
+                    .padding(horizontal = 40.dp, vertical = 10.dp),
                 titleText = titleText,
                 hintText = "Enter station name",
                 keyboardType = KeyboardType.Text,
@@ -85,12 +86,4 @@ fun MakeLiveSearchScreen(): String {
             )
         }
     }
-
-    return "TrainInfoScreen"
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    MakeLiveSearchScreen()
 }

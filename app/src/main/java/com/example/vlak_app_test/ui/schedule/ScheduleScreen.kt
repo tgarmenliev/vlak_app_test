@@ -267,9 +267,3 @@ fun MakeTransfers(
         )
     }
 }
-
-@Preview
-@Composable
-fun ScheduleScreenPreview() {
-    MakeScheduleScreenSec(data = sampleScheduleInfo)
-}

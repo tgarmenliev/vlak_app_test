@@ -221,9 +221,3 @@ fun MakeLiveScreen(data: LiveTable, modifier: Modifier = Modifier) {
         }
     }
 }
-
-@Preview
-@Composable
-fun MakeLiveScreenPreview() {
-    MakeLiveScreen(data = sampleLiveInfo)
-}

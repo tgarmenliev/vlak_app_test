@@ -176,15 +176,15 @@ class MainActivity : ComponentActivity() {
                         MakeBottomBar(items = sampleBottomBarInfo)
                     }
                 ) {
-                    //MakeGuideScreen(data = photos)
+                    MakeGuideScreen(data = photos)
                     //MakeScheduleScreenSearch()
                     //MakeScheduleScreenSec(data = sampleScheduleInfo)
-                    MakeScheduleOptionScreenSec(
-                        onAddToTripsButtonPressed = { /*TODO*/ },
-                        getTrainInfo = { /*TODO*/ },
-                        data = sampleScheduleInfo.options[0],
-                        route = "София - Пловдив"
-                    )
+//                    MakeScheduleOptionScreenSec(
+//                        onAddToTripsButtonPressed = { /*TODO*/ },
+//                        getTrainInfo = { /*TODO*/ },
+//                        data = sampleScheduleInfo.options[0],
+//                        route = "София - Пловдив"
+//                    )
                 }
             }
         }
