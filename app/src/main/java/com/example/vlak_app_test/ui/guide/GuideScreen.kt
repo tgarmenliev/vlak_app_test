@@ -8,11 +8,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import com.example.vlak_app_test.ui.composables.BottomBarItem
 import com.example.vlak_app_test.ui.composables.MakeBottomBar
+import com.example.vlak_app_test.viewmodels.guide.Guide
 
 @Composable
 fun MakeGuideScreen(
     modifier: Modifier = Modifier,
-    data: List<Painter>,
+    data: List<Guide.GuideTable>,
 ) {
     Column(
         modifier = modifier.fillMaxSize()

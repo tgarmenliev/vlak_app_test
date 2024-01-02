@@ -17,5 +17,8 @@ val PrimaryLightColor = Color(0xFFD2E2E1)
 val BackgroundColor = Color(0xFFEEF2F5)
 val TextDarkColor = Color(0xFF254C52)
 
+val BottomBarContainerColor = Color(0xFFE7F0F5)
+val ChosenBottomBarColor = Color(0xFFD1E5F4)
+
 val greenOnTime = Color(0xFF087108)
 val redLate = Color(0xFFAC1010)

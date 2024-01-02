@@ -4,6 +4,7 @@ import android.media.Image
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.collectIsDraggedAsState
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -52,8 +53,24 @@ import kotlin.math.absoluteValue
 @Composable
 fun CarouselScreen(
     modifier: Modifier = Modifier,
-    data: List<Painter>
+    data: List<Guide.GuideTable>
 ) {
+
+    var selectedCardGuide by remember {
+        mutableStateOf<Guide.GuideTable?>(null)
+    }
+
+    if (selectedCardGuide != null) {
+        MakeGuideMoreInfoScreen(
+            modifier = Modifier
+                .fillMaxSize(),
+            data = selectedCardGuide!!,
+            onClose = {
+                selectedCardGuide = null
+            }
+        )
+    }
+
     val autoScrollDuration = 3000L
 
     val pagerState = rememberPagerState(
@@ -106,11 +123,10 @@ fun CarouselScreen(
                     .fillMaxWidth()
                     .fillMaxHeight()
                     .carouselTransition(page = index, pagerState = pagerState),
-                data = Guide.GuideTable(
-                    title = "Title",
-                    description = "Description",
-                    image = data[index]
-                )
+                data = data[index],
+                onClick = {
+                    selectedCardGuide = data[index]
+                }
             )
         }
     }
@@ -119,11 +135,14 @@ fun CarouselScreen(
 @Composable
 fun CarouselItem(
     modifier: Modifier = Modifier,
-    data: Guide.GuideTable
+    data: Guide.GuideTable,
+    onClick: () -> Unit = { }
 ) {
+
     ElevatedCard(
         modifier = modifier
-            .fillMaxWidth(),
+            .fillMaxWidth()
+            .clickable (onClick = onClick),
         shape = RoundedCornerShape(20.dp),
         elevation = CardDefaults.cardElevation(
             defaultElevation = 5.dp
@@ -168,7 +187,7 @@ fun CarouselItem(
                 )
 
                 Text(
-                    text = data.description,
+                    text = data.shortDescription,
                     style = MaterialTheme.typography.titleMedium.copy(
                         color = Color.White,
                         fontWeight = FontWeight.Normal

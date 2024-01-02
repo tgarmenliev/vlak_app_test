@@ -3,7 +3,9 @@ package com.example.vlak_app_test.ui.composables
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarDefaults
 import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -15,6 +17,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
+import com.example.vlak_app_test.ui.theme.BottomBarContainerColor
+import com.example.vlak_app_test.ui.theme.ChosenBottomBarColor
+import com.example.vlak_app_test.ui.theme.PrimaryDarkColor
+import com.example.vlak_app_test.ui.theme.PrimaryLightColor
 
 data class BottomBarItem(
     val title: String,
@@ -32,7 +38,9 @@ fun MakeBottomBar(
         mutableStateOf(0)
     }
 
-    NavigationBar {
+    NavigationBar(
+        containerColor = BottomBarContainerColor
+    ) {
         items.forEachIndexed { index, item ->
             NavigationBarItem(
                 selected = selectedItemIndex == index,
@@ -49,6 +57,9 @@ fun MakeBottomBar(
                         modifier = Modifier.size(24.dp)
                     )
                 },
+                colors = NavigationBarItemDefaults.colors(
+                    indicatorColor = ChosenBottomBarColor
+                ),
             )
         }
     }

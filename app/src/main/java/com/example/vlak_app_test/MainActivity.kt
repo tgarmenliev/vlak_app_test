@@ -31,6 +31,7 @@ import com.example.vlak_app_test.ui.schedule.MakeScheduleScreenSearch
 import com.example.vlak_app_test.ui.schedule.MakeScheduleScreenSec
 import com.example.vlak_app_test.ui.theme.Vlak_app_testTheme
 import com.example.vlak_app_test.ui.train_info.MakeTrainInfo
+import com.example.vlak_app_test.viewmodels.guide.Guide
 import com.example.vlak_app_test.viewmodels.live.Live
 import com.example.vlak_app_test.viewmodels.schedule.Schedule
 import com.example.vlak_app_test.viewmodels.schedule.sampleScheduleInfo
@@ -102,14 +103,6 @@ class MainActivity : ComponentActivity() {
 //                    route = "София - Пловдив",
 //                )
 
-                val photos = listOf(
-                    painterResource(id = R.drawable.train_one),
-                    painterResource(id = R.drawable.train_two),
-                    painterResource(id = R.drawable.train_three),
-                )
-
-                //CarouselScreen(data = photos)
-
                 val sampleBottomBarInfo = listOf(
                     BottomBarItem(
                         title = "Home",
@@ -137,34 +130,55 @@ class MainActivity : ComponentActivity() {
                     ),
                 )
 
+                val sampleGuideInfo = listOf(
+                    Guide.GuideTable(
+                        title = "Пътуване с влак1",
+                        shortDescription = "Пътуване с влак почти дълго1",
+                        description = "Пътуване с влак дълго1",
+                        image = painterResource(id = R.drawable.train_one)
+                    ),
+                    Guide.GuideTable(
+                        title = "Пътуване с влак2",
+                        shortDescription = "Пътуване с влак почти2",
+                        description = "Пътуване с влак много дълго2",
+                        image = painterResource(id = R.drawable.train_two)
+                    ),
+                    Guide.GuideTable(
+                        title = "Пътуване с 30123",
+                        shortDescription = "Пътуване с 30123 уникално",
+                        description = "Избери пътуването с 30123 още сега!",
+                        image = painterResource(id = R.drawable.train_three)
+                    ),
+                )
+
                 //MakeBottomBar(items = sampleBottomBarInfo)
 
                 //MakeGuideScreen(data = photos, dataBottomBar = sampleBottomBarInfo)
 
-//                Scaffold(
-//                    bottomBar = {
-//                        MakeBottomBar(items = sampleBottomBarInfo)
-//                    }
-//                ) {
-//                    //MakeGuideScreen(data = photos)
-//                    //MakeScheduleScreenSearch()
-//                    //MakeLiveSearchScreen()
-//                }
-
                 Scaffold(
-                    topBar = {
-                        MakeTopBar(titleText = "Разписание")
+                    bottomBar = {
+                        MakeBottomBar(items = sampleBottomBarInfo)
                     }
                 ) {
-                    //MakeScheduleScreenSec(data = sampleScheduleInfo)
-//                    MakeScheduleOptionScreenSec(
-//                        onAddToTripsButtonPressed = { /*TODO*/ },
-//                        getTrainInfo = { /*TODO*/ },
-//                        data = sampleScheduleInfo.options[0],
-//                        route = "София - Пловдив"
-//                    )
-                    MakeLiveScreen(data = sampleLiveInfo)
+                    MakeGuideScreen(data = sampleGuideInfo)
+                    //MakeScheduleScreenSearch()
+                    //MakeLiveSearchScreen()
                 }
+
+//                Scaffold(
+//                    topBar = {
+//                        MakeTopBar(titleText = "Разписание")
+//                    }
+//                ) {
+//                    //MakeScheduleScreenSec(data = sampleScheduleInfo)
+////                    MakeScheduleOptionScreenSec(
+////                        onAddToTripsButtonPressed = { /*TODO*/ },
+////                        getTrainInfo = { /*TODO*/ },
+////                        data = sampleScheduleInfo.options[0],
+////                        route = "София - Пловдив"
+////                    )
+//                    MakeLiveScreen(data = sampleLiveInfo)
+//                }
             }
         }
     }
