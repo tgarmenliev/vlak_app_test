@@ -2,12 +2,19 @@ package com.example.vlak_app_test.ui.composables
 
 import androidx.compose.material3.Button
 import androidx.compose.material3.DatePicker
+import androidx.compose.material3.DatePickerDefaults
 import androidx.compose.material3.DatePickerDialog
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.SelectableDates
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberDatePickerState
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
+import com.example.vlak_app_test.ui.theme.BottomBarContainerColor
+import com.example.vlak_app_test.ui.theme.CalendarDarkColor
+import com.example.vlak_app_test.ui.theme.ChosenBottomBarColor
+import com.example.vlak_app_test.ui.theme.PrimaryDarkColor
+import com.example.vlak_app_test.ui.theme.TextDarkColor
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
@@ -63,7 +70,19 @@ fun MakeDatePickerDialog(
         },
     ) {
         DatePicker(
-            state = datePickerState
+            state = datePickerState,
+            colors = DatePickerDefaults.colors(
+                containerColor = BottomBarContainerColor,
+                titleContentColor = PrimaryDarkColor,
+                headlineContentColor = TextDarkColor,
+                selectedDayContainerColor = CalendarDarkColor,
+                selectedDayContentColor = Color.White,
+                dayContentColor = Color.Black,
+                disabledDayContentColor = Color.Gray,
+                todayContentColor = PrimaryDarkColor,
+                todayDateBorderColor = PrimaryDarkColor,
+                weekdayContentColor = Color.Black,
+            )
         )
     }
 }

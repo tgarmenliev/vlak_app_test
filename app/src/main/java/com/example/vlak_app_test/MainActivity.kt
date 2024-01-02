@@ -105,25 +105,25 @@ class MainActivity : ComponentActivity() {
 
                 val sampleBottomBarInfo = listOf(
                     BottomBarItem(
-                        title = "Home",
+                        title = "Начало",
                         filledIcon = painterResource(id = R.drawable.home_filled),
                         outlinedIcon = painterResource(id = R.drawable.home_outlined),
                         route = "home"
                     ),
                     BottomBarItem(
-                        title = "Schedule",
+                        title = "Разсп.",
                         filledIcon = painterResource(id = R.drawable.schedule_filled),
                         outlinedIcon = painterResource(id = R.drawable.schedule_outlined),
                         route = "schedule"
                     ),
                     BottomBarItem(
-                        title = "Live",
+                        title = "Ел. табло",
                         filledIcon = painterResource(id = R.drawable.clock_filled),
                         outlinedIcon = painterResource(id = R.drawable.clock_outlined),
                         route = "live"
                     ),
                     BottomBarItem(
-                        title = "Guide",
+                        title = "Наръчник",
                         filledIcon = painterResource(id = R.drawable.guide_filled),
                         outlinedIcon = painterResource(id = R.drawable.guide_outlined),
                         route = "guide"
@@ -160,8 +160,8 @@ class MainActivity : ComponentActivity() {
                         MakeBottomBar(items = sampleBottomBarInfo)
                     }
                 ) {
-                    MakeGuideScreen(data = sampleGuideInfo)
-                    //MakeScheduleScreenSearch()
+                    //MakeGuideScreen(data = sampleGuideInfo)
+                    MakeScheduleScreenSearch()
                     //MakeLiveSearchScreen()
                 }
 
