@@ -23,6 +23,7 @@ import com.example.vlak_app_test.ui.composables.MakeBottomBar
 import com.example.vlak_app_test.ui.composables.MakeTopBar
 import com.example.vlak_app_test.ui.guide.CarouselScreen
 import com.example.vlak_app_test.ui.guide.MakeGuideScreen
+import com.example.vlak_app_test.ui.home.MakeHomescreen
 import com.example.vlak_app_test.ui.live.MakeLiveScreen
 import com.example.vlak_app_test.ui.live.MakeLiveSearchScreen
 import com.example.vlak_app_test.ui.live.sampleLiveInfo
@@ -161,8 +162,9 @@ class MainActivity : ComponentActivity() {
                     }
                 ) {
                     //MakeGuideScreen(data = sampleGuideInfo)
-                    MakeScheduleScreenSearch()
+                    //MakeScheduleScreenSearch()
                     //MakeLiveSearchScreen()
+                    MakeHomescreen()
                 }
 
 //                Scaffold(
