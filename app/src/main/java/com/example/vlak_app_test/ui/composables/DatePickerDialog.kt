@@ -10,6 +10,8 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.rememberDatePickerState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
+import com.example.vlak_app_test.R
 import com.example.vlak_app_test.ui.theme.BottomBarContainerColor
 import com.example.vlak_app_test.ui.theme.CalendarDarkColor
 import com.example.vlak_app_test.ui.theme.ChosenBottomBarColor
@@ -58,14 +60,14 @@ fun MakeDatePickerDialog(
             }
 
             ) {
-                Text(text = "OK")
+                Text(text = stringResource(id = R.string.ok))
             }
         },
         dismissButton = {
             Button(onClick = {
                 onDismiss()
             }) {
-                Text(text = "Cancel")
+                Text(text = stringResource(id = R.string.cancel))
             }
         },
     ) {

@@ -46,12 +46,11 @@ fun SearchTrainInfoScreen(): String {
         )
 
         MakeTopBar(
-            titleText = "Search train info",
-            haveCancelButton = true,
-            onCancelButtonPressed = {
-                titleText = ""
-            }
-        )
+            titleText = R.string.search_train_info,
+            haveCancelButton = true
+        ) {
+            titleText = ""
+        }
 
         Column(
             modifier = Modifier
@@ -75,7 +74,7 @@ fun SearchTrainInfoScreen(): String {
                 modifier = Modifier
                     .padding(40.dp),
                 titleText = titleText,
-                hintText = "Enter train number",
+                hintText = R.string.enter_train_num,
                 keyboardType = KeyboardType.Number,
                 onValueChange = {
                     titleText = it
@@ -83,7 +82,7 @@ fun SearchTrainInfoScreen(): String {
             )
 
             MakeButton(
-                text = "Next",
+                text = R.string.next,
                 onClick = { /*TODO*/ },
                 modifier = Modifier
                     .fillMaxWidth(0.6f)

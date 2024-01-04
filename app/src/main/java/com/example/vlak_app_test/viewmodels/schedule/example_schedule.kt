@@ -5,9 +5,9 @@ val sampleScheduleInfo = Schedule.ScheduleTable(
     route = "София - Пловдив",
     options = listOf(
         Schedule.Options(
-            duration = "3:10",
+            duration = "3:25",
             departureTime = "10:00",
-            arrivalTime = "13:10",
+            arrivalTime = "13:25",
             departureDate = "2021-10-10",
             arrivalDate = "2021-10-10",
             numOfTransfers = 2,
@@ -16,36 +16,36 @@ val sampleScheduleInfo = Schedule.ScheduleTable(
                     from = "София",
                     to = "Пловдив",
                     depart = "10:00",
-                    arrive = "11:30",
+                    arrive = "11:50",
                     departDate = "2021-10-10",
                     arriveDate = "2021-10-10",
                     trainType = "ПВ",
                     trainNum = "30121",
-                    duration = "1:30",
+                    duration = "1:50",
                     timeToWaitNext = "0:20"
                 ),
                 Schedule.Trains(
                     from = "Пловдив",
-                    to = "Карлово",
-                    depart = "11:50",
-                    arrive = "13:10",
+                    to = "Филипово",
+                    depart = "12:10",
+                    arrive = "12:30",
                     departDate = "2021-10-10",
                     arriveDate = "2021-10-10",
-                    trainType = "ПВ",
-                    trainNum = "30143",
-                    duration = "1:20",
-                    timeToWaitNext = "0:00"
+                    trainType = "Авт",
+                    trainNum = "30663",
+                    duration = "0:20",
+                    timeToWaitNext = "0:05"
                 ),
                 Schedule.Trains(
-                    from = "Пловдив",
+                    from = "Филипово",
                     to = "Карлово",
-                    depart = "11:50",
-                    arrive = "13:10",
+                    depart = "12:35",
+                    arrive = "13:25",
                     departDate = "2021-10-10",
                     arriveDate = "2021-10-10",
                     trainType = "ПВ",
                     trainNum = "30143",
-                    duration = "1:20",
+                    duration = "0:50",
                     timeToWaitNext = "0:00"
                 )
             )

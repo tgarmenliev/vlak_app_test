@@ -29,6 +29,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -60,7 +61,7 @@ fun MakeScheduleScreenSec(
                 .padding(top = 10.dp, start = 16.dp, end = 16.dp)
         ) {
             Text(
-                text = "Влакове:",
+                text = "${stringResource(id = R.string.trains)}:",
                 style = MaterialTheme.typography.headlineLarge.copy(
                     color = Color.Black,
                 )
@@ -250,13 +251,12 @@ fun MakeTransfers(
         Text(
             text =
             if (transfers == 0) {
-                " Директен влак"
+                " " + stringResource(id = R.string.direct_train)
             } else if (transfers == 1) {
-                " $transfers прекачване"
+                " $transfers ${stringResource(id = R.string.one_transfer)}"
             } else {
-                " $transfers прекачвания"
-            }
-            ,
+                " $transfers ${stringResource(id = R.string.many_transfers)}"
+            },
             style = textStyle,
         )
     }

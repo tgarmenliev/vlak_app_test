@@ -33,6 +33,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -68,7 +69,9 @@ fun MakeLiveScreen(data: LiveTable, modifier: Modifier = Modifier) {
     {
 
         Column(
-            Modifier.fillMaxSize().padding(top = 100.dp),
+            Modifier
+                .fillMaxSize()
+                .padding(top = 100.dp),
         ) {
 
             Column(
@@ -117,7 +120,7 @@ fun MakeLiveScreen(data: LiveTable, modifier: Modifier = Modifier) {
                                     .fillMaxWidth()
                             ) {
                                 Text(
-                                    text = "Time",
+                                    text = stringResource(id = R.string.time),
                                     modifier = Modifier.weight(2f),
                                     style = MaterialTheme.typography.labelLarge.copy(
                                         color = Color.Black,
@@ -125,7 +128,7 @@ fun MakeLiveScreen(data: LiveTable, modifier: Modifier = Modifier) {
                                     ),
                                 )
                                 Text(
-                                    text = "Direction",
+                                    text = stringResource(id = R.string.direction),
                                     modifier = Modifier.weight(3f),
                                     style = MaterialTheme.typography.labelLarge.copy(
                                         color = Color.Black,
@@ -133,7 +136,7 @@ fun MakeLiveScreen(data: LiveTable, modifier: Modifier = Modifier) {
                                     ),
                                 )
                                 Text(
-                                    text = "Train #",
+                                    text = stringResource(id = R.string.train_number),
                                     modifier = Modifier.weight(1.7f),
                                     style = MaterialTheme.typography.labelLarge.copy(
                                         color = Color.Black,

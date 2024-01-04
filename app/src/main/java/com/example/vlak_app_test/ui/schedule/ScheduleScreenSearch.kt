@@ -60,7 +60,7 @@ fun MakeScheduleScreenSearch(
     ) {
 
         MakeImageHeader(
-            text = "Разписание",
+            text = R.string.schedule,
             image = painterResource(id = R.drawable.schedule_back),
             modifier = Modifier.fillMaxHeight(0.3f)
         )
@@ -78,7 +78,7 @@ fun MakeScheduleScreenSearch(
             ) {
                 MakeSimpleInputField(
                     titleText = stationOne,
-                    hintText = "From station:",
+                    hintText = R.string.from_station,
                     keyboardType = KeyboardType.Text,
                     onValueChange = {
                         stationOne = it
@@ -89,7 +89,7 @@ fun MakeScheduleScreenSearch(
 
                 MakeSimpleInputField(
                     titleText = stationTwo,
-                    hintText = "To station:",
+                    hintText = R.string.to_station,
                     keyboardType = KeyboardType.Text,
                     onValueChange = {
                         stationTwo = it
@@ -132,7 +132,7 @@ fun MakeScheduleScreenSearch(
                 }
 
                 MakeButton(
-                    text = "Search",
+                    text = R.string.search,
                     modifier = Modifier
                         .padding(top = 16.dp)
                         .fillMaxWidth(0.6f)

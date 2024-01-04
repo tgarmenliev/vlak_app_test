@@ -14,6 +14,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.example.vlak_app_test.R
@@ -21,7 +22,7 @@ import com.example.vlak_app_test.R
 @Composable
 fun MakeImageHeader(
     modifier: Modifier = Modifier,
-    text: String,
+    text: Int,
     image: Painter
 ) {
     Box(
@@ -33,7 +34,7 @@ fun MakeImageHeader(
             contentScale = ContentScale.Crop,
         )
         Text(
-            text = text,
+            text = stringResource(id = text),
             style = MaterialTheme.typography.headlineLarge.copy(
                 color = Color.White,
                 fontWeight = FontWeight.Bold

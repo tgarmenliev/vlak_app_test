@@ -16,6 +16,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.example.vlak_app_test.ui.theme.BottomBarContainerColor
 import com.example.vlak_app_test.ui.theme.ChosenBottomBarColor
@@ -23,7 +24,7 @@ import com.example.vlak_app_test.ui.theme.PrimaryDarkColor
 import com.example.vlak_app_test.ui.theme.PrimaryLightColor
 
 data class BottomBarItem(
-    val title: String,
+    val title: Int,
     val filledIcon: Painter,
     val outlinedIcon: Painter,
     val route: String
@@ -48,12 +49,12 @@ fun MakeBottomBar(
                     selectedItemIndex = index
                 },
                 label = {
-                    Text(text = item.title)
+                    Text(text = stringResource(id = item.title))
                 },
                 icon = {
                     Icon(
                         painter = if (selectedItemIndex == index) item.filledIcon else item.outlinedIcon,
-                        contentDescription = item.title,
+                        contentDescription = stringResource(id = item.title),
                         modifier = Modifier.size(24.dp)
                     )
                 },

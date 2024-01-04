@@ -76,7 +76,7 @@ fun MakeGuideMoreInfoScreen(
             Text(
                 text = data.description,
                 style = MaterialTheme.typography.titleMedium.copy(
-                    color = PrimaryDarkColor,
+                    color = Color.Black,
                 ),
                 modifier = Modifier.padding(bottom = 8.dp)
             )

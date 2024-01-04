@@ -43,7 +43,7 @@ fun MakeLiveSearchScreen() {
     ) {
 
         MakeImageHeader(
-            text = "Електронно табло",
+            text = R.string.live,
             image = painterResource(id = R.drawable.live_back),
             modifier = Modifier.fillMaxHeight(0.3f)
         )
@@ -68,7 +68,7 @@ fun MakeLiveSearchScreen() {
                 modifier = Modifier
                     .padding(horizontal = 40.dp, vertical = 10.dp),
                 titleText = titleText,
-                hintText = "Enter station name",
+                hintText = R.string.enter_station_name,
                 keyboardType = KeyboardType.Text,
                 onValueChange = {
                     titleText = it
@@ -76,7 +76,7 @@ fun MakeLiveSearchScreen() {
             )
 
             MakeButton(
-                text = "Next",
+                text = R.string.next,
                 onClick = { /*TODO*/ },
                 modifier = Modifier
                     .fillMaxWidth(0.6f),

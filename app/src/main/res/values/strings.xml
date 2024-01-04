@@ -1,3 +1,28 @@
 <resources>
     <string name="app_name">vlak_app_test</string>
+    <string name="schedule">Schedule</string>
+    <string name="search_train_info">Search train info</string>
+    <string name="time">Time</string>
+    <string name="direction">Direction</string>
+    <string name="train_number">Train #</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="home">Home</string>
+    <string name="live">Live table</string>
+    <string name="next">Next</string>
+    <string name="enter_station_name">Enter station name:</string>
+    <string name="add_to_trips">Add to trips</string>
+    <string name="hours_short">h</string>
+    <string name="time_to_wait_next">Time to wait next:</string>
+    <string name="trains">Trains</string>
+    <string name="one_transfer">transfer</string>
+    <string name="many_transfers">transfers</string>
+    <string name="direct_train">Direct train</string>
+    <string name="from_station">From station</string>
+    <string name="to_station">To station</string>
+    <string name="search">Search</string>
+    <string name="short_schedule">Schedule</string>
+    <string name="short_live">Live</string>
+    <string name="guide">Guide</string>
+    <string name="enter_train_num">Enter train number</string>
 </resources>

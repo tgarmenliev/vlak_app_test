@@ -21,15 +21,17 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.LineHeightStyle
 import androidx.compose.ui.unit.sp
+import com.example.vlak_app_test.R
 
 @Composable
 fun MakeSimpleInputField(
         modifier: Modifier = Modifier,
         titleText: String,
-        hintText: String,
+        hintText: Int,
         keyboardType: KeyboardType,
         enableButton: (Boolean) -> Unit = {},
         onValueChange: (String) -> Unit
@@ -69,7 +71,7 @@ fun MakeSimpleInputField(
                     decorationBox = { innerTextField ->
                         if (titleText.isEmpty()) {
                             Text(
-                                text = hintText,
+                                text = stringResource(id = hintText),
                                 modifier = Modifier.padding(end = 8.dp),
                                 style = MaterialTheme.typography.labelLarge.copy(
                                     color = Color.Gray,

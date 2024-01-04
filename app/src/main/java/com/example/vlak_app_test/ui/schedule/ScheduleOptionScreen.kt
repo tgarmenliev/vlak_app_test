@@ -35,6 +35,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.PathEffect
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.LineHeightStyle
 import androidx.compose.ui.text.style.TextDecoration
@@ -157,7 +158,7 @@ fun MakeScheduleOptionScreenSec(
                 modifier = Modifier.align(Alignment.CenterHorizontally)
             ) {
                 MakeButton(
-                    text = "Add to trips",
+                    text = R.string.add_to_trips,
                     onClick = onAddToTripsButtonPressed,
                     modifier = Modifier
                         .fillMaxWidth(0.6f),
@@ -226,7 +227,7 @@ private fun MakeTrainOnTransfer(
                 )
 
                 Text(
-                    text = "${data.duration} ч.",
+                    text = "${data.duration} ${stringResource(id = R.string.hours_short)}.",
                     modifier = Modifier.padding(start = 8.dp),
                     style = MaterialTheme.typography.bodyMedium.copy(
                         color = Color.Black,
@@ -345,7 +346,9 @@ private fun MakeTransferComposable(
     ) {
         MakeDashedLine()
 
-        Text(text = "Време за изчакване: $timeToWaitNext ч.",
+        Text(text = "${stringResource(id = R.string.time_to_wait_next)} " +
+                "$timeToWaitNext " +
+                "${stringResource(id = R.string.hours_short)}.",
             style = MaterialTheme.typography.bodyMedium.copy(
                 color = Color.Black,
             ),

@@ -19,7 +19,7 @@ fun MakeHomescreen(
             .fillMaxWidth()
     ) {
         MakeImageHeader(
-            text = "Начало",
+            text = R.string.home,
             image = painterResource(id = R.drawable.home_back2),
             modifier = Modifier.fillMaxHeight(0.3f)
         )

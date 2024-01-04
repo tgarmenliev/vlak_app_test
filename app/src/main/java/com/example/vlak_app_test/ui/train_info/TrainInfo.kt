@@ -50,7 +50,7 @@ fun MakeTrainInfo(data: TrainInfoTable, modifier: Modifier = Modifier) {
         ) {
 
             MakeTopBar(
-                titleText = "Train info",
+                titleText = R.string.search_train_info,
                 haveCancelButton = false
             )
 
@@ -146,7 +146,7 @@ fun MakeTrainInfo(data: TrainInfoTable, modifier: Modifier = Modifier) {
                 }
 
                 MakeButton(
-                    text = "Home",
+                    text = R.string.home,
                     onClick = { /*TODO*/ },
                     modifier = Modifier
                         .fillMaxWidth()

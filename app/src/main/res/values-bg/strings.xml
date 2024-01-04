@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">vlak_app_test</string>
+    <string name="schedule">Разписание</string>
+    <string name="search_train_info">Търсене на влак</string>
+    <string name="time">Заминава</string>
+    <string name="direction">Посока</string>
+    <string name="train_number">Влак №</string>
+    <string name="ok">Напред</string>
+    <string name="cancel">Отказ</string>
+    <string name="home">Начало</string>
+    <string name="live">Електронно табло</string>
+    <string name="next">Напред</string>
+    <string name="enter_station_name">Въведи име на гара:</string>
+    <string name="add_to_trips">Добави към пътувания</string>
+    <string name="hours_short">ч</string>
+    <string name="time_to_wait_next">Време за изчакване:</string>
+    <string name="trains">Влакове</string>
+    <string name="one_transfer">прекачване</string>
+    <string name="many_transfers">прекачвания</string>
+    <string name="direct_train">Директен влак</string>
+    <string name="from_station">От гара</string>
+    <string name="to_station">До гара</string>
+    <string name="search">Търси</string>
+    <string name="short_schedule">Разсп.</string>
+    <string name="short_live">Табло</string>
+    <string name="guide">Наръчник</string>
+    <string name="enter_train_num">Въведи номер на влак</string>
+</resources>
