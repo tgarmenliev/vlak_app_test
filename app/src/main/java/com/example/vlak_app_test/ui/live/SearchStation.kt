@@ -26,19 +26,24 @@ import androidx.compose.runtime.setValue
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavController
 import com.example.vlak_app_test.R
 import com.example.vlak_app_test.ui.composables.MakeButton
 import com.example.vlak_app_test.ui.composables.MakeImageHeader
 import com.example.vlak_app_test.ui.composables.MakeTopBar
 
 @Composable
-fun MakeLiveSearchScreen() {
+fun MakeLiveSearchScreen(
+    modifier: Modifier = Modifier,
+    navController: NavController
+) {
     var titleText by rememberSaveable { mutableStateOf("") }
 
     Column(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize()
     ) {
 
@@ -55,7 +60,7 @@ fun MakeLiveSearchScreen() {
         ) {
 
             Text(
-                text = "Choose station:",
+                text = stringResource(id = R.string.choose_station),
                 style = MaterialTheme.typography.bodyLarge.copy(
                     color = Color.Black,
                     fontWeight = FontWeight.Bold,
@@ -77,7 +82,7 @@ fun MakeLiveSearchScreen() {
 
             MakeButton(
                 text = R.string.next,
-                onClick = { /*TODO*/ },
+                onClick = { navController.navigate("live") },
                 modifier = Modifier
                     .fillMaxWidth(0.6f),
                 colors = ButtonDefaults.buttonColors(

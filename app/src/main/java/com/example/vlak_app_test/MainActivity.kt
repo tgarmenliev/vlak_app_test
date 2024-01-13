@@ -12,11 +12,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.vlak_app_test.navigation.AppNavigation
+import com.example.vlak_app_test.navigation.Navigation
 import com.example.vlak_app_test.ui.theme.Vlak_app_testTheme
 import com.example.vlak_app_test.viewmodels.guide.Guide
 import com.example.vlak_app_test.viewmodels.schedule.sampleScheduleInfo
 import com.example.vlak_app_test.viewmodels.train_info.*
-
 
 class MainActivity : ComponentActivity() {
     @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")

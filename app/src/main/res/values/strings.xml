@@ -25,4 +25,5 @@
     <string name="short_live">Live</string>
     <string name="guide">Guide</string>
     <string name="enter_train_num">Enter train number</string>
+    <string name="choose_station">Choose station</string>
 </resources>

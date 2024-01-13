@@ -25,6 +25,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -49,6 +50,32 @@ import com.example.vlak_app_test.ui.theme.TextDarkColor
 import com.example.vlak_app_test.viewmodels.schedule.Schedule
 
 @Composable
+fun MakeScheduleOptionScreen(
+    onAddToTripsButtonPressed: () -> Unit,
+    getTrainInfo: () -> Unit,
+    data: Schedule.Options,
+    route: String,
+) {
+    Scaffold(
+        topBar = {
+            MakeTopBar(
+                titleText = R.string.schedule,
+                haveCancelButton = true,
+                onCancelButtonPressed = { /*TODO*/ }
+            )
+        }
+    ) {
+        MakeScheduleOptionScreenSec(
+            onAddToTripsButtonPressed = onAddToTripsButtonPressed,
+            getTrainInfo = getTrainInfo,
+            data = data,
+            route = route,
+            modifier = Modifier.padding(it)
+        )
+    }
+}
+
+@Composable
 fun MakeScheduleOptionScreenSec(
     onAddToTripsButtonPressed: () -> Unit,
     getTrainInfo: () -> Unit,
@@ -57,7 +84,7 @@ fun MakeScheduleOptionScreenSec(
     route: String,
 ) {
     Column(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .fillMaxHeight()
             .padding(top = 100.dp)

@@ -5,6 +5,9 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.input.pointer.motionEventSpy
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
@@ -17,12 +20,13 @@ import com.example.vlak_app_test.ui.composables.MakeTopBar
 import com.example.vlak_app_test.ui.guide.MakeGuideScreen
 import com.example.vlak_app_test.ui.home.MakeHomescreen
 import com.example.vlak_app_test.ui.live.MakeLiveScreen
+import com.example.vlak_app_test.ui.live.MakeLiveScreenOne
 import com.example.vlak_app_test.ui.live.MakeLiveSearchScreen
 import com.example.vlak_app_test.ui.live.sampleGuideInfo
 import com.example.vlak_app_test.ui.live.sampleLiveInfo
-import com.example.vlak_app_test.ui.schedule.MakeScheduleOptionScreenSec
-import com.example.vlak_app_test.ui.schedule.MakeScheduleScreenSearch
-import com.example.vlak_app_test.ui.schedule.MakeScheduleScreenSec
+import com.example.vlak_app_test.ui.schedule.MakeScheduleOptionScreen
+import com.example.vlak_app_test.ui.schedule.MakeScheduleScreen
+import com.example.vlak_app_test.ui.schedule.MakeScheduleSearchScreen
 import com.example.vlak_app_test.viewmodels.schedule.sampleScheduleInfo
 
 @Composable
@@ -31,8 +35,7 @@ fun AppNavigation() {
     val currentSelectedScreen = navController.currentBackStackEntryAsState().value?.destination?.route
 
     val bottomBar: @Composable () -> Unit = { MakeBottomBar(items = BottomBarViewModel().bottomBarItems, navController) }
-    val routes = listOf("home", "schedule", "live", "guide")
-    val topBar: @Composable () -> Unit = { MakeTopBar(titleText = R.string.schedule) }
+    val routes = listOf("home", "schedule_search", "live_search", "guide")
 
     Scaffold(
         bottomBar = {
@@ -40,13 +43,9 @@ fun AppNavigation() {
                 bottomBar()
             }
         },
-        topBar = {
-            if (!routes.contains(currentSelectedScreen)) {
-                topBar()
-            }
-        }
     ) {
         Navigation(
+            navController = navController,
             modifier = Modifier.padding(it)
         )
     }
@@ -54,53 +53,54 @@ fun AppNavigation() {
 
 @Composable
 fun Navigation(
+    navController: NavHostController,
     modifier: Modifier = Modifier
 ) {
 
-    val navController = rememberNavController()
+    //val navController = rememberNavController()
 
     NavHost(navController = navController, startDestination = "home") {
         composable("home") {
-            MakeHomescreen()
+            MakeHomescreen(modifier = modifier)
         }
 
         navigation(
-            route = "schedule",
+            route = "schedule_graph",
             startDestination = "schedule_search"
         ) {
             composable("schedule_search") {
-                MakeScheduleScreenSearch()
+                MakeScheduleSearchScreen(modifier = modifier, navController = navController)
             }
 
-            composable("schedule_option") {
-                MakeScheduleOptionScreenSec(
+            composable("schedule_screen") {
+                MakeScheduleScreen(data = sampleScheduleInfo)
+            }
+
+            composable("schedule_option_screen") {
+                MakeScheduleOptionScreen(
                     onAddToTripsButtonPressed = { /*TODO*/ },
                     getTrainInfo = { /*TODO*/ },
                     data = sampleScheduleInfo.options[0],
                     route = "София - Пловдив"
                 )
             }
-
-            composable("schedule") {
-                MakeScheduleScreenSec(data = sampleScheduleInfo)
-            }
         }
 
         navigation(
-            route = "live",
+            route = "live_graph",
             startDestination = "live_search"
         ) {
             composable("live_search") {
-                MakeLiveSearchScreen()
+                MakeLiveSearchScreen(modifier = modifier, navController = navController)
             }
 
             composable("live") {
-                MakeLiveScreen(data = sampleLiveInfo)
+                MakeLiveScreenOne(data = sampleLiveInfo)
             }
         }
 
         composable("guide") {
-            MakeGuideScreen(data = sampleGuideInfo)
+            MakeGuideScreen(data = sampleGuideInfo, modifier = modifier)
         }
     }
 }

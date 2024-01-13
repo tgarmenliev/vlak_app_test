@@ -15,13 +15,13 @@ class BottomBarViewModel : ViewModel() {
             title = R.string.short_schedule,
             filledIcon = R.drawable.schedule_filled,
             outlinedIcon = R.drawable.schedule_outlined,
-            route = "schedule"
+            route = "schedule_graph"
         ),
         BottomBarItem(
             title = R.string.short_live,
             filledIcon = R.drawable.clock_filled,
             outlinedIcon = R.drawable.clock_outlined,
-            route = "live"
+            route = "live_graph"
         ),
         BottomBarItem(
             title = R.string.guide,

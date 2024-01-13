@@ -21,6 +21,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -34,21 +35,43 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.example.vlak_app_test.R
 import com.example.vlak_app_test.ui.composables.MakeImageHeader
+import com.example.vlak_app_test.ui.composables.MakeTopBar
 import com.example.vlak_app_test.ui.theme.PrimaryDarkColor
 import com.example.vlak_app_test.ui.theme.TextDarkColor
 import com.example.vlak_app_test.viewmodels.schedule.Schedule
 import com.example.vlak_app_test.viewmodels.schedule.sampleScheduleInfo
 
 @Composable
+fun MakeScheduleScreen(
+    data: Schedule.ScheduleTable,
+) {
+    Scaffold(
+        topBar = {
+            MakeTopBar(
+                titleText = R.string.schedule,
+                haveCancelButton = true,
+                onCancelButtonPressed = { /*TODO*/ }
+            )
+        }
+    ) {
+        MakeScheduleScreenSec(
+            data = data,
+            modifier = Modifier.padding(it)
+        )
+    }
+}
+
+@Composable
 fun MakeScheduleScreenSec(
     modifier: Modifier = Modifier,
-    data: Schedule.ScheduleTable
+    data: Schedule.ScheduleTable,
 ) {
 
     Column(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .fillMaxHeight()
             .padding(top = 100.dp),

@@ -26,4 +26,5 @@
     <string name="short_live">Табло</string>
     <string name="guide">Наръчник</string>
     <string name="enter_train_num">Въведи номер на влак</string>
+    <string name="choose_station">Въведи име на гара:</string>
 </resources>

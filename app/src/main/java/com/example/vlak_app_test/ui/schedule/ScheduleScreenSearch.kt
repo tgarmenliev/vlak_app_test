@@ -30,6 +30,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.example.vlak_app_test.R
 import com.example.vlak_app_test.ui.composables.MakeButton
 import com.example.vlak_app_test.ui.composables.MakeDatePickerDialog
@@ -40,8 +41,9 @@ import java.util.Calendar
 import java.util.Date
 
 @Composable
-fun MakeScheduleScreenSearch(
+fun MakeScheduleSearchScreen(
     modifier: Modifier = Modifier,
+    navController: NavController
 ) {
     var stationOne by rememberSaveable { mutableStateOf("") }
     var stationTwo by rememberSaveable { mutableStateOf("") }
@@ -138,7 +140,7 @@ fun MakeScheduleScreenSearch(
                         .fillMaxWidth(0.6f)
                         .height(50.dp),
                     onClick = {
-                        /*TODO*/
+                        navController.navigate("schedule_screen")
                     }
                 )
             }
