@@ -30,7 +30,7 @@ import com.example.vlak_app_test.R
 import com.example.vlak_app_test.ui.theme.PrimaryDarkColor
 import com.example.vlak_app_test.viewmodels.train_info.TrainInfo.TrainInfoTable
 import com.example.vlak_app_test.ui.composables.MakeButton
-import com.example.vlak_app_test.ui.composables.MakeTopBar
+import com.example.vlak_app_test.ui.top_bar.MakeTopBar
 
 @Composable
 fun MakeTrainInfo(data: TrainInfoTable, modifier: Modifier = Modifier) {

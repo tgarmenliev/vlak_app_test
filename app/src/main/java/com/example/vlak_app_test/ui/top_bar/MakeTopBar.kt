@@ -1,4 +1,4 @@
-package com.example.vlak_app_test.ui.composables
+package com.example.vlak_app_test.ui.top_bar
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box

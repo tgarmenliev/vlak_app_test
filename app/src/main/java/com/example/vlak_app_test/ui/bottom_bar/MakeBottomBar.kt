@@ -1,4 +1,4 @@
-package com.example.vlak_app_test.ui.composables
+package com.example.vlak_app_test.ui.bottom_bar
 
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Icon
@@ -16,7 +16,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.example.vlak_app_test.ui.bottom_bar.BottomBarItem
 import com.example.vlak_app_test.ui.theme.BottomBarContainerColor
 import com.example.vlak_app_test.ui.theme.ChosenBottomBarColor
 
