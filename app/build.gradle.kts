@@ -73,4 +73,8 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout-compose:1.1.0-alpha13")
 
     implementation("androidx.compose.material3:material3:1.2.0-alpha02")
+
+    val nav_version = "2.7.6"
+
+    implementation("androidx.navigation:navigation-compose:$nav_version")
 }

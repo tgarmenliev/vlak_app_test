@@ -49,7 +49,7 @@ fun MakeGuideMoreInfoScreen(
         )
 
         Image(
-            painter = data.image,
+            painter = painterResource(id = data.image),
             contentDescription = "Guide image",
             contentScale = ContentScale.Crop,
             modifier = Modifier

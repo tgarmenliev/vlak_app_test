@@ -41,6 +41,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.lerp
@@ -142,7 +143,7 @@ fun CarouselItem(
     ElevatedCard(
         modifier = modifier
             .fillMaxWidth()
-            .clickable (onClick = onClick),
+            .clickable(onClick = onClick),
         shape = RoundedCornerShape(20.dp),
         elevation = CardDefaults.cardElevation(
             defaultElevation = 5.dp
@@ -152,7 +153,7 @@ fun CarouselItem(
             .fillMaxHeight()
         ) {
             Image(
-                painter = data.image,
+                painter = painterResource(id = data.image),
                 contentDescription = "Carousel Image",
                 modifier = Modifier
                     .fillMaxSize(),
