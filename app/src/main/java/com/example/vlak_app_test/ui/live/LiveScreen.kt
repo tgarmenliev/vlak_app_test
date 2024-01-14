@@ -34,6 +34,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.example.vlak_app_test.R
 import com.example.vlak_app_test.ui.top_bar.MakeTopBar
 import com.example.vlak_app_test.ui.theme.greenOnTime
@@ -42,19 +43,21 @@ import com.example.vlak_app_test.viewmodels.live.Live.LiveTable
 
 @Composable
 fun MakeLiveScreenOne(
-    data: LiveTable
+    onCancelButton: () -> Unit,
+    viewModel: LiveViewModel
 ) {
     Scaffold(
         topBar = {
             MakeTopBar(
                 titleText = R.string.live,
-                haveCancelButton = false
+                haveCancelButton = true,
+                onCancelButtonPressed = onCancelButton
             )
         }
     ) {
         MakeLiveScreen(
-            data = data,
-            modifier = Modifier.padding(it)
+            data = viewModel.getData(),
+            modifier = Modifier.padding(it),
         )
     }
 }

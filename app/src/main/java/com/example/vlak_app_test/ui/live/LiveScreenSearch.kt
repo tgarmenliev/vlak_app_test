@@ -32,7 +32,8 @@ import com.example.vlak_app_test.ui.composables.MakeImageHeader
 @Composable
 fun MakeLiveSearchScreen(
     modifier: Modifier = Modifier,
-    navController: NavController
+    navController: NavController,
+    viewModel: LiveViewModel
 ) {
     var titleText by rememberSaveable { mutableStateOf("") }
 
@@ -76,7 +77,8 @@ fun MakeLiveSearchScreen(
 
             MakeButton(
                 text = R.string.next,
-                onClick = { navController.navigate("live") },
+                onClick = { navController.navigate("live")
+                    viewModel.setStation(titleText) },
                 modifier = Modifier
                     .fillMaxWidth(0.6f),
                 colors = ButtonDefaults.buttonColors(
