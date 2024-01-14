@@ -41,7 +41,6 @@ import com.example.vlak_app_test.ui.composables.MakeButton
 import com.example.vlak_app_test.ui.top_bar.MakeTopBar
 import com.example.vlak_app_test.ui.theme.PrimaryDarkColor
 import com.example.vlak_app_test.ui.theme.TextDarkColor
-import com.example.vlak_app_test.viewmodels.schedule.Schedule
 
 @Composable
 fun MakeScheduleOptionScreen(

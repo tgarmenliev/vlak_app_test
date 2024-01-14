@@ -1,7 +1,6 @@
-package com.example.vlak_app_test.viewmodels.live
+package com.example.vlak_app_test.ui.live
 
 class Live {
-
     data class LiveTable(
         val station: String,
         val trains: List<Trains>

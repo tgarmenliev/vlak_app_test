@@ -24,7 +24,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.example.vlak_app_test.R
 import com.example.vlak_app_test.ui.theme.PrimaryDarkColor
-import com.example.vlak_app_test.viewmodels.guide.Guide
 
 @Composable
 fun MakeGuideMoreInfoScreen(

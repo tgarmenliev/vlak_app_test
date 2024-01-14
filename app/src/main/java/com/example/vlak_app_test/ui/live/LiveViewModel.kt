@@ -2,10 +2,7 @@ package com.example.vlak_app_test.ui.live
 
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.vlak_app_test.viewmodels.live.Live
 
 class LiveViewModel : ViewModel() {
     private val _selectedStation = mutableStateOf("")

@@ -1,7 +1,6 @@
-package com.example.vlak_app_test.viewmodels.schedule
+package com.example.vlak_app_test.ui.schedule
 
 class Schedule {
-
     data class ScheduleTable(
         val date: String,
         val route: String,

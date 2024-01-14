@@ -1,4 +1,4 @@
-package com.example.vlak_app_test.viewmodels.schedule
+package com.example.vlak_app_test.ui.schedule
 
 val sampleScheduleInfo = Schedule.ScheduleTable(
     date = "2021-10-10",
