@@ -23,6 +23,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.example.vlak_app_test.R
+import com.example.vlak_app_test.models.guide.Guide
 import com.example.vlak_app_test.ui.theme.PrimaryDarkColor
 
 @Composable

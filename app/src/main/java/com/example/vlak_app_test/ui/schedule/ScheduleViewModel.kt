@@ -4,6 +4,7 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
+import com.example.vlak_app_test.models.schedule.Schedule
 
 class ScheduleViewModel : ViewModel() {
     private val _selectedStations = mutableStateOf(ScheduleOption("", "", ""))

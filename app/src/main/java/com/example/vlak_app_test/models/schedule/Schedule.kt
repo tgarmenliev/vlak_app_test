@@ -1,4 +1,4 @@
-package com.example.vlak_app_test.ui.schedule
+package com.example.vlak_app_test.models.schedule
 
 class Schedule {
     data class ScheduleTable(

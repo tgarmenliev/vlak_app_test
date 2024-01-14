@@ -21,6 +21,7 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import com.example.vlak_app_test.R
+import com.example.vlak_app_test.models.live.Live
 import com.example.vlak_app_test.ui.theme.redLate
 
 @Composable

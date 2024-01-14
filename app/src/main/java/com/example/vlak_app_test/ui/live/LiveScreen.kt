@@ -35,6 +35,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import com.example.vlak_app_test.R
+import com.example.vlak_app_test.models.live.Live
 import com.example.vlak_app_test.ui.top_bar.MakeTopBar
 import com.example.vlak_app_test.ui.theme.greenOnTime
 import com.example.vlak_app_test.ui.theme.redLate

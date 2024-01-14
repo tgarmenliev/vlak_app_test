@@ -1,5 +1,7 @@
 package com.example.vlak_app_test.ui.schedule
 
+import com.example.vlak_app_test.models.schedule.Schedule
+
 val sampleScheduleInfo = Schedule.ScheduleTable(
     date = "2021-10-10",
     route = "София - Пловдив",

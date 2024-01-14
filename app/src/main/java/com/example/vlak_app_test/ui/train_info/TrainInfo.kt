@@ -27,13 +27,13 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.example.vlak_app_test.R
+import com.example.vlak_app_test.models.train_info.TrainInfo
 import com.example.vlak_app_test.ui.theme.PrimaryDarkColor
-import com.example.vlak_app_test.ui.train_info.TrainInfo.TrainInfoTable
 import com.example.vlak_app_test.ui.composables.MakeButton
 import com.example.vlak_app_test.ui.top_bar.MakeTopBar
 
 @Composable
-fun MakeTrainInfo(data: TrainInfoTable, modifier: Modifier = Modifier) {
+fun MakeTrainInfo(data: TrainInfo.TrainInfoTable, modifier: Modifier = Modifier) {
     Box(modifier = Modifier.fillMaxSize())
     {
 
@@ -161,16 +161,3 @@ fun MakeTrainInfo(data: TrainInfoTable, modifier: Modifier = Modifier) {
     }
 }
 
-class TrainInfo {
-    data class TrainInfoTable(
-        val trainType: String,
-        val trainNum: String,
-        val stations: List<StationOnTrainInfo>
-    )
-
-    data class StationOnTrainInfo(
-        val station: String,
-        val arrive: String,
-        val depart: String
-    )
-}

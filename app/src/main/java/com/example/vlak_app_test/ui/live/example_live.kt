@@ -1,7 +1,8 @@
 package com.example.vlak_app_test.ui.live
 
 import com.example.vlak_app_test.R
-import com.example.vlak_app_test.ui.guide.Guide
+import com.example.vlak_app_test.models.guide.Guide
+import com.example.vlak_app_test.models.live.Live
 
 val sampleLiveInfo = Live.LiveTable(
     station = "Пловдив",

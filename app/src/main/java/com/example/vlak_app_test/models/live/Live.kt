@@ -1,4 +1,4 @@
-package com.example.vlak_app_test.ui.live
+package com.example.vlak_app_test.models.live
 
 class Live {
     data class LiveTable(

@@ -1,4 +1,4 @@
-package com.example.vlak_app_test.ui.guide
+package com.example.vlak_app_test.models.guide
 
 
 class Guide {
