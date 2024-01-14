@@ -3,6 +3,7 @@ package com.example.vlak_app_test.navigation
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -14,6 +15,7 @@ import com.example.vlak_app_test.ui.bottom_bar.MakeBottomBar
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.vlak_app_test.ui.guide.MakeGuideScreen
 import com.example.vlak_app_test.ui.home.MakeHomescreen
+import com.example.vlak_app_test.ui.live.LiveViewModel
 import com.example.vlak_app_test.ui.live.MakeLiveScreenOne
 import com.example.vlak_app_test.ui.live.MakeLiveSearchScreen
 import com.example.vlak_app_test.ui.live.sampleGuideInfo
@@ -21,6 +23,7 @@ import com.example.vlak_app_test.ui.live.sampleLiveInfo
 import com.example.vlak_app_test.ui.schedule.MakeScheduleOptionScreen
 import com.example.vlak_app_test.ui.schedule.MakeScheduleScreen
 import com.example.vlak_app_test.ui.schedule.MakeScheduleSearchScreen
+import com.example.vlak_app_test.ui.schedule.ScheduleViewModel
 import com.example.vlak_app_test.viewmodels.schedule.sampleScheduleInfo
 
 @Composable
@@ -31,6 +34,9 @@ fun AppNavigation() {
     val bottomBar: @Composable () -> Unit = { MakeBottomBar(items = BottomBarViewModel().bottomBarItems, navController) }
     val routes = listOf("home", "schedule_search", "live_search", "guide")
 
+    val scheduleViewModel = remember { ScheduleViewModel() }
+    val liveViewModel = remember { LiveViewModel() }
+
     Scaffold(
         bottomBar = {
             if (routes.contains(currentSelectedScreen)) {
@@ -40,7 +46,9 @@ fun AppNavigation() {
     ) {
         Navigation(
             navController = navController,
-            modifier = Modifier.padding(it)
+            modifier = Modifier.padding(it),
+            scheduleViewModel = scheduleViewModel,
+            liveViewModel = liveViewModel
         )
     }
 }
@@ -48,7 +56,9 @@ fun AppNavigation() {
 @Composable
 fun Navigation(
     navController: NavHostController,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    scheduleViewModel: ScheduleViewModel = ScheduleViewModel(),
+    liveViewModel: LiveViewModel = LiveViewModel()
 ) {
 
     //val navController = rememberNavController()
@@ -63,19 +73,19 @@ fun Navigation(
             startDestination = "schedule_search"
         ) {
             composable("schedule_search") {
-                MakeScheduleSearchScreen(modifier = modifier, navController = navController)
+                MakeScheduleSearchScreen(modifier = modifier, navController = navController, viewModel = scheduleViewModel)
             }
 
             composable("schedule_screen") {
-                MakeScheduleScreen(data = sampleScheduleInfo)
+                MakeScheduleScreen(viewModel = scheduleViewModel, navController = navController, onCancelButton = { navController.popBackStack() })
             }
 
             composable("schedule_option_screen") {
                 MakeScheduleOptionScreen(
                     onAddToTripsButtonPressed = { /*TODO*/ },
                     getTrainInfo = { /*TODO*/ },
-                    data = sampleScheduleInfo.options[0],
-                    route = "София - Пловдив"
+                    viewModel = scheduleViewModel,
+                    onCancelButton = { navController.popBackStack() }
                 )
             }
         }
@@ -85,11 +95,11 @@ fun Navigation(
             startDestination = "live_search"
         ) {
             composable("live_search") {
-                MakeLiveSearchScreen(modifier = modifier, navController = navController)
+                MakeLiveSearchScreen(modifier = modifier, navController = navController, viewModel = liveViewModel)
             }
 
             composable("live") {
-                MakeLiveScreenOne(data = sampleLiveInfo)
+                MakeLiveScreenOne(viewModel = liveViewModel, onCancelButton = { navController.popBackStack() })
             }
         }
 

@@ -32,6 +32,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.example.vlak_app_test.R
 import com.example.vlak_app_test.ui.top_bar.MakeTopBar
 import com.example.vlak_app_test.ui.theme.PrimaryDarkColor
@@ -40,20 +41,26 @@ import com.example.vlak_app_test.viewmodels.schedule.Schedule
 
 @Composable
 fun MakeScheduleScreen(
-    data: Schedule.ScheduleTable,
+    viewModel: ScheduleViewModel,
+    onCancelButton: () -> Unit,
+    navController: NavController,
 ) {
     Scaffold(
         topBar = {
             MakeTopBar(
                 titleText = R.string.schedule,
                 haveCancelButton = true,
-                onCancelButtonPressed = { /*TODO*/ }
+                onCancelButtonPressed = onCancelButton
             )
         }
     ) {
         MakeScheduleScreenSec(
-            data = data,
-            modifier = Modifier.padding(it)
+            data = viewModel.getData(),
+            modifier = Modifier.padding(it),
+            onClickOption = { index ->
+                viewModel.setOptionIndex(index)
+                navController.navigate("schedule_option_screen")
+            }
         )
     }
 }
@@ -62,14 +69,13 @@ fun MakeScheduleScreen(
 fun MakeScheduleScreenSec(
     modifier: Modifier = Modifier,
     data: Schedule.ScheduleTable,
+    onClickOption: (Int) -> Unit = {},
 ) {
 
     Column(
         modifier = modifier
             .fillMaxWidth()
             .fillMaxHeight()
-            .padding(top = 100.dp),
-        verticalArrangement = Arrangement.Center,
     ) {
 
         Box(
@@ -100,7 +106,9 @@ fun MakeScheduleScreenSec(
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .clickable { /*TODO*/ }
+                        .clickable {
+                            onClickOption(data.options.indexOf(option))
+                        }
                         .clip(RoundedCornerShape(20.dp))
                         .border(
                             width = 2.dp,

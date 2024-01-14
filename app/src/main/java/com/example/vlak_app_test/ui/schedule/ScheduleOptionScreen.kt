@@ -47,23 +47,23 @@ import com.example.vlak_app_test.viewmodels.schedule.Schedule
 fun MakeScheduleOptionScreen(
     onAddToTripsButtonPressed: () -> Unit,
     getTrainInfo: () -> Unit,
-    data: Schedule.Options,
-    route: String,
+    onCancelButton: () -> Unit,
+    viewModel: ScheduleViewModel,
 ) {
     Scaffold(
         topBar = {
             MakeTopBar(
                 titleText = R.string.schedule,
                 haveCancelButton = true,
-                onCancelButtonPressed = { /*TODO*/ }
+                onCancelButtonPressed = onCancelButton
             )
         }
     ) {
         MakeScheduleOptionScreenSec(
             onAddToTripsButtonPressed = onAddToTripsButtonPressed,
             getTrainInfo = getTrainInfo,
-            data = data,
-            route = route,
+            data = viewModel.getDataOption(),
+            route = viewModel.getRoute(),
             modifier = Modifier.padding(it)
         )
     }
@@ -81,7 +81,6 @@ fun MakeScheduleOptionScreenSec(
         modifier = modifier
             .fillMaxWidth()
             .fillMaxHeight()
-            .padding(top = 100.dp)
             .verticalScroll(rememberScrollState()),
     ) {
 

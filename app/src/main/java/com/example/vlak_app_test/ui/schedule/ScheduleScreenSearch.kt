@@ -43,7 +43,8 @@ import java.util.Date
 @Composable
 fun MakeScheduleSearchScreen(
     modifier: Modifier = Modifier,
-    navController: NavController
+    navController: NavController,
+    viewModel: ScheduleViewModel
 ) {
     var stationOne by rememberSaveable { mutableStateOf("") }
     var stationTwo by rememberSaveable { mutableStateOf("") }
@@ -140,6 +141,7 @@ fun MakeScheduleSearchScreen(
                         .fillMaxWidth(0.6f)
                         .height(50.dp),
                     onClick = {
+                        viewModel.setOption(stationOne, stationTwo, date)
                         navController.navigate("schedule_screen")
                     }
                 )
