@@ -23,11 +23,10 @@ import com.example.vlak_app_test.ui.theme.ChosenBottomBarColor
 fun MakeBottomBar(
     items: List<BottomBarItem>,
     navController: NavController,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    selectedItemIndex: Int,
+    onItemSelected: (Int) -> Unit
 ) {
-    var selectedItemIndex by rememberSaveable {
-        mutableStateOf(0)
-    }
 
     NavigationBar(
         containerColor = BottomBarContainerColor
@@ -36,7 +35,7 @@ fun MakeBottomBar(
             NavigationBarItem(
                 selected = selectedItemIndex == index,
                 onClick = {
-                    selectedItemIndex = index
+                    onItemSelected(index)
                     navController.navigate(item.route)
                 },
                 label = {

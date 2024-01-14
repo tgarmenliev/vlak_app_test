@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.rememberNavController
 import com.example.vlak_app_test.navigation.AppNavigation
 import com.example.vlak_app_test.navigation.Navigation
 import com.example.vlak_app_test.ui.theme.Vlak_app_testTheme

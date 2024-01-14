@@ -3,7 +3,12 @@ package com.example.vlak_app_test.navigation
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.setValue
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -29,7 +34,18 @@ fun AppNavigation() {
     val navController = rememberNavController()
     val currentSelectedScreen = navController.currentBackStackEntryAsState().value?.destination?.route
 
-    val bottomBar: @Composable () -> Unit = { MakeBottomBar(items = BottomBarViewModel().bottomBarItems, navController) }
+    var selectedItemIndex by rememberSaveable {
+        mutableIntStateOf(0)
+    }
+    val bottomBar: @Composable () -> Unit = remember {
+        {
+            MakeBottomBar(
+                items = BottomBarViewModel().bottomBarItems, navController,
+                selectedItemIndex = selectedItemIndex,
+                onItemSelected = { selectedItemIndex = it }
+            )
+        }
+    }
     val routes = listOf("home", "schedule_search", "live_search", "guide")
 
     val scheduleViewModel = remember { ScheduleViewModel() }
