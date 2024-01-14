@@ -25,6 +25,7 @@
     <string name="short_schedule">Разсп.</string>
     <string name="short_live">Табло</string>
     <string name="guide">Наръчник</string>
+    <string name="guide_shorter">Инфо</string>
     <string name="enter_train_num">Въведи номер на влак</string>
     <string name="choose_station">Въведи име на гара:</string>
 </resources>

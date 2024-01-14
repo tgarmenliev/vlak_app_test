@@ -24,7 +24,7 @@ class BottomBarViewModel : ViewModel() {
             route = "live_graph"
         ),
         BottomBarItem(
-            title = R.string.guide,
+            title = R.string.guide_shorter,
             filledIcon = R.drawable.guide_filled,
             outlinedIcon = R.drawable.guide_outlined,
             route = "guide"
