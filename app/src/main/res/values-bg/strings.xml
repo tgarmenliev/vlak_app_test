@@ -19,8 +19,8 @@
     <string name="one_transfer">прекачване</string>
     <string name="many_transfers">прекачвания</string>
     <string name="direct_train">Директен влак</string>
-    <string name="from_station">От гара</string>
-    <string name="to_station">До гара</string>
+    <string name="from_station">От гара:</string>
+    <string name="to_station">До гара:</string>
     <string name="search">Търси</string>
     <string name="short_schedule">Разсп.</string>
     <string name="short_live">Табло</string>
@@ -28,4 +28,6 @@
     <string name="guide_shorter">Инфо</string>
     <string name="enter_train_num">Въведи номер на влак</string>
     <string name="choose_station">Въведи име на гара:</string>
+    <string name="start_searching">Търси..</string>
+    <string name="choose_date">Избери дата:</string>
 </resources>
