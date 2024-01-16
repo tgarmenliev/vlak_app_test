@@ -2,9 +2,11 @@ package com.example.vlak_app_test.ui.live
 
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
@@ -28,6 +30,7 @@ import androidx.navigation.NavController
 import com.example.vlak_app_test.R
 import com.example.vlak_app_test.ui.composables.MakeButton
 import com.example.vlak_app_test.ui.composables.MakeImageHeader
+import com.example.vlak_app_test.ui.composables.MakeStationInputField
 
 @Composable
 fun MakeLiveSearchScreen(
@@ -54,25 +57,38 @@ fun MakeLiveSearchScreen(
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
 
-            Text(
-                text = stringResource(id = R.string.choose_station),
-                style = MaterialTheme.typography.bodyLarge.copy(
-                    color = Color.Black,
-                    fontWeight = FontWeight.Bold,
-                ),
-                modifier = Modifier
-                    .padding(top = 20.dp)
-            )
+//            Text(
+//                text = stringResource(id = R.string.choose_station),
+//                style = MaterialTheme.typography.bodyLarge.copy(
+//                    color = Color.Black,
+//                    fontWeight = FontWeight.Bold,
+//                ),
+//                modifier = Modifier
+//                    .padding(top = 20.dp)
+//            )
+//
+//            MakeSimpleInputField(
+//                modifier = Modifier
+//                    .padding(horizontal = 40.dp, vertical = 10.dp),
+//                titleText = titleText,
+//                hintText = R.string.enter_station_name,
+//                keyboardType = KeyboardType.Text,
+//                onValueChange = {
+//                    titleText = it
+//                }
+//            )
 
-            MakeSimpleInputField(
-                modifier = Modifier
-                    .padding(horizontal = 40.dp, vertical = 10.dp),
-                titleText = titleText,
-                hintText = R.string.enter_station_name,
-                keyboardType = KeyboardType.Text,
-                onValueChange = {
+            Spacer(modifier = Modifier.height(20.dp))
+
+            MakeStationInputField(
+                station = titleText,
+                onStationSelected = {
                     titleText = it
-                }
+                },
+                hintText = R.string.start_searching,
+                labelText = R.string.choose_station,
+                modifier = Modifier
+                    .padding(horizontal = 16.dp, vertical = 10.dp)
             )
 
             MakeButton(
