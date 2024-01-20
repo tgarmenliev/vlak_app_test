@@ -39,9 +39,9 @@ import androidx.compose.ui.unit.dp
 import com.example.vlak_app_test.R
 import com.example.vlak_app_test.models.schedule.Schedule
 import com.example.vlak_app_test.ui.composables.MakeButton
-import com.example.vlak_app_test.ui.top_bar.MakeTopBar
 import com.example.vlak_app_test.ui.theme.PrimaryDarkColor
 import com.example.vlak_app_test.ui.theme.TextDarkColor
+import com.example.vlak_app_test.ui.top_bar.MakeTopBar
 
 @Composable
 fun MakeScheduleOptionScreen(

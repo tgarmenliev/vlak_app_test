@@ -55,9 +55,9 @@ fun MakeScheduleSearchScreen(
     var stationOne by rememberSaveable { mutableStateOf("") }
     var stationTwo by rememberSaveable { mutableStateOf("") }
 
-    val formatter = SimpleDateFormat("dd.MM.yyyy")
+    val formatter = SimpleDateFormat("yyyy-MM-dd")
 
-    var date by remember {
+    var date by rememberSaveable {
         mutableStateOf(formatter.format(Date(Calendar.getInstance().timeInMillis)))
     }
     var showDatePicker by remember {

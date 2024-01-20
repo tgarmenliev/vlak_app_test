@@ -32,7 +32,7 @@ class ScheduleViewModel : ViewModel() {
     private val _selectedOption = mutableIntStateOf(0)
     private val selectedOption: State<Int> = _selectedOption
 
-    private val data: Schedule.ScheduleTable = sampleScheduleInfo
+    //private val data: Schedule.ScheduleTable = sampleScheduleInfo
 
     fun setOption(from: String, to: String, date: String) {
         val formatter = SimpleDateFormat("yyyy-MM-dd")
@@ -76,9 +76,9 @@ class ScheduleViewModel : ViewModel() {
                         )
                     } else {
                         TrainApi.retrofitService.getScheduleInfo(
-                            "pirdop",
-                            "sofia",
-                            "2024-01-22"
+                            selectedStations.value.from,
+                            selectedStations.value.to,
+                            selectedStations.value.date
                         )
                     }
                 }
