@@ -164,6 +164,7 @@ fun MakeScheduleSearchScreen(
                         .align(Alignment.CenterHorizontally),
                     onClick = {
                         viewModel.setOption(stationOne, stationTwo, date)
+                        viewModel.getData()
                         navController.navigate("schedule_screen")
                     }
                 )

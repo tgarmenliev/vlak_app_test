@@ -36,8 +36,10 @@ class ScheduleViewModel : ViewModel() {
 
     fun setOption(from: String, to: String, date: String) {
         val formatter = SimpleDateFormat("yyyy-MM-dd")
-        val todayString = formatter.format(Calendar.getInstance())
+        val todayString = formatter.format(Date(Calendar.getInstance().timeInMillis))
         _ifToday.value = todayString == date
+        println("todayString: $todayString")
+        println("date: $date")
 
         _selectedStations.value = ScheduleOption(from, to, date)
     }
@@ -51,11 +53,11 @@ class ScheduleViewModel : ViewModel() {
     }
 
     fun getDataOption(): Schedule.Options {
-        return data.options[selectedOption.value]
+        return (scheduleState as ScheduleState.Success).data.options[selectedOption.value]
     }
 
     fun getRoute(): String {
-        return data.route
+        return (scheduleState as ScheduleState.Success).data.route
     }
 
     fun getScheduleInfo(): Schedule.ScheduleTable {
@@ -74,9 +76,9 @@ class ScheduleViewModel : ViewModel() {
                         )
                     } else {
                         TrainApi.retrofitService.getScheduleInfo(
-                            selectedStations.value.from,
-                            selectedStations.value.to,
-                            selectedStations.value.date
+                            "pirdop",
+                            "sofia",
+                            "2024-01-22"
                         )
                     }
                 }

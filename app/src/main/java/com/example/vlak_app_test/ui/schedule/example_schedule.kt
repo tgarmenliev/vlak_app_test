@@ -22,7 +22,7 @@ val sampleScheduleInfo = Schedule.ScheduleTable(
                     departDate = "2021-10-10",
                     arriveDate = "2021-10-10",
                     trainType = "ПВ",
-                    trainNum = "30121",
+                    trainNumber = "30121",
                     duration = "1:50",
                     timeToWaitNext = "0:20"
                 ),
@@ -34,7 +34,7 @@ val sampleScheduleInfo = Schedule.ScheduleTable(
                     departDate = "2021-10-10",
                     arriveDate = "2021-10-10",
                     trainType = "Авт",
-                    trainNum = "30663",
+                    trainNumber = "30663",
                     duration = "0:20",
                     timeToWaitNext = "0:05"
                 ),
@@ -46,7 +46,7 @@ val sampleScheduleInfo = Schedule.ScheduleTable(
                     departDate = "2021-10-10",
                     arriveDate = "2021-10-10",
                     trainType = "ПВ",
-                    trainNum = "30143",
+                    trainNumber = "30143",
                     duration = "0:50",
                     timeToWaitNext = "0:00"
                 )
@@ -68,7 +68,7 @@ val sampleScheduleInfo = Schedule.ScheduleTable(
                     departDate = "2021-11-10",
                     arriveDate = "2021-11-10",
                     trainType = "ПВ",
-                    trainNum = "30123",
+                    trainNumber = "30123",
                     duration = "1:40",
                     timeToWaitNext = "0:00"
                 )
@@ -90,7 +90,7 @@ val sampleScheduleInfo = Schedule.ScheduleTable(
                     departDate = "2021-11-10",
                     arriveDate = "2021-11-10",
                     trainType = "ПВ",
-                    trainNum = "30123",
+                    trainNumber = "30123",
                     duration = "1:40",
                     timeToWaitNext = "0:00"
                 )
@@ -112,7 +112,7 @@ val sampleScheduleInfo = Schedule.ScheduleTable(
                     departDate = "2021-11-10",
                     arriveDate = "2021-11-10",
                     trainType = "ПВ",
-                    trainNum = "30123",
+                    trainNumber = "30123",
                     duration = "1:40",
                     timeToWaitNext = "0:00"
                 )
@@ -134,7 +134,7 @@ val sampleScheduleInfo = Schedule.ScheduleTable(
                     departDate = "2021-11-10",
                     arriveDate = "2021-11-10",
                     trainType = "ПВ",
-                    trainNum = "30123",
+                    trainNumber = "30123",
                     duration = "1:40",
                     timeToWaitNext = "0:00"
                 )
@@ -156,7 +156,7 @@ val sampleScheduleInfo = Schedule.ScheduleTable(
                     departDate = "2021-11-10",
                     arriveDate = "2021-11-10",
                     trainType = "ПВ",
-                    trainNum = "30123",
+                    trainNumber = "30123",
                     duration = "1:40",
                     timeToWaitNext = "0:00"
                 )
@@ -178,7 +178,7 @@ val sampleScheduleInfo = Schedule.ScheduleTable(
                     departDate = "2021-11-10",
                     arriveDate = "2021-11-10",
                     trainType = "ПВ",
-                    trainNum = "30123",
+                    trainNumber = "30123",
                     duration = "1:40",
                     timeToWaitNext = "0:00"
                 )
@@ -200,7 +200,7 @@ val sampleScheduleInfo = Schedule.ScheduleTable(
                     departDate = "2021-11-10",
                     arriveDate = "2021-11-10",
                     trainType = "ПВ",
-                    trainNum = "30123",
+                    trainNumber = "30123",
                     duration = "1:40",
                     timeToWaitNext = "0:00"
                 )

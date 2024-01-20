@@ -228,7 +228,7 @@ private fun MakeTrainOnTransfer(
             Row {
                 MakeArrivalDepartureData(station = data.from, time = data.depart, modifier = Modifier.weight(2f))
 
-                MakeTrainForTransfers(trainType = data.trainType, trainNum = data.trainNum, modifier = Modifier
+                MakeTrainForTransfers(trainType = data.trainType, trainNum = data.trainNumber, modifier = Modifier
                     .padding(end = 8.dp)
                     .fillMaxWidth()
                     .weight(1f))
@@ -287,7 +287,7 @@ private fun MakeTrainNumber(
         )
 
         Text(
-            text = "${data.trainType} ${data.trainNum}",
+            text = "${data.trainType} ${data.trainNumber}",
             style = MaterialTheme.typography.titleLarge.copy(
                 color = Color.Black,
                 textDecoration = TextDecoration.Underline,
