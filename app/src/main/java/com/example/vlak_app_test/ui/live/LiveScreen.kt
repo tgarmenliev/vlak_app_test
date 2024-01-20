@@ -233,9 +233,10 @@ fun MakeLiveScreen(data: Live.LiveTable, modifier: Modifier = Modifier) {
                                         .weight(1.7f)
                                 ) {
                                     Text(
-                                        text = train.trainType,
+                                        text = "${train.type} ",
                                         style = MaterialTheme.typography.labelLarge.copy(
                                             color = Color.Black,
+                                            fontWeight = FontWeight.SemiBold
                                         ),
                                     )
                                     Text(

@@ -10,7 +10,7 @@ val sampleLiveInfo = Live.LiveTable(
         Live.Trains(
             direction = "София",
             trainNum = "8602",
-            trainType = "БВ",
+            type = "БВ",
             time = "10:15",
             isDelayed = true,
             delayedTime = "10:00",
@@ -23,13 +23,13 @@ val sampleLiveInfo = Live.LiveTable(
         Live.Trains(
             direction = "Бургас",
             trainNum = "8601",
-            trainType = "БВ",
+            type = "БВ",
             time = "16:00",
         ),
         Live.Trains(
             direction = "Септември",
             trainNum = "10114",
-            trainType = "ПВ",
+            type = "ПВ",
             time = "19:00",
         )
     )

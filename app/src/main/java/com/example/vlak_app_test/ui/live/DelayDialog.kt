@@ -56,7 +56,7 @@ fun MakeDelayDialog(
                     horizontalAlignment = Alignment.Start
                 ) {
                     Text(
-                        text = "${data.trainType}${data.trainNum}",
+                        text = "${data.type}${data.trainNum}",
                         style = MaterialTheme.typography.labelMedium.copy(
                             color = Color.Black,
                             fontWeight = FontWeight.Bold

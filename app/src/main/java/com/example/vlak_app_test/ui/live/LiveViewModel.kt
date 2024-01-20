@@ -49,7 +49,7 @@ class LiveViewModel : ViewModel() {
         viewModelScope.launch {
             liveState = LiveState.Loading
             liveState = try {
-                val result = TrainApi.retrofitService.getLiveInfo("pirdop")
+                val result = TrainApi.retrofitService.getLiveInfo(selectedStation.value)
                 LiveState.Success(result)
             } catch (e: Exception) {
                 LiveState.Error(e)
