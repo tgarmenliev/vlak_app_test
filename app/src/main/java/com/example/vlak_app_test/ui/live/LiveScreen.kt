@@ -45,19 +45,30 @@ fun MakeLiveScreenOne(
     onCancelButton: () -> Unit,
     viewModel: LiveViewModel
 ) {
-    Scaffold(
-        topBar = {
-            MakeTopBar(
-                titleText = R.string.live,
-                haveCancelButton = true,
-                onCancelButtonPressed = onCancelButton
-            )
+    val liveState = viewModel.liveState
+    when (liveState) {
+        is LiveState.Loading -> {
+            Text(text = "Loading...")
         }
-    ) {
-        MakeLiveScreen(
-            data = viewModel.getData(),
-            modifier = Modifier.padding(it),
-        )
+        is LiveState.Success -> {
+            Scaffold(
+                topBar = {
+                    MakeTopBar(
+                        titleText = R.string.live,
+                        haveCancelButton = true,
+                        onCancelButtonPressed = onCancelButton
+                    )
+                }
+            ) {
+                MakeLiveScreen(
+                    data = viewModel.getLiveInfo(),
+                    modifier = Modifier.padding(it),
+                )
+            }
+        }
+        is LiveState.Error -> {
+            Text(text = "Error: ${liveState.error}")
+        }
     }
 }
 

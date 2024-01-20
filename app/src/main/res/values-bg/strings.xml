@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">vlak_app_test</string>
+    <string name="app_name">BulTrain</string>
     <string name="schedule">Разписание</string>
     <string name="search_train_info">Търсене на влак</string>
     <string name="time">Заминава</string>

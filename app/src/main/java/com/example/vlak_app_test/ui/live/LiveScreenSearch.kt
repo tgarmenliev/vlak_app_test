@@ -93,8 +93,11 @@ fun MakeLiveSearchScreen(
 
             MakeButton(
                 text = R.string.next,
-                onClick = { navController.navigate("live")
-                    viewModel.setStation(titleText) },
+                onClick = {
+                    viewModel.setStation(titleText)
+                    viewModel.getData()
+                    navController.navigate("live")
+                },
                 modifier = Modifier
                     .fillMaxWidth(0.6f),
                 colors = ButtonDefaults.buttonColors(
