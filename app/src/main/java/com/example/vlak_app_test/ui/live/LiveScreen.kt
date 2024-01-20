@@ -68,6 +68,7 @@ fun MakeLiveScreenOne(
         }
         is LiveState.Error -> {
             Text(text = "Error: ${liveState.error}")
+            println(liveState.error)
         }
     }
 }
