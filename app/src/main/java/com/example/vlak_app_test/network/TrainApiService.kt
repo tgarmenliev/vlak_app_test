@@ -1,6 +1,7 @@
 package com.example.vlak_app_test.network
 
 import com.example.vlak_app_test.models.live.Live
+import com.example.vlak_app_test.models.schedule.Schedule
 import com.example.vlak_app_test.models.train_info.TrainInfo
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -25,6 +26,19 @@ interface TrainApiService {
     suspend fun getLiveInfo(
         @Path("stationName") stationName: String
     ): Live.LiveTable
+
+    @GET("/api/schedule/{from}/{to}")
+    suspend fun getScheduleInfoToday(
+        @Path("from") from: String,
+        @Path("to") to: String
+    ): Schedule.ScheduleTable
+
+    @GET("/api/schedule/{from}/{to}/{date}")
+    suspend fun getScheduleInfo(
+        @Path("from") from: String,
+        @Path("to") to: String,
+        @Path("date") date: String
+    ): Schedule.ScheduleTable
 }
 
 object TrainApi {

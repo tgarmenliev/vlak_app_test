@@ -45,8 +45,7 @@ fun MakeLiveScreenOne(
     onCancelButton: () -> Unit,
     viewModel: LiveViewModel
 ) {
-    val liveState = viewModel.liveState
-    when (liveState) {
+    when (val liveState = viewModel.liveState) {
         is LiveState.Loading -> {
             Text(text = "Loading...")
         }

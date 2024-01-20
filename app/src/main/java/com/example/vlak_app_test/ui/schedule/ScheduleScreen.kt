@@ -45,24 +45,35 @@ fun MakeScheduleScreen(
     onCancelButton: () -> Unit,
     navController: NavController,
 ) {
-    Scaffold(
-        topBar = {
-            MakeTopBar(
-                titleText = R.string.schedule,
-                haveCancelButton = true,
-                onCancelButtonPressed = onCancelButton
-            )
+    when(val scheduleState = viewModel.scheduleState) {
+        is ScheduleState.Loading -> {
+            Text(text = "Loading...")
         }
-    ) {
-        MakeScheduleScreenSec(
-            data = viewModel.getData(),
-            modifier = Modifier.padding(it),
-            onClickOption = { index ->
-                viewModel.setOptionIndex(index)
-                navController.navigate("schedule_option_screen")
+        is ScheduleState.Success -> {
+            Scaffold(
+                topBar = {
+                    MakeTopBar(
+                        titleText = R.string.schedule,
+                        haveCancelButton = true,
+                        onCancelButtonPressed = onCancelButton
+                    )
+                }
+            ) {
+                MakeScheduleScreenSec(
+                    data = viewModel.getScheduleInfo(),
+                    modifier = Modifier.padding(it),
+                    onClickOption = { index ->
+                        viewModel.setOptionIndex(index)
+                        navController.navigate("schedule_option_screen")
+                    }
+                )
             }
-        )
+        }
+        is ScheduleState.Error -> {
+            Text(text = "Error: ${scheduleState.error}")
+        }
     }
+
 }
 
 @Composable
