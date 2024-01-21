@@ -160,7 +160,7 @@ fun MakeScheduleOptionScreenSec(
                     )
 
                     for (index in data.trains.indices) {
-                        MakeTrainOnTransfer(data = data.trains[index])
+                        MakeTrainOnTransfer(data = data.trains[index], getTrainInfo = getTrainInfo)
 
                         if (index != data.trains.size - 1) {
                             MakeTransferComposable(timeToWaitNext = data.trains[index].timeToWaitNext)
@@ -201,6 +201,7 @@ fun MakeScheduleOptionScreenSec(
 @Composable
 private fun MakeTrainOnTransfer(
     data: Schedule.Trains,
+    getTrainInfo: (String) -> Unit = {},
 ) {
     Row(
         modifier = Modifier
@@ -235,10 +236,15 @@ private fun MakeTrainOnTransfer(
             Row {
                 MakeArrivalDepartureData(station = data.from, time = data.depart, modifier = Modifier.weight(2f))
 
-                MakeTrainForTransfers(trainType = data.trainType, trainNum = data.trainNumber, modifier = Modifier
-                    .padding(end = 8.dp)
-                    .fillMaxWidth()
-                    .weight(1f))
+                MakeTrainForTransfers(
+                    trainType = data.trainType,
+                    trainNum = data.trainNumber,
+                    modifier = Modifier
+                        .padding(end = 8.dp)
+                        .fillMaxWidth()
+                        .weight(1f),
+                    getTrainInfo = { getTrainInfo }
+                )
             }
 
 
@@ -339,7 +345,8 @@ private fun MakeArrivalDepartureData(
 private fun MakeTrainForTransfers(
     trainType: String,
     trainNum: String,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    getTrainInfo: (String) -> Unit = {},
 ) {
     Row(
         modifier = modifier
@@ -356,9 +363,11 @@ private fun MakeTrainForTransfers(
             text = "$trainType $trainNum",
             style = MaterialTheme.typography.bodyMedium.copy(
                 color = Color.Black,
+                textDecoration = TextDecoration.Underline,
             ),
             modifier = Modifier
                 .padding(start = 2.dp)
+                .clickable { getTrainInfo(trainNum) }
         )
     }
 }
