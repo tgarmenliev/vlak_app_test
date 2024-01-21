@@ -112,7 +112,7 @@ fun MakeLiveScreen(data: Live.LiveTable, modifier: Modifier = Modifier) {
             )
         }
 
-        Box(
+        Column(
             modifier = Modifier
                 .fillMaxWidth()
                 .fillMaxHeight(0.8f)
@@ -129,6 +129,7 @@ fun MakeLiveScreen(data: Live.LiveTable, modifier: Modifier = Modifier) {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
+                    .padding(8.dp),
             ) {
                 Text(
                     text = stringResource(id = R.string.time),
@@ -148,7 +149,7 @@ fun MakeLiveScreen(data: Live.LiveTable, modifier: Modifier = Modifier) {
                 )
                 Text(
                     text = stringResource(id = R.string.train_number),
-                    modifier = Modifier.weight(1.7f),
+                    modifier = Modifier.weight(2.1f),
                     style = MaterialTheme.typography.labelLarge.copy(
                         color = Color.Black,
                         fontWeight = FontWeight.SemiBold
@@ -158,11 +159,11 @@ fun MakeLiveScreen(data: Live.LiveTable, modifier: Modifier = Modifier) {
 
             // Table rows
             data.trains.forEach { train ->
-                Spacer(modifier = Modifier.padding(2.dp))
 
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
+                        .padding(horizontal = 8.dp, vertical = 4.dp)
                 ) {
                     if (train.isDelayed) {
                         Row(
@@ -218,7 +219,7 @@ fun MakeLiveScreen(data: Live.LiveTable, modifier: Modifier = Modifier) {
 
                     Row(
                         modifier = Modifier
-                            .weight(1.7f)
+                            .weight(2.1f)
                     ) {
                         Text(
                             text = "${train.type} ",
