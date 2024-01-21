@@ -201,7 +201,7 @@ fun MakeScheduleOptionScreenSec(
 @Composable
 private fun MakeTrainOnTransfer(
     data: Schedule.Trains,
-    getTrainInfo: (String) -> Unit = {},
+    getTrainInfo: (String) -> Unit,
 ) {
     Row(
         modifier = Modifier
@@ -243,7 +243,7 @@ private fun MakeTrainOnTransfer(
                         .padding(end = 8.dp)
                         .fillMaxWidth()
                         .weight(1f),
-                    getTrainInfo = { getTrainInfo }
+                    getTrainInfo = getTrainInfo
                 )
             }
 
@@ -346,7 +346,7 @@ private fun MakeTrainForTransfers(
     trainType: String,
     trainNum: String,
     modifier: Modifier = Modifier,
-    getTrainInfo: (String) -> Unit = {},
+    getTrainInfo: (String) -> Unit,
 ) {
     Row(
         modifier = modifier

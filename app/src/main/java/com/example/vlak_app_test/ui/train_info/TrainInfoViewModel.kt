@@ -40,7 +40,7 @@ class TrainInfoViewModel : ViewModel() {
         viewModelScope.launch {
             trainInfoState = TrainInfoState.Loading
             trainInfoState = try {
-                val result = TrainApi.retrofitService.getSecondTrainInfo(selectedTrain.value)
+                val result = TrainApi.retrofitService.getTrainInfo(selectedTrain.value)
                 TrainInfoState.Success(result)
             } catch (e: Exception) {
                 TrainInfoState.Error(e)

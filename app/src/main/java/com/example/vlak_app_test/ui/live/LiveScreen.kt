@@ -16,7 +16,9 @@ import androidx.compose.foundation.layout.requiredHeight
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -89,168 +91,148 @@ fun MakeLiveScreen(data: Live.LiveTable, modifier: Modifier = Modifier) {
         )
     }
 
-    Box(modifier = Modifier.fillMaxSize())
-    {
-
-        Column(
-            Modifier
-                .fillMaxSize()
-                .padding(top = 100.dp),
+    Column(
+        modifier = modifier
+            .fillMaxSize()
+            .verticalScroll(rememberScrollState()),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .requiredHeight(50.dp)
+                .padding(top = 10.dp, start = 16.dp, end = 16.dp)
         ) {
+            Text(
+                text = data.station,
+                style = MaterialTheme.typography.headlineLarge.copy(
+                    color = Color.Black,
+                    fontWeight = FontWeight.Bold
+                )
+            )
+        }
 
-            Column(
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .fillMaxHeight(0.8f)
+                .padding(16.dp)
+                .clip(RoundedCornerShape(20.dp))
+                .border(
+                    width = 2.dp,
+                    color = Color.Black,
+                    shape = RoundedCornerShape(20.dp)
+                )
+                .background(color = Color.White)
+        ) {
+            // Table header
+            Row(
                 modifier = Modifier
-                    .fillMaxWidth(),
-                horizontalAlignment = Alignment.CenterHorizontally
+                    .fillMaxWidth()
             ) {
-                Box(
+                Text(
+                    text = stringResource(id = R.string.time),
+                    modifier = Modifier.weight(2f),
+                    style = MaterialTheme.typography.labelLarge.copy(
+                        color = Color.Black,
+                        fontWeight = FontWeight.SemiBold
+                    ),
+                )
+                Text(
+                    text = stringResource(id = R.string.direction),
+                    modifier = Modifier.weight(3f),
+                    style = MaterialTheme.typography.labelLarge.copy(
+                        color = Color.Black,
+                        fontWeight = FontWeight.SemiBold
+                    ),
+                )
+                Text(
+                    text = stringResource(id = R.string.train_number),
+                    modifier = Modifier.weight(1.7f),
+                    style = MaterialTheme.typography.labelLarge.copy(
+                        color = Color.Black,
+                        fontWeight = FontWeight.SemiBold
+                    ),
+                )
+            }
+
+            // Table rows
+            data.trains.forEach { train ->
+                Spacer(modifier = Modifier.padding(2.dp))
+
+                Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .requiredHeight(50.dp)
-                        .padding(top = 10.dp, start = 16.dp, end = 16.dp)
                 ) {
+                    if (train.isDelayed) {
+                        Row(
+                            modifier = Modifier
+                                .clickable { selectedTrainNumber = train.trainNum }
+                                .weight(2f)
+                        ) {
+                            Icon(
+                                painter = painterResource(id = R.drawable.warning),
+                                contentDescription = "Delayed icon",
+                                modifier = Modifier
+                                    .size(24.dp)
+                                    .padding(top = 4.dp),
+                                tint = redLate
+                            )
+                            Text(
+                                text = "${train.time}",
+                                style = MaterialTheme.typography.labelLarge.copy(
+                                    color = redLate,
+                                    textDecoration = TextDecoration.Underline
+                                ),
+                            )
+                        }
+                    } else {
+                        Row(
+                            modifier = Modifier
+                                .weight(2f)
+                        ) {
+                            Icon(
+                                painter = painterResource(id = R.drawable.check),
+                                contentDescription = "On time icon",
+                                modifier = Modifier
+                                    .size(24.dp)
+                                    .padding(top = 4.dp),
+                                tint = greenOnTime
+                            )
+                            Text(
+                                text = "${train.time}",
+                                style = MaterialTheme.typography.labelLarge.copy(
+                                    color = greenOnTime,
+                                ),
+                            )
+                        }
+                    }
+
                     Text(
-                        text = data.station,
-                        style = MaterialTheme.typography.headlineLarge.copy(
+                        text = train.direction,
+                        modifier = Modifier.weight(3f),
+                        style = MaterialTheme.typography.labelLarge.copy(
                             color = Color.Black,
-                            fontWeight = FontWeight.Bold
-                        )
+                        ),
                     )
-                }
 
-                Box(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .fillMaxHeight(0.8f)
-                        .padding(16.dp)
-                        .clip(RoundedCornerShape(20.dp))
-                        .border(
-                            width = 2.dp,
-                            color = Color.Black,
-                            shape = RoundedCornerShape(20.dp)
-                        )
-                        .background(color = Color.White)
-                ) {
-                    LazyColumn(
+                    Row(
                         modifier = Modifier
-                            .padding(16.dp)
-                            .fillMaxWidth()
-                    )
-                    {
-                        // Table header
-                        item {
-                            Row(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                            ) {
-                                Text(
-                                    text = stringResource(id = R.string.time),
-                                    modifier = Modifier.weight(2f),
-                                    style = MaterialTheme.typography.labelLarge.copy(
-                                        color = Color.Black,
-                                        fontWeight = FontWeight.SemiBold
-                                    ),
-                                )
-                                Text(
-                                    text = stringResource(id = R.string.direction),
-                                    modifier = Modifier.weight(3f),
-                                    style = MaterialTheme.typography.labelLarge.copy(
-                                        color = Color.Black,
-                                        fontWeight = FontWeight.SemiBold
-                                    ),
-                                )
-                                Text(
-                                    text = stringResource(id = R.string.train_number),
-                                    modifier = Modifier.weight(1.7f),
-                                    style = MaterialTheme.typography.labelLarge.copy(
-                                        color = Color.Black,
-                                        fontWeight = FontWeight.SemiBold
-                                    ),
-                                )
-                            }
-                        }
-
-                        // Table rows
-                        items(data.trains) { train ->
-                            Spacer(modifier = Modifier.padding(2.dp))
-
-                            Row(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                            ) {
-                                if (train.isDelayed) {
-                                    Row(
-                                        modifier = Modifier
-                                            .clickable { selectedTrainNumber = train.trainNum }
-                                            .weight(2f)
-                                    ) {
-                                        Icon(
-                                            painter = painterResource(id = R.drawable.warning),
-                                            contentDescription = "Delayed icon",
-                                            modifier = Modifier
-                                                .size(24.dp)
-                                                .padding(top = 4.dp),
-                                            tint = redLate
-                                        )
-                                        Text(
-                                            text = "${train.time}",
-                                            style = MaterialTheme.typography.labelLarge.copy(
-                                                color = redLate,
-                                                textDecoration = TextDecoration.Underline
-                                            ),
-                                        )
-                                    }
-                                } else {
-                                    Row(
-                                        modifier = Modifier
-                                            .weight(2f)
-                                    ) {
-
-                                        Icon(
-                                            painter = painterResource(id = R.drawable.check),
-                                            contentDescription = "On time icon",
-                                            modifier = Modifier
-                                                .size(24.dp)
-                                                .padding(top = 4.dp),
-                                            tint = greenOnTime
-                                        )
-                                        Text(
-                                            text = "${train.time}",
-                                            style = MaterialTheme.typography.labelLarge.copy(
-                                                color = greenOnTime,
-                                            ),
-                                        )
-                                    }
-                                }
-
-                                Text(
-                                    text = train.direction,
-                                    modifier = Modifier.weight(3f),
-                                    style = MaterialTheme.typography.labelLarge.copy(
-                                        color = Color.Black,
-                                    ),
-                                )
-
-                                Row(
-                                    modifier = Modifier
-                                        .weight(1.7f)
-                                ) {
-                                    Text(
-                                        text = "${train.type} ",
-                                        style = MaterialTheme.typography.labelLarge.copy(
-                                            color = Color.Black,
-                                            fontWeight = FontWeight.SemiBold
-                                        ),
-                                    )
-                                    Text(
-                                        text = train.trainNum,
-                                        style = MaterialTheme.typography.labelLarge.copy(
-                                            color = Color.Black,
-                                        ),
-                                    )
-                                }
-                            }
-                        }
+                            .weight(1.7f)
+                    ) {
+                        Text(
+                            text = "${train.type} ",
+                            style = MaterialTheme.typography.labelLarge.copy(
+                                color = Color.Black,
+                                fontWeight = FontWeight.SemiBold
+                            ),
+                        )
+                        Text(
+                            text = train.trainNum,
+                            style = MaterialTheme.typography.labelLarge.copy(
+                                color = Color.Black,
+                            ),
+                        )
                     }
                 }
             }

@@ -31,5 +31,9 @@
     <string name="choose_date">Choose date:</string>
     <string name="loading">Loading...</string>
     <string name="error">Error</string>
-    <string name="more_error_info">Unfortunately, an error occurred. Please try again later. We are sorry</string>
+    <string name="more_error_info">Unfortunately, an error occurred. Please try again later. We are sorry!</string>
+    <string name="station">Station</string>
+    <string name="arrives">Arrives</string>
+    <string name="departs">Departs</string>
+    <string name="train_info">Train info</string>
 </resources>

@@ -33,8 +33,6 @@ fun MakeTopBar(
     titleText: Int = R.string.schedule,
     haveCancelButton: Boolean = false,
     onCancelButtonPressed: () -> Unit = {},
-    haveMoreText: Boolean = false,
-    moreText: String = "",
 ) {
     Column(
     ) {
@@ -58,34 +56,19 @@ fun MakeTopBar(
                     .padding(16.dp)
             )
 
-            Row(
+            Text(
+                text = stringResource(id = titleText),
                 modifier = Modifier
                     .constrainAs(text) {
                         bottom.linkTo(box.bottom)
                         start.linkTo(box.start)
                     }
-            ) {
-                Text(
-                    text = stringResource(id = titleText),
-                    modifier = Modifier
-                        .padding(16.dp),
-                    style = MaterialTheme.typography.titleLarge.copy(
-                        color = Color.White,
-                    )
+                    .padding(16.dp),
+                style = MaterialTheme.typography.titleLarge.copy(
+                    color = Color.White,
+                    fontWeight = FontWeight.SemiBold
                 )
-
-                if (haveMoreText) {
-                    Text(
-                        text = AnnotatedString(moreText),
-                        modifier = Modifier
-                            .padding(horizontal = 4.dp, vertical = 16.dp),
-                        style = MaterialTheme.typography.titleLarge.copy(
-                            color = Color.White,
-                            fontWeight = FontWeight.SemiBold
-                        )
-                    )
-                }
-            }
+            )
 
 
             if (haveCancelButton) {
