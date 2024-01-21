@@ -30,4 +30,5 @@
     <string name="choose_station">Въведи име на гара:</string>
     <string name="start_searching">Търси..</string>
     <string name="choose_date">Избери дата:</string>
+    <string name="loading">Зареждане...</string>
 </resources>

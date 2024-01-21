@@ -3,6 +3,7 @@ package com.example.vlak_app_test.ui.live
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -16,6 +17,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -36,6 +38,9 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import com.example.vlak_app_test.R
 import com.example.vlak_app_test.models.live.Live
+import com.example.vlak_app_test.ui.loading.LoadingScreen
+import com.example.vlak_app_test.ui.theme.PrimaryDarkColor
+import com.example.vlak_app_test.ui.theme.TextDarkColor
 import com.example.vlak_app_test.ui.top_bar.MakeTopBar
 import com.example.vlak_app_test.ui.theme.greenOnTime
 import com.example.vlak_app_test.ui.theme.redLate
@@ -47,7 +52,7 @@ fun MakeLiveScreenOne(
 ) {
     when (val liveState = viewModel.liveState) {
         is LiveState.Loading -> {
-            Text(text = "Loading...")
+            LoadingScreen(modifier = Modifier.fillMaxSize())
         }
         is LiveState.Success -> {
             Scaffold(

@@ -27,6 +27,8 @@ import com.example.vlak_app_test.ui.schedule.MakeScheduleOptionScreen
 import com.example.vlak_app_test.ui.schedule.MakeScheduleScreen
 import com.example.vlak_app_test.ui.schedule.MakeScheduleSearchScreen
 import com.example.vlak_app_test.ui.schedule.ScheduleViewModel
+import com.example.vlak_app_test.ui.train_info.MakeTrainInfoScreen
+import com.example.vlak_app_test.ui.train_info.TrainInfoViewModel
 
 @Composable
 fun AppNavigation() {
@@ -49,6 +51,7 @@ fun AppNavigation() {
 
     val scheduleViewModel = remember { ScheduleViewModel() }
     val liveViewModel = remember { LiveViewModel() }
+    val trainInfoViewModel = remember { TrainInfoViewModel() }
 
     Scaffold(
         bottomBar = {
@@ -61,7 +64,8 @@ fun AppNavigation() {
             navController = navController,
             modifier = Modifier.padding(it),
             scheduleViewModel = scheduleViewModel,
-            liveViewModel = liveViewModel
+            liveViewModel = liveViewModel,
+            trainInfoViewModel = trainInfoViewModel
         )
     }
 }
@@ -71,7 +75,8 @@ fun Navigation(
     navController: NavHostController,
     modifier: Modifier = Modifier,
     scheduleViewModel: ScheduleViewModel = ScheduleViewModel(),
-    liveViewModel: LiveViewModel = LiveViewModel()
+    liveViewModel: LiveViewModel = LiveViewModel(),
+    trainInfoViewModel: TrainInfoViewModel = TrainInfoViewModel(),
 ) {
 
     //val navController = rememberNavController()
@@ -96,10 +101,15 @@ fun Navigation(
             composable("schedule_option_screen") {
                 MakeScheduleOptionScreen(
                     onAddToTripsButtonPressed = { /*TODO*/ },
-                    getTrainInfo = { /*TODO*/ },
+                    trainInfoViewModel = trainInfoViewModel,
                     viewModel = scheduleViewModel,
-                    onCancelButton = { navController.popBackStack() }
+                    onCancelButton = { navController.popBackStack() },
+                    navController = navController
                 )
+            }
+
+            composable("train_info") {
+                MakeTrainInfoScreen(viewModel = trainInfoViewModel, onCancelButton = { navController.popBackStack() })
             }
         }
 

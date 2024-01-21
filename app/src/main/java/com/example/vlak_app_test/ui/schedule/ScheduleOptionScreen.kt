@@ -36,19 +36,22 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.example.vlak_app_test.R
 import com.example.vlak_app_test.models.schedule.Schedule
 import com.example.vlak_app_test.ui.composables.MakeButton
 import com.example.vlak_app_test.ui.theme.PrimaryDarkColor
 import com.example.vlak_app_test.ui.theme.TextDarkColor
 import com.example.vlak_app_test.ui.top_bar.MakeTopBar
+import com.example.vlak_app_test.ui.train_info.TrainInfoViewModel
 
 @Composable
 fun MakeScheduleOptionScreen(
     onAddToTripsButtonPressed: () -> Unit,
-    getTrainInfo: () -> Unit,
+    trainInfoViewModel: TrainInfoViewModel,
     onCancelButton: () -> Unit,
     viewModel: ScheduleViewModel,
+    navController: NavController
 ) {
     Scaffold(
         topBar = {
@@ -61,7 +64,11 @@ fun MakeScheduleOptionScreen(
     ) {
         MakeScheduleOptionScreenSec(
             onAddToTripsButtonPressed = onAddToTripsButtonPressed,
-            getTrainInfo = getTrainInfo,
+            getTrainInfo = { trainNum ->
+                trainInfoViewModel.setTrain(trainNum)
+                trainInfoViewModel.getData()
+                navController.navigate("train_info")
+            },
             data = viewModel.getDataOption(),
             route = viewModel.getRoute(),
             modifier = Modifier.padding(it)
@@ -72,7 +79,7 @@ fun MakeScheduleOptionScreen(
 @Composable
 fun MakeScheduleOptionScreenSec(
     onAddToTripsButtonPressed: () -> Unit,
-    getTrainInfo: () -> Unit,
+    getTrainInfo: (String) -> Unit,
     modifier: Modifier = Modifier,
     data: Schedule.Options,
     route: String,
@@ -271,7 +278,7 @@ private fun MakeTrainOnTransfer(
 
 @Composable
 private fun MakeTrainNumber(
-    getTrainInfo: () -> Unit,
+    getTrainInfo: (String) -> Unit,
     data: Schedule.Trains,
 ) {
     Row(
@@ -294,7 +301,7 @@ private fun MakeTrainNumber(
             ),
             modifier = Modifier
                 .padding(start = 2.dp)
-                .clickable(onClick = getTrainInfo)
+                .clickable(onClick = { getTrainInfo(data.trainNumber) })
         )
     }
 }

@@ -3,6 +3,7 @@ package com.example.vlak_app_test.ui.top_bar
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -31,7 +32,9 @@ fun MakeTopBar(
     modifier: Modifier = Modifier,
     titleText: Int = R.string.schedule,
     haveCancelButton: Boolean = false,
-    onCancelButtonPressed: () -> Unit = {}
+    onCancelButtonPressed: () -> Unit = {},
+    haveMoreText: Boolean = false,
+    moreText: String = "",
 ) {
     Column(
     ) {
@@ -55,19 +58,35 @@ fun MakeTopBar(
                     .padding(16.dp)
             )
 
-            Text(
-                text = stringResource(id = titleText),
+            Row(
                 modifier = Modifier
                     .constrainAs(text) {
                         bottom.linkTo(box.bottom)
                         start.linkTo(box.start)
                     }
-                    .padding(16.dp),
-                style = MaterialTheme.typography.titleLarge.copy(
-                    color = Color.White,
-                    fontWeight = FontWeight.SemiBold
+            ) {
+                Text(
+                    text = stringResource(id = titleText),
+                    modifier = Modifier
+                        .padding(16.dp),
+                    style = MaterialTheme.typography.titleLarge.copy(
+                        color = Color.White,
+                    )
                 )
-            )
+
+                if (haveMoreText) {
+                    Text(
+                        text = AnnotatedString(moreText),
+                        modifier = Modifier
+                            .padding(horizontal = 4.dp, vertical = 16.dp),
+                        style = MaterialTheme.typography.titleLarge.copy(
+                            color = Color.White,
+                            fontWeight = FontWeight.SemiBold
+                        )
+                    )
+                }
+            }
+
 
             if (haveCancelButton) {
                 IconButton(

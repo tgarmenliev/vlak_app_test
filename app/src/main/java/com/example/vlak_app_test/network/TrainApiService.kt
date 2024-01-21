@@ -20,7 +20,7 @@ interface TrainApiService {
     @GET("/api/trainInfo/{trainNо}")
     suspend fun getTrainInfo(
         @Path("trainNo") trainNo: String
-    ): TrainInfo
+    ): TrainInfo.TrainInfoTable
 
     @GET("/api/live/{stationName}")
     suspend fun getLiveInfo(

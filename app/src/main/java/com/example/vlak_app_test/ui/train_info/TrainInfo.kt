@@ -16,6 +16,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -30,10 +31,47 @@ import com.example.vlak_app_test.R
 import com.example.vlak_app_test.models.train_info.TrainInfo
 import com.example.vlak_app_test.ui.theme.PrimaryDarkColor
 import com.example.vlak_app_test.ui.composables.MakeButton
+import com.example.vlak_app_test.ui.loading.LoadingScreen
 import com.example.vlak_app_test.ui.top_bar.MakeTopBar
 
 @Composable
-fun MakeTrainInfo(data: TrainInfo.TrainInfoTable, modifier: Modifier = Modifier) {
+fun MakeTrainInfoScreen(
+    viewModel: TrainInfoViewModel,
+    onCancelButton: () -> Unit,
+) {
+    when (val trainInfoState = viewModel.trainInfoState) {
+        is TrainInfoState.Loading -> {
+            LoadingScreen(modifier = Modifier.fillMaxSize())
+        }
+        is TrainInfoState.Success -> {
+            Scaffold(
+                topBar = {
+                    MakeTopBar(
+                        titleText = R.string.train_number,
+                        haveCancelButton = true,
+                        onCancelButtonPressed = onCancelButton,
+                        haveMoreText = true,
+                        moreText = viewModel.getTrain()
+                    )
+                }
+            ) {
+                MakeTrainInfo(
+                    data = trainInfoState.data,
+                    modifier = Modifier.padding(it)
+                )
+            }
+        }
+        is TrainInfoState.Error -> {
+            Text(text = "Error: ${trainInfoState.error}")
+        }
+    }
+}
+
+@Composable
+fun MakeTrainInfo(
+    data: TrainInfo.TrainInfoTable,
+    modifier: Modifier = Modifier
+) {
     Box(modifier = Modifier.fillMaxSize())
     {
 

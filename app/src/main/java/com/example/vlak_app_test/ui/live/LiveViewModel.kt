@@ -1,8 +1,5 @@
 package com.example.vlak_app_test.ui.live
 
-import android.net.http.HttpException
-import android.os.Build
-import androidx.annotation.RequiresExtension
 import androidx.compose.runtime.State
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -12,7 +9,6 @@ import androidx.lifecycle.viewModelScope
 import com.example.vlak_app_test.models.live.Live
 import com.example.vlak_app_test.network.TrainApi
 import kotlinx.coroutines.launch
-import java.io.IOError
 
 sealed interface LiveState {
     object Loading : LiveState
