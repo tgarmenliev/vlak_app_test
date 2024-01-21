@@ -35,6 +35,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.vlak_app_test.R
 import com.example.vlak_app_test.models.schedule.Schedule
+import com.example.vlak_app_test.ui.error.ErrorScreen
 import com.example.vlak_app_test.ui.loading.LoadingScreen
 import com.example.vlak_app_test.ui.top_bar.MakeTopBar
 import com.example.vlak_app_test.ui.theme.PrimaryDarkColor
@@ -71,7 +72,7 @@ fun MakeScheduleScreen(
             }
         }
         is ScheduleState.Error -> {
-            Text(text = "Error: ${scheduleState.error}")
+            ErrorScreen(error = scheduleState.error, modifier = Modifier.fillMaxSize())
         }
     }
 

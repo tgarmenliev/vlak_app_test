@@ -31,6 +31,7 @@ import com.example.vlak_app_test.R
 import com.example.vlak_app_test.models.train_info.TrainInfo
 import com.example.vlak_app_test.ui.theme.PrimaryDarkColor
 import com.example.vlak_app_test.ui.composables.MakeButton
+import com.example.vlak_app_test.ui.error.ErrorScreen
 import com.example.vlak_app_test.ui.loading.LoadingScreen
 import com.example.vlak_app_test.ui.top_bar.MakeTopBar
 
@@ -62,7 +63,7 @@ fun MakeTrainInfoScreen(
             }
         }
         is TrainInfoState.Error -> {
-            Text(text = "Error: ${trainInfoState.error}")
+            ErrorScreen(error = trainInfoState.error, modifier = Modifier.fillMaxSize())
         }
     }
 }
