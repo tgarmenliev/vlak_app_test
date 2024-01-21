@@ -9,6 +9,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.vlak_app_test.models.live.Live
 import com.example.vlak_app_test.network.TrainApi
 import kotlinx.coroutines.launch
+import java.util.Locale
 
 sealed interface LiveState {
     object Loading : LiveState
@@ -22,6 +23,9 @@ class LiveViewModel : ViewModel() {
     private val _selectedStation = mutableStateOf("")
     val selectedStation: State<String> = _selectedStation
 
+    private val _selectedType = mutableStateOf("departures")
+    val selectedType: State<String> = _selectedType
+
     //private val _data = MutableLiveData<Live.LiveTable>()
     //private val data: Live.LiveTable = sampleLiveInfo
 
@@ -33,8 +37,8 @@ class LiveViewModel : ViewModel() {
         _selectedStation.value = station
     }
 
-    fun getStation(): String {
-        return selectedStation.value
+    fun setType(type: String) {
+        _selectedType.value = type
     }
 
     fun getLiveInfo(): Live.LiveTable {
@@ -45,7 +49,7 @@ class LiveViewModel : ViewModel() {
         viewModelScope.launch {
             liveState = LiveState.Loading
             liveState = try {
-                val result = TrainApi.retrofitService.getLiveInfo(selectedStation.value)
+                val result = TrainApi.retrofitService.getLiveInfo(Locale.getDefault().language, selectedStation.value, selectedType.value)
                 LiveState.Success(result)
             } catch (e: Exception) {
                 LiveState.Error(e)

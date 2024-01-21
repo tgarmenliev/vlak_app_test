@@ -14,6 +14,7 @@ import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
+import java.util.Locale
 
 sealed interface ScheduleState {
     object Loading : ScheduleState
@@ -71,11 +72,13 @@ class ScheduleViewModel : ViewModel() {
                 val result = (_ifToday.value).let {
                     if (it) {
                         TrainApi.retrofitService.getScheduleInfoToday(
+                            Locale.getDefault().language,
                             selectedStations.value.from,
                             selectedStations.value.to
                         )
                     } else {
                         TrainApi.retrofitService.getScheduleInfo(
+                            Locale.getDefault().language,
                             selectedStations.value.from,
                             selectedStations.value.to,
                             selectedStations.value.date

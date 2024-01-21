@@ -9,6 +9,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.vlak_app_test.models.train_info.TrainInfo
 import com.example.vlak_app_test.network.TrainApi
 import kotlinx.coroutines.launch
+import java.util.Locale
 
 sealed interface TrainInfoState {
     object Loading : TrainInfoState
@@ -40,7 +41,7 @@ class TrainInfoViewModel : ViewModel() {
         viewModelScope.launch {
             trainInfoState = TrainInfoState.Loading
             trainInfoState = try {
-                val result = TrainApi.retrofitService.getTrainInfo(selectedTrain.value)
+                val result = TrainApi.retrofitService.getTrainInfo(Locale.getDefault().language, selectedTrain.value)
                 TrainInfoState.Success(result)
             } catch (e: Exception) {
                 TrainInfoState.Error(e)

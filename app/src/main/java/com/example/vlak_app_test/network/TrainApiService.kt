@@ -17,24 +17,30 @@ private val retrofit = Retrofit.Builder()
 
 interface TrainApiService {
 
-    @GET("/api/train-info/{num}")
+    @GET("/api/train-info/{language}/{num}/{date}")
     suspend fun getTrainInfo(
-        @Path("num") num: String
+        @Path("language") language: String,
+        @Path("num") num: String,
+        @Path("date") date: String? = null
     ): TrainInfo.TrainInfoTable
 
-    @GET("/api/live/{stationName}")
+    @GET("/api/live/{language}/{stationName}/{type}")
     suspend fun getLiveInfo(
-        @Path("stationName") stationName: String
+        @Path("language") language: String,
+        @Path("stationName") stationName: String,
+        @Path("type") type: String
     ): Live.LiveTable
 
-    @GET("/api/schedule/{from}/{to}")
+    @GET("/api/schedule/{language}/{from}/{to}")
     suspend fun getScheduleInfoToday(
+        @Path("language") language: String,
         @Path("from") from: String,
         @Path("to") to: String
     ): Schedule.ScheduleTable
 
-    @GET("/api/schedule/{from}/{to}/{date}")
+    @GET("/api/schedule/{language}/{from}/{to}/{date}")
     suspend fun getScheduleInfo(
+        @Path("language") language: String,
         @Path("from") from: String,
         @Path("to") to: String,
         @Path("date") date: String
