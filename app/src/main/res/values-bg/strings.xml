@@ -13,7 +13,7 @@
     <string name="next">Напред</string>
     <string name="enter_station_name">Въведи име на гара:</string>
     <string name="add_to_trips">Добави към пътувания</string>
-    <string name="hours_short">ч</string>
+    <string name="hours_short">ч.</string>
     <string name="time_to_wait_next">Време за изчакване:</string>
     <string name="trains">Влакове</string>
     <string name="one_transfer">прекачване</string>

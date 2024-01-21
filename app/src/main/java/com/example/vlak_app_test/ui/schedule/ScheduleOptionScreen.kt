@@ -260,7 +260,7 @@ private fun MakeTrainOnTransfer(
                 )
 
                 Text(
-                    text = "${data.duration} ${stringResource(id = R.string.hours_short)}.",
+                    text = "${data.duration} ${stringResource(id = R.string.hours_short)}",
                     modifier = Modifier.padding(start = 8.dp),
                     style = MaterialTheme.typography.bodyMedium.copy(
                         color = Color.Black,

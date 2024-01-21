@@ -17,6 +17,12 @@ private val retrofit = Retrofit.Builder()
 
 interface TrainApiService {
 
+    @GET("/api/train-info/{language}/{num}")
+    suspend fun getTrainInfo(
+        @Path("language") language: String,
+        @Path("num") num: String
+    ): TrainInfo.TrainInfoTable
+
     @GET("/api/train-info/{language}/{num}/{date}")
     suspend fun getTrainInfo(
         @Path("language") language: String,

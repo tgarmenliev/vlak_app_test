@@ -259,7 +259,7 @@ fun MakeDuration(
         )
 
         Text(
-            text = "${duration} ч.",
+            text = "${duration} ${stringResource(id = R.string.hours_short)}",
             style = textStyle,
             modifier = Modifier
                 .padding(start = 4.dp, end = 4.dp)
