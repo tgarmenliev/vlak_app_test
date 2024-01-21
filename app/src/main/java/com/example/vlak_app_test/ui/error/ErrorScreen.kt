@@ -4,7 +4,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -17,6 +17,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.example.vlak_app_test.R
+
 
 @Composable
 fun ErrorScreen(
@@ -40,21 +41,24 @@ fun ErrorScreen(
             style = MaterialTheme.typography.titleLarge.copy(
                 color = Color.Black,
                 fontWeight = FontWeight.SemiBold
-            )
+            ),
+            modifier = Modifier.padding(top = 16.dp)
         )
 
         Text(
-            text = stringResource(id = R.string.error),
+            text = stringResource(id = R.string.more_error_info),
             style = MaterialTheme.typography.titleMedium.copy(
                 color = Color.Black,
-            )
+            ),
+            modifier = Modifier.padding(top = 16.dp, start = 16.dp, end = 16.dp)
         )
 
         Text(
             text = error.toString(),
             style = MaterialTheme.typography.bodyMedium.copy(
                 color = Color.Gray,
-            )
+            ),
+            modifier = Modifier.padding(top = 16.dp, start = 16.dp, end = 16.dp)
         )
     }
 }

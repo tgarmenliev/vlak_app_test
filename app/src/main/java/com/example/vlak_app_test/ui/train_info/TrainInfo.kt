@@ -57,7 +57,7 @@ fun MakeTrainInfoScreen(
                 }
             ) {
                 MakeTrainInfo(
-                    data = trainInfoState.data,
+                    data = viewModel.getTrainInfo(),
                     modifier = Modifier.padding(it)
                 )
             }
@@ -105,7 +105,7 @@ fun MakeTrainInfo(
                         .padding(top = 10.dp, start = 16.dp, end = 16.dp)
                 ) {
                     Text(
-                        text = "${data.trainType} ${data.trainNum}",
+                        text = "${data.trainType} ${data.trainNumber}",
                         style = MaterialTheme.typography.headlineLarge.copy(
                             color = Color.White,
                             fontWeight = FontWeight.Bold
@@ -158,30 +158,33 @@ fun MakeTrainInfo(
                         }
 
                         // Table rows
-                        items(data.stations) { trainInfo ->
-                            Row(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(4.dp)
-                            ) {
-                                Text(
-                                    text = trainInfo.station,
-                                    modifier = Modifier.weight(3f),
-                                    style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.Normal)
-                                )
-                                Text(
-                                    text = trainInfo.arrive,
-                                    modifier = Modifier.weight(1.3f),
-                                    style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.Normal)
-                                )
-                                Text(
-                                    text = trainInfo.depart,
-                                    modifier = Modifier.weight(1.3f),
-                                    style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.Normal)
-                                )
+                        data.stations?.let { stations ->
+                            items(stations) { trainInfo ->
+                                Row(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .padding(4.dp)
+                                ) {
+                                    Text(
+                                        text = trainInfo.station,
+                                        modifier = Modifier.weight(3f),
+                                        style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.Normal)
+                                    )
+                                    Text(
+                                        text = trainInfo.arrive,
+                                        modifier = Modifier.weight(1.3f),
+                                        style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.Normal)
+                                    )
+                                    Text(
+                                        text = trainInfo.depart,
+                                        modifier = Modifier.weight(1.3f),
+                                        style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.Normal)
+                                    )
+                                }
                             }
                         }
                     }
+
                 }
 
                 MakeButton(

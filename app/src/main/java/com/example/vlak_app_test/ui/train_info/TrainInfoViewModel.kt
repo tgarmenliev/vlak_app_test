@@ -24,6 +24,8 @@ class TrainInfoViewModel : ViewModel() {
 
     fun setTrain(train: String) {
         _selectedTrain.value = train
+        println("Set train: ..$train..")
+        println("Selected train: ..${selectedTrain.value}..")
     }
 
     fun getTrain(): String {
@@ -38,7 +40,7 @@ class TrainInfoViewModel : ViewModel() {
         viewModelScope.launch {
             trainInfoState = TrainInfoState.Loading
             trainInfoState = try {
-                val result = TrainApi.retrofitService.getTrainInfo(selectedTrain.value)
+                val result = TrainApi.retrofitService.getSecondTrainInfo(selectedTrain.value)
                 TrainInfoState.Success(result)
             } catch (e: Exception) {
                 TrainInfoState.Error(e)

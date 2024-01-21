@@ -307,7 +307,7 @@ private fun MakeTrainNumber(
             ),
             modifier = Modifier
                 .padding(start = 2.dp)
-                .clickable(onClick = { getTrainInfo(data.trainNumber) })
+                .clickable { getTrainInfo(data.trainNumber) }
         )
     }
 }

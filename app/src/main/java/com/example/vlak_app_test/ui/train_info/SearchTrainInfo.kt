@@ -48,9 +48,7 @@ fun SearchTrainInfoScreen(): String {
         MakeTopBar(
             titleText = R.string.search_train_info,
             haveCancelButton = true
-        ) {
-            titleText = ""
-        }
+        )
 
         Column(
             modifier = Modifier

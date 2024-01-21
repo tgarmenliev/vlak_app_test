@@ -40,10 +40,8 @@ import com.example.vlak_app_test.R
 import com.example.vlak_app_test.models.live.Live
 import com.example.vlak_app_test.ui.error.ErrorScreen
 import com.example.vlak_app_test.ui.loading.LoadingScreen
-import com.example.vlak_app_test.ui.theme.PrimaryDarkColor
-import com.example.vlak_app_test.ui.theme.TextDarkColor
-import com.example.vlak_app_test.ui.top_bar.MakeTopBar
 import com.example.vlak_app_test.ui.theme.greenOnTime
+import com.example.vlak_app_test.ui.top_bar.MakeTopBar
 import com.example.vlak_app_test.ui.theme.redLate
 
 @Composable
@@ -73,6 +71,7 @@ fun MakeLiveScreenOne(
         }
         is LiveState.Error -> {
             ErrorScreen(error = liveState.error, modifier = Modifier.fillMaxSize())
+            println(liveState.error)
         }
     }
 }
