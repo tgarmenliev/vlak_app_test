@@ -10,6 +10,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Switch
+import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -39,6 +41,7 @@ fun MakeLiveSearchScreen(
     viewModel: LiveViewModel
 ) {
     var titleText by rememberSaveable { mutableStateOf("") }
+    var checked by rememberSaveable { mutableStateOf(false) }
 
     Column(
         modifier = modifier
@@ -89,6 +92,24 @@ fun MakeLiveSearchScreen(
                 labelText = R.string.choose_station,
                 modifier = Modifier
                     .padding(horizontal = 16.dp, vertical = 10.dp)
+            )
+
+            Switch(
+                checked = checked,
+                onCheckedChange = {
+                    checked = it
+                    if (checked) {
+                        viewModel.setType("arrivals")
+                    } else {
+                        viewModel.setType("departures")
+                    }
+                },
+                colors = SwitchDefaults.colors(
+                    checkedThumbColor = PrimaryDarkColor,
+                    checkedTrackColor = PrimaryDarkColor,
+                    uncheckedThumbColor = Color.LightGray,
+                    uncheckedTrackColor = Color.LightGray
+                ),
             )
 
             MakeButton(
