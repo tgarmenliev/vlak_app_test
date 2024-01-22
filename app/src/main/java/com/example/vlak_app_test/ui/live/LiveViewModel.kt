@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.vlak_app_test.models.live.Live
 import com.example.vlak_app_test.network.TrainApi
+import com.example.vlak_app_test.stationsList
 import kotlinx.coroutines.launch
 import java.util.Locale
 
@@ -33,8 +34,29 @@ class LiveViewModel : ViewModel() {
 //        data.value = sampleLiveInfo
 //    }
 
+    private fun getStationCode(station: String): Int? {
+        // find the station id by its name
+        val stations = stationsList
+        val foundStation = stations.find {
+            it.name.equals(station, ignoreCase = true) || it.englishName.equals(station, ignoreCase = true)
+        }
+        if(foundStation != null) {
+            return foundStation.id
+        } else {
+            return null
+        }
+    }
+
+    fun checkIfStationExists(station: String): Boolean {
+        val stations = stationsList
+        val foundStation = stations.find {
+            it.name.equals(station, ignoreCase = true) || it.englishName.equals(station, ignoreCase = true)
+        }
+        return foundStation != null
+    }
+
     fun setStation(station: String) {
-        _selectedStation.value = station
+        _selectedStation.value = getStationCode()
     }
 
     fun setType(type: String) {

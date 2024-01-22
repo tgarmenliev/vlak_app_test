@@ -33,22 +33,22 @@ interface TrainApiService {
     @GET("/api/live/{language}/{stationName}/{type}")
     suspend fun getLiveInfo(
         @Path("language") language: String,
-        @Path("stationName") stationName: String,
+        @Path("stationName") stationName: Int,
         @Path("type") type: String
     ): Live.LiveTable
 
     @GET("/api/schedule/{language}/{from}/{to}")
     suspend fun getScheduleInfoToday(
         @Path("language") language: String,
-        @Path("from") from: String,
-        @Path("to") to: String
+        @Path("from") from: Int,
+        @Path("to") to: Int
     ): Schedule.ScheduleTable
 
     @GET("/api/schedule/{language}/{from}/{to}/{date}")
     suspend fun getScheduleInfo(
         @Path("language") language: String,
-        @Path("from") from: String,
-        @Path("to") to: String,
+        @Path("from") from: Int,
+        @Path("to") to: Int,
         @Path("date") date: String
     ): Schedule.ScheduleTable
 }

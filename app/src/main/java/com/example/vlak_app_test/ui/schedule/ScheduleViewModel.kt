@@ -10,6 +10,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.vlak_app_test.models.live.Live
 import com.example.vlak_app_test.models.schedule.Schedule
 import com.example.vlak_app_test.network.TrainApi
+import com.example.vlak_app_test.stationsList
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -25,7 +26,7 @@ sealed interface ScheduleState {
 class ScheduleViewModel : ViewModel() {
     var scheduleState: ScheduleState by mutableStateOf(ScheduleState.Loading)
 
-    private val _selectedStations = mutableStateOf(ScheduleOption("", "", ""))
+    private val _selectedStations = mutableStateOf(ScheduleOption(0, 0, ""))
     private val selectedStations: State<ScheduleOption> = _selectedStations
 
     private val _ifToday = mutableStateOf(true)
@@ -35,14 +36,33 @@ class ScheduleViewModel : ViewModel() {
 
     //private val data: Schedule.ScheduleTable = sampleScheduleInfo
 
+    private fun getStationCode(station: String): Int? {
+        // find the station id by its name
+        val stations = stationsList
+        val foundStation = stations.find {
+            it.name.equals(station, ignoreCase = true) || it.englishName.equals(station, ignoreCase = true)
+        }
+        if(foundStation != null) {
+            return foundStation.id
+        } else {
+            return null
+        }
+    }
+
+    fun checkIfStationExists(station: String): Boolean {
+        val stations = stationsList
+        val foundStation = stations.find {
+            it.name.equals(station, ignoreCase = true) || it.englishName.equals(station, ignoreCase = true)
+        }
+        return foundStation != null
+    }
+
     fun setOption(from: String, to: String, date: String) {
         val formatter = SimpleDateFormat("yyyy-MM-dd")
         val todayString = formatter.format(Date(Calendar.getInstance().timeInMillis))
         _ifToday.value = todayString == date
-        println("todayString: $todayString")
-        println("date: $date")
 
-        _selectedStations.value = ScheduleOption(from, to, date)
+        _selectedStations.value = ScheduleOption(getStationCode(from)!!, getStationCode(to)!!, date)
     }
 
     fun setOptionIndex(index: Int) {
@@ -94,7 +114,7 @@ class ScheduleViewModel : ViewModel() {
 }
 
 data class ScheduleOption(
-    val from: String,
-    val to: String,
+    val from: Int,
+    val to: Int,
     val date: String,
 )
