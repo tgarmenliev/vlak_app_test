@@ -20,7 +20,6 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.KeyboardArrowDown
 import androidx.compose.material3.Card
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -45,6 +44,8 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.unit.toSize
+import com.example.vlak_app_test.stationsList
+import java.util.Locale
 
 @Composable
 fun MakeStationInputField(
@@ -55,60 +56,14 @@ fun MakeStationInputField(
     labelText: Int
 ) {
 
-    val animals = listOf(
-        "Lion",
-        "Tiger",
-        "Leopard",
-        "Cheetah",
-        "Giraffe",
-        "Elephant",
-        "Zebra",
-        "Kangaroo",
-        "Koala",
-        "Panda",
-        "Gorilla",
-        "Hippopotamus",
-        "Rhinoceros",
-        "Orangutan",
-        "Polar Bear",
-        "Grizzly Bear",
-        "Sloth",
-        "Kangaroo",
-        "Koala",
-        "Panda",
-        "Gorilla",
-        "Hippopotamus",
-        "Rhinoceros",
-        "Orangutan",
-        "Polar Bear",
-        "Grizzly Bear",
-        "Sloth",
-        "Kangaroo",
-        "Koala",
-        "Panda",
-        "Gorilla",
-        "Hippopotamus",
-        "Rhinoceros",
-        "Orangutan",
-        "Polar Bear",
-        "Grizzly Bear",
-        "Sloth",
-        "Kangaroo",
-        "Koala",
-        "Panda",
-        "Gorilla",
-        "Hippopotamus",
-        "Rhinoceros",
-        "Orangutan",
-        "Polar Bear",
-        "Grizzly Bear",
-        "Sloth"
-    )
+    val stations = stationsList
 
 
 //    var category by remember {
 //        mutableStateOf("")
 //    }
+
+    val language = Locale.getDefault().language
 
     val heightTextFields by remember {
         mutableStateOf(55.dp)
@@ -220,12 +175,14 @@ fun MakeStationInputField(
                         modifier = Modifier.heightIn(max = 150.dp),
                     ) {
                         val uniqueSuggestions = HashSet<String>()
+                        var name: String = ""
 
                         if (station.isNotEmpty()) {
-                            items(animals) { value ->
-                                if (value.lowercase().contains(station.lowercase()) || value.lowercase().contains("others")) {
-                                    if (uniqueSuggestions.add(value)) {
-                                        ItemsCategory(title = value) { title ->
+                            items(stations) { value ->
+                                name = if (language == "bg") value.name else value.englishName
+                                if (name.lowercase().contains(station.lowercase())) {
+                                    if (uniqueSuggestions.add(name)) {
+                                        ItemsCategory(title = name) { title ->
                                             onStationSelected(title)
                                             expanded = false
                                         }
@@ -233,9 +190,11 @@ fun MakeStationInputField(
                                 }
                             }
                         } else {
-                            items(animals.sorted()) { value ->
-                                if (uniqueSuggestions.add(value)) {
-                                    ItemsCategory(title = value) { title ->
+                            val sortedStations = stations.sortedBy { if (language == "bg") it.name else it.englishName }
+                            items(sortedStations) { value ->
+                                name = if (language == "bg") value.name else value.englishName
+                                if (uniqueSuggestions.add(name)) {
+                                    ItemsCategory(title = name) { title ->
                                         onStationSelected(title)
                                         expanded = false
                                     }

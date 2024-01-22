@@ -6,7 +6,7 @@ data class StationRepository(
     val englishName: String
 )
 
-val stationList: List<StationRepository> = listOf(
+val stationsList: List<StationRepository> = listOf(
     StationRepository(611, "Абланица", "Ablanica"),
     StationRepository(417, "Аврамово", "Avramovo"),
     StationRepository(61, "Айтос", "Aytos"),
