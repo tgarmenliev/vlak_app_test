@@ -36,4 +36,5 @@
     <string name="arrives">Arrives</string>
     <string name="departs">Departs</string>
     <string name="train_info">Train info</string>
+    <string name="search_by_train_number">Search by train number:</string>
 </resources>

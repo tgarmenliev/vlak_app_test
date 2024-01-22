@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -34,6 +35,7 @@ import com.example.vlak_app_test.ui.composables.MakeButton
 import com.example.vlak_app_test.ui.composables.MakeDatePickerDialog
 import com.example.vlak_app_test.ui.composables.MakeImageHeader
 import com.example.vlak_app_test.ui.composables.MakeStationInputField
+import com.example.vlak_app_test.ui.train_info.TrainInfoViewModel
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
@@ -42,10 +44,12 @@ import java.util.Date
 fun MakeScheduleSearchScreen(
     modifier: Modifier = Modifier,
     navController: NavController,
-    viewModel: ScheduleViewModel
+    viewModel: ScheduleViewModel,
+    trainInfoViewModel: TrainInfoViewModel
 ) {
     var stationOne by rememberSaveable { mutableStateOf("") }
     var stationTwo by rememberSaveable { mutableStateOf("") }
+    var trainInfo by remember { mutableStateOf("") }
 
     val formatter = SimpleDateFormat("yyyy-MM-dd")
 
@@ -158,6 +162,40 @@ fun MakeScheduleSearchScreen(
                         viewModel.setOption(stationOne, stationTwo, date)
                         viewModel.getData()
                         navController.navigate("schedule_screen")
+                    }
+                )
+
+                Divider(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(1.dp)
+                        .background(Color.Gray)
+                        .padding(vertical = 10.dp)
+                )
+
+                MakeStationInputField(
+                    station = trainInfo,
+                    onStationSelected = {
+                        trainInfo = it
+                    },
+                    hintText = R.string.start_searching,
+                    labelText = R.string.search_by_train_number,
+                    modifier = Modifier
+                        .padding(top = 8.dp)
+                        .align(Alignment.CenterHorizontally)
+                )
+
+                MakeButton(
+                    text = R.string.search,
+                    modifier = Modifier
+                        .padding(top = 16.dp)
+                        .fillMaxWidth(0.6f)
+                        .height(50.dp)
+                        .align(Alignment.CenterHorizontally),
+                    onClick = {
+                        trainInfoViewModel.setTrain(trainInfo)
+                        trainInfoViewModel.getData()
+                        navController.navigate("train_info")
                     }
                 )
             }

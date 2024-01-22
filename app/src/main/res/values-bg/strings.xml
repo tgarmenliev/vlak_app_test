@@ -37,4 +37,5 @@
     <string name="arrives">Пристига</string>
     <string name="departs">Заминава</string>
     <string name="train_info">Информация за влак</string>
+    <string name="search_by_train_number">Търси по номер на влак:</string>
 </resources>

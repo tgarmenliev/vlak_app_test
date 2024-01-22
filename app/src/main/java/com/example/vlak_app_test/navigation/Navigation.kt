@@ -91,7 +91,7 @@ fun Navigation(
             startDestination = "schedule_search"
         ) {
             composable("schedule_search") {
-                MakeScheduleSearchScreen(modifier = modifier, navController = navController, viewModel = scheduleViewModel)
+                MakeScheduleSearchScreen(modifier = modifier, navController = navController, viewModel = scheduleViewModel, trainInfoViewModel = trainInfoViewModel)
             }
 
             composable("schedule_screen") {
