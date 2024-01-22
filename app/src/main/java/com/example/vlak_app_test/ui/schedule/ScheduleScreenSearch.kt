@@ -1,6 +1,7 @@
 package com.example.vlak_app_test.ui.schedule
 
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
@@ -155,7 +156,7 @@ fun MakeScheduleSearchScreen(
                         modifier = Modifier
                             .fillMaxWidth()
                             .border(
-                                width = 3.dp,
+                                width = 2.dp,
                                 color = Color.Black,
                                 shape = RoundedCornerShape(16.dp)
                             )
@@ -221,6 +222,7 @@ fun MakeScheduleSearchScreen(
                             labelText = R.string.search_by_train_number,
                             modifier = Modifier
                                 .padding(top = 8.dp)
+                                .weight(3.5f)
                         )
 
                         Button(
@@ -233,13 +235,18 @@ fun MakeScheduleSearchScreen(
                                 containerColor = Color.White,
                                 contentColor = PrimaryDarkColor
                             ),
+                            border = BorderStroke(2.dp, PrimaryDarkColor),
+                            shape = RoundedCornerShape(16.dp),
+                            modifier = Modifier
+                                .weight(1f)
+                                .padding(top = 28.dp, start = 4.dp)
                         ) {
                             Icon(
                                 painter = painterResource(id = R.drawable.train),
                                 contentDescription = "Train icon",
                                 tint = PrimaryDarkColor,
                                 modifier = Modifier
-                                    .size(24.dp)
+                                    .size(36.dp)
                             )
                         }
                     }
@@ -247,4 +254,15 @@ fun MakeScheduleSearchScreen(
             }
         }
     }
+}
+
+@Preview
+@Composable
+fun MakeScheduleSearchScreenPreview() {
+    MakeScheduleSearchScreen(
+        modifier = Modifier,
+        navController = NavController(LocalContext.current),
+        viewModel = ScheduleViewModel(),
+        trainInfoViewModel = TrainInfoViewModel()
+    )
 }

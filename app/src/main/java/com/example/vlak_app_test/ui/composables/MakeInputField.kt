@@ -58,7 +58,7 @@ fun MakeSimpleInputField(
                 .fillMaxWidth()
                 .background(color = Color.White, shape = RoundedCornerShape(16.dp))
                 .border(
-                    width = 3.dp,
+                    width = 2.dp,
                     color = Color.Black,
                     shape = RoundedCornerShape(16.dp)
                 )
