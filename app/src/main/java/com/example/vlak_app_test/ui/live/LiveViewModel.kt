@@ -21,8 +21,8 @@ sealed interface LiveState {
 class LiveViewModel : ViewModel() {
     var liveState: LiveState by mutableStateOf(LiveState.Loading)
 
-    private val _selectedStation = mutableStateOf("")
-    val selectedStation: State<String> = _selectedStation
+    private val _selectedStation = mutableStateOf(0)
+    val selectedStation: State<Int> = _selectedStation
 
     private val _selectedType = mutableStateOf("departures")
     val selectedType: State<String> = _selectedType
@@ -34,29 +34,34 @@ class LiveViewModel : ViewModel() {
 //        data.value = sampleLiveInfo
 //    }
 
-    private fun getStationCode(station: String): Int? {
+    private fun getStationCode(station: String): Int {
         // find the station id by its name
+        println("station: ..$station..")
         val stations = stationsList
         val foundStation = stations.find {
             it.name.equals(station, ignoreCase = true) || it.englishName.equals(station, ignoreCase = true)
         }
+        println("foundStation: ..$foundStation..")
         if(foundStation != null) {
             return foundStation.id
-        } else {
-            return null
         }
+        return 0
     }
 
     fun checkIfStationExists(station: String): Boolean {
         val stations = stationsList
+        println("station: ..$station..")
         val foundStation = stations.find {
             it.name.equals(station, ignoreCase = true) || it.englishName.equals(station, ignoreCase = true)
         }
+        println("foundStation: ..$foundStation..")
+        println("foundStation id: ..${foundStation != null}..")
         return foundStation != null
     }
 
     fun setStation(station: String) {
-        _selectedStation.value = getStationCode()
+        _selectedStation.value = getStationCode(station)
+        println("selectedStation: ..${_selectedStation.value}..")
     }
 
     fun setType(type: String) {

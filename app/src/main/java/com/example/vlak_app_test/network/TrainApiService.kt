@@ -30,10 +30,10 @@ interface TrainApiService {
         @Path("date") date: String? = null
     ): TrainInfo.TrainInfoTable
 
-    @GET("/api/live/{language}/{stationName}/{type}")
+    @GET("/api/live/{language}/{stationNumber}/{type}")
     suspend fun getLiveInfo(
         @Path("language") language: String,
-        @Path("stationName") stationName: Int,
+        @Path("stationNumber") stationNumber: Int,
         @Path("type") type: String
     ): Live.LiveTable
 

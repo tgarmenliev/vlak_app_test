@@ -115,9 +115,13 @@ fun MakeLiveSearchScreen(
             MakeButton(
                 text = R.string.next,
                 onClick = {
-                    viewModel.setStation(titleText)
-                    viewModel.getData()
-                    navController.navigate("live")
+                    if (!viewModel.checkIfStationExists(titleText)) {
+                        println("station does not exist")
+                    } else {
+                        viewModel.setStation(titleText)
+                        viewModel.getData()
+                        navController.navigate("live")
+                    }
                 },
                 modifier = Modifier
                     .fillMaxWidth(0.6f),
