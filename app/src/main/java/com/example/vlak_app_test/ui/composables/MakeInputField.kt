@@ -23,6 +23,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.LineHeightStyle
 import androidx.compose.ui.unit.sp
 import com.example.vlak_app_test.R
@@ -34,11 +35,24 @@ fun MakeSimpleInputField(
         hintText: Int,
         keyboardType: KeyboardType,
         enableButton: (Boolean) -> Unit = {},
-        onValueChange: (String) -> Unit
+        onValueChange: (String) -> Unit,
+        labelText: Int = R.string.empty_string,
 ) {
     Column(
         modifier
     ) {
+
+        Text(
+            modifier = Modifier.padding(start = 3.dp, bottom = 2.dp),
+            text = stringResource(id = labelText),
+            style = MaterialTheme.typography.bodyMedium.copy(
+                color = Color.Black,
+                fontWeight = FontWeight.Medium
+            ),
+            color = Color.Black,
+            fontWeight = FontWeight.Medium
+        )
+
         Box(
             modifier = Modifier
                 .fillMaxWidth()
