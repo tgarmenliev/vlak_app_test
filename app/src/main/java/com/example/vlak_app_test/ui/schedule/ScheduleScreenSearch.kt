@@ -92,7 +92,7 @@ fun MakeScheduleSearchScreen(
             MakeImageHeader(
                 text = R.string.schedule,
                 image = painterResource(id = R.drawable.schedule_back),
-                modifier = Modifier.fillMaxHeight(0.3f)
+                modifier = Modifier.height(250.dp)
             )
 
             Box(
