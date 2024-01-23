@@ -12,6 +12,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -45,7 +46,8 @@ fun MakeBottomBar(
                     Icon(
                         painter = painterResource(id = (if (selectedItemIndex == index) item.filledIcon else item.outlinedIcon)),
                         contentDescription = stringResource(id = item.title),
-                        modifier = Modifier.size(24.dp)
+                        modifier = Modifier.size(24.dp),
+                        tint = if (selectedItemIndex == index) Color.DarkGray else Color.Gray
                     )
                 },
                 colors = NavigationBarItemDefaults.colors(

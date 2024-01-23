@@ -37,6 +37,7 @@ import com.example.vlak_app_test.ui.theme.PrimaryDarkColor
 import com.example.vlak_app_test.ui.composables.MakeButton
 import com.example.vlak_app_test.ui.error.ErrorScreen
 import com.example.vlak_app_test.ui.loading.LoadingScreen
+import com.example.vlak_app_test.ui.theme.BackgroundColor
 import com.example.vlak_app_test.ui.top_bar.MakeTopBar
 
 @Composable
@@ -80,6 +81,7 @@ fun MakeTrainInfo(
             .fillMaxWidth()
             .fillMaxHeight()
             .verticalScroll(rememberScrollState())
+            .background(BackgroundColor)
     ) {
 
         Column(

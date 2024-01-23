@@ -60,8 +60,7 @@ fun MakeTopBar(
                 text = stringResource(id = titleText),
                 modifier = Modifier
                     .constrainAs(text) {
-                        bottom.linkTo(box.bottom)
-                        start.linkTo(box.start)
+                        start.linkTo(cancelText.start)
                     }
                     .padding(16.dp),
                 style = MaterialTheme.typography.titleLarge.copy(

@@ -35,6 +35,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
@@ -42,6 +44,7 @@ import com.example.vlak_app_test.R
 import com.example.vlak_app_test.models.live.Live
 import com.example.vlak_app_test.ui.error.ErrorScreen
 import com.example.vlak_app_test.ui.loading.LoadingScreen
+import com.example.vlak_app_test.ui.theme.BackgroundColor
 import com.example.vlak_app_test.ui.theme.greenOnTime
 import com.example.vlak_app_test.ui.top_bar.MakeTopBar
 import com.example.vlak_app_test.ui.theme.redLate
@@ -94,7 +97,8 @@ fun MakeLiveScreen(data: Live.LiveTable, modifier: Modifier = Modifier) {
     Column(
         modifier = modifier
             .fillMaxSize()
-            .verticalScroll(rememberScrollState()),
+            .verticalScroll(rememberScrollState())
+            .background(BackgroundColor),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Box(
@@ -221,19 +225,27 @@ fun MakeLiveScreen(data: Live.LiveTable, modifier: Modifier = Modifier) {
                         modifier = Modifier
                             .weight(2.1f)
                     ) {
+                        val annotatedString = buildAnnotatedString {
+                            // Append the train type with a bold style
+                            pushStyle(style = SpanStyle(fontWeight = FontWeight.SemiBold))
+                            append(train.type)
+                            pop()
+
+                            // Append the train number with the regular style
+                            append(" ${train.trainNum}")
+                        }
                         Text(
-                            text = "${train.type} ",
+                            text = annotatedString,
                             style = MaterialTheme.typography.labelLarge.copy(
                                 color = Color.Black,
-                                fontWeight = FontWeight.SemiBold
                             ),
                         )
-                        Text(
-                            text = train.trainNum,
-                            style = MaterialTheme.typography.labelLarge.copy(
-                                color = Color.Black,
-                            ),
-                        )
+//                        Text(
+//                            text = train.trainNum,
+//                            style = MaterialTheme.typography.labelLarge.copy(
+//                                color = Color.Black,
+//                            ),
+//                        )
                     }
                 }
             }

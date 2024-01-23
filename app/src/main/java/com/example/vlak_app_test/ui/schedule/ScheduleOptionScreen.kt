@@ -40,6 +40,7 @@ import androidx.navigation.NavController
 import com.example.vlak_app_test.R
 import com.example.vlak_app_test.models.schedule.Schedule
 import com.example.vlak_app_test.ui.composables.MakeButton
+import com.example.vlak_app_test.ui.theme.BackgroundColor
 import com.example.vlak_app_test.ui.theme.PrimaryDarkColor
 import com.example.vlak_app_test.ui.theme.TextDarkColor
 import com.example.vlak_app_test.ui.top_bar.MakeTopBar
@@ -95,6 +96,7 @@ fun MakeScheduleOptionScreenSec(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(8.dp)
+                .background(BackgroundColor)
         ) {
 
             Box(

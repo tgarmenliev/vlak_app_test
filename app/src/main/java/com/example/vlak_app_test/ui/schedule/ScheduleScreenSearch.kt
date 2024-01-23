@@ -52,6 +52,7 @@ import com.example.vlak_app_test.ui.composables.MakeDatePickerDialog
 import com.example.vlak_app_test.ui.composables.MakeImageHeader
 import com.example.vlak_app_test.ui.composables.MakeSimpleInputField
 import com.example.vlak_app_test.ui.composables.MakeStationInputField
+import com.example.vlak_app_test.ui.theme.BackgroundColor
 import com.example.vlak_app_test.ui.theme.PrimaryDarkColor
 import com.example.vlak_app_test.ui.train_info.TrainInfoViewModel
 import java.text.SimpleDateFormat
@@ -100,13 +101,13 @@ fun MakeScheduleSearchScreen(
             MakeImageHeader(
                 text = R.string.schedule,
                 image = painterResource(id = R.drawable.schedule_back),
-                modifier = Modifier.height(250.dp)
+                modifier = Modifier.height(200.dp)
             )
 
             Box(
                 modifier = Modifier
                     .fillMaxSize()
-                    .background(Color.White)
+                    .background(BackgroundColor)
             ) {
                 Column(
                     modifier = Modifier
@@ -239,7 +240,7 @@ fun MakeScheduleSearchScreen(
                             shape = RoundedCornerShape(16.dp),
                             modifier = Modifier
                                 .weight(1f)
-                                .padding(top = 28.dp, start = 4.dp)
+                                .padding(top = 32.dp, start = 4.dp)
                         ) {
                             Icon(
                                 painter = painterResource(id = R.drawable.train),

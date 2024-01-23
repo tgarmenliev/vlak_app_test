@@ -1,6 +1,7 @@
 package com.example.vlak_app_test.ui.live
 
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -8,6 +9,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Switch
@@ -33,6 +36,7 @@ import com.example.vlak_app_test.R
 import com.example.vlak_app_test.ui.composables.MakeButton
 import com.example.vlak_app_test.ui.composables.MakeImageHeader
 import com.example.vlak_app_test.ui.composables.MakeStationInputField
+import com.example.vlak_app_test.ui.theme.BackgroundColor
 
 @Composable
 fun MakeLiveSearchScreen(
@@ -46,17 +50,19 @@ fun MakeLiveSearchScreen(
     Column(
         modifier = modifier
             .fillMaxSize()
+            .verticalScroll(rememberScrollState())
     ) {
 
         MakeImageHeader(
             text = R.string.live,
             image = painterResource(id = R.drawable.live_back),
-            modifier = Modifier.fillMaxHeight(0.3f)
+            modifier = Modifier.height(200.dp)
         )
 
         Column(
             modifier = Modifier
-                .fillMaxSize(),
+                .fillMaxSize()
+                .background(BackgroundColor),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
 

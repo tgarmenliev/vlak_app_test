@@ -37,6 +37,7 @@ import com.example.vlak_app_test.R
 import com.example.vlak_app_test.models.schedule.Schedule
 import com.example.vlak_app_test.ui.error.ErrorScreen
 import com.example.vlak_app_test.ui.loading.LoadingScreen
+import com.example.vlak_app_test.ui.theme.BackgroundColor
 import com.example.vlak_app_test.ui.top_bar.MakeTopBar
 import com.example.vlak_app_test.ui.theme.PrimaryDarkColor
 import com.example.vlak_app_test.ui.theme.TextDarkColor
@@ -89,6 +90,7 @@ fun MakeScheduleScreenSec(
         modifier = modifier
             .fillMaxWidth()
             .fillMaxHeight()
+            .background(BackgroundColor)
     ) {
 
         Box(
