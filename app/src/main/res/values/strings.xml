@@ -38,4 +38,10 @@
     <string name="train_info">Train info</string>
     <string name="search_by_train_number">Search by train number:</string>
     <string name="empty_string"></string>
+    <string name="arrivals">Arrivals</string>
+    <string name="departures">Departures</string>
+    <string name="arrives_from">Arrives from</string>
+    <string name="departs_to">Departs to</string>
+    <string name="arrives_from_short">From</string>
+    <string name="departs_to_short">To</string>
 </resources>

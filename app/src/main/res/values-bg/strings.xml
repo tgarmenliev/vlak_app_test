@@ -39,4 +39,10 @@
     <string name="train_info">Информация за влак</string>
     <string name="search_by_train_number">Търси по номер на влак:</string>
     <string name="empty_string"></string>
+    <string name="arrivals">Пристигащи</string>
+    <string name="departures">Заминаващи</string>
+    <string name="arrives_from">Пристига от</string>
+    <string name="departs_to">Заминава за</string>
+    <string name="arrives_from_short">От</string>
+    <string name="departs_to_short">За</string>
 </resources>

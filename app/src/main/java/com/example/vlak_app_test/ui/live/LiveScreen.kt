@@ -37,6 +37,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.capitalize
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
@@ -70,6 +71,7 @@ fun MakeLiveScreenOne(
             ) {
                 MakeLiveScreen(
                     data = viewModel.getLiveInfo(),
+                    type = viewModel.getType(),
                     modifier = Modifier.padding(it),
                 )
             }
@@ -82,10 +84,12 @@ fun MakeLiveScreenOne(
 }
 
 @Composable
-fun MakeLiveScreen(data: Live.LiveTable, modifier: Modifier = Modifier) {
+fun MakeLiveScreen(data: Live.LiveTable, type: String = "departures", modifier: Modifier = Modifier) {
     var selectedTrainNumber by remember {
         mutableStateOf("")
     }
+
+    val titleTextLive = stringResource(id = if (type == "departures") R.string.departures else R.string.arrivals)
 
     if (selectedTrainNumber != "") {
         MakeDelayDialog(
@@ -104,11 +108,10 @@ fun MakeLiveScreen(data: Live.LiveTable, modifier: Modifier = Modifier) {
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .requiredHeight(50.dp)
                 .padding(top = 10.dp, start = 16.dp, end = 16.dp)
         ) {
             Text(
-                text = data.station,
+                text = "$titleTextLive: ${data.station}",
                 style = MaterialTheme.typography.headlineLarge.copy(
                     color = Color.Black,
                     fontWeight = FontWeight.Bold
@@ -136,7 +139,7 @@ fun MakeLiveScreen(data: Live.LiveTable, modifier: Modifier = Modifier) {
                     .padding(8.dp),
             ) {
                 Text(
-                    text = stringResource(id = R.string.time),
+                    text = stringResource(id = if (type == "departures") R.string.departs else R.string.arrives),
                     modifier = Modifier.weight(2f),
                     style = MaterialTheme.typography.labelLarge.copy(
                         color = Color.Black,
@@ -144,7 +147,7 @@ fun MakeLiveScreen(data: Live.LiveTable, modifier: Modifier = Modifier) {
                     ),
                 )
                 Text(
-                    text = stringResource(id = R.string.direction),
+                    text = stringResource(id = if (type == "departures") R.string.departs_to_short else R.string.arrives_from_short),
                     modifier = Modifier.weight(3f),
                     style = MaterialTheme.typography.labelLarge.copy(
                         color = Color.Black,

@@ -247,7 +247,7 @@ fun MakeScheduleSearchScreen(
                                 contentDescription = "Train icon",
                                 tint = PrimaryDarkColor,
                                 modifier = Modifier
-                                    .size(36.dp)
+                                    .size(42.dp)
                             )
                         }
                     }

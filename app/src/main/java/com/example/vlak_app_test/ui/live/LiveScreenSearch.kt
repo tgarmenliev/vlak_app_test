@@ -2,7 +2,9 @@ package com.example.vlak_app_test.ui.live
 
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
@@ -66,27 +68,6 @@ fun MakeLiveSearchScreen(
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
 
-//            Text(
-//                text = stringResource(id = R.string.choose_station),
-//                style = MaterialTheme.typography.bodyLarge.copy(
-//                    color = Color.Black,
-//                    fontWeight = FontWeight.Bold,
-//                ),
-//                modifier = Modifier
-//                    .padding(top = 20.dp)
-//            )
-//
-//            MakeSimpleInputField(
-//                modifier = Modifier
-//                    .padding(horizontal = 40.dp, vertical = 10.dp),
-//                titleText = titleText,
-//                hintText = R.string.enter_station_name,
-//                keyboardType = KeyboardType.Text,
-//                onValueChange = {
-//                    titleText = it
-//                }
-//            )
-
             Spacer(modifier = Modifier.height(20.dp))
 
             MakeStationInputField(
@@ -100,23 +81,53 @@ fun MakeLiveSearchScreen(
                     .padding(horizontal = 16.dp, vertical = 10.dp)
             )
 
-            Switch(
-                checked = checked,
-                onCheckedChange = {
-                    checked = it
-                    if (checked) {
-                        viewModel.setType("arrivals")
-                    } else {
-                        viewModel.setType("departures")
-                    }
-                },
-                colors = SwitchDefaults.colors(
-                    checkedThumbColor = PrimaryDarkColor,
-                    checkedTrackColor = PrimaryDarkColor,
-                    uncheckedThumbColor = Color.LightGray,
-                    uncheckedTrackColor = Color.LightGray
-                ),
-            )
+            Row(
+                modifier = Modifier
+                    .padding(horizontal = 16.dp, vertical = 2.dp)
+                    .fillMaxWidth(),
+                horizontalArrangement = Arrangement.Center,
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                Text(
+                    text = stringResource(id = R.string.departures),
+                    style = MaterialTheme.typography.bodyMedium.copy(
+                        color = Color.Black,
+                    ),
+                    modifier = Modifier
+                        .padding(end = 10.dp),
+                    fontWeight = if (checked) FontWeight.Normal else FontWeight.Bold
+                )
+
+                Switch(
+                    checked = checked,
+                    onCheckedChange = {
+                        checked = it
+                        if (checked) {
+                            viewModel.setType("arrivals")
+                        } else {
+                            viewModel.setType("departures")
+                        }
+                    },
+                    colors = SwitchDefaults.colors(
+                        checkedThumbColor = PrimaryDarkColor,
+                        checkedTrackColor = Color.White,
+                        uncheckedThumbColor = PrimaryDarkColor,
+                        uncheckedTrackColor = Color.White,
+                        checkedBorderColor = PrimaryDarkColor,
+                        uncheckedBorderColor = PrimaryDarkColor,
+                    ),
+                )
+
+                Text(
+                    text = stringResource(id = R.string.arrivals),
+                    style = MaterialTheme.typography.bodyMedium.copy(
+                        color = Color.Black,
+                    ),
+                    modifier = Modifier
+                        .padding(start = 10.dp),
+                    fontWeight = if (checked) FontWeight.Bold else FontWeight.Normal
+                )
+            }
 
             MakeButton(
                 text = R.string.next,

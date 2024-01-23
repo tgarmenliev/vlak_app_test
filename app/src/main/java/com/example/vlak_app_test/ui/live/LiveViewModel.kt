@@ -68,6 +68,10 @@ class LiveViewModel : ViewModel() {
         _selectedType.value = type
     }
 
+    fun getType(): String {
+        return selectedType.value
+    }
+
     fun getLiveInfo(): Live.LiveTable {
         return (liveState as LiveState.Success).data
     }

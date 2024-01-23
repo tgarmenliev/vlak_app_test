@@ -40,7 +40,10 @@ fun MakeBottomBar(
                     navController.navigate(item.route)
                 },
                 label = {
-                    Text(text = stringResource(id = item.title))
+                    Text(
+                        text = stringResource(id = item.title),
+                        color = if (selectedItemIndex == index) Color.DarkGray else Color.Gray
+                    )
                 },
                 icon = {
                     Icon(

@@ -1,6 +1,7 @@
 package com.example.vlak_app_test.ui.composables
 
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.DatePicker
 import androidx.compose.material3.DatePickerDefaults
 import androidx.compose.material3.DatePickerDialog
@@ -57,8 +58,10 @@ fun MakeDatePickerDialog(
             Button(onClick = {
                 onDateSelected(selectedDate)
                 onDismiss()
-            }
-
+                },
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = PrimaryDarkColor
+                )
             ) {
                 Text(text = stringResource(id = R.string.ok))
             }
@@ -66,25 +69,30 @@ fun MakeDatePickerDialog(
         dismissButton = {
             Button(onClick = {
                 onDismiss()
-            }) {
+                },
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = PrimaryDarkColor
+                )
+            ) {
                 Text(text = stringResource(id = R.string.cancel))
             }
         },
+        colors = DatePickerDefaults.colors(
+            containerColor = BottomBarContainerColor,
+            titleContentColor = PrimaryDarkColor,
+            headlineContentColor = TextDarkColor,
+            selectedDayContainerColor = CalendarDarkColor,
+            selectedDayContentColor = Color.White,
+            dayContentColor = Color.Black,
+            disabledDayContentColor = Color.Gray,
+            todayContentColor = PrimaryDarkColor,
+            todayDateBorderColor = PrimaryDarkColor,
+            weekdayContentColor = Color.Black,
+
+        )
     ) {
         DatePicker(
             state = datePickerState,
-            colors = DatePickerDefaults.colors(
-                containerColor = BottomBarContainerColor,
-                titleContentColor = PrimaryDarkColor,
-                headlineContentColor = TextDarkColor,
-                selectedDayContainerColor = CalendarDarkColor,
-                selectedDayContentColor = Color.White,
-                dayContentColor = Color.Black,
-                disabledDayContentColor = Color.Gray,
-                todayContentColor = PrimaryDarkColor,
-                todayDateBorderColor = PrimaryDarkColor,
-                weekdayContentColor = Color.Black,
-            )
         )
     }
 }
