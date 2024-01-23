@@ -2,10 +2,12 @@ package com.example.vlak_app_test.ui.bottom_bar
 
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Text
+import androidx.compose.material3.contentColorFor
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.getValue
@@ -30,7 +32,7 @@ fun MakeBottomBar(
 ) {
 
     NavigationBar(
-        containerColor = BottomBarContainerColor
+        containerColor = MaterialTheme.colorScheme.secondaryContainer
     ) {
         items.forEachIndexed { index, item ->
             NavigationBarItem(
@@ -42,7 +44,7 @@ fun MakeBottomBar(
                 label = {
                     Text(
                         text = stringResource(id = item.title),
-                        color = if (selectedItemIndex == index) Color.DarkGray else Color.Gray
+                        color = if (selectedItemIndex == index) MaterialTheme.colorScheme.onTertiaryContainer else MaterialTheme.colorScheme.tertiaryContainer
                     )
                 },
                 icon = {
@@ -50,11 +52,11 @@ fun MakeBottomBar(
                         painter = painterResource(id = (if (selectedItemIndex == index) item.filledIcon else item.outlinedIcon)),
                         contentDescription = stringResource(id = item.title),
                         modifier = Modifier.size(24.dp),
-                        tint = if (selectedItemIndex == index) Color.DarkGray else Color.Gray
+                        tint = if (selectedItemIndex == index) MaterialTheme.colorScheme.onTertiaryContainer else MaterialTheme.colorScheme.tertiaryContainer
                     )
                 },
                 colors = NavigationBarItemDefaults.colors(
-                    indicatorColor = ChosenBottomBarColor
+                    indicatorColor = contentColorFor(MaterialTheme.colorScheme.secondaryContainer)
                 ),
             )
         }

@@ -23,3 +23,14 @@ val ChosenBottomBarColor = Color(0xFFD1E5F4)
 
 val greenOnTime = Color(0xFF087108)
 val redLate = Color(0xFFAC1010)
+
+val DarkPrimaryDarkColor = Color(0xFF1E4D53)
+val DarkSecondaryDarkColor = Color(0xFF204C57)
+val DarkThirdDarkColor = Color(0xFFA1BEC0)
+val DarkPrimaryLightColor = Color(0xFFA0B0AF)
+val DarkBackgroundColor = Color(0xFF1A1A1A)
+val TextLightColor = Color(0xFFACD2DB)
+val DarkCalendarDarkColor = Color(0xFF004362)
+
+val DarkBottomBarContainerColor = Color(0xFF182D32)
+val DarkChosenBottomBarColor = Color(0xFF1C2C3A)
