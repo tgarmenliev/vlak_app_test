@@ -31,7 +31,7 @@ private val DarkColorScheme = darkColorScheme(
 )
 
 private val LightColorScheme = lightColorScheme(
-    primary = PrimaryDarkColor,
+    primary = Color.White,
     secondaryContainer = BottomBarContainerColor,
     tertiary = CalendarDarkColor,
     background = BackgroundColor,
