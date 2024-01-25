@@ -29,9 +29,7 @@ fun MakeBottomBar(
     onItemSelected: (Int) -> Unit
 ) {
 
-    NavigationBar(
-        //containerColor = BottomBarContainerColor
-    ) {
+    NavigationBar() {
         items.forEachIndexed { index, item ->
             NavigationBarItem(
                 selected = selectedItemIndex == index,
@@ -42,7 +40,6 @@ fun MakeBottomBar(
                 label = {
                     Text(
                         text = stringResource(id = item.title),
-                        //color = if (selectedItemIndex == index) Color.DarkGray else Color.Gray
                     )
                 },
                 icon = {
@@ -50,12 +47,8 @@ fun MakeBottomBar(
                         painter = painterResource(id = (if (selectedItemIndex == index) item.filledIcon else item.outlinedIcon)),
                         contentDescription = stringResource(id = item.title),
                         modifier = Modifier.size(24.dp),
-                        //tint = if (selectedItemIndex == index) Color.DarkGray else Color.Gray
                     )
                 },
-//                colors = NavigationBarItemDefaults.colors(
-//                    indicatorColor = ChosenBottomBarColor
-//                ),
             )
         }
     }

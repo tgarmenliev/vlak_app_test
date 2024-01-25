@@ -32,7 +32,6 @@ fun MakeButton(
         modifier = modifier,
         onClick = onClick,
         enabled = enabled,
-        //colors = colors,
         shape = RoundedCornerShape(16.dp)
     ) {
         Text(
@@ -40,9 +39,7 @@ fun MakeButton(
             modifier = Modifier
                 .align(Alignment.CenterVertically)
                 .padding(3.dp),
-            style = MaterialTheme.typography.labelMedium.copy(
-                //color = Color.White
-            ),
+            style = MaterialTheme.typography.labelMedium,
             textAlign = TextAlign.Center
         )
     }

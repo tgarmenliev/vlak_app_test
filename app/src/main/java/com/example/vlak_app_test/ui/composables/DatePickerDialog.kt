@@ -60,13 +60,9 @@ fun MakeDatePickerDialog(
                 onDateSelected(selectedDate)
                 onDismiss()
                 },
-//                colors = ButtonDefaults.buttonColors(
-//                    containerColor = PrimaryDarkColor
-//                )
             ) {
                 Text(
                     text = stringResource(id = R.string.ok),
-                    //color = Color.White
                 )
             }
         },
@@ -74,9 +70,6 @@ fun MakeDatePickerDialog(
             Button(onClick = {
                 onDismiss()
                 },
-//                colors = ButtonDefaults.buttonColors(
-//                    containerColor = PrimaryDarkColor
-//                )
             ) {
                 Text(
                     text = stringResource(id = R.string.cancel),
@@ -84,19 +77,6 @@ fun MakeDatePickerDialog(
                 )
             }
         },
-//        colors = DatePickerDefaults.colors(
-//            containerColor = CalendarDarkColor,
-//            titleContentColor = PrimaryDarkColor,
-//            headlineContentColor = TextDarkColor,
-//            selectedDayContainerColor = CalendarDarkColor,
-//            selectedDayContentColor = Color.White,
-//            dayContentColor = Color.Black,
-//            disabledDayContentColor = Color.Gray,
-//            todayContentColor = PrimaryDarkColor,
-//            todayDateBorderColor = PrimaryDarkColor,
-//            weekdayContentColor = Color.Black,
-//
-//        )
     ) {
         DatePicker(
             state = datePickerState,

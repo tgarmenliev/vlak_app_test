@@ -18,16 +18,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.example.vlak_app_test.R
 
-
 @Composable
 fun ErrorScreen(
     modifier: Modifier = Modifier,
     error: Throwable
 ) {
     Column(
-        modifier = modifier
-            //.background(color = Color.White),
-                ,
+        modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
@@ -40,7 +37,6 @@ fun ErrorScreen(
         Text(
             text = stringResource(id = R.string.error),
             style = MaterialTheme.typography.titleLarge.copy(
-                //color = Color.Black,
                 fontWeight = FontWeight.SemiBold
             ),
             modifier = Modifier.padding(top = 16.dp)
@@ -48,17 +44,13 @@ fun ErrorScreen(
 
         Text(
             text = stringResource(id = R.string.more_error_info),
-            style = MaterialTheme.typography.titleMedium.copy(
-                //color = Color.Black,
-            ),
+            style = MaterialTheme.typography.titleMedium,
             modifier = Modifier.padding(top = 16.dp, start = 16.dp, end = 16.dp)
         )
 
         Text(
             text = error.toString(),
-            style = MaterialTheme.typography.bodyMedium.copy(
-                //color = Color.Gray,
-            ),
+            style = MaterialTheme.typography.bodyMedium,
             modifier = Modifier.padding(top = 16.dp, start = 16.dp, end = 16.dp)
         )
     }

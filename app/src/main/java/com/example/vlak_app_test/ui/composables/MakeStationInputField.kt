@@ -61,7 +61,6 @@ fun MakeStationInputField(
 
     val stations = stationsList
 
-
 //    var category by remember {
 //        mutableStateOf("")
 //    }
@@ -100,7 +99,6 @@ fun MakeStationInputField(
             modifier = Modifier.padding(start = 3.dp, bottom = 2.dp),
             text = stringResource(id = labelText),
             style = MaterialTheme.typography.bodyMedium.copy(
-                //color = Color.Black,
                 fontWeight = FontWeight.Medium
             ),
         )
@@ -112,7 +110,6 @@ fun MakeStationInputField(
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(heightTextFields)
-                        //.background(color = Color.White, shape = RoundedCornerShape(16.dp))
                         .border(
                             width = 2.dp,
                             color = MaterialTheme.colorScheme.onBackground,
@@ -140,16 +137,7 @@ fun MakeStationInputField(
                         unfocusedIndicatorColor = Color.Transparent,
                     ),
                     shape = RoundedCornerShape(16.dp),
-//                    colors = TextFieldDefaults.colors(
-//                        focusedContainerColor = Color.Transparent,
-//                        unfocusedContainerColor = Color.Transparent,
-//                        disabledContainerColor = Color.Transparent,
-//                        cursorColor = Color.Black,
-//                        focusedIndicatorColor = Color.Transparent,
-//                        unfocusedIndicatorColor = Color.Transparent,
-//                    ),
                     textStyle = TextStyle(
-                        //color = Color.Black,
                         fontSize = 16.sp
                     ),
                     keyboardOptions = KeyboardOptions(
@@ -163,7 +151,6 @@ fun MakeStationInputField(
                                 modifier = Modifier.size(24.dp),
                                 imageVector = Icons.Rounded.KeyboardArrowDown,
                                 contentDescription = "arrow",
-                                //tint = Color.Black
                             )
                         }
                     }
@@ -176,10 +163,6 @@ fun MakeStationInputField(
                         .padding(horizontal = 5.dp)
                         .width(textFieldSize.width.dp),
                     shape = RoundedCornerShape(10.dp),
-//                    colors = CardDefaults.cardColors(
-//                        containerColor = BottomBarContainerColor,
-//                        //contentColor = Color.Black
-//                    ),
                 ) {
 
                     LazyColumn(

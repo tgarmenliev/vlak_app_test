@@ -64,7 +64,6 @@ fun MakeLiveSearchScreen(
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                //.background(BackgroundColor)
             ,
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
@@ -91,9 +90,7 @@ fun MakeLiveSearchScreen(
             ) {
                 Text(
                     text = stringResource(id = R.string.departures),
-                    style = MaterialTheme.typography.bodyMedium.copy(
-                        //color = Color.Black,
-                    ),
+                    style = MaterialTheme.typography.bodyMedium,
                     modifier = Modifier
                         .padding(end = 10.dp),
                     fontWeight = if (checked) FontWeight.Normal else FontWeight.Bold
@@ -109,14 +106,6 @@ fun MakeLiveSearchScreen(
                             viewModel.setType("departures")
                         }
                     },
-//                    colors = SwitchDefaults.colors(
-//                        checkedThumbColor = PrimaryDarkColor,
-//                        checkedTrackColor = Color.White,
-//                        uncheckedThumbColor = PrimaryDarkColor,
-//                        uncheckedTrackColor = Color.White,
-//                        checkedBorderColor = PrimaryDarkColor,
-//                        uncheckedBorderColor = PrimaryDarkColor,
-//                    ),
                 )
 
                 Text(
@@ -143,9 +132,6 @@ fun MakeLiveSearchScreen(
                 },
                 modifier = Modifier
                     .fillMaxWidth(0.6f),
-//                colors = ButtonDefaults.buttonColors(
-//                    PrimaryDarkColor
-//                )
             )
         }
     }

@@ -46,7 +46,6 @@ fun MakeSimpleInputField(
             modifier = Modifier.padding(start = 3.dp, bottom = 2.dp),
             text = stringResource(id = labelText),
             style = MaterialTheme.typography.bodyMedium.copy(
-                //color = Color.Black,
                 fontWeight = FontWeight.Medium
             ),
             fontWeight = FontWeight.Medium
@@ -55,7 +54,6 @@ fun MakeSimpleInputField(
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                //.background(color = Color.White, shape = RoundedCornerShape(16.dp))
                 .border(
                     width = 2.dp,
                     color = Color.Black,
@@ -77,18 +75,13 @@ fun MakeSimpleInputField(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(top = 16.dp, bottom = 16.dp),
-                    textStyle = MaterialTheme.typography.labelLarge.copy(
-                        //color = Color.Black,
-                    ),
-                    //cursorBrush = SolidColor(Color.Black),
+                    textStyle = MaterialTheme.typography.labelLarge,
                     decorationBox = { innerTextField ->
                         if (titleText.isEmpty()) {
                             Text(
                                 text = stringResource(id = hintText),
                                 modifier = Modifier.padding(end = 8.dp),
-                                style = MaterialTheme.typography.labelLarge.copy(
-                                    //color = Color.Gray,
-                                )
+                                style = MaterialTheme.typography.labelLarge
                             )
                         }
                         innerTextField()

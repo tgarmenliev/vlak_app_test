@@ -20,15 +20,14 @@ import com.example.vlak_app_test.ui.theme.TextDarkColor
 @Composable
 fun LoadingScreen(modifier: Modifier = Modifier) {
     Column(
-        modifier = modifier
-            .background(color = Color.White),
+        modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        CircularProgressIndicator(color = PrimaryDarkColor)
+        CircularProgressIndicator(color = MaterialTheme.colorScheme.primary)
         Text(
             text = stringResource(id = R.string.loading),
-            color = TextDarkColor,
+            color = MaterialTheme.colorScheme.primary,
             style = MaterialTheme.typography.labelLarge.copy(
                 fontWeight = FontWeight.SemiBold
             )
