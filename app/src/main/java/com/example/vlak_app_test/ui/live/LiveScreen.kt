@@ -102,7 +102,8 @@ fun MakeLiveScreen(data: Live.LiveTable, type: String = "departures", modifier: 
         modifier = modifier
             .fillMaxSize()
             .verticalScroll(rememberScrollState())
-            .background(BackgroundColor),
+            //.background(BackgroundColor)
+        ,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Box(
@@ -113,7 +114,7 @@ fun MakeLiveScreen(data: Live.LiveTable, type: String = "departures", modifier: 
             Text(
                 text = "$titleTextLive: ${data.station}",
                 style = MaterialTheme.typography.headlineLarge.copy(
-                    color = Color.Black,
+                    //color = Color.Black,
                     fontWeight = FontWeight.Bold
                 )
             )
@@ -127,10 +128,10 @@ fun MakeLiveScreen(data: Live.LiveTable, type: String = "departures", modifier: 
                 .clip(RoundedCornerShape(20.dp))
                 .border(
                     width = 2.dp,
-                    color = Color.Black,
+                    color = MaterialTheme.colorScheme.onBackground,
                     shape = RoundedCornerShape(20.dp)
                 )
-                .background(color = Color.White)
+                //.background(color = Color.White)
         ) {
             // Table header
             Row(
@@ -142,7 +143,7 @@ fun MakeLiveScreen(data: Live.LiveTable, type: String = "departures", modifier: 
                     text = stringResource(id = if (type == "departures") R.string.departs else R.string.arrives),
                     modifier = Modifier.weight(2f),
                     style = MaterialTheme.typography.labelLarge.copy(
-                        color = Color.Black,
+                        //color = Color.Black,
                         fontWeight = FontWeight.SemiBold
                     ),
                 )
@@ -150,7 +151,7 @@ fun MakeLiveScreen(data: Live.LiveTable, type: String = "departures", modifier: 
                     text = stringResource(id = if (type == "departures") R.string.departs_to_short else R.string.arrives_from_short),
                     modifier = Modifier.weight(3f),
                     style = MaterialTheme.typography.labelLarge.copy(
-                        color = Color.Black,
+                        //color = Color.Black,
                         fontWeight = FontWeight.SemiBold
                     ),
                 )
@@ -158,7 +159,7 @@ fun MakeLiveScreen(data: Live.LiveTable, type: String = "departures", modifier: 
                     text = stringResource(id = R.string.train_number),
                     modifier = Modifier.weight(2.1f),
                     style = MaterialTheme.typography.labelLarge.copy(
-                        color = Color.Black,
+                        //color = Color.Black,
                         fontWeight = FontWeight.SemiBold
                     ),
                 )
@@ -220,7 +221,7 @@ fun MakeLiveScreen(data: Live.LiveTable, type: String = "departures", modifier: 
                         text = train.direction,
                         modifier = Modifier.weight(3f),
                         style = MaterialTheme.typography.labelLarge.copy(
-                            color = Color.Black,
+                            //color = Color.Black,
                         ),
                     )
 
@@ -240,7 +241,7 @@ fun MakeLiveScreen(data: Live.LiveTable, type: String = "departures", modifier: 
                         Text(
                             text = annotatedString,
                             style = MaterialTheme.typography.labelLarge.copy(
-                                color = Color.Black,
+                                //color = Color.Black,
                             ),
                         )
 //                        Text(

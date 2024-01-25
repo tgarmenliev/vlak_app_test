@@ -8,6 +8,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.vlak_app_test.ui.theme.second.AppTheme2
 import com.example.vlak_app_test.navigation.AppNavigation
 import com.example.vlak_app_test.ui.theme.Vlak_app_testTheme
 
@@ -16,7 +17,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            Vlak_app_testTheme {
+            AppTheme2 {
                 AppNavigation()
 
                 // Create example variable to test the screen

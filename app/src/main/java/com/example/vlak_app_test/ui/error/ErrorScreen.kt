@@ -26,7 +26,8 @@ fun ErrorScreen(
 ) {
     Column(
         modifier = modifier
-            .background(color = Color.White),
+            //.background(color = Color.White),
+                ,
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
@@ -39,7 +40,7 @@ fun ErrorScreen(
         Text(
             text = stringResource(id = R.string.error),
             style = MaterialTheme.typography.titleLarge.copy(
-                color = Color.Black,
+                //color = Color.Black,
                 fontWeight = FontWeight.SemiBold
             ),
             modifier = Modifier.padding(top = 16.dp)
@@ -48,7 +49,7 @@ fun ErrorScreen(
         Text(
             text = stringResource(id = R.string.more_error_info),
             style = MaterialTheme.typography.titleMedium.copy(
-                color = Color.Black,
+                //color = Color.Black,
             ),
             modifier = Modifier.padding(top = 16.dp, start = 16.dp, end = 16.dp)
         )
@@ -56,7 +57,7 @@ fun ErrorScreen(
         Text(
             text = error.toString(),
             style = MaterialTheme.typography.bodyMedium.copy(
-                color = Color.Gray,
+                //color = Color.Gray,
             ),
             modifier = Modifier.padding(top = 16.dp, start = 16.dp, end = 16.dp)
         )

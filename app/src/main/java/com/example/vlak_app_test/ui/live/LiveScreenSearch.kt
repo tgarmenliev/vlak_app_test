@@ -64,7 +64,8 @@ fun MakeLiveSearchScreen(
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .background(BackgroundColor),
+                //.background(BackgroundColor)
+            ,
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
 
@@ -91,7 +92,7 @@ fun MakeLiveSearchScreen(
                 Text(
                     text = stringResource(id = R.string.departures),
                     style = MaterialTheme.typography.bodyMedium.copy(
-                        color = Color.Black,
+                        //color = Color.Black,
                     ),
                     modifier = Modifier
                         .padding(end = 10.dp),
@@ -108,20 +109,20 @@ fun MakeLiveSearchScreen(
                             viewModel.setType("departures")
                         }
                     },
-                    colors = SwitchDefaults.colors(
-                        checkedThumbColor = PrimaryDarkColor,
-                        checkedTrackColor = Color.White,
-                        uncheckedThumbColor = PrimaryDarkColor,
-                        uncheckedTrackColor = Color.White,
-                        checkedBorderColor = PrimaryDarkColor,
-                        uncheckedBorderColor = PrimaryDarkColor,
-                    ),
+//                    colors = SwitchDefaults.colors(
+//                        checkedThumbColor = PrimaryDarkColor,
+//                        checkedTrackColor = Color.White,
+//                        uncheckedThumbColor = PrimaryDarkColor,
+//                        uncheckedTrackColor = Color.White,
+//                        checkedBorderColor = PrimaryDarkColor,
+//                        uncheckedBorderColor = PrimaryDarkColor,
+//                    ),
                 )
 
                 Text(
                     text = stringResource(id = R.string.arrivals),
                     style = MaterialTheme.typography.bodyMedium.copy(
-                        color = Color.Black,
+                        //color = Color.Black,
                     ),
                     modifier = Modifier
                         .padding(start = 10.dp),
@@ -142,9 +143,9 @@ fun MakeLiveSearchScreen(
                 },
                 modifier = Modifier
                     .fillMaxWidth(0.6f),
-                colors = ButtonDefaults.buttonColors(
-                    PrimaryDarkColor
-                )
+//                colors = ButtonDefaults.buttonColors(
+//                    PrimaryDarkColor
+//                )
             )
         }
     }

@@ -21,7 +21,7 @@ fun MakeHomescreen(
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .background(BackgroundColor)
+            //.background(BackgroundColor)
     ) {
         MakeImageHeader(
             text = R.string.home,

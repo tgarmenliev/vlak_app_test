@@ -35,7 +35,7 @@ fun MakeDelayDialog(
             modifier = modifier
                 .fillMaxWidth()
                 .padding(16.dp)
-                .background(color = Color.White),
+                .background(color = MaterialTheme.colorScheme.onSecondary),
         ) {
             Icon(
                 painter = painterResource(id = R.drawable.close),
@@ -44,7 +44,7 @@ fun MakeDelayDialog(
                     .size(30.dp)
                     .padding(top = 16.dp, start = 16.dp)
                     .clickable { onDismiss() },
-                tint = Color.LightGray
+                //tint = Color.LightGray
             )
             Row(
                 modifier = Modifier
@@ -58,7 +58,7 @@ fun MakeDelayDialog(
                     Text(
                         text = "${data.type}${data.trainNum}",
                         style = MaterialTheme.typography.labelMedium.copy(
-                            color = Color.Black,
+                            //color = Color.Black,
                             fontWeight = FontWeight.Bold
                         ),
                         modifier = Modifier
@@ -67,7 +67,7 @@ fun MakeDelayDialog(
                     Text(
                         text = data.direction,
                         style = MaterialTheme.typography.labelMedium.copy(
-                            color = Color.Black,
+                            //color = Color.Black,
                         ),
                         modifier = Modifier.padding(top = 2.dp, start = 8.dp, end = 8.dp)
                     )
@@ -87,7 +87,7 @@ fun MakeDelayDialog(
                     Text(
                         text = data.delayedTime,
                         style = MaterialTheme.typography.labelMedium.copy(
-                            color = Color.Black,
+                            //color = Color.Black,
                             textDecoration = TextDecoration.LineThrough
                         ),
                         modifier = Modifier.padding(top = 2.dp, end = 8.dp)
@@ -99,12 +99,12 @@ fun MakeDelayDialog(
                 modifier = Modifier
                     .padding(16.dp)
                     .fillMaxWidth()
-                    .background(color = Color.LightGray)
+                    .background(color = MaterialTheme.colorScheme.secondaryContainer)
             ) {
                 Text(
                     text = data.delayInfo.delayString,
                     style = MaterialTheme.typography.labelMedium.copy(
-                        color = Color.Black,
+                        //color = Color.Black,
                         fontWeight = FontWeight.Bold
                     ),
                     modifier = Modifier.padding(top = 4.dp, bottom = 2.dp, start = 8.dp, end = 8.dp)
@@ -112,7 +112,7 @@ fun MakeDelayDialog(
                 Text(
                     text = data.delayInfo.delayInfo,
                     style = MaterialTheme.typography.labelMedium.copy(
-                        color = Color.Black,
+                        //color = Color.Black,
                     ),
                     modifier = Modifier.padding(top = 2.dp, bottom = 4.dp, start = 8.dp, end = 8.dp)
                 )

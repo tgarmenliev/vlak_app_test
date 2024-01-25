@@ -36,7 +36,7 @@ fun MakeGuideMoreInfoScreen(
         modifier = modifier
             .fillMaxSize()
             .padding(8.dp)
-            .background(color = Color.White)
+            //.background(color = Color.White)
     ) {
         Icon(
             painter = painterResource(id = R.drawable.close),
@@ -45,7 +45,7 @@ fun MakeGuideMoreInfoScreen(
                 .size(30.dp)
                 .padding(top = 16.dp, start = 16.dp)
                 .clickable { onClose() },
-            tint = Color.Gray
+            //tint = Color.Gray
         )
 
         Image(
@@ -68,7 +68,7 @@ fun MakeGuideMoreInfoScreen(
             Text(
                 text = data.title,
                 style = MaterialTheme.typography.titleLarge.copy(
-                    color = PrimaryDarkColor,
+                    //color = PrimaryDarkColor,
                     fontWeight = FontWeight.Bold,
                 ),
                 modifier = Modifier.padding(bottom = 8.dp)
@@ -76,7 +76,7 @@ fun MakeGuideMoreInfoScreen(
             Text(
                 text = data.description,
                 style = MaterialTheme.typography.titleMedium.copy(
-                    color = Color.Black,
+                    //color = Color.Black,
                 ),
                 modifier = Modifier.padding(bottom = 8.dp)
             )

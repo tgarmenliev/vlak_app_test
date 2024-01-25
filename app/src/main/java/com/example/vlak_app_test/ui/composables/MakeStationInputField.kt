@@ -93,17 +93,16 @@ fun MakeStationInputField(
                     expanded = false
                 }
             )
+            .background(color = Color.Transparent)
     ) {
 
         Text(
             modifier = Modifier.padding(start = 3.dp, bottom = 2.dp),
             text = stringResource(id = labelText),
             style = MaterialTheme.typography.bodyMedium.copy(
-                color = Color.Black,
+                //color = Color.Black,
                 fontWeight = FontWeight.Medium
             ),
-            color = Color.Black,
-            fontWeight = FontWeight.Medium
         )
 
         Column(modifier = Modifier.fillMaxWidth()) {
@@ -113,10 +112,10 @@ fun MakeStationInputField(
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(heightTextFields)
-                        .background(color = Color.White, shape = RoundedCornerShape(16.dp))
+                        //.background(color = Color.White, shape = RoundedCornerShape(16.dp))
                         .border(
                             width = 2.dp,
-                            color = Color.Black,
+                            color = MaterialTheme.colorScheme.onBackground,
                             shape = RoundedCornerShape(16.dp)
                         )
                         .onGloballyPositioned { coordinates ->
@@ -132,20 +131,25 @@ fun MakeStationInputField(
                             text = stringResource(id = hintText),
                             modifier = Modifier.padding(end = 8.dp),
                             style = MaterialTheme.typography.labelLarge.copy(
-                                color = Color.Gray,
+                                //color = Color.Gray,
                             )
                         )
                     },
                     colors = TextFieldDefaults.colors(
-                        focusedContainerColor = Color.Transparent,
-                        unfocusedContainerColor = Color.Transparent,
-                        disabledContainerColor = Color.Transparent,
-                        cursorColor = Color.Black,
                         focusedIndicatorColor = Color.Transparent,
                         unfocusedIndicatorColor = Color.Transparent,
                     ),
+                    shape = RoundedCornerShape(16.dp),
+//                    colors = TextFieldDefaults.colors(
+//                        focusedContainerColor = Color.Transparent,
+//                        unfocusedContainerColor = Color.Transparent,
+//                        disabledContainerColor = Color.Transparent,
+//                        cursorColor = Color.Black,
+//                        focusedIndicatorColor = Color.Transparent,
+//                        unfocusedIndicatorColor = Color.Transparent,
+//                    ),
                     textStyle = TextStyle(
-                        color = Color.Black,
+                        //color = Color.Black,
                         fontSize = 16.sp
                     ),
                     keyboardOptions = KeyboardOptions(
@@ -159,7 +163,7 @@ fun MakeStationInputField(
                                 modifier = Modifier.size(24.dp),
                                 imageVector = Icons.Rounded.KeyboardArrowDown,
                                 contentDescription = "arrow",
-                                tint = Color.Black
+                                //tint = Color.Black
                             )
                         }
                     }
@@ -172,10 +176,10 @@ fun MakeStationInputField(
                         .padding(horizontal = 5.dp)
                         .width(textFieldSize.width.dp),
                     shape = RoundedCornerShape(10.dp),
-                    colors = CardDefaults.cardColors(
-                        containerColor = BottomBarContainerColor,
-                        contentColor = Color.Black
-                    ),
+//                    colors = CardDefaults.cardColors(
+//                        containerColor = BottomBarContainerColor,
+//                        //contentColor = Color.Black
+//                    ),
                 ) {
 
                     LazyColumn(
@@ -237,6 +241,9 @@ fun ItemsCategory(
             }
             .padding(10.dp)
     ) {
-        Text(text = title, fontSize = 16.sp)
+        Text(
+            text = title,
+            style = MaterialTheme.typography.labelMedium
+        )
     }
 }
