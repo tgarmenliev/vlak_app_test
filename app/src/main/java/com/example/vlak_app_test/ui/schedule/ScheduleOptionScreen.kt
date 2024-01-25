@@ -96,7 +96,7 @@ fun MakeScheduleOptionScreenSec(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(8.dp)
-                .background(BackgroundColor)
+                //.background(BackgroundColor)
         ) {
 
             Box(
@@ -105,10 +105,10 @@ fun MakeScheduleOptionScreenSec(
                     .clip(RoundedCornerShape(20.dp))
                     .border(
                         width = 2.dp,
-                        color = TextDarkColor,
+                        color = MaterialTheme.colorScheme.onBackground,
                         shape = RoundedCornerShape(20.dp)
                     )
-                    .background(Color.White)
+                    //.background(Color.White)
                     .padding(4.dp),
             ) {
                 Column(
@@ -118,7 +118,7 @@ fun MakeScheduleOptionScreenSec(
                     Text(
                         text = route,
                         style = MaterialTheme.typography.titleLarge.copy(
-                            color = TextDarkColor,
+                            //color = TextDarkColor,
                             fontWeight = FontWeight.Bold
                         ),
                         modifier = Modifier
@@ -130,7 +130,7 @@ fun MakeScheduleOptionScreenSec(
                             .fillMaxWidth()
                             .padding(horizontal = 8.dp),
                         thickness = 1.dp,
-                        color = Color.Gray
+                        //color = Color.Gray
                     )
 
                     if (data.numOfTransfers == 0) {
@@ -141,7 +141,7 @@ fun MakeScheduleOptionScreenSec(
                         transfers = data.numOfTransfers,
                         modifier = Modifier.padding(start = 8.dp, top = 8.dp),
                         textStyle = MaterialTheme.typography.titleMedium.copy(
-                            color = Color.Black,
+                            //color = Color.Black,
                         ),
                     )
 
@@ -149,7 +149,7 @@ fun MakeScheduleOptionScreenSec(
                         duration = data.duration,
                         modifier = Modifier.padding(start = 8.dp, top = 8.dp, bottom = 8.dp),
                         textStyle = MaterialTheme.typography.titleMedium.copy(
-                            color = Color.Black,
+                            //color = Color.Black,
                         ),
                     )
 
@@ -158,7 +158,7 @@ fun MakeScheduleOptionScreenSec(
                             .fillMaxWidth()
                             .padding(horizontal = 8.dp),
                         thickness = 1.dp,
-                        color = Color.Gray
+                        //color = Color.Gray
                     )
 
                     for (index in data.trains.indices) {
@@ -192,12 +192,22 @@ fun MakeScheduleOptionScreenSec(
                     modifier = Modifier
                         .fillMaxWidth(0.6f),
                     colors = ButtonDefaults.buttonColors(
-                        PrimaryDarkColor
+                        //PrimaryDarkColor
                     )
                 )
             }
         }
     }
+}
+
+@Composable
+private fun Circle(
+    modifier: Modifier = Modifier,
+    color: Color = MaterialTheme.colorScheme.primary,
+) {
+    Canvas(modifier = Modifier.size(20.dp), onDraw = {
+        drawCircle(color = color)
+    })
 }
 
 @Composable
@@ -215,15 +225,16 @@ private fun MakeTrainOnTransfer(
             modifier = Modifier
                 .padding(top = 4.dp)
         ) {
-            Canvas(modifier = Modifier.size(20.dp), onDraw = {
-                drawCircle(color = Color.Red)
-            })
+//            Canvas(modifier = Modifier.size(20.dp), onDraw = {
+//                drawCircle(color = MaterialTheme.colorScheme.onBackground)
+//            })
+            Circle()
             Box(
                 modifier = Modifier
                     .padding(start = 8.dp)
             ) {
                 Divider(
-                    color = Color.Red,
+                    color = MaterialTheme.colorScheme.primary,
                     modifier = Modifier
                         .fillMaxHeight()
                         .width(4.dp)
@@ -265,7 +276,7 @@ private fun MakeTrainOnTransfer(
                     text = "${data.duration} ${stringResource(id = R.string.hours_short)}",
                     modifier = Modifier.padding(start = 8.dp),
                     style = MaterialTheme.typography.bodyMedium.copy(
-                        color = Color.Black,
+                        //color = Color.Black,
                     ),
                 )
             }
@@ -276,9 +287,10 @@ private fun MakeTrainOnTransfer(
 
     Row {
         Box(modifier = Modifier.padding(start = 8.dp, bottom = 8.dp)) {
-            Canvas(modifier = Modifier.size(20.dp), onDraw = {
-                drawCircle(color = Color.Red)
-            })
+//            Canvas(modifier = Modifier.size(20.dp), onDraw = {
+//                drawCircle(color = Color.Red)
+//            })
+            Circle()
         }
         MakeArrivalDepartureData(station = data.to, time = data.arrive)
     }
@@ -304,7 +316,7 @@ private fun MakeTrainNumber(
         Text(
             text = "${data.trainType} ${data.trainNumber}",
             style = MaterialTheme.typography.titleLarge.copy(
-                color = Color.Black,
+                //color = Color.Black,
                 textDecoration = TextDecoration.Underline,
             ),
             modifier = Modifier
@@ -326,7 +338,7 @@ private fun MakeArrivalDepartureData(
         Text(
             text = station,
             style = MaterialTheme.typography.titleMedium.copy(
-                color = Color.Black,
+                //color = Color.Black,
             ),
             modifier = Modifier
                 .padding(start = 8.dp)
@@ -335,7 +347,7 @@ private fun MakeArrivalDepartureData(
         Text(
             text = time,
             style = MaterialTheme.typography.bodyMedium.copy(
-                color = Color.Black,
+                //color = Color.Black,
             ),
             modifier = Modifier
                 .padding(start = 8.dp)
@@ -364,7 +376,7 @@ private fun MakeTrainForTransfers(
         Text(
             text = "$trainType $trainNum",
             style = MaterialTheme.typography.bodyMedium.copy(
-                color = Color.Black,
+                //color = Color.Black,
                 textDecoration = TextDecoration.Underline,
             ),
             modifier = Modifier
@@ -388,7 +400,7 @@ private fun MakeTransferComposable(
                 "$timeToWaitNext " +
                 "${stringResource(id = R.string.hours_short)}.",
             style = MaterialTheme.typography.bodyMedium.copy(
-                color = Color.Black,
+                //color = Color.Black,
             ),
             modifier = Modifier
                 .padding(start = 16.dp)
@@ -399,24 +411,46 @@ private fun MakeTransferComposable(
 }
 
 @Composable
-private fun MakeDashedLine() {
+private fun Line(
+    modifier: Modifier = Modifier,
+    color: Color = MaterialTheme.colorScheme.primary,
+) {
     val pathEffect = PathEffect.dashPathEffect(floatArrayOf(10f, 10f), 0f)
+    Canvas(
+        Modifier
+            .fillMaxWidth(0.5f)
+            .height(10.dp)
+    ) {
+        drawLine(
+            color = color,
+            start = Offset(0f, 0f),
+            end = Offset(size.width, 0f),
+            pathEffect = pathEffect,
+            strokeWidth = 10f
+        )
+    }
+}
+
+@Composable
+private fun MakeDashedLine() {
+    //val pathEffect = PathEffect.dashPathEffect(floatArrayOf(10f, 10f), 0f)
     Box(
         modifier = Modifier
             .padding(start = 16.dp, top = 8.dp)
     ) {
-        Canvas(
-            Modifier
-                .fillMaxWidth(0.5f)
-                .height(10.dp)
-        ) {
-            drawLine(
-                color = Color.Red,
-                start = Offset(0f, 0f),
-                end = Offset(size.width, 0f),
-                pathEffect = pathEffect,
-                strokeWidth = 10f
-            )
-        }
+        Line()
+//        Canvas(
+//            Modifier
+//                .fillMaxWidth(0.5f)
+//                .height(10.dp)
+//        ) {
+//            drawLine(
+//                color = Color.Red,
+//                start = Offset(0f, 0f),
+//                end = Offset(size.width, 0f),
+//                pathEffect = pathEffect,
+//                strokeWidth = 10f
+//            )
+//        }
     }
 }

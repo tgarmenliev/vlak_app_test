@@ -107,7 +107,7 @@ fun MakeScheduleSearchScreen(
             Box(
                 modifier = Modifier
                     .fillMaxSize()
-                    .background(BackgroundColor)
+                    //.background(BackgroundColor)
             ) {
                 Column(
                     modifier = Modifier
@@ -148,7 +148,7 @@ fun MakeScheduleSearchScreen(
                             color = Color.Black,
                             fontWeight = FontWeight.Medium
                         ),
-                        color = Color.Black,
+                        //color = Color.Black,
                         fontWeight = FontWeight.Medium
                     )
 
@@ -158,18 +158,18 @@ fun MakeScheduleSearchScreen(
                             .fillMaxWidth()
                             .border(
                                 width = 2.dp,
-                                color = Color.Black,
+                                color = MaterialTheme.colorScheme.onBackground,
                                 shape = RoundedCornerShape(16.dp)
                             )
                             .align(Alignment.CenterHorizontally),
                         colors = ButtonDefaults.buttonColors(
-                            containerColor = Color.White,
+                            //containerColor = Color.White,
                         )
                     ) {
                         Text(
                             text = date,
                             style = MaterialTheme.typography.labelLarge.copy(
-                                color = Color.Black
+                                //color = Color.Black
                             ),
                             modifier = Modifier
                                 .padding(vertical = 8.dp)
@@ -232,11 +232,11 @@ fun MakeScheduleSearchScreen(
                                 trainInfoViewModel.getData()
                                 navController.navigate("train_info")
                             },
-                            colors = ButtonDefaults.buttonColors(
-                                containerColor = Color.White,
-                                contentColor = PrimaryDarkColor
-                            ),
-                            border = BorderStroke(2.dp, PrimaryDarkColor),
+//                            colors = ButtonDefaults.buttonColors(
+//                                containerColor = Color.White,
+//                                contentColor = PrimaryDarkColor
+//                            ),
+                            border = BorderStroke(2.dp, MaterialTheme.colorScheme.onBackground),
                             shape = RoundedCornerShape(16.dp),
                             modifier = Modifier
                                 .weight(1f)
@@ -245,7 +245,7 @@ fun MakeScheduleSearchScreen(
                             Icon(
                                 painter = painterResource(id = R.drawable.train),
                                 contentDescription = "Train icon",
-                                tint = PrimaryDarkColor,
+                                //tint = PrimaryDarkColor,
                                 modifier = Modifier
                                     .size(42.dp)
                             )

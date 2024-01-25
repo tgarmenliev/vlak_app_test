@@ -56,7 +56,7 @@ fun MakeSimpleInputField(
                 .fillMaxWidth()
                 .border(
                     width = 2.dp,
-                    color = Color.Black,
+                    color = MaterialTheme.colorScheme.onBackground,
                     shape = RoundedCornerShape(16.dp)
                 )
                 .padding(horizontal = 16.dp),

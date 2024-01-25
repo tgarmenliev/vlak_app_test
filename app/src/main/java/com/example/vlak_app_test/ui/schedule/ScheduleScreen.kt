@@ -20,6 +20,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Divider
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -90,7 +91,7 @@ fun MakeScheduleScreenSec(
         modifier = modifier
             .fillMaxWidth()
             .fillMaxHeight()
-            .background(BackgroundColor)
+            //.background(MaterialTheme.colorScheme.primary)
     ) {
 
         Box(
@@ -101,7 +102,7 @@ fun MakeScheduleScreenSec(
             Text(
                 text = "${stringResource(id = R.string.trains)}:",
                 style = MaterialTheme.typography.headlineLarge.copy(
-                    color = Color.Black,
+                    //color = Color.Black,
                 )
             )
         }
@@ -127,10 +128,10 @@ fun MakeScheduleScreenSec(
                         .clip(RoundedCornerShape(20.dp))
                         .border(
                             width = 2.dp,
-                            color = TextDarkColor,
+                            color = MaterialTheme.colorScheme.onBackground,
                             shape = RoundedCornerShape(20.dp)
                         )
-                        .background(PrimaryDarkColor),
+                        .background(MaterialTheme.colorScheme.primary),//!!!!!!!!!!!!!!!
                 ) {
 
                     Box(
@@ -143,7 +144,7 @@ fun MakeScheduleScreenSec(
                         modifier = Modifier
                             .fillMaxSize()
                             .weight(24f)
-                            .background(Color.White)
+                            //.background(Color.White)
                     ) {
 
                         Column(
@@ -154,7 +155,7 @@ fun MakeScheduleScreenSec(
                             Text(
                                 text = routeMaker,
                                 style = MaterialTheme.typography.headlineMedium.copy(
-                                    color = TextDarkColor,
+                                    //color = TextDarkColor,
                                     fontWeight = FontWeight.Bold
                                 ),
                                 modifier = Modifier
@@ -214,14 +215,14 @@ fun MakeDepartArriveTime(
         Text(
             text = option.departureTime,
             style = MaterialTheme.typography.bodyMedium.copy(
-                color = Color.Black,
+                //color = Color.Black,
                 fontWeight = FontWeight.Bold
             ),
             modifier = Modifier
                 .padding(start = 4.dp, end = 4.dp)
         )
 
-        Image(
+        Icon(
             painter = painterResource(id = R.drawable.next),
             contentDescription = "Arrow",
             modifier = Modifier
@@ -231,7 +232,7 @@ fun MakeDepartArriveTime(
         Text(
             text = option.arrivalTime,
             style = MaterialTheme.typography.bodyMedium.copy(
-                color = Color.Black,
+                //color = Color.Black,
                 fontWeight = FontWeight.Bold
             ),
             modifier = Modifier
@@ -245,14 +246,14 @@ fun MakeDuration(
     duration: String,
     modifier: Modifier = Modifier,
     textStyle: TextStyle = MaterialTheme.typography.bodyMedium.copy(
-        color = Color.Black,
+        //color = Color.Black,
     ),
 ) {
     Row(
         modifier = modifier,
     ) {
 
-        Image(
+        Icon(
             painter = painterResource(id = R.drawable.duration),
             contentDescription = "Duration",
             modifier = Modifier
@@ -274,13 +275,13 @@ fun MakeTransfers(
     transfers: Int = 0,
     modifier: Modifier = Modifier,
     textStyle: TextStyle = MaterialTheme.typography.bodyMedium.copy(
-        color = Color.Black,
+        //color = Color.Black,
     ),
 ) {
     Row(
         modifier = modifier,
     ) {
-        Image(
+        Icon(
             painter = painterResource(id = R.drawable.transfer),
             contentDescription = "Transfers",
             modifier = Modifier
