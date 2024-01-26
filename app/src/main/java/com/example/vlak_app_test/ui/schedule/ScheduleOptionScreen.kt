@@ -21,6 +21,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Divider
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -264,12 +265,12 @@ private fun MakeTrainOnTransfer(
             Spacer(modifier = Modifier.padding(vertical = 8.dp))
 
             Row {
-                Image(
+                Icon(
                     painter = painterResource(id = R.drawable.duration),
                     contentDescription = "Duration",
                     modifier = Modifier
                         .size(22.dp)
-                        .padding(top = 2.dp)
+                        .padding(top = 2.dp),
                 )
 
                 Text(
@@ -305,7 +306,7 @@ private fun MakeTrainNumber(
         modifier = Modifier
             .padding(start = 8.dp, top = 8.dp),
     ) {
-        Image(
+        Icon(
             painter = painterResource(id = R.drawable.train),
             contentDescription = "Direct train",
             modifier = Modifier
@@ -365,7 +366,7 @@ private fun MakeTrainForTransfers(
     Row(
         modifier = modifier
     ) {
-        Image(
+        Icon(
             painter = painterResource(id = R.drawable.train),
             contentDescription = "Train number",
             modifier = Modifier
@@ -398,7 +399,7 @@ private fun MakeTransferComposable(
 
         Text(text = "${stringResource(id = R.string.time_to_wait_next)} " +
                 "$timeToWaitNext " +
-                "${stringResource(id = R.string.hours_short)}.",
+                "${stringResource(id = R.string.hours_short)}",
             style = MaterialTheme.typography.bodyMedium.copy(
                 //color = Color.Black,
             ),

@@ -145,37 +145,43 @@ fun MakeScheduleSearchScreen(
                             .align(Alignment.Start),
                         text = stringResource(id = R.string.choose_date),
                         style = MaterialTheme.typography.bodyMedium.copy(
-                            color = Color.Black,
+                            //color = Color.Black,
                             fontWeight = FontWeight.Medium
                         ),
                         //color = Color.Black,
                         fontWeight = FontWeight.Medium
                     )
 
-                    Button(
-                        onClick = { showDatePicker = true },
+                    Column(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .border(
-                                width = 2.dp,
-                                color = MaterialTheme.colorScheme.onBackground,
-                                shape = RoundedCornerShape(16.dp)
-                            )
-                            .align(Alignment.CenterHorizontally),
-                        colors = ButtonDefaults.buttonColors(
-                            //containerColor = Color.White,
-                        )
+                            .align(Alignment.CenterHorizontally)
                     ) {
-                        Text(
-                            text = date,
-                            style = MaterialTheme.typography.labelLarge.copy(
-                                //color = Color.Black
-                            ),
+                        Button(
+                            onClick = { showDatePicker = true },
                             modifier = Modifier
-                                .padding(vertical = 8.dp)
-                                .fillMaxWidth(),
-                            textAlign = TextAlign.Left
-                        )
+                                .fillMaxWidth()
+                                .border(
+                                    width = 2.dp,
+                                    color = MaterialTheme.colorScheme.onBackground,
+                                    shape = RoundedCornerShape(16.dp)
+                                ),
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = MaterialTheme.colorScheme.surfaceVariant,
+                            ),
+                            shape = RoundedCornerShape(16.dp)
+                        ) {
+                            Text(
+                                text = date,
+                                style = MaterialTheme.typography.labelLarge.copy(
+                                    color = MaterialTheme.colorScheme.onBackground
+                                ),
+                                modifier = Modifier
+                                    .padding(vertical = 8.dp)
+                                    .fillMaxWidth(),
+                                textAlign = TextAlign.Left
+                            )
+                        }
                     }
 
                     if (showDatePicker) {

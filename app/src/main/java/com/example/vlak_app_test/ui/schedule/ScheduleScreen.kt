@@ -144,7 +144,7 @@ fun MakeScheduleScreenSec(
                         modifier = Modifier
                             .fillMaxSize()
                             .weight(24f)
-                            .background(MaterialTheme.colorScheme.onSecondary)
+                            .background(MaterialTheme.colorScheme.secondaryContainer)
                     ) {
 
                         Column(
