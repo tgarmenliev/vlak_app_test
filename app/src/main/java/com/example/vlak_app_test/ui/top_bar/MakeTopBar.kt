@@ -52,7 +52,7 @@ fun MakeTopBar(
                     .fillMaxWidth()
                     .fillMaxHeight(0.12f)
                     .clip(RoundedCornerShape(bottomStart = 20.dp, bottomEnd = 20.dp))
-                    .background(color = PrimaryDarkColor)
+                    .background(color = MaterialTheme.colorScheme.primaryContainer)
                     .padding(16.dp)
             )
 
@@ -65,7 +65,6 @@ fun MakeTopBar(
                     }
                     .padding(top = 12.dp, bottom = 16.dp, end = 16.dp),
                 style = MaterialTheme.typography.titleLarge.copy(
-                    color = Color.White,
                     fontWeight = FontWeight.SemiBold
                 )
             )

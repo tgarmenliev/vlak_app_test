@@ -91,7 +91,6 @@ fun MakeScheduleScreenSec(
         modifier = modifier
             .fillMaxWidth()
             .fillMaxHeight()
-            //.background(MaterialTheme.colorScheme.primary)
     ) {
 
         Box(
@@ -101,9 +100,7 @@ fun MakeScheduleScreenSec(
         ) {
             Text(
                 text = "${stringResource(id = R.string.trains)}:",
-                style = MaterialTheme.typography.headlineLarge.copy(
-                    //color = Color.Black,
-                )
+                style = MaterialTheme.typography.headlineLarge
             )
         }
 
@@ -131,7 +128,7 @@ fun MakeScheduleScreenSec(
                             color = MaterialTheme.colorScheme.onBackground,
                             shape = RoundedCornerShape(20.dp)
                         )
-                        .background(MaterialTheme.colorScheme.secondary),//!!!!!!!!!!!!!!!
+                        .background(MaterialTheme.colorScheme.secondary),
                 ) {
 
                     Box(
@@ -155,7 +152,6 @@ fun MakeScheduleScreenSec(
                             Text(
                                 text = routeMaker,
                                 style = MaterialTheme.typography.headlineMedium.copy(
-                                    //color = TextDarkColor,
                                     fontWeight = FontWeight.Bold
                                 ),
                                 modifier = Modifier
@@ -215,7 +211,6 @@ fun MakeDepartArriveTime(
         Text(
             text = option.departureTime,
             style = MaterialTheme.typography.bodyMedium.copy(
-                //color = Color.Black,
                 fontWeight = FontWeight.Bold
             ),
             modifier = Modifier
@@ -232,7 +227,6 @@ fun MakeDepartArriveTime(
         Text(
             text = option.arrivalTime,
             style = MaterialTheme.typography.bodyMedium.copy(
-                //color = Color.Black,
                 fontWeight = FontWeight.Bold
             ),
             modifier = Modifier
@@ -245,9 +239,7 @@ fun MakeDepartArriveTime(
 fun MakeDuration(
     duration: String,
     modifier: Modifier = Modifier,
-    textStyle: TextStyle = MaterialTheme.typography.bodyMedium.copy(
-        //color = Color.Black,
-    ),
+    textStyle: TextStyle = MaterialTheme.typography.bodyMedium,
 ) {
     Row(
         modifier = modifier,
@@ -274,9 +266,7 @@ fun MakeDuration(
 fun MakeTransfers(
     transfers: Int = 0,
     modifier: Modifier = Modifier,
-    textStyle: TextStyle = MaterialTheme.typography.bodyMedium.copy(
-        //color = Color.Black,
-    ),
+    textStyle: TextStyle = MaterialTheme.typography.bodyMedium,
 ) {
     Row(
         modifier = modifier,

@@ -107,7 +107,6 @@ fun MakeScheduleSearchScreen(
             Box(
                 modifier = Modifier
                     .fillMaxSize()
-                    //.background(BackgroundColor)
             ) {
                 Column(
                     modifier = Modifier
@@ -145,10 +144,8 @@ fun MakeScheduleSearchScreen(
                             .align(Alignment.Start),
                         text = stringResource(id = R.string.choose_date),
                         style = MaterialTheme.typography.bodyMedium.copy(
-                            //color = Color.Black,
                             fontWeight = FontWeight.Medium
                         ),
-                        //color = Color.Black,
                         fontWeight = FontWeight.Medium
                     )
 
@@ -238,10 +235,6 @@ fun MakeScheduleSearchScreen(
                                 trainInfoViewModel.getData()
                                 navController.navigate("train_info")
                             },
-//                            colors = ButtonDefaults.buttonColors(
-//                                containerColor = Color.White,
-//                                contentColor = PrimaryDarkColor
-//                            ),
                             border = BorderStroke(2.dp, MaterialTheme.colorScheme.onBackground),
                             shape = RoundedCornerShape(16.dp),
                             modifier = Modifier
@@ -251,7 +244,6 @@ fun MakeScheduleSearchScreen(
                             Icon(
                                 painter = painterResource(id = R.drawable.train),
                                 contentDescription = "Train icon",
-                                //tint = PrimaryDarkColor,
                                 modifier = Modifier
                                     .size(42.dp)
                             )
