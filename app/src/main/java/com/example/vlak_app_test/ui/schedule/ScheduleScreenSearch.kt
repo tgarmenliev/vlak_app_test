@@ -79,14 +79,16 @@ fun MakeScheduleSearchScreen(
         mutableStateOf(false)
     }
 
-    val imeState = rememberImeState()
+    //val imeState = rememberImeState()
     val scrollState = rememberScrollState()
 
-    LaunchedEffect(key1 = imeState.value) {
-        if (imeState.value){
-            scrollState.animateScrollTo(scrollState.maxValue, tween(300))
-        }
-    }
+//    LaunchedEffect(key1 = imeState.value) {
+//        if (imeState.value){
+//            scrollState.animateScrollTo(scrollState.maxValue, tween(300))
+//        }
+//    }
+
+    val focusRequester = FocusRequester()
 
     Column(
         modifier = modifier
@@ -124,6 +126,7 @@ fun MakeScheduleSearchScreen(
                         modifier = Modifier
                             .padding(top = 16.dp)
                             .align(Alignment.CenterHorizontally)
+                            .focusRequester(focusRequester)
                     )
 
                     MakeStationInputField(
@@ -136,6 +139,7 @@ fun MakeScheduleSearchScreen(
                         modifier = Modifier
                             .padding(top = 16.dp)
                             .align(Alignment.CenterHorizontally)
+                            .focusRequester(focusRequester)
                     )
 
                     Text(
@@ -162,7 +166,8 @@ fun MakeScheduleSearchScreen(
                                     width = 2.dp,
                                     color = MaterialTheme.colorScheme.onBackground,
                                     shape = RoundedCornerShape(16.dp)
-                                ),
+                                )
+                                .focusRequester(focusRequester),
                             colors = ButtonDefaults.buttonColors(
                                 containerColor = MaterialTheme.colorScheme.surfaceVariant,
                             ),
@@ -227,6 +232,7 @@ fun MakeScheduleSearchScreen(
                             modifier = Modifier
                                 .padding(top = 8.dp)
                                 .weight(3.5f)
+                                .focusRequester(focusRequester)
                         )
 
                         Button(
