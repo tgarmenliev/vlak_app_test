@@ -131,7 +131,7 @@ fun MakeScheduleScreenSec(
                             color = MaterialTheme.colorScheme.onBackground,
                             shape = RoundedCornerShape(20.dp)
                         )
-                        .background(MaterialTheme.colorScheme.primary),//!!!!!!!!!!!!!!!
+                        .background(MaterialTheme.colorScheme.secondary),//!!!!!!!!!!!!!!!
                 ) {
 
                     Box(
@@ -144,7 +144,7 @@ fun MakeScheduleScreenSec(
                         modifier = Modifier
                             .fillMaxSize()
                             .weight(24f)
-                            //.background(Color.White)
+                            .background(MaterialTheme.colorScheme.onSecondary)
                     ) {
 
                         Column(
@@ -165,8 +165,8 @@ fun MakeScheduleScreenSec(
                             Divider(
                                 modifier = Modifier
                                     .fillMaxWidth()
-                                    .height(1.dp)
-                                    .background(Color.Gray)
+                                    .height(1.dp),
+                                color = MaterialTheme.colorScheme.secondary
                             )
 
                             Row(
