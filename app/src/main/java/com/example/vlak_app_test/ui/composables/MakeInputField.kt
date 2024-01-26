@@ -75,13 +75,18 @@ fun MakeSimpleInputField(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(top = 16.dp, bottom = 16.dp),
-                    textStyle = MaterialTheme.typography.labelLarge,
+                    cursorBrush = SolidColor(MaterialTheme.colorScheme.onSurface),
+                    textStyle = MaterialTheme.typography.labelLarge.copy(
+                        color = MaterialTheme.colorScheme.onSurface,
+                    ),
                     decorationBox = { innerTextField ->
                         if (titleText.isEmpty()) {
                             Text(
                                 text = stringResource(id = hintText),
                                 modifier = Modifier.padding(end = 8.dp),
-                                style = MaterialTheme.typography.labelLarge
+                                style = MaterialTheme.typography.labelLarge.copy(
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                )
                             )
                         }
                         innerTextField()

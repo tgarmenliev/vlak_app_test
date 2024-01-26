@@ -81,7 +81,6 @@ fun MakeTrainInfo(
             .fillMaxWidth()
             .fillMaxHeight()
             .verticalScroll(rememberScrollState())
-            .background(BackgroundColor)
     ) {
 
         Column(
@@ -98,7 +97,6 @@ fun MakeTrainInfo(
                 Text(
                     text = "${data.trainType} ${data.trainNumber}",
                     style = MaterialTheme.typography.headlineLarge.copy(
-                        color = Color.Black,
                         fontWeight = FontWeight.Bold
                     )
                 )
@@ -108,15 +106,13 @@ fun MakeTrainInfo(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(8.dp)
-                    .clip(RoundedCornerShape(20.dp))
+                    .clip(RoundedCornerShape(16.dp))
                     .border(
                         width = 2.dp,
-                        color = Color.Black,
-                        shape = RoundedCornerShape(20.dp)
+                        color = MaterialTheme.colorScheme.onBackground,
+                        shape = RoundedCornerShape(16.dp)
                     )
-                    .background(color = Color.White)
             ) {
-                // Table header
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -139,7 +135,6 @@ fun MakeTrainInfo(
                     )
                 }
 
-                // Table rows
                 data.stations?.let { stations ->
                     for (trainInfo in stations) {
                         Row(
