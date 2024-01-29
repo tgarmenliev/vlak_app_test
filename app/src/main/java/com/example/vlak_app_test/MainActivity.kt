@@ -13,24 +13,17 @@ import androidx.room.Room
 import com.example.vlak_app_test.ui.theme.second.AppTheme2
 import com.example.vlak_app_test.navigation.AppNavigation
 import com.example.vlak_app_test.room.AppDatabase
+import com.example.vlak_app_test.room.DatabaseBuilder
 import com.example.vlak_app_test.room.SearchedStation
 import com.example.vlak_app_test.ui.theme.Vlak_app_testTheme
 import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
-    private val db by lazy {
-        Room.databaseBuilder(
-            applicationContext,
-            AppDatabase::class.java,
-            "app_database"
-        ).build()
-    }
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             AppTheme2 {
+                val db = DatabaseBuilder.buildDatabase(applicationContext)
                 AppNavigation(db)
 
                 // Create example variable to test the screen

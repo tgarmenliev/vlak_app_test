@@ -132,7 +132,7 @@ fun MakeScheduleSearchScreen(
                         painter = painterResource(id = R.drawable.swap),
                         contentDescription = "Swap stations",
                         modifier = Modifier
-                            .size(42.dp)
+                            .size(24.dp)
                             .align(Alignment.End)
                             .clickable {
                                 val temp = stationOne
@@ -149,7 +149,7 @@ fun MakeScheduleSearchScreen(
                         hintText = R.string.start_searching,
                         labelText = R.string.from_station,
                         modifier = Modifier
-                            .padding(top = 16.dp)
+                            .padding(top = 2.dp)
                             .align(Alignment.CenterHorizontally)
                             .focusRequester(focusRequester)
                     )
@@ -251,7 +251,7 @@ fun MakeScheduleSearchScreen(
 
                     Column(
                         modifier = Modifier
-                            .padding(horizontal = 16.dp, vertical = 2.dp)
+                            .padding(end = 8.dp, bottom = 10.dp)
                             .fillMaxWidth(),
                     ) {
                         recentSearched.forEach {
@@ -259,7 +259,6 @@ fun MakeScheduleSearchScreen(
                                 text = "${it.fromStation} - ${it.toStation}",
                                 style = MaterialTheme.typography.bodyMedium,
                                 modifier = Modifier
-                                    .padding(end = 10.dp)
                                     .clickable {
                                         stationOne = it.fromStation
                                         stationTwo = it.toStation
