@@ -8,6 +8,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.vlak_app_test.models.live.Live
 import com.example.vlak_app_test.network.TrainApi
+import com.example.vlak_app_test.room.SearchedStation
+import com.example.vlak_app_test.room.StationDao
 import com.example.vlak_app_test.stationsList
 import kotlinx.coroutines.launch
 import java.util.Locale
@@ -18,7 +20,9 @@ sealed interface LiveState {
     data class Error(val error: Throwable) : LiveState
 }
 
-class LiveViewModel : ViewModel() {
+class LiveViewModel(
+    private val dao: StationDao
+) : ViewModel() {
     var liveState: LiveState by mutableStateOf(LiveState.Loading)
 
     private val _selectedStation = mutableStateOf(0)
@@ -76,8 +80,21 @@ class LiveViewModel : ViewModel() {
         return (liveState as LiveState.Success).data
     }
 
+    fun getRecentSearches(): List<SearchedStation> {
+        var result: List<SearchedStation> = listOf()
+        viewModelScope.launch {
+            result = dao.getRecentSearches()
+        }
+        return result
+    }
+
     fun getData() {
         viewModelScope.launch {
+            dao.deleteOldSearches()
+            SearchedStation(stationName = selectedStation.value.toString(), stationCode = selectedStation.value).also {
+                dao.insert(it)
+            }
+
             liveState = LiveState.Loading
             liveState = try {
                 val result = TrainApi.retrofitService.getLiveInfo(Locale.getDefault().language, selectedStation.value, selectedType.value)

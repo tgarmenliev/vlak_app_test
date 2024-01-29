@@ -2,6 +2,7 @@ package com.example.vlak_app_test.ui.live
 
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -33,8 +34,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.navigation.NavController
 import com.example.vlak_app_test.R
+import com.example.vlak_app_test.room.SearchedStation
 import com.example.vlak_app_test.ui.composables.MakeButton
 import com.example.vlak_app_test.ui.composables.MakeImageHeader
 import com.example.vlak_app_test.ui.composables.MakeStationInputField
@@ -48,6 +51,8 @@ fun MakeLiveSearchScreen(
 ) {
     var titleText by rememberSaveable { mutableStateOf("") }
     var checked by rememberSaveable { mutableStateOf(false) }
+    var recentSearched by rememberSaveable { mutableStateOf(listOf<SearchedStation>()) }
+    recentSearched = viewModel.getRecentSearches()
 
     Column(
         modifier = modifier
@@ -80,6 +85,28 @@ fun MakeLiveSearchScreen(
                 modifier = Modifier
                     .padding(horizontal = 16.dp, vertical = 10.dp)
             )
+
+            Row(
+                modifier = Modifier
+                    .padding(horizontal = 16.dp, vertical = 2.dp)
+                    .fillMaxWidth(),
+                horizontalArrangement = Arrangement.Start,
+            ) {
+                recentSearched.forEach {
+                    Text(
+                        text = it.stationName,
+                        style = MaterialTheme.typography.bodyMedium,
+                        modifier = Modifier
+                            .padding(end = 10.dp)
+                            .clickable {
+                                viewModel.setStation(titleText)
+                                viewModel.getData()
+                                navController.navigate("live")
+                            },
+                        textDecoration = TextDecoration.Underline,
+                    )
+                }
+            }
 
             Row(
                 modifier = Modifier
