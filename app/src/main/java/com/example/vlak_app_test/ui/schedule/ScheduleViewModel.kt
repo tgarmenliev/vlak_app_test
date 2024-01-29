@@ -10,6 +10,9 @@ import androidx.lifecycle.viewModelScope
 import com.example.vlak_app_test.models.live.Live
 import com.example.vlak_app_test.models.schedule.Schedule
 import com.example.vlak_app_test.network.TrainApi
+import com.example.vlak_app_test.room.ScheduleDao
+import com.example.vlak_app_test.room.SearchedSchedule
+import com.example.vlak_app_test.room.SearchedStation
 import com.example.vlak_app_test.stationsList
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
@@ -23,16 +26,21 @@ sealed interface ScheduleState {
     data class Error(val error: Throwable) : ScheduleState
 }
 
-class ScheduleViewModel : ViewModel() {
+class ScheduleViewModel(
+    private val dao: ScheduleDao
+) : ViewModel() {
     var scheduleState: ScheduleState by mutableStateOf(ScheduleState.Loading)
 
-    private val _selectedStations = mutableStateOf(ScheduleOption(0, 0, ""))
+    private val _selectedStations = mutableStateOf(ScheduleOption(0, "", 0, "", ""))
     private val selectedStations: State<ScheduleOption> = _selectedStations
 
     private val _ifToday = mutableStateOf(true)
 
     private val _selectedOption = mutableIntStateOf(0)
     private val selectedOption: State<Int> = _selectedOption
+
+    private val _recentSearches = mutableStateOf<List<SearchedSchedule>>(emptyList())
+    val recentSearches: State<List<SearchedSchedule>> = _recentSearches
 
     //private val data: Schedule.ScheduleTable = sampleScheduleInfo
 
@@ -48,21 +56,21 @@ class ScheduleViewModel : ViewModel() {
             return null
         }
     }
-
-    fun checkIfStationExists(station: String): Boolean {
-        val stations = stationsList
-        val foundStation = stations.find {
-            it.name.equals(station, ignoreCase = true) || it.englishName.equals(station, ignoreCase = true)
-        }
-        return foundStation != null
-    }
+//
+//    fun checkIfStationExists(station: String): Boolean {
+//        val stations = stationsList
+//        val foundStation = stations.find {
+//            it.name.equals(station, ignoreCase = true) || it.englishName.equals(station, ignoreCase = true)
+//        }
+//        return foundStation != null
+//    }
 
     fun setOption(from: String, to: String, date: String) {
         val formatter = SimpleDateFormat("yyyy-MM-dd")
         val todayString = formatter.format(Date(Calendar.getInstance().timeInMillis))
         _ifToday.value = todayString == date
 
-        _selectedStations.value = ScheduleOption(getStationCode(from)!!, getStationCode(to)!!, date)
+        _selectedStations.value = ScheduleOption(getStationCode(from)!!, from, getStationCode(to)!!, to, date)
     }
 
     fun setOptionIndex(index: Int) {
@@ -85,9 +93,31 @@ class ScheduleViewModel : ViewModel() {
         return (scheduleState as ScheduleState.Success).data
     }
 
+    suspend fun getRecentSearches() {
+        _recentSearches.value = dao.getRecentSearches()
+    }
+
     fun getData() {
         viewModelScope.launch {
             scheduleState = ScheduleState.Loading
+
+            if (
+                dao.getScheduleCount(
+                    selectedStations.value.from,
+                    selectedStations.value.to
+                ) == 0
+            ) {
+                dao.deleteOldSearches()
+                SearchedSchedule(
+                    fromStation = selectedStations.value.fromName,
+                    fromCode = selectedStations.value.from,
+                    toStation = selectedStations.value.toName,
+                    toCode = selectedStations.value.to
+                ).also {
+                    dao.insert(it)
+                }
+            }
+
             scheduleState = try {
                 val result = (_ifToday.value).let {
                     if (it) {
@@ -115,6 +145,8 @@ class ScheduleViewModel : ViewModel() {
 
 data class ScheduleOption(
     val from: Int,
+    val fromName: String,
     val to: Int,
+    val toName: String,
     val date: String,
 )

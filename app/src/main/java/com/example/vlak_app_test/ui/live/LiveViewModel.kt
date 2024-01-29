@@ -2,6 +2,7 @@ package com.example.vlak_app_test.ui.live
 
 import androidx.compose.runtime.State
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
@@ -25,8 +26,10 @@ class LiveViewModel(
 ) : ViewModel() {
     var liveState: LiveState by mutableStateOf(LiveState.Loading)
 
-    private val _selectedStation = mutableStateOf(0)
+    private val _selectedStation = mutableIntStateOf(0)
     val selectedStation: State<Int> = _selectedStation
+
+    private val _selectedStationName = mutableStateOf("")
 
     private val _selectedType = mutableStateOf("departures")
     val selectedType: State<String> = _selectedType
@@ -41,14 +44,12 @@ class LiveViewModel(
 //        data.value = sampleLiveInfo
 //    }
 
-    private fun getStationCode(station: String): Int {
+    fun getStationCode(station: String): Int {
         // find the station id by its name
-        println("station: ..$station..")
         val stations = stationsList
         val foundStation = stations.find {
             it.name.equals(station, ignoreCase = true) || it.englishName.equals(station, ignoreCase = true)
         }
-        println("foundStation: ..$foundStation..")
         if(foundStation != null) {
             return foundStation.id
         }
@@ -57,16 +58,14 @@ class LiveViewModel(
 
     fun checkIfStationExists(station: String): Boolean {
         val stations = stationsList
-        println("station: ..$station..")
         val foundStation = stations.find {
             it.name.equals(station, ignoreCase = true) || it.englishName.equals(station, ignoreCase = true)
         }
-        println("foundStation: ..$foundStation..")
-        println("foundStation id: ..${foundStation != null}..")
         return foundStation != null
     }
 
     fun setStation(station: String) {
+        _selectedStationName.value = station
         _selectedStation.value = getStationCode(station)
         println("selectedStation: ..${_selectedStation.value}..")
     }
@@ -89,12 +88,15 @@ class LiveViewModel(
 
     fun getData() {
         viewModelScope.launch {
-            dao.deleteOldSearches()
-            SearchedStation(stationName = selectedStation.value.toString(), stationCode = selectedStation.value).also {
-                dao.insert(it)
+            liveState = LiveState.Loading
+
+            if (dao.getStationCount(selectedStation.value) == 0) {
+                dao.deleteOldSearches()
+                SearchedStation(stationName = _selectedStationName.value, stationCode = selectedStation.value).also {
+                    dao.insert(it)
+                }
             }
 
-            liveState = LiveState.Loading
             liveState = try {
                 val result = TrainApi.retrofitService.getLiveInfo(Locale.getDefault().language, selectedStation.value, selectedType.value)
                 LiveState.Success(result)

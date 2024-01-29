@@ -9,4 +9,6 @@ import androidx.room.RoomDatabase
 )
 abstract class AppDatabase : RoomDatabase() {
     abstract fun stationDao(): StationDao
+
+    abstract fun scheduleDao(): ScheduleDao
 }

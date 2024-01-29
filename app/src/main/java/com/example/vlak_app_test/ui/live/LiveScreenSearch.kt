@@ -104,9 +104,7 @@ fun MakeLiveSearchScreen(
                         modifier = Modifier
                             .padding(end = 10.dp)
                             .clickable {
-                                viewModel.setStation(titleText)
-                                viewModel.getData()
-                                navController.navigate("live")
+                                titleText = it.stationName
                             },
                         textDecoration = TextDecoration.Underline,
                     )
@@ -159,6 +157,7 @@ fun MakeLiveSearchScreen(
                     } else {
                         viewModel.setStation(titleText)
                         viewModel.getData()
+                        titleText = ""
                         navController.navigate("live")
                     }
                 },

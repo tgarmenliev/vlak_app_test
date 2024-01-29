@@ -44,4 +44,5 @@
     <string name="departs_to">Departs to</string>
     <string name="arrives_from_short">From</string>
     <string name="departs_to_short">To</string>
+    <string name="recent_searches">Recent searches:</string>
 </resources>

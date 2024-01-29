@@ -45,4 +45,5 @@
     <string name="departs_to">Заминава за</string>
     <string name="arrives_from_short">От</string>
     <string name="departs_to_short">За</string>
+    <string name="recent_searches">Последни търсения:</string>
 </resources>

@@ -4,6 +4,8 @@ import androidx.compose.animation.core.tween
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -42,11 +44,14 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.vlak_app_test.R
 import com.example.vlak_app_test.rememberImeState
+import com.example.vlak_app_test.room.SearchedSchedule
+import com.example.vlak_app_test.room.SearchedStation
 import com.example.vlak_app_test.ui.composables.MakeButton
 import com.example.vlak_app_test.ui.composables.MakeDatePickerDialog
 import com.example.vlak_app_test.ui.composables.MakeImageHeader
@@ -77,6 +82,13 @@ fun MakeScheduleSearchScreen(
     }
     var showDatePicker by remember {
         mutableStateOf(false)
+    }
+
+    var recentSearched by rememberSaveable { mutableStateOf<List<SearchedSchedule>>(emptyList()) }
+
+    LaunchedEffect(Unit) {
+        viewModel.getRecentSearches()
+        recentSearched = viewModel.recentSearches.value
     }
 
     //val imeState = rememberImeState()
@@ -115,6 +127,19 @@ fun MakeScheduleSearchScreen(
                         .fillMaxWidth()
                         .padding(16.dp)
                 ) {
+                    
+                    Icon(
+                        painter = painterResource(id = R.drawable.swap),
+                        contentDescription = "Swap stations",
+                        modifier = Modifier
+                            .size(42.dp)
+                            .align(Alignment.End)
+                            .clickable {
+                                val temp = stationOne
+                                stationOne = stationTwo
+                                stationTwo = temp
+                            }
+                    )
 
                     MakeStationInputField(
                         station = stationOne,
@@ -215,6 +240,43 @@ fun MakeScheduleSearchScreen(
                             .padding(vertical = 10.dp)
                     )
 
+                    Text(
+                        modifier = Modifier
+                            .padding(top = 8.dp, bottom = 4.dp)
+                            .align(Alignment.Start),
+                        text = stringResource(id = R.string.recent_searches),
+                        style = MaterialTheme.typography.titleMedium,
+                        fontWeight = FontWeight.SemiBold
+                    )
+
+                    Column(
+                        modifier = Modifier
+                            .padding(horizontal = 16.dp, vertical = 2.dp)
+                            .fillMaxWidth(),
+                    ) {
+                        recentSearched.forEach {
+                            Text(
+                                text = "${it.fromStation} - ${it.toStation}",
+                                style = MaterialTheme.typography.bodyMedium,
+                                modifier = Modifier
+                                    .padding(end = 10.dp)
+                                    .clickable {
+                                        stationOne = it.fromStation
+                                        stationTwo = it.toStation
+                                    },
+                                textDecoration = TextDecoration.Underline,
+                            )
+                        }
+                    }
+
+                    Divider(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(1.dp)
+                            .background(Color.Gray)
+                            .padding(vertical = 10.dp)
+                    )
+
                     Row(
                         modifier = Modifier
                             .padding(top = 8.dp)
@@ -261,13 +323,13 @@ fun MakeScheduleSearchScreen(
     }
 }
 
-@Preview
-@Composable
-fun MakeScheduleSearchScreenPreview() {
-    MakeScheduleSearchScreen(
-        modifier = Modifier,
-        navController = NavController(LocalContext.current),
-        viewModel = ScheduleViewModel(),
-        trainInfoViewModel = TrainInfoViewModel()
-    )
-}
+//@Preview
+//@Composable
+//fun ScheduleSearchScreenPreview() {
+//    MakeScheduleSearchScreen(
+//        modifier = Modifier,
+//        navController = NavController(LocalContext.current),
+//        viewModel = ScheduleViewModel(),
+//        trainInfoViewModel = TrainInfoViewModel()
+//    )
+//}
