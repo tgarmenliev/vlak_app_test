@@ -8,17 +8,30 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.lifecycleScope
+import androidx.room.Room
 import com.example.vlak_app_test.ui.theme.second.AppTheme2
 import com.example.vlak_app_test.navigation.AppNavigation
+import com.example.vlak_app_test.room.AppDatabase
+import com.example.vlak_app_test.room.SearchedStation
 import com.example.vlak_app_test.ui.theme.Vlak_app_testTheme
+import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
-    @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
+    private val db by lazy {
+        Room.databaseBuilder(
+            applicationContext,
+            AppDatabase::class.java,
+            "app_database"
+        ).build()
+    }
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             AppTheme2 {
-                AppNavigation()
+                AppNavigation(db)
 
                 // Create example variable to test the screen
 //                val sampleTrainInfo = TrainInfo.TrainInfoTable(

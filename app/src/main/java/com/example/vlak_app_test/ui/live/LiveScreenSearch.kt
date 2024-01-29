@@ -20,6 +20,7 @@ import androidx.compose.material3.Switch
 import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -47,12 +48,16 @@ import com.example.vlak_app_test.ui.theme.BackgroundColor
 fun MakeLiveSearchScreen(
     modifier: Modifier = Modifier,
     navController: NavController,
-    viewModel: LiveViewModel
+    viewModel: LiveViewModel,
 ) {
     var titleText by rememberSaveable { mutableStateOf("") }
     var checked by rememberSaveable { mutableStateOf(false) }
-    var recentSearched by rememberSaveable { mutableStateOf(listOf<SearchedStation>()) }
-    recentSearched = viewModel.getRecentSearches()
+    var recentSearched by rememberSaveable { mutableStateOf<List<SearchedStation>>(emptyList()) }
+
+    LaunchedEffect(Unit) {
+        viewModel.getRecentSearches()
+        recentSearched = viewModel.recentSearches.value
+    }
 
     Column(
         modifier = modifier

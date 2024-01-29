@@ -17,6 +17,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.vlak_app_test.ui.bottom_bar.BottomBarViewModel
 import com.example.vlak_app_test.ui.bottom_bar.MakeBottomBar
 import androidx.navigation.compose.currentBackStackEntryAsState
+import com.example.vlak_app_test.room.AppDatabase
 import com.example.vlak_app_test.ui.guide.MakeGuideScreen
 import com.example.vlak_app_test.ui.home.MakeHomescreen
 import com.example.vlak_app_test.ui.live.LiveViewModel
@@ -31,7 +32,7 @@ import com.example.vlak_app_test.ui.train_info.MakeTrainInfoScreen
 import com.example.vlak_app_test.ui.train_info.TrainInfoViewModel
 
 @Composable
-fun AppNavigation() {
+fun AppNavigation(db: AppDatabase) {
     val navController = rememberNavController()
     val currentSelectedScreen = navController.currentBackStackEntryAsState().value?.destination?.route
 
@@ -50,7 +51,7 @@ fun AppNavigation() {
     val routes = listOf("home", "schedule_search", "live_search", "guide")
 
     val scheduleViewModel = remember { ScheduleViewModel() }
-    val liveViewModel = remember { LiveViewModel() }
+    val liveViewModel = remember { LiveViewModel(db.stationDao()) }
     val trainInfoViewModel = remember { TrainInfoViewModel() }
 
     Scaffold(
@@ -75,7 +76,7 @@ fun Navigation(
     navController: NavHostController,
     modifier: Modifier = Modifier,
     scheduleViewModel: ScheduleViewModel = ScheduleViewModel(),
-    liveViewModel: LiveViewModel = LiveViewModel(),
+    liveViewModel: LiveViewModel,
     trainInfoViewModel: TrainInfoViewModel = TrainInfoViewModel(),
 ) {
 

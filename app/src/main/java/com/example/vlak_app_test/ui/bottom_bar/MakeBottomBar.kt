@@ -36,6 +36,9 @@ fun MakeBottomBar(
                 onClick = {
                     onItemSelected(index)
                     navController.navigate(item.route)
+                    if (item.route == "home") {
+                        navController.popBackStack()
+                    }
                 },
                 label = {
                     Text(

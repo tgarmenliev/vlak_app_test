@@ -31,6 +31,9 @@ class LiveViewModel(
     private val _selectedType = mutableStateOf("departures")
     val selectedType: State<String> = _selectedType
 
+    private val _recentSearches = mutableStateOf<List<SearchedStation>>(emptyList())
+    val recentSearches: State<List<SearchedStation>> = _recentSearches
+
     //private val _data = MutableLiveData<Live.LiveTable>()
     //private val data: Live.LiveTable = sampleLiveInfo
 
@@ -80,12 +83,8 @@ class LiveViewModel(
         return (liveState as LiveState.Success).data
     }
 
-    fun getRecentSearches(): List<SearchedStation> {
-        var result: List<SearchedStation> = listOf()
-        viewModelScope.launch {
-            result = dao.getRecentSearches()
-        }
-        return result
+    suspend fun getRecentSearches() {
+        _recentSearches.value = dao.getRecentSearches()
     }
 
     fun getData() {
