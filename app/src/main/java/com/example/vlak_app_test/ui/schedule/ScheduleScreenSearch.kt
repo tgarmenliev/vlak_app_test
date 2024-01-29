@@ -301,6 +301,7 @@ fun MakeScheduleSearchScreen(
                             onClick = {
                                 trainInfoViewModel.setTrain(trainInfo)
                                 trainInfoViewModel.getData()
+                                trainInfo = ""
                                 navController.navigate("train_info")
                             },
                             border = BorderStroke(2.dp, MaterialTheme.colorScheme.onBackground),

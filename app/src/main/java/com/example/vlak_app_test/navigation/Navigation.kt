@@ -50,7 +50,7 @@ fun AppNavigation(db: AppDatabase) {
     }
     val routes = listOf("home", "schedule_search", "live_search", "guide")
 
-    val scheduleViewModel = remember { ScheduleViewModel() }
+    val scheduleViewModel = remember { ScheduleViewModel(db.scheduleDao()) }
     val liveViewModel = remember { LiveViewModel(db.stationDao()) }
     val trainInfoViewModel = remember { TrainInfoViewModel() }
 
@@ -75,7 +75,7 @@ fun AppNavigation(db: AppDatabase) {
 fun Navigation(
     navController: NavHostController,
     modifier: Modifier = Modifier,
-    scheduleViewModel: ScheduleViewModel = ScheduleViewModel(),
+    scheduleViewModel: ScheduleViewModel,
     liveViewModel: LiveViewModel,
     trainInfoViewModel: TrainInfoViewModel = TrainInfoViewModel(),
 ) {
