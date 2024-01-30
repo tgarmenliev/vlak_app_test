@@ -1,5 +1,7 @@
 package com.example.vlak_app_test.network
 
+import android.adservices.topics.Topic
+import com.example.vlak_app_test.models.guide.Guide
 import com.example.vlak_app_test.models.live.Live
 import com.example.vlak_app_test.models.schedule.Schedule
 import com.example.vlak_app_test.models.train_info.TrainInfo
@@ -51,6 +53,22 @@ interface TrainApiService {
         @Path("to") to: Int,
         @Path("date") date: String
     ): Schedule.ScheduleTable
+
+    @GET("/api/guide/{language}/{topic}")
+    suspend fun getGuideTopic(
+        @Path("language") language: String,
+        @Path("topic") topic: Int
+    ): Guide.Topic
+
+    @GET("/api/guide/{language}")
+    suspend fun getGuideTopics(
+        @Path("language") language: String
+    ): Guide.AllTopics
+
+    @GET("/guide/images/{imageUrl}")
+    suspend fun getPhoto(
+        @Path("imageUrl") imageUrl: String
+    ): Guide.PhotoResponse
 }
 
 object TrainApi {
