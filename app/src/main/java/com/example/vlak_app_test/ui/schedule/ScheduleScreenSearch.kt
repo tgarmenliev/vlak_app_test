@@ -251,22 +251,32 @@ fun MakeScheduleSearchScreen(
                         fontWeight = FontWeight.SemiBold
                     )
 
-                    Column(
-                        modifier = Modifier
-                            .padding(end = 8.dp, bottom = 10.dp)
-                            .fillMaxWidth(),
-                    ) {
-                        recentSearched.forEach {
-                            Text(
-                                text = "${it.fromStation} - ${it.toStation}",
-                                style = MaterialTheme.typography.bodyMedium,
-                                modifier = Modifier
-                                    .clickable {
-                                        stationOne = it.fromStation
-                                        stationTwo = it.toStation
-                                    },
-                                textDecoration = TextDecoration.Underline,
-                            )
+                    if (recentSearched.isEmpty()) {
+                        Text(
+                            modifier = Modifier
+                                .padding(top = 8.dp, bottom = 10.dp)
+                                .align(Alignment.Start),
+                            text = stringResource(id = R.string.no_recent_searches),
+                            style = MaterialTheme.typography.bodyMedium,
+                        )
+                    } else {
+                        Column(
+                            modifier = Modifier
+                                .padding(end = 8.dp, bottom = 10.dp)
+                                .fillMaxWidth(),
+                        ) {
+                            recentSearched.forEach {
+                                Text(
+                                    text = "${it.fromStation} - ${it.toStation}",
+                                    style = MaterialTheme.typography.bodyMedium,
+                                    modifier = Modifier
+                                        .clickable {
+                                            stationOne = it.fromStation
+                                            stationTwo = it.toStation
+                                        },
+                                    textDecoration = TextDecoration.Underline,
+                                )
+                            }
                         }
                     }
 

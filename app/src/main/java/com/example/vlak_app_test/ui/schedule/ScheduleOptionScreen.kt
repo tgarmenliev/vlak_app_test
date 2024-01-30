@@ -1,5 +1,6 @@
 package com.example.vlak_app_test.ui.schedule
 
+import android.widget.Toast
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -32,6 +33,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.PathEffect
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -49,7 +51,7 @@ import com.example.vlak_app_test.ui.train_info.TrainInfoViewModel
 
 @Composable
 fun MakeScheduleOptionScreen(
-    onAddToTripsButtonPressed: () -> Unit,
+    onAddToTripsButtonPressed: (Schedule.Options) -> Unit,
     trainInfoViewModel: TrainInfoViewModel,
     onCancelButton: () -> Unit,
     viewModel: ScheduleViewModel,
@@ -80,12 +82,14 @@ fun MakeScheduleOptionScreen(
 
 @Composable
 fun MakeScheduleOptionScreenSec(
-    onAddToTripsButtonPressed: () -> Unit,
+    onAddToTripsButtonPressed: (Schedule.Options) -> Unit,
     getTrainInfo: (String) -> Unit,
     modifier: Modifier = Modifier,
     data: Schedule.Options,
     route: String,
 ) {
+    val context = LocalContext.current
+
     Column(
         modifier = modifier
             .fillMaxWidth()
@@ -177,12 +181,21 @@ fun MakeScheduleOptionScreenSec(
 
             Spacer(modifier = Modifier.padding(vertical = 8.dp))
 
+            val string = stringResource(id = R.string.added_to_trips)
+
             Box(
                 modifier = Modifier.align(Alignment.CenterHorizontally)
             ) {
                 MakeButton(
                     text = R.string.add_to_trips,
-                    onClick = onAddToTripsButtonPressed,
+                    onClick = {
+                        Toast.makeText(
+                            context,
+                            string,
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        onAddToTripsButtonPressed(data)
+                              },
                     modifier = Modifier
                         .fillMaxWidth(0.6f)
                 )

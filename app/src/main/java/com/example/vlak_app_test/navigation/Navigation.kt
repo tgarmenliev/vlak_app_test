@@ -52,7 +52,7 @@ fun AppNavigation(db: AppDatabase) {
 
     val scheduleViewModel = remember { ScheduleViewModel(db.scheduleDao()) }
     val liveViewModel = remember { LiveViewModel(db.stationDao()) }
-    val trainInfoViewModel = remember { TrainInfoViewModel() }
+    val trainInfoViewModel = remember { TrainInfoViewModel(db.trainInfoDao()) }
 
     Scaffold(
         bottomBar = {
@@ -77,7 +77,7 @@ fun Navigation(
     modifier: Modifier = Modifier,
     scheduleViewModel: ScheduleViewModel,
     liveViewModel: LiveViewModel,
-    trainInfoViewModel: TrainInfoViewModel = TrainInfoViewModel(),
+    trainInfoViewModel: TrainInfoViewModel,
 ) {
 
     //val navController = rememberNavController()
@@ -101,7 +101,7 @@ fun Navigation(
 
             composable("schedule_option_screen") {
                 MakeScheduleOptionScreen(
-                    onAddToTripsButtonPressed = { /*TODO*/ },
+                    onAddToTripsButtonPressed = {},
                     trainInfoViewModel = trainInfoViewModel,
                     viewModel = scheduleViewModel,
                     onCancelButton = { navController.popBackStack() },

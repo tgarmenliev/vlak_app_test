@@ -46,4 +46,7 @@
     <string name="arrives_from_short">От</string>
     <string name="departs_to_short">За</string>
     <string name="recent_searches">Последни търсения:</string>
+    <string name="no_recent_searches">Няма последни търсения</string>
+    <string name="no_added_trips">Няма добавени пътувания</string>
+    <string name="added_to_trips">Добавено към пътувания</string>
 </resources>

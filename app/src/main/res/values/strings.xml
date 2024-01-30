@@ -45,4 +45,7 @@
     <string name="arrives_from_short">From</string>
     <string name="departs_to_short">To</string>
     <string name="recent_searches">Recent searches:</string>
+    <string name="no_recent_searches">No recent searches</string>
+    <string name="no_added_trips">No added trips</string>
+    <string name="added_to_trips">Added to trips</string>
 </resources>
