@@ -1,10 +1,12 @@
 package com.example.vlak_app_test.room
 
+import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.vlak_app_test.models.train_info.TrainInfo
 
+@Dao
 interface TrainInfoDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(trainInfo: SearchedTrainInfo)

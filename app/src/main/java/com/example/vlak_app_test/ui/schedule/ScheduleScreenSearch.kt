@@ -52,6 +52,7 @@ import com.example.vlak_app_test.R
 import com.example.vlak_app_test.rememberImeState
 import com.example.vlak_app_test.room.SearchedSchedule
 import com.example.vlak_app_test.room.SearchedStation
+import com.example.vlak_app_test.room.SearchedTrainInfo
 import com.example.vlak_app_test.ui.composables.MakeButton
 import com.example.vlak_app_test.ui.composables.MakeDatePickerDialog
 import com.example.vlak_app_test.ui.composables.MakeImageHeader
@@ -85,6 +86,7 @@ fun MakeScheduleSearchScreen(
     }
 
     var recentSearched by rememberSaveable { mutableStateOf<List<SearchedSchedule>>(emptyList()) }
+    var trainRecentSearched by rememberSaveable { mutableStateOf<List<SearchedTrainInfo>>(emptyList()) }
 
     LaunchedEffect(Unit) {
         viewModel.getRecentSearches()
@@ -314,6 +316,26 @@ fun MakeScheduleSearchScreen(
                                 contentDescription = "Train icon",
                                 modifier = Modifier
                                     .size(42.dp)
+                            )
+                        }
+                    }
+
+                    Row(
+                        modifier = Modifier
+                            .padding(horizontal = 16.dp, vertical = 2.dp)
+                            .fillMaxWidth(),
+                        horizontalArrangement = Arrangement.Start,
+                    ) {
+                        trainRecentSearched.forEach {
+                            Text(
+                                text = it.trainNumber,
+                                style = MaterialTheme.typography.bodyMedium,
+                                modifier = Modifier
+                                    .padding(end = 10.dp)
+                                    .clickable {
+                                        trainInfo = it.trainNumber
+                                    },
+                                textDecoration = TextDecoration.Underline,
                             )
                         }
                     }
