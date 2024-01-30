@@ -16,7 +16,7 @@ data class Trip(
     val departureDate: String,
     val arrivalDate: String,
     val numOfTransfers: Int,
-    val trains: List<Schedule.Trains>,
+    val trains: List<Schedule.Trains> = emptyList(),
     val timestamp: Long = System.currentTimeMillis()
 )
 
