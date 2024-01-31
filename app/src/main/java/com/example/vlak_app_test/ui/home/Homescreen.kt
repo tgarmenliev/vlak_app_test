@@ -23,18 +23,14 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
 import com.example.vlak_app_test.R
 import com.example.vlak_app_test.room.TripHeading
 import com.example.vlak_app_test.ui.composables.MakeImageHeader
-import com.example.vlak_app_test.ui.theme.BackgroundColor
 
 @Composable
 fun MakeHomescreen(
@@ -67,8 +63,7 @@ fun MakeHomescreen(
             ) {
                 MakeRecentTrips(
                     modifier = Modifier
-                        .fillMaxWidth()
-                        .weight(1f),
+                        .fillMaxWidth(),
                     recentTrips = recentTrips
                 )
             }
@@ -79,7 +74,9 @@ fun MakeHomescreen(
 @Composable
 fun MakeRecentTrips(modifier: Modifier, recentTrips: List<TripHeading>) {
     if (recentTrips.isNotEmpty()) {
-        Column {
+        Column(
+            modifier = modifier
+        ) {
             Text(
                 text = stringResource(id = R.string.recent_trips),
                 style = MaterialTheme.typography.bodyMedium,
