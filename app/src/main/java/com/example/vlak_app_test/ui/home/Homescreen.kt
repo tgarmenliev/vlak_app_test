@@ -50,7 +50,6 @@ fun MakeHomescreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .fillMaxHeight()
-                .background(BackgroundColor)
         ) {
             MakeRecentTrips(
                 modifier = Modifier
@@ -85,8 +84,7 @@ fun MakeRecentTrip(modifier: Modifier, trip: TripHeading) {
             .fillMaxWidth()
             .border(1.dp, BackgroundColor)
     ) {
-        Text(text = trip.fromStation)
-        Text(text = trip.toStation)
+        Text(text = trip.route)
         Text(text = trip.duration)
         Text(text = trip.departureTime)
         Text(text = trip.arrivalTime)

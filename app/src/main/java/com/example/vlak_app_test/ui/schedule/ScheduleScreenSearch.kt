@@ -93,6 +93,11 @@ fun MakeScheduleSearchScreen(
         recentSearched = viewModel.recentSearches.value
     }
 
+    LaunchedEffect(Unit) {
+        trainInfoViewModel.getRecentSearches()
+        trainRecentSearched = trainInfoViewModel.recentSearches.value
+    }
+
     //val imeState = rememberImeState()
     val scrollState = rememberScrollState()
 
@@ -332,7 +337,7 @@ fun MakeScheduleSearchScreen(
 
                     Row(
                         modifier = Modifier
-                            .padding(horizontal = 16.dp, vertical = 2.dp)
+                            .padding(vertical = 4.dp)
                             .fillMaxWidth(),
                         horizontalArrangement = Arrangement.Start,
                     ) {

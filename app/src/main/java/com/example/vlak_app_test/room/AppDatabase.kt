@@ -6,7 +6,7 @@ import androidx.room.TypeConverters
 
 @Database(
     entities = [SearchedStation::class, SearchedSchedule::class, SearchedTrainInfo::class, Trip::class],
-    version = 4,
+    version = 5,
 )
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {

@@ -8,8 +8,7 @@ import com.example.vlak_app_test.models.schedule.Schedule
 data class Trip(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
-    val fromStation: String,
-    val toStation: String,
+    val route: String,
     val duration: String,
     val departureTime: String,
     val arrivalTime: String,
@@ -22,8 +21,7 @@ data class Trip(
 
 data class TripHeading(
     val id: Int,
-    val fromStation: String,
-    val toStation: String,
+    val route: String,
     val duration: String,
     val departureTime: String,
     val arrivalTime: String,

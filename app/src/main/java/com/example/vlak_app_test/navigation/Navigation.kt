@@ -105,7 +105,12 @@ fun Navigation(
 
             composable("schedule_option_screen") {
                 MakeScheduleOptionScreen(
-                    onAddToTripsButtonPressed = {},
+                    onAddToTripsButtonPressed = { data, route ->
+                        homescreenViewModel.insertTrip(
+                            trip = data,
+                            route = route
+                        )
+                    },
                     trainInfoViewModel = trainInfoViewModel,
                     viewModel = scheduleViewModel,
                     onCancelButton = { navController.popBackStack() },

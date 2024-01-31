@@ -6,6 +6,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.vlak_app_test.models.schedule.Schedule
+import com.example.vlak_app_test.room.Trip
 import com.example.vlak_app_test.room.TripDao
 import com.example.vlak_app_test.room.TripHeading
 import kotlinx.coroutines.launch
@@ -23,6 +25,21 @@ class HomescreenViewModel(
 
     private val _recentTrips = mutableStateOf<List<TripHeading>>(emptyList())
     val recentTrips: State<List<TripHeading>> = _recentTrips
+
+    fun insertTrip(trip: Schedule.Options, route: String) {
+        viewModelScope.launch {
+            Trip(
+                route = route,
+                duration = trip.duration,
+                departureTime = trip.departureTime,
+                arrivalTime = trip.arrivalTime,
+                departureDate = trip.departureDate,
+                arrivalDate = trip.arrivalDate,
+                numOfTransfers = trip.numOfTransfers,
+                trains = trip.trains
+            ).also { dao.insert(it) }
+        }
+    }
 
     fun getRecentTrips() {
         viewModelScope.launch {

@@ -51,7 +51,7 @@ import com.example.vlak_app_test.ui.train_info.TrainInfoViewModel
 
 @Composable
 fun MakeScheduleOptionScreen(
-    onAddToTripsButtonPressed: (Schedule.Options) -> Unit,
+    onAddToTripsButtonPressed: (Schedule.Options, String) -> Unit,
     trainInfoViewModel: TrainInfoViewModel,
     onCancelButton: () -> Unit,
     viewModel: ScheduleViewModel,
@@ -82,7 +82,7 @@ fun MakeScheduleOptionScreen(
 
 @Composable
 fun MakeScheduleOptionScreenSec(
-    onAddToTripsButtonPressed: (Schedule.Options) -> Unit,
+    onAddToTripsButtonPressed: (Schedule.Options, String) -> Unit,
     getTrainInfo: (String) -> Unit,
     modifier: Modifier = Modifier,
     data: Schedule.Options,
@@ -194,7 +194,7 @@ fun MakeScheduleOptionScreenSec(
                             string,
                             Toast.LENGTH_SHORT
                         ).show()
-                        onAddToTripsButtonPressed(data)
+                        onAddToTripsButtonPressed(data, route)
                               },
                     modifier = Modifier
                         .fillMaxWidth(0.6f)

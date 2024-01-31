@@ -13,7 +13,7 @@ interface TripDao {
     @Query("DELETE FROM trip WHERE timestamp < :timestamp")
     suspend fun deleteOldTrips(timestamp: Long)
 
-    @Query("SELECT id, fromStation, toStation, duration, departureTime, arrivalTime FROM trip ORDER BY timestamp DESC")
+    @Query("SELECT id, route, duration, departureTime, arrivalTime FROM trip ORDER BY timestamp DESC")
     suspend fun getTripsTitles(): List<TripHeading>
 
     @Query("SELECT * FROM trip ORDER BY timestamp DESC")
@@ -22,6 +22,6 @@ interface TripDao {
     @Query("SELECT * FROM trip WHERE id = :id")
     suspend fun getTrip(id: Int): Trip
 
-    @Query("SELECT id, fromStation, toStation, duration, departureTime, arrivalTime FROM trip ORDER BY timestamp DESC LIMIT 3")
+    @Query("SELECT id, route, duration, departureTime, arrivalTime FROM trip ORDER BY timestamp DESC LIMIT 3")
     suspend fun getRecent3TripTitles(): List<TripHeading>
 }
