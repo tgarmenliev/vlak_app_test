@@ -18,6 +18,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.Clear
 import androidx.compose.material.icons.rounded.KeyboardArrowDown
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardColors
@@ -146,11 +147,11 @@ fun MakeStationInputField(
                     ),
                     singleLine = true,
                     trailingIcon = {
-                        IconButton(onClick = { expanded = !expanded }) {
+                        IconButton(onClick = { onStationSelected("") }) {
                             Icon(
                                 modifier = Modifier.size(24.dp),
-                                imageVector = Icons.Rounded.KeyboardArrowDown,
-                                contentDescription = "arrow",
+                                imageVector = Icons.Rounded.Clear,
+                                contentDescription = "clear",
                             )
                         }
                     }
@@ -185,8 +186,6 @@ fun MakeStationInputField(
                     }
                 }
             }
-
-
         }
 
     }
