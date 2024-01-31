@@ -7,7 +7,7 @@ import com.example.vlak_app_test.models.schedule.Schedule
 @Entity(tableName = "trip")
 data class Trip(
     @PrimaryKey(autoGenerate = true)
-    val id: Int,
+    val id: Int = 0,
     val fromStation: String,
     val toStation: String,
     val duration: String,
@@ -21,6 +21,7 @@ data class Trip(
 )
 
 data class TripHeading(
+    val id: Int,
     val fromStation: String,
     val toStation: String,
     val duration: String,
