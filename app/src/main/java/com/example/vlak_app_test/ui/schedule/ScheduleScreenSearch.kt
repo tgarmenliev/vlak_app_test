@@ -1,5 +1,6 @@
 package com.example.vlak_app_test.ui.schedule
 
+import android.widget.Toast
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
@@ -87,6 +88,8 @@ fun MakeScheduleSearchScreen(
 
     var recentSearched by rememberSaveable { mutableStateOf<List<SearchedSchedule>>(emptyList()) }
     var trainRecentSearched by rememberSaveable { mutableStateOf<List<SearchedTrainInfo>>(emptyList()) }
+
+    val context = LocalContext.current
 
     LaunchedEffect(Unit) {
         viewModel.getRecentSearches()
@@ -233,9 +236,19 @@ fun MakeScheduleSearchScreen(
                             .height(50.dp)
                             .align(Alignment.CenterHorizontally),
                         onClick = {
-                            viewModel.setOption(stationOne, stationTwo, date)
-                            viewModel.getData()
-                            navController.navigate("schedule_screen")
+                            if (!viewModel.checkIfStationExists(stationOne) || !viewModel.checkIfStationExists(stationTwo)) {
+                                Toast.makeText(
+                                    context,
+                                    R.string.station_not_exist,
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                                stationOne = ""
+                                stationTwo = ""
+                            } else {
+                                viewModel.setOption(stationOne, stationTwo, date)
+                                viewModel.getData()
+                                navController.navigate("schedule_screen")
+                            }
                         }
                     )
 

@@ -1,6 +1,7 @@
 package com.example.vlak_app_test.ui.live
 
 
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -32,6 +33,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -53,6 +55,8 @@ fun MakeLiveSearchScreen(
     var titleText by rememberSaveable { mutableStateOf("") }
     var checked by rememberSaveable { mutableStateOf(false) }
     var recentSearched by rememberSaveable { mutableStateOf<List<SearchedStation>>(emptyList()) }
+
+    val context = LocalContext.current
 
     LaunchedEffect(Unit) {
         viewModel.getRecentSearches()
@@ -153,7 +157,12 @@ fun MakeLiveSearchScreen(
                 text = R.string.next,
                 onClick = {
                     if (!viewModel.checkIfStationExists(titleText)) {
-                        println("station does not exist")
+                        Toast.makeText(
+                            context,
+                            R.string.station_not_exist,
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        titleText = ""
                     } else {
                         viewModel.setStation(titleText)
                         viewModel.getData()

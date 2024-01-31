@@ -56,14 +56,14 @@ class ScheduleViewModel(
             return null
         }
     }
-//
-//    fun checkIfStationExists(station: String): Boolean {
-//        val stations = stationsList
-//        val foundStation = stations.find {
-//            it.name.equals(station, ignoreCase = true) || it.englishName.equals(station, ignoreCase = true)
-//        }
-//        return foundStation != null
-//    }
+
+    fun checkIfStationExists(station: String): Boolean {
+        val stations = stationsList
+        val foundStation = stations.find {
+            it.name.equals(station, ignoreCase = true) || it.englishName.equals(station, ignoreCase = true)
+        }
+        return foundStation != null
+    }
 
     fun setOption(from: String, to: String, date: String) {
         val formatter = SimpleDateFormat("yyyy-MM-dd")
