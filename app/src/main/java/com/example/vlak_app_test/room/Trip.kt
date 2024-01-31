@@ -25,4 +25,6 @@ data class TripHeading(
     val duration: String,
     val departureTime: String,
     val arrivalTime: String,
+    val departureDate: String,
+    val arrivalDate: String,
 )
