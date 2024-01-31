@@ -157,7 +157,7 @@ fun MakeStationInputField(
                 )
             }
 
-            AnimatedVisibility(visible = expanded) {
+            AnimatedVisibility(visible = expanded && station.isNotEmpty()) {
                 Card(
                     modifier = Modifier
                         .padding(horizontal = 5.dp)
@@ -171,35 +171,21 @@ fun MakeStationInputField(
                         val uniqueSuggestions = HashSet<String>()
                         var name: String = ""
 
-                        if (station.isNotEmpty()) {
-                            items(stations) { value ->
-                                name = if (language == "bg") value.name else value.englishName
-                                if (name.lowercase().contains(station.lowercase())) {
-                                    if (uniqueSuggestions.add(name)) {
-                                        ItemsCategory(title = name) { title ->
-                                            onStationSelected(title)
-                                            expanded = false
-                                        }
-                                    }
-                                }
-                            }
-                        } else {
-                            val sortedStations = stations.sortedBy { if (language == "bg") it.name else it.englishName }
-                            items(sortedStations) { value ->
-                                name = if (language == "bg") value.name else value.englishName
-                                if (uniqueSuggestions.add(name)) {
-                                    ItemsCategory(title = name) { title ->
-                                        onStationSelected(title)
-                                        expanded = false
-                                    }
+                        val sortedStations = stations.sortedBy { if (language == "bg") it.name else it.englishName }
+                        items(sortedStations) { value ->
+                            name = if (language == "bg") value.name else value.englishName
+                            val startsWithFirstLetters = name.lowercase().startsWith(station.lowercase())
+                            if (uniqueSuggestions.add(name) && startsWithFirstLetters) {
+                                ItemsCategory(title = name) { title ->
+                                    onStationSelected(title)
+                                    expanded = false
                                 }
                             }
                         }
                     }
-
-
                 }
             }
+
 
         }
 
