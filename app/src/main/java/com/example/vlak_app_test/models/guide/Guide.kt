@@ -12,20 +12,22 @@ class Guide {
     )
 
     data class Topic(
-        val title: String,
-        val subtitle: String,
+        val title: String = "",
+        val subtitle: String = "",
+        val image: String = "",
         val content: List<Content>
     )
 
     data class Content(
-        val text: String,
-        val image: String
+        val text: String = "",
+        val image: String = ""
     )
 
     data class AllTopics(
-        val titles: List<String>,
-        val subtitles: List<String>,
-        val images: List<String>
+        val id: Int = 0,
+        val titles: String,
+        val subtitles: String,
+        val images: String
     )
 
     data class PhotoResponse(
