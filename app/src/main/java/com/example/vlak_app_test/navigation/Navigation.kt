@@ -26,7 +26,6 @@ import com.example.vlak_app_test.ui.home.MakeHomescreen
 import com.example.vlak_app_test.ui.live.LiveViewModel
 import com.example.vlak_app_test.ui.live.MakeLiveScreenOne
 import com.example.vlak_app_test.ui.live.MakeLiveSearchScreen
-import com.example.vlak_app_test.ui.live.sampleGuideInfo
 import com.example.vlak_app_test.ui.schedule.MakeScheduleOptionScreen
 import com.example.vlak_app_test.ui.schedule.MakeScheduleScreen
 import com.example.vlak_app_test.ui.schedule.MakeScheduleSearchScreen

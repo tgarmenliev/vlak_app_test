@@ -2,7 +2,6 @@ package com.example.vlak_app_test.models.guide
 
 import com.google.gson.annotations.SerializedName
 
-
 class Guide {
     data class GuideTable(
         val title: String,

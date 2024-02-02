@@ -9,8 +9,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.vlak_app_test.models.guide.Guide
 import com.example.vlak_app_test.network.TrainApi
-import com.example.vlak_app_test.room.SearchedStation
-import com.example.vlak_app_test.ui.live.LiveState
 import kotlinx.coroutines.launch
 import java.util.Locale
 

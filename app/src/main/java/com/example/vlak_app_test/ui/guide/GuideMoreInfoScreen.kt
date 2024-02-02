@@ -1,12 +1,11 @@
 package com.example.vlak_app_test.ui.guide
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
@@ -19,14 +18,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.example.vlak_app_test.R
-import com.example.vlak_app_test.models.guide.Guide
-import com.example.vlak_app_test.ui.theme.PrimaryDarkColor
 
 @Composable
 fun MakeGuideMoreInfoScreen(
@@ -57,7 +53,7 @@ fun MakeGuideMoreInfoScreen(
             contentScale = ContentScale.Crop,
             modifier = Modifier
                 .fillMaxWidth(0.9f)
-                .fillMaxHeight(0.26f)
+                .height(200.dp)
                 .padding(top = 16.dp, bottom = 16.dp)
                 .align(Alignment.CenterHorizontally)
                 .clip(RoundedCornerShape(20.dp))

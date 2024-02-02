@@ -2,18 +2,11 @@ package com.example.vlak_app_test.ui.guide
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
-import com.example.vlak_app_test.R
-import com.example.vlak_app_test.models.guide.Guide
 import com.example.vlak_app_test.ui.error.ErrorScreen
-import com.example.vlak_app_test.ui.live.LiveState
-import com.example.vlak_app_test.ui.live.MakeLiveScreen
 import com.example.vlak_app_test.ui.loading.LoadingScreen
-import com.example.vlak_app_test.ui.top_bar.MakeTopBar
 
 @Composable
 fun MakeGuideScreen(
