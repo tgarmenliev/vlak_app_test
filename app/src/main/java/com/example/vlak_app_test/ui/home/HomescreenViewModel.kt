@@ -26,6 +26,10 @@ class HomescreenViewModel(
     private val _recentTrips = mutableStateOf<List<TripHeading>>(emptyList())
     val recentTrips: State<List<TripHeading>> = _recentTrips
 
+    init {
+        getRecentTrips()
+    }
+
     fun insertTrip(trip: Schedule.Options, route: String) {
         viewModelScope.launch {
             Trip(

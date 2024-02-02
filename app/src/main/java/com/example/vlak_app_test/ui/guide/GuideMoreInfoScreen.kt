@@ -29,9 +29,11 @@ import com.example.vlak_app_test.ui.theme.PrimaryDarkColor
 @Composable
 fun MakeGuideMoreInfoScreen(
     modifier: Modifier = Modifier,
-    data: Guide.GuideTable,
-    onClose: () -> Unit
+    onClose: () -> Unit,
+    viewModel: GuideViewModel
 ) {
+    val data = viewModel.getOnMoreInfoTopic()
+
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -47,7 +49,7 @@ fun MakeGuideMoreInfoScreen(
         )
 
         Image(
-            painter = painterResource(id = data.image),
+            painter = painterResource(id = R.drawable.train_one),
             contentDescription = "Guide image",
             contentScale = ContentScale.Crop,
             modifier = Modifier
@@ -71,10 +73,18 @@ fun MakeGuideMoreInfoScreen(
                 modifier = Modifier.padding(bottom = 8.dp)
             )
             Text(
-                text = data.description,
+                text = data.subtitle,
                 style = MaterialTheme.typography.titleMedium,
                 modifier = Modifier.padding(bottom = 8.dp)
             )
+
+            data.content.forEach {
+                Text(
+                    text = it.text,
+                    style = MaterialTheme.typography.bodyMedium,
+                    modifier = Modifier.padding(bottom = 8.dp)
+                )
+            }
         }
     }
 }

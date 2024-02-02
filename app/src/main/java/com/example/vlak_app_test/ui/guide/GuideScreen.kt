@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavController
 import com.example.vlak_app_test.R
 import com.example.vlak_app_test.models.guide.Guide
 import com.example.vlak_app_test.ui.error.ErrorScreen
@@ -17,14 +18,14 @@ import com.example.vlak_app_test.ui.top_bar.MakeTopBar
 @Composable
 fun MakeGuideScreen(
     modifier: Modifier = Modifier,
-    viewModel: GuideViewModel
+    viewModel: GuideViewModel,
+    navController: NavController
 ) {
     when (val guideState = viewModel.guideState) {
         is GuideState.Loading -> {
             LoadingScreen(modifier = Modifier.fillMaxSize())
         }
         is GuideState.SuccessTopic -> {
-
         }
         is GuideState.SuccessAllTopics -> {
             Column(
@@ -32,7 +33,12 @@ fun MakeGuideScreen(
             ) {
                 CarouselScreen(
                     modifier = Modifier,
-                    data = viewModel.getAllTopics()
+                    data = viewModel.getAllTopics(),
+                    onCardClick = {
+                        viewModel.setSelectedTopic(it)
+                        viewModel.getGuideTopic()
+                        navController.navigate("guide_more_info")
+                    }
                 )
             }
         }

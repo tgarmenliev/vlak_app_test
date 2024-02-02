@@ -15,7 +15,7 @@ class Guide {
         val title: String = "",
         val subtitle: String = "",
         val image: String = "",
-        val content: List<Content>
+        val content: List<Content> = listOf()
     )
 
     data class Content(

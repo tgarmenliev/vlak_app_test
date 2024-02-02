@@ -47,23 +47,24 @@ import kotlin.math.absoluteValue
 @Composable
 fun CarouselScreen(
     modifier: Modifier = Modifier,
-    data: List<Guide.AllTopics>
+    data: List<Guide.AllTopics>,
+    onCardClick: (Int) -> Unit = { }
 ) {
 
-    var selectedCardGuide by remember {
-        mutableStateOf<Guide.GuideTable?>(null)
-    }
-
-    if (selectedCardGuide != null) {
-        MakeGuideMoreInfoScreen(
-            modifier = Modifier
-                .fillMaxSize(),
-            data = selectedCardGuide!!,
-            onClose = {
-                selectedCardGuide = null
-            }
-        )
-    }
+//    var selectedCardGuide by remember {
+//        mutableStateOf<Guide.GuideTable?>(null)
+//    }
+//
+//    if (selectedCardGuide != null) {
+//        MakeGuideMoreInfoScreen(
+//            modifier = Modifier
+//                .fillMaxSize(),
+//            data = selectedCardGuide!!,
+//            onClose = {
+//                selectedCardGuide = null
+//            }
+//        )
+//    }
 
     val autoScrollDuration = 3000L
 
@@ -118,9 +119,7 @@ fun CarouselScreen(
                     .fillMaxHeight()
                     .carouselTransition(page = index, pagerState = pagerState),
                 data = data[index],
-                onClick = {
-
-                }
+                onClick = { onCardClick(index) }
             )
         }
     }

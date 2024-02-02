@@ -19,6 +19,7 @@ import com.example.vlak_app_test.ui.bottom_bar.MakeBottomBar
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.vlak_app_test.room.AppDatabase
 import com.example.vlak_app_test.ui.guide.GuideViewModel
+import com.example.vlak_app_test.ui.guide.MakeGuideMoreInfoScreen
 import com.example.vlak_app_test.ui.guide.MakeGuideScreen
 import com.example.vlak_app_test.ui.home.HomescreenViewModel
 import com.example.vlak_app_test.ui.home.MakeHomescreen
@@ -140,8 +141,17 @@ fun Navigation(
             }
         }
 
-        composable("guide") {
-            MakeGuideScreen(viewModel = guideViewModel, modifier = modifier)
+        navigation(
+            route = "guide_graph",
+            startDestination = "guide"
+        ) {
+            composable("guide") {
+                MakeGuideScreen(viewModel = guideViewModel, modifier = modifier, navController = navController)
+            }
+
+            composable("guide_more_info") {
+                MakeGuideMoreInfoScreen(viewModel = guideViewModel, onClose = { navController.popBackStack() })
+            }
         }
     }
 }

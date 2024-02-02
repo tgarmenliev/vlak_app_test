@@ -40,6 +40,10 @@ class GuideViewModel : ViewModel() {
         }
     }
 
+    fun setSelectedTopic(id: Int) {
+        _selectedTopic.value = id
+    }
+
     fun getGuideTopic() {
         if (selectedTopic.value == -1) return
         viewModelScope.launch {
@@ -52,6 +56,13 @@ class GuideViewModel : ViewModel() {
                 GuideState.Error(e)
             }
         }
+    }
+
+    fun getOnMoreInfoTopic(): Guide.Topic {
+        if (guideState is GuideState.SuccessTopic) {
+            return (guideState as GuideState.SuccessTopic).data
+        }
+        return Guide.Topic()
     }
 
     fun getAllTopics(): List<Guide.AllTopics> {
