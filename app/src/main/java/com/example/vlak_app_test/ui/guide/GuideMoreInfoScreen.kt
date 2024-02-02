@@ -1,5 +1,7 @@
 package com.example.vlak_app_test.ui.guide
 
+import androidx.activity.addCallback
+import androidx.activity.compose.LocalOnBackPressedDispatcherOwner
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -15,6 +17,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -31,6 +34,15 @@ fun MakeGuideMoreInfoScreen(
     viewModel: GuideViewModel
 ) {
     val data = viewModel.getOnMoreInfoTopic()
+
+    val backDispatcher = LocalOnBackPressedDispatcherOwner.current?.onBackPressedDispatcher
+
+    DisposableEffect(backDispatcher) {
+        val callback = backDispatcher?.addCallback(onBackPressed = { onClose() })
+        onDispose {
+            callback?.remove()
+        }
+    }
 
     Column(
         modifier = modifier
