@@ -63,7 +63,7 @@ interface TrainApiService {
     @GET("/api/guide/{language}")
     suspend fun getGuideTopics(
         @Path("language") language: String
-    ): Guide.AllTopics
+    ): List<Guide.AllTopics>
 
     @GET("/guide/images/{imageUrl}")
     suspend fun getPhoto(

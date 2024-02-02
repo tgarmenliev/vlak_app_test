@@ -37,6 +37,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.lerp
+import com.example.vlak_app_test.R
 import com.example.vlak_app_test.models.guide.Guide
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -46,7 +47,7 @@ import kotlin.math.absoluteValue
 @Composable
 fun CarouselScreen(
     modifier: Modifier = Modifier,
-    data: List<Guide.GuideTable>
+    data: List<Guide.AllTopics>
 ) {
 
     var selectedCardGuide by remember {
@@ -118,7 +119,7 @@ fun CarouselScreen(
                     .carouselTransition(page = index, pagerState = pagerState),
                 data = data[index],
                 onClick = {
-                    selectedCardGuide = data[index]
+
                 }
             )
         }
@@ -128,7 +129,7 @@ fun CarouselScreen(
 @Composable
 fun CarouselItem(
     modifier: Modifier = Modifier,
-    data: Guide.GuideTable,
+    data: Guide.AllTopics,
     onClick: () -> Unit = { }
 ) {
 
@@ -145,7 +146,7 @@ fun CarouselItem(
             .fillMaxHeight()
         ) {
             Image(
-                painter = painterResource(id = data.image),
+                painter = painterResource(id = R.drawable.train_one),
                 contentDescription = "Carousel Image",
                 modifier = Modifier
                     .fillMaxSize(),
@@ -180,7 +181,7 @@ fun CarouselItem(
                 )
 
                 Text(
-                    text = data.shortDescription,
+                    text = data.subtitle,
                     style = MaterialTheme.typography.titleMedium.copy(
                         color = Color.White,
                         fontWeight = FontWeight.Normal

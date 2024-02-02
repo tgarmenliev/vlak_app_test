@@ -25,14 +25,14 @@ class Guide {
 
     data class AllTopics(
         val id: Int = 0,
-        val titles: String,
-        val subtitles: String,
-        val images: String
+        val title: String = "",
+        val subtitle: String = "",
+        val image: String = ""
     )
 
     data class PhotoResponse(
         @SerializedName("imageUrl")
-        val imageUrl: String
+        val imageUrl: String = ""
     )
 
 }
