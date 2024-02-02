@@ -97,7 +97,14 @@ fun Navigation(
             startDestination = "home"
         ) {
             composable("home") {
-                MakeHomescreen(modifier = modifier, viewModel = homescreenViewModel, onClick = { navController.navigate("trips") })
+                MakeHomescreen(
+                    modifier = modifier,
+                    viewModel = homescreenViewModel,
+                    onClick = {
+                        homescreenViewModel.getTrips()
+                        navController.navigate("trips")
+                    }
+                )
             }
 
             composable("trips") {

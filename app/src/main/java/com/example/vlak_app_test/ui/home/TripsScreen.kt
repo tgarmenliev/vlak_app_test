@@ -10,7 +10,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -34,6 +36,7 @@ import com.example.vlak_app_test.ui.error.ErrorScreen
 import com.example.vlak_app_test.ui.loading.LoadingScreen
 import com.example.vlak_app_test.ui.schedule.MakeTrainOnTransfer
 import com.example.vlak_app_test.ui.schedule.MakeTransferComposable
+import com.example.vlak_app_test.ui.schedule.MakeTransfers
 import com.example.vlak_app_test.ui.top_bar.MakeTopBar
 
 @Composable
@@ -77,6 +80,7 @@ fun TripsScreen(
         modifier = modifier
             .fillMaxWidth()
             .padding(16.dp)
+            .verticalScroll(rememberScrollState())
     ) {
         data.forEach { trip ->
             TripCard(
@@ -119,6 +123,13 @@ fun TripCard(
             style = MaterialTheme.typography.bodyMedium,
             fontWeight = FontWeight.Bold,
             modifier = Modifier.padding(start = 4.dp, end = 4.dp),
+        )
+
+        MakeTransfers(
+            transfers = trip.numOfTransfers,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(start = 4.dp, end = 4.dp)
         )
 
         Row {
@@ -175,7 +186,7 @@ fun TripCard(
             Divider(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 8.dp),
+                    .padding(start = 8.dp, end = 8.dp, top = 8.dp),
                 thickness = 1.dp,
                 color = MaterialTheme.colorScheme.secondary
             )
