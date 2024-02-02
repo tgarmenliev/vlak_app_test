@@ -1,7 +1,6 @@
 package com.example.vlak_app_test.ui.schedule
 
 import android.widget.Toast
-import androidx.compose.animation.core.tween
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -10,17 +9,16 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
@@ -38,7 +36,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.input.pointer.pointerHoverIcon
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -46,21 +44,16 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.vlak_app_test.R
-import com.example.vlak_app_test.rememberImeState
 import com.example.vlak_app_test.room.SearchedSchedule
-import com.example.vlak_app_test.room.SearchedStation
 import com.example.vlak_app_test.room.SearchedTrainInfo
 import com.example.vlak_app_test.ui.composables.MakeButton
 import com.example.vlak_app_test.ui.composables.MakeDatePickerDialog
 import com.example.vlak_app_test.ui.composables.MakeImageHeader
 import com.example.vlak_app_test.ui.composables.MakeSimpleInputField
 import com.example.vlak_app_test.ui.composables.MakeStationInputField
-import com.example.vlak_app_test.ui.theme.BackgroundColor
-import com.example.vlak_app_test.ui.theme.PrimaryDarkColor
 import com.example.vlak_app_test.ui.train_info.TrainInfoViewModel
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -137,19 +130,37 @@ fun MakeScheduleSearchScreen(
                         .fillMaxWidth()
                         .padding(16.dp)
                 ) {
-                    
-                    Icon(
-                        painter = painterResource(id = R.drawable.swap),
-                        contentDescription = "Swap stations",
+
+                    Box(
                         modifier = Modifier
-                            .size(24.dp)
-                            .align(Alignment.End)
+                            .size(36.dp)
                             .clickable {
                                 val temp = stationOne
                                 stationOne = stationTwo
                                 stationTwo = temp
                             }
-                    )
+                            .align(Alignment.End)
+                    ) {
+                        Box(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .background(color = Color.Transparent, shape = CircleShape)
+                                .border(
+                                    width = 2.dp,
+                                    color = MaterialTheme.colorScheme.onBackground,
+                                    shape = CircleShape
+                                )
+                        )
+
+                        Icon(
+                            painter = painterResource(id = R.drawable.swap),
+                            contentDescription = "Swap stations",
+                            modifier = Modifier
+                                .size(24.dp)
+                                .align(Alignment.Center)
+                        )
+                    }
+
 
                     MakeStationInputField(
                         station = stationOne,
@@ -372,14 +383,3 @@ fun MakeScheduleSearchScreen(
         }
     }
 }
-
-//@Preview
-//@Composable
-//fun ScheduleSearchScreenPreview() {
-//    MakeScheduleSearchScreen(
-//        modifier = Modifier,
-//        navController = NavController(LocalContext.current),
-//        viewModel = ScheduleViewModel(),
-//        trainInfoViewModel = TrainInfoViewModel()
-//    )
-//}
