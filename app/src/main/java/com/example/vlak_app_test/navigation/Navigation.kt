@@ -91,13 +91,13 @@ fun Navigation(
 
     //val navController = rememberNavController()
 
-    NavHost(navController = navController, startDestination = "home") {
+    NavHost(navController = navController, startDestination = "home_graph") {
         navigation(
             route = "home_graph",
             startDestination = "home"
         ) {
             composable("home") {
-                MakeHomescreen(modifier = modifier, viewModel = homescreenViewModel)
+                MakeHomescreen(modifier = modifier, viewModel = homescreenViewModel, onClick = { navController.navigate("trips") })
             }
 
             composable("trips") {

@@ -30,12 +30,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.example.vlak_app_test.R
 import com.example.vlak_app_test.room.TripHeading
+import com.example.vlak_app_test.ui.composables.MakeButton
 import com.example.vlak_app_test.ui.composables.MakeImageHeader
 
 @Composable
 fun MakeHomescreen(
     modifier: Modifier = Modifier,
-    viewModel: HomescreenViewModel
+    viewModel: HomescreenViewModel,
+    onClick: () -> Unit = { }
 ) {
     var recentTrips by rememberSaveable { mutableStateOf<List<TripHeading>>(emptyList()) }
 
@@ -64,7 +66,8 @@ fun MakeHomescreen(
                 MakeRecentTrips(
                     modifier = Modifier
                         .fillMaxWidth(),
-                    recentTrips = recentTrips
+                    recentTrips = recentTrips,
+                    onClick = onClick
                 )
             }
         }
@@ -72,7 +75,11 @@ fun MakeHomescreen(
 }
 
 @Composable
-fun MakeRecentTrips(modifier: Modifier, recentTrips: List<TripHeading>) {
+fun MakeRecentTrips(
+    modifier: Modifier,
+    recentTrips: List<TripHeading>,
+    onClick: () -> Unit = { }
+) {
     if (recentTrips.isNotEmpty()) {
         Column(
             modifier = modifier
@@ -84,6 +91,7 @@ fun MakeRecentTrips(modifier: Modifier, recentTrips: List<TripHeading>) {
                 modifier = Modifier
                     .padding(8.dp)
             )
+
             recentTrips.forEach {
                 MakeRecentTrip(
                     modifier = Modifier
@@ -92,6 +100,15 @@ fun MakeRecentTrips(modifier: Modifier, recentTrips: List<TripHeading>) {
                     trip = it
                 )
             }
+
+            MakeButton(
+                text = R.string.view_all_trips,
+                onClick = onClick,
+                modifier = Modifier
+                    .fillMaxWidth(0.6f)
+                    .padding(8.dp)
+                    .align(Alignment.CenterHorizontally)
+            )
         }
     } else {
         Text(text = stringResource(id = R.string.no_added_trips))
