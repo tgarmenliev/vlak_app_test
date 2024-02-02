@@ -26,6 +26,8 @@ class GuideViewModel : ViewModel() {
     val selectedTopic: State<Int> = _selectedTopic
 
     private val _allTopics = mutableStateOf<List<Guide.AllTopics>>(emptyList())
+
+    private val _currentTopic = mutableIntStateOf(0)
     
     init {
         viewModelScope.launch {
@@ -47,6 +49,14 @@ class GuideViewModel : ViewModel() {
 
     fun removeSuccessTopic() {
         guideState = GuideState.SuccessAllTopics(_allTopics.value)
+    }
+
+    fun setCurrentTopic(id: Int) {
+        _currentTopic.value = id
+    }
+
+    fun getCurrentTopic(): Int {
+        return _currentTopic.value
     }
 
     fun getGuideTopic() {

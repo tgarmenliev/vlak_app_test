@@ -2,7 +2,6 @@ package com.example.vlak_app_test.ui.guide
 
 import androidx.activity.addCallback
 import androidx.activity.compose.LocalOnBackPressedDispatcherOwner
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -75,18 +74,6 @@ fun MakeGuideMoreInfoScreen(
                 .align(Alignment.CenterHorizontally)
                 .clip(RoundedCornerShape(20.dp))
         )
-
-//        Image(
-//            painter = painterResource(id = R.drawable.train_one),
-//            contentDescription = "Guide image",
-//            contentScale = ContentScale.Crop,
-//            modifier = Modifier
-//                .fillMaxWidth(0.9f)
-//                .height(200.dp)
-//                .padding(top = 16.dp, bottom = 16.dp)
-//                .align(Alignment.CenterHorizontally)
-//                .clip(RoundedCornerShape(20.dp))
-//        )
 
         Column(
             modifier = Modifier

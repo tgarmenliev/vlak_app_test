@@ -1,7 +1,6 @@
 package com.example.vlak_app_test.ui.guide
 
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.collectIsDraggedAsState
@@ -24,6 +23,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.remember
@@ -54,23 +54,9 @@ const val url = BASE_URL
 fun CarouselScreen(
     modifier: Modifier = Modifier,
     data: List<Guide.AllTopics>,
-    onCardClick: (Int) -> Unit = { }
+    onCardClick: (Int) -> Unit = { },
+    viewModel: GuideViewModel
 ) {
-
-//    var selectedCardGuide by remember {
-//        mutableStateOf<Guide.GuideTable?>(null)
-//    }
-//
-//    if (selectedCardGuide != null) {
-//        MakeGuideMoreInfoScreen(
-//            modifier = Modifier
-//                .fillMaxSize(),
-//            data = selectedCardGuide!!,
-//            onClose = {
-//                selectedCardGuide = null
-//            }
-//        )
-//    }
 
     val autoScrollDuration = 3000L
 
@@ -83,7 +69,7 @@ fun CarouselScreen(
     val isDragged by pagerState.interactionSource.collectIsDraggedAsState()
     if (isDragged.not()) {
         with(pagerState) {
-            var currentPageKey by remember { mutableStateOf(0) }
+            var currentPageKey by remember { mutableIntStateOf(viewModel.getCurrentTopic()) }
             LaunchedEffect(key1 = currentPageKey) {
                 launch {
                     delay(timeMillis = autoScrollDuration)
@@ -150,13 +136,6 @@ fun CarouselItem(
         Box(modifier = Modifier
             .fillMaxHeight()
         ) {
-//            Image(
-//                painter = painterResource(id = R.drawable.train_one),
-//                contentDescription = "Carousel Image",
-//                modifier = Modifier
-//                    .fillMaxSize(),
-//                contentScale = ContentScale.Crop
-//            )
 
             AsyncImage(
                 model = ImageRequest.Builder(LocalContext.current)

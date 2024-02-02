@@ -30,8 +30,10 @@ fun MakeGuideScreen(
                     onCardClick = {
                         viewModel.setSelectedTopic(it)
                         viewModel.getGuideTopic()
+                        viewModel.setCurrentTopic(it)
                         navController.navigate("guide_more_info")
-                    }
+                    },
+                    viewModel = viewModel
                 )
             }
         }
