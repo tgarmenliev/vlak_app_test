@@ -26,6 +26,8 @@ class GuideViewModel : ViewModel() {
 
     private val _selectedTopic = mutableIntStateOf(-1)
     val selectedTopic: State<Int> = _selectedTopic
+
+    private val _allTopics = mutableStateOf<List<Guide.AllTopics>>(emptyList())
     
     init {
         viewModelScope.launch {
@@ -33,6 +35,7 @@ class GuideViewModel : ViewModel() {
 
             guideState = try {
                 val result = TrainApi.retrofitService.getGuideTopics(Locale.getDefault().language)
+                _allTopics.value = result
                 GuideState.SuccessAllTopics(result)
             } catch (e: Exception) {
                 GuideState.Error(e)
@@ -42,6 +45,10 @@ class GuideViewModel : ViewModel() {
 
     fun setSelectedTopic(id: Int) {
         _selectedTopic.value = id
+    }
+
+    fun removeSuccessTopic() {
+        guideState = GuideState.SuccessAllTopics(_allTopics.value)
     }
 
     fun getGuideTopic() {

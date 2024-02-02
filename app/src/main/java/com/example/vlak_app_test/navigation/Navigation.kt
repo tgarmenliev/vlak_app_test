@@ -150,7 +150,13 @@ fun Navigation(
             }
 
             composable("guide_more_info") {
-                MakeGuideMoreInfoScreen(viewModel = guideViewModel, onClose = { navController.popBackStack() })
+                MakeGuideMoreInfoScreen(
+                    viewModel = guideViewModel,
+                    onClose = {
+                        guideViewModel.removeSuccessTopic()
+                        navController.popBackStack()
+                    }
+                )
             }
         }
     }
