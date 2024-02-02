@@ -33,15 +33,21 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.lerp
+import coil.compose.AsyncImage
+import coil.request.ImageRequest
 import com.example.vlak_app_test.R
 import com.example.vlak_app_test.models.guide.Guide
+import com.example.vlak_app_test.network.BASE_URL
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlin.math.absoluteValue
+
+const val url = BASE_URL
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -144,12 +150,22 @@ fun CarouselItem(
         Box(modifier = Modifier
             .fillMaxHeight()
         ) {
-            Image(
-                painter = painterResource(id = R.drawable.train_one),
-                contentDescription = "Carousel Image",
+//            Image(
+//                painter = painterResource(id = R.drawable.train_one),
+//                contentDescription = "Carousel Image",
+//                modifier = Modifier
+//                    .fillMaxSize(),
+//                contentScale = ContentScale.Crop
+//            )
+
+            AsyncImage(
+                model = ImageRequest.Builder(LocalContext.current)
+                    .data(url + "/guide/images/" + data.image)
+                    .build(),
+                contentDescription = "topic image",
+                contentScale = ContentScale.Crop,
                 modifier = Modifier
-                    .fillMaxSize(),
-                contentScale = ContentScale.Crop
+                    .fillMaxSize()
             )
 
             Box(modifier = Modifier
