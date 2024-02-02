@@ -50,4 +50,5 @@
     <string name="added_to_trips">Added to trips</string>
     <string name="recent_trips">Recent trips:</string>
     <string name="station_not_exist">Station does not exist! Please try again!</string>
+    <string name="my_trips">My trips</string>
 </resources>

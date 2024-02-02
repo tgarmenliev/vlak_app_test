@@ -51,4 +51,5 @@
     <string name="added_to_trips">Добавено към пътувания</string>
     <string name="recent_trips">Скорошни пътувания:</string>
     <string name="station_not_exist">Гарата не съществува! Моля, опитайте отново!</string>
+    <string name="my_trips">Моите пътувания</string>
 </resources>

@@ -23,6 +23,7 @@ import com.example.vlak_app_test.ui.guide.MakeGuideMoreInfoScreen
 import com.example.vlak_app_test.ui.guide.MakeGuideScreen
 import com.example.vlak_app_test.ui.home.HomescreenViewModel
 import com.example.vlak_app_test.ui.home.MakeHomescreen
+import com.example.vlak_app_test.ui.home.MakeTripsScreen
 import com.example.vlak_app_test.ui.live.LiveViewModel
 import com.example.vlak_app_test.ui.live.MakeLiveScreenOne
 import com.example.vlak_app_test.ui.live.MakeLiveSearchScreen
@@ -91,8 +92,17 @@ fun Navigation(
     //val navController = rememberNavController()
 
     NavHost(navController = navController, startDestination = "home") {
-        composable("home") {
-            MakeHomescreen(modifier = modifier, viewModel = homescreenViewModel)
+        navigation(
+            route = "home_graph",
+            startDestination = "home"
+        ) {
+            composable("home") {
+                MakeHomescreen(modifier = modifier, viewModel = homescreenViewModel)
+            }
+
+            composable("trips") {
+                MakeTripsScreen(viewModel = homescreenViewModel, onBackSelected = { navController.popBackStack() })
+            }
         }
 
         navigation(

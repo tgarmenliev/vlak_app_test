@@ -215,9 +215,9 @@ private fun Circle(
 }
 
 @Composable
-private fun MakeTrainOnTransfer(
+fun MakeTrainOnTransfer(
     data: Schedule.Trains,
-    getTrainInfo: (String) -> Unit,
+    getTrainInfo: (String) -> Unit = {},
 ) {
     Row(
         modifier = Modifier
@@ -377,7 +377,7 @@ private fun MakeTrainForTransfers(
 }
 
 @Composable
-private fun MakeTransferComposable(
+fun MakeTransferComposable(
     modifier: Modifier = Modifier,
     timeToWaitNext: String = "0:00",
 ) {

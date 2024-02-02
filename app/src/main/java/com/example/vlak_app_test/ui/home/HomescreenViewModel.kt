@@ -18,10 +18,18 @@ sealed interface HomeState {
     data class Error(val error: Throwable) : HomeState
 }
 
+sealed interface TripState {
+    object Loading : TripState
+    data class Success(val data: List<Trip>) : TripState
+    data class Error(val error: Throwable) : TripState
+}
+
 class HomescreenViewModel(
     private val dao: TripDao
 ) : ViewModel() {
     var homeState: HomeState by mutableStateOf(HomeState.Loading)
+
+    var tripState: TripState by mutableStateOf(TripState.Loading)
 
     private val _recentTrips = mutableStateOf<List<TripHeading>>(emptyList())
     val recentTrips: State<List<TripHeading>> = _recentTrips
@@ -50,6 +58,13 @@ class HomescreenViewModel(
             homeState = HomeState.Loading
             _recentTrips.value = dao.getRecent3TripTitles()
             homeState = HomeState.Success(_recentTrips.value)
+        }
+    }
+
+    fun getTrips() {
+        viewModelScope.launch {
+            tripState = TripState.Loading
+            tripState = TripState.Success(dao.getTrips())
         }
     }
 }
