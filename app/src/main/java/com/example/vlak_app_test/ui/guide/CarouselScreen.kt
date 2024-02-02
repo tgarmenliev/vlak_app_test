@@ -61,7 +61,7 @@ fun CarouselScreen(
     val autoScrollDuration = 3000L
 
     val pagerState = rememberPagerState(
-        initialPage = 0,
+        initialPage = viewModel.getCurrentTopic(),
         initialPageOffsetFraction = 0f,
         pageCount = { data.size }
     )
@@ -69,7 +69,7 @@ fun CarouselScreen(
     val isDragged by pagerState.interactionSource.collectIsDraggedAsState()
     if (isDragged.not()) {
         with(pagerState) {
-            var currentPageKey by remember { mutableIntStateOf(viewModel.getCurrentTopic()) }
+            var currentPageKey by remember { mutableIntStateOf(0) }
             LaunchedEffect(key1 = currentPageKey) {
                 launch {
                     delay(timeMillis = autoScrollDuration)
