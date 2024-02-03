@@ -100,4 +100,7 @@ dependencies {
     implementation("androidx.room:room-ktx:$room_version")
 
     implementation("io.coil-kt:coil-compose:2.5.0")
+
+    // splash screen
+    implementation("androidx.core:core-splashscreen:1.0.1")
 }

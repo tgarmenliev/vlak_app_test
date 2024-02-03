@@ -35,7 +35,7 @@ import com.example.vlak_app_test.ui.train_info.MakeTrainInfoScreen
 import com.example.vlak_app_test.ui.train_info.TrainInfoViewModel
 
 @Composable
-fun AppNavigation(db: AppDatabase) {
+fun AppNavigation(db: AppDatabase, homescreenViewModel: HomescreenViewModel) {
     val navController = rememberNavController()
     val currentSelectedScreen = navController.currentBackStackEntryAsState().value?.destination?.route
 
@@ -56,7 +56,7 @@ fun AppNavigation(db: AppDatabase) {
     val scheduleViewModel = remember { ScheduleViewModel(db.scheduleDao()) }
     val liveViewModel = remember { LiveViewModel(db.stationDao()) }
     val trainInfoViewModel = remember { TrainInfoViewModel(db.trainInfoDao()) }
-    val homescreenViewModel = remember { HomescreenViewModel(db.tripDao()) }
+    //val homescreenViewModel = remember { HomescreenViewModel(db.tripDao()) }
     val guideViewModel = remember { GuideViewModel() }
 
     Scaffold(
