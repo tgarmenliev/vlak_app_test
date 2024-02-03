@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -32,6 +33,40 @@ import com.example.vlak_app_test.R
 import com.example.vlak_app_test.room.TripHeading
 import com.example.vlak_app_test.ui.composables.MakeButton
 import com.example.vlak_app_test.ui.composables.MakeImageHeader
+
+@Composable
+fun Homescreen(
+    modifier: Modifier = Modifier,
+    viewModel: HomescreenViewModel,
+    onClick: () -> Unit = { }
+) {
+    when (val homeState = viewModel.homeState) {
+        is HomeState.Success -> {
+            MakeHomescreen(
+                modifier = modifier,
+                viewModel = viewModel,
+                onClick = onClick
+            )
+        }
+        is HomeState.Loading -> {
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .fillMaxHeight()
+                    .background(MaterialTheme.colorScheme.background)
+            ) {
+                CircularProgressIndicator(
+                    modifier = Modifier
+                        .size(50.dp)
+                        .align(Alignment.Center)
+                )
+            }
+        }
+        is HomeState.Error -> {
+            Text(text = stringResource(id = R.string.error))
+        }
+    }
+}
 
 @Composable
 fun MakeHomescreen(

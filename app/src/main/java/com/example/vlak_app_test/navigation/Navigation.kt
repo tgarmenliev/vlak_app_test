@@ -21,6 +21,7 @@ import com.example.vlak_app_test.room.AppDatabase
 import com.example.vlak_app_test.ui.guide.GuideViewModel
 import com.example.vlak_app_test.ui.guide.MakeGuideMoreInfoScreen
 import com.example.vlak_app_test.ui.guide.MakeGuideScreen
+import com.example.vlak_app_test.ui.home.Homescreen
 import com.example.vlak_app_test.ui.home.HomescreenViewModel
 import com.example.vlak_app_test.ui.home.MakeHomescreen
 import com.example.vlak_app_test.ui.home.MakeTripsScreen
@@ -35,7 +36,7 @@ import com.example.vlak_app_test.ui.train_info.MakeTrainInfoScreen
 import com.example.vlak_app_test.ui.train_info.TrainInfoViewModel
 
 @Composable
-fun AppNavigation(db: AppDatabase, homescreenViewModel: HomescreenViewModel) {
+fun AppNavigation(db: AppDatabase) {
     val navController = rememberNavController()
     val currentSelectedScreen = navController.currentBackStackEntryAsState().value?.destination?.route
 
@@ -56,7 +57,7 @@ fun AppNavigation(db: AppDatabase, homescreenViewModel: HomescreenViewModel) {
     val scheduleViewModel = remember { ScheduleViewModel(db.scheduleDao()) }
     val liveViewModel = remember { LiveViewModel(db.stationDao()) }
     val trainInfoViewModel = remember { TrainInfoViewModel(db.trainInfoDao()) }
-    //val homescreenViewModel = remember { HomescreenViewModel(db.tripDao()) }
+    val homescreenViewModel = remember { HomescreenViewModel(db.tripDao()) }
     val guideViewModel = remember { GuideViewModel() }
 
     Scaffold(
@@ -97,7 +98,7 @@ fun Navigation(
             startDestination = "home"
         ) {
             composable("home") {
-                MakeHomescreen(
+                Homescreen(
                     modifier = modifier,
                     viewModel = homescreenViewModel,
                     onClick = {
