@@ -10,6 +10,7 @@ import com.example.vlak_app_test.models.schedule.Schedule
 import com.example.vlak_app_test.room.Trip
 import com.example.vlak_app_test.room.TripDao
 import com.example.vlak_app_test.room.TripHeading
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 sealed interface HomeState {
@@ -56,6 +57,7 @@ class HomescreenViewModel(
     fun getRecentTrips() {
         viewModelScope.launch {
             homeState = HomeState.Loading
+            delay(1000L)
             _recentTrips.value = dao.getRecent3TripTitles()
             homeState = HomeState.Success(_recentTrips.value)
         }

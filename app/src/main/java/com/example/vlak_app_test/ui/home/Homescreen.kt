@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -35,11 +36,14 @@ import com.example.vlak_app_test.room.TripHeading
 import com.example.vlak_app_test.ui.composables.MakeButton
 import com.example.vlak_app_test.ui.composables.MakeImageHeader
 import com.example.vlak_app_test.ui.error.ErrorScreen
+import com.example.vlak_app_test.ui.loading.LoadingScreen
+import com.example.vlak_app_test.ui.settings.SettingsViewModel
 
 @Composable
 fun Homescreen(
     modifier: Modifier = Modifier,
     viewModel: HomescreenViewModel,
+    onSettingsClick: () -> Unit = { },
     onClick: () -> Unit = { }
 ) {
     when (val homeState = viewModel.homeState) {
@@ -47,22 +51,24 @@ fun Homescreen(
             MakeHomescreen(
                 modifier = modifier,
                 viewModel = viewModel,
+                onSettingsClick = onSettingsClick,
                 onClick = onClick
             )
         }
         is HomeState.Loading -> {
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .fillMaxHeight()
-                    .background(MaterialTheme.colorScheme.background)
-            ) {
-                CircularProgressIndicator(
-                    modifier = Modifier
-                        .size(50.dp)
-                        .align(Alignment.Center)
-                )
-            }
+//            Box(
+//                modifier = Modifier
+//                    .fillMaxWidth()
+//                    .fillMaxHeight()
+//                    .background(MaterialTheme.colorScheme.background)
+//            ) {
+//                CircularProgressIndicator(
+//                    modifier = Modifier
+//                        .size(50.dp)
+//                        .align(Alignment.Center)
+//                )
+//            }
+            LoadingScreen(modifier = Modifier.fillMaxSize())
         }
         is HomeState.Error -> {
             ErrorScreen(error = homeState.error)
@@ -74,6 +80,7 @@ fun Homescreen(
 fun MakeHomescreen(
     modifier: Modifier = Modifier,
     viewModel: HomescreenViewModel,
+    onSettingsClick: () -> Unit = { },
     onClick: () -> Unit = { }
 ) {
     var recentTrips by rememberSaveable { mutableStateOf<List<TripHeading>>(emptyList()) }
@@ -99,8 +106,18 @@ fun MakeHomescreen(
             modifier = Modifier
                 .size(30.dp)
                 .align(Alignment.End)
-                .padding(8.dp)
+                .padding(top = 16.dp)
                 .clickable { viewModel.getRecentTrips() }
+        )
+
+        Icon(
+            painter = painterResource(id = R.drawable.close),
+            contentDescription = "refresh",
+            modifier = Modifier
+                .size(30.dp)
+                .align(Alignment.End)
+                .padding(top = 16.dp)
+                .clickable { onSettingsClick() }
         )
 
         Box(modifier = Modifier.padding(8.dp)) {

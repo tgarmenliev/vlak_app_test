@@ -5,8 +5,8 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 
 @Database(
-    entities = [SearchedStation::class, SearchedSchedule::class, SearchedTrainInfo::class, Trip::class],
-    version = 6,
+    entities = [SearchedStation::class, SearchedSchedule::class, SearchedTrainInfo::class, Trip::class, UserSettings::class],
+    version = 7,
 )
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
@@ -17,4 +17,6 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun trainInfoDao(): TrainInfoDao
 
     abstract fun tripDao(): TripDao
+
+    abstract fun userSettingsDao(): UserSettingsDao
 }

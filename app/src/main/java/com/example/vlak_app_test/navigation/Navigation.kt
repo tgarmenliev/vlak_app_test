@@ -32,6 +32,8 @@ import com.example.vlak_app_test.ui.schedule.MakeScheduleOptionScreen
 import com.example.vlak_app_test.ui.schedule.MakeScheduleScreen
 import com.example.vlak_app_test.ui.schedule.MakeScheduleSearchScreen
 import com.example.vlak_app_test.ui.schedule.ScheduleViewModel
+import com.example.vlak_app_test.ui.settings.MakeSettingsScreen
+import com.example.vlak_app_test.ui.settings.SettingsViewModel
 import com.example.vlak_app_test.ui.train_info.MakeTrainInfoScreen
 import com.example.vlak_app_test.ui.train_info.TrainInfoViewModel
 
@@ -59,6 +61,7 @@ fun AppNavigation(db: AppDatabase) {
     val trainInfoViewModel = remember { TrainInfoViewModel(db.trainInfoDao()) }
     val homescreenViewModel = remember { HomescreenViewModel(db.tripDao()) }
     val guideViewModel = remember { GuideViewModel() }
+    val settingsViewModel = remember {SettingsViewModel(db.userSettingsDao())}
 
     Scaffold(
         bottomBar = {
@@ -74,7 +77,8 @@ fun AppNavigation(db: AppDatabase) {
             liveViewModel = liveViewModel,
             trainInfoViewModel = trainInfoViewModel,
             homescreenViewModel = homescreenViewModel,
-            guideViewModel = guideViewModel
+            guideViewModel = guideViewModel,
+            settingsViewModel = settingsViewModel
         )
     }
 }
@@ -87,7 +91,8 @@ fun Navigation(
     liveViewModel: LiveViewModel,
     trainInfoViewModel: TrainInfoViewModel,
     homescreenViewModel: HomescreenViewModel,
-    guideViewModel: GuideViewModel
+    guideViewModel: GuideViewModel,
+    settingsViewModel: SettingsViewModel
 ) {
 
     //val navController = rememberNavController()
@@ -101,6 +106,10 @@ fun Navigation(
                 Homescreen(
                     modifier = modifier,
                     viewModel = homescreenViewModel,
+                    onSettingsClick = {
+                        settingsViewModel.retrieveSettings()
+                        navController.navigate("settings")
+                    },
                     onClick = {
                         homescreenViewModel.getTrips()
                         navController.navigate("trips")
@@ -110,6 +119,10 @@ fun Navigation(
 
             composable("trips") {
                 MakeTripsScreen(viewModel = homescreenViewModel, onBackSelected = { navController.popBackStack() })
+            }
+
+            composable("settings") {
+                MakeSettingsScreen(viewModel = settingsViewModel, onBackButton = { navController.popBackStack() })
             }
         }
 

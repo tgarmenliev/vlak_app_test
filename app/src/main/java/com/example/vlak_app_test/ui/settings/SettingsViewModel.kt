@@ -21,6 +21,10 @@ class SettingsViewModel(
 
     var settingsState: SettingsState by mutableStateOf(SettingsState.Loading)
 
+    init {
+        retrieveSettings()
+    }
+
     fun saveSettings(theme: String, language: String, name: String) {
         viewModelScope.launch {
             settingsState = SettingsState.Loading
