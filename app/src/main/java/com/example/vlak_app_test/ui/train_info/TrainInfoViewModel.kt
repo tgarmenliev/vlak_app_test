@@ -11,6 +11,9 @@ import com.example.vlak_app_test.network.TrainApi
 import com.example.vlak_app_test.room.SearchedTrainInfo
 import com.example.vlak_app_test.room.TrainInfoDao
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Date
 import java.util.Locale
 
 sealed interface TrainInfoState {
@@ -33,9 +36,11 @@ class TrainInfoViewModel(
     private val _recentSearches = mutableStateOf<List<SearchedTrainInfo>>(emptyList())
     val recentSearches: State<List<SearchedTrainInfo>> = _recentSearches
 
-//    fun setTrain(train: String) {
-//        _selectedTrain.value = train
-//    }
+    fun setTrain(train: String) {
+        val formatter = SimpleDateFormat("yyyy-MM-dd")
+        val todayString = formatter.format(Date(Calendar.getInstance().timeInMillis))
+        _selectedOption.value = TrainInfoOption(train, todayString)
+    }
 
     fun setOption(trainNumber: String, date: String) {
         _selectedOption.value = TrainInfoOption(trainNumber, date)
