@@ -218,6 +218,7 @@ private fun Circle(
 fun MakeTrainOnTransfer(
     data: Schedule.Trains,
     getTrainInfo: (String, String) -> Unit,
+    hasClickableTrainInfo: Boolean = true
 ) {
     Row(
         modifier = Modifier
@@ -258,7 +259,8 @@ fun MakeTrainOnTransfer(
                         .padding(end = 8.dp)
                         .fillMaxWidth()
                         .weight(1f),
-                    getTrainInfo = getTrainInfo
+                    getTrainInfo = getTrainInfo,
+                    hasClickableTrainInfo = hasClickableTrainInfo
                 )
             }
 
@@ -354,6 +356,7 @@ private fun MakeTrainForTransfers(
     date: String,
     modifier: Modifier = Modifier,
     getTrainInfo: (String, String) -> Unit,
+    hasClickableTrainInfo: Boolean = true
 ) {
     Row(
         modifier = modifier
@@ -373,7 +376,11 @@ private fun MakeTrainForTransfers(
             ),
             modifier = Modifier
                 .padding(start = 2.dp)
-                .clickable { getTrainInfo(trainNum, date) }
+                .clickable {
+                    if (hasClickableTrainInfo) {
+                        getTrainInfo(trainNum, date)
+                    }
+                }
         )
     }
 }
