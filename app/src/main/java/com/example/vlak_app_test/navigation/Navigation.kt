@@ -63,6 +63,8 @@ fun AppNavigation(db: AppDatabase) {
     val guideViewModel = remember { GuideViewModel() }
     val settingsViewModel = remember {SettingsViewModel(db.userSettingsDao())}
 
+    homescreenViewModel.getRecentTrips()
+
     Scaffold(
         bottomBar = {
             if (routes.contains(currentSelectedScreen)) {

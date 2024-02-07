@@ -70,6 +70,8 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 
+    implementation("androidx.multidex:multidex:2.0.1")
+
     implementation("androidx.constraintlayout:constraintlayout:2.2.0-alpha13")
     // To use constraintlayout in compose
     implementation("androidx.constraintlayout:constraintlayout-compose:1.1.0-alpha13")

@@ -19,6 +19,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -56,18 +57,6 @@ fun Homescreen(
             )
         }
         is HomeState.Loading -> {
-//            Box(
-//                modifier = Modifier
-//                    .fillMaxWidth()
-//                    .fillMaxHeight()
-//                    .background(MaterialTheme.colorScheme.background)
-//            ) {
-//                CircularProgressIndicator(
-//                    modifier = Modifier
-//                        .size(50.dp)
-//                        .align(Alignment.Center)
-//                )
-//            }
             LoadingScreen(modifier = Modifier.fillMaxSize())
         }
         is HomeState.Error -> {

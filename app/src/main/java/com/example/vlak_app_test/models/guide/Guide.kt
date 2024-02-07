@@ -1,7 +1,5 @@
 package com.example.vlak_app_test.models.guide
 
-import com.google.gson.annotations.SerializedName
-
 class Guide {
     data class GuideTable(
         val title: String,
@@ -14,7 +12,7 @@ class Guide {
         val title: String = "",
         val subtitle: String = "",
         val image: String = "",
-        val content: List<Content> = listOf()
+        val content: List<Content> = emptyList()
     )
 
     data class Content(
@@ -27,11 +25,6 @@ class Guide {
         val title: String = "",
         val subtitle: String = "",
         val image: String = ""
-    )
-
-    data class PhotoResponse(
-        @SerializedName("imageUrl")
-        val imageUrl: String = ""
     )
 
 }

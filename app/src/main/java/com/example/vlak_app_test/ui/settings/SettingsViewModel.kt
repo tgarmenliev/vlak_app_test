@@ -29,14 +29,16 @@ class SettingsViewModel(
         viewModelScope.launch {
             settingsState = SettingsState.Loading
             dao.updateUserSettings(theme, language, name)
-            settingsState = SettingsState.Success(dao.getUserSettings())
+            val userSettings = dao.getUserSettings() ?: UserSettings()
+            settingsState = SettingsState.Success(userSettings)
         }
     }
 
     fun retrieveSettings() {
         viewModelScope.launch {
             settingsState = SettingsState.Loading
-            settingsState = SettingsState.Success(dao.getUserSettings())
+            val userSettings = dao.getUserSettings() ?: UserSettings()
+            settingsState = SettingsState.Success(userSettings)
         }
     }
 

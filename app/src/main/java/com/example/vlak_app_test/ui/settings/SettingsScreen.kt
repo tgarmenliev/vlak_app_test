@@ -5,13 +5,19 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuBox
+import androidx.compose.material3.ExposedDropdownMenuDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -92,7 +98,8 @@ fun MakeSettingsOnScreen(
     ) {
         MakeImageHeader(
             text = R.string.settings,
-            image = painterResource(id = R.drawable.sett_back)
+            image = painterResource(id = R.drawable.sett_back),
+            modifier = Modifier.height(200.dp)
         )
 
         Row(
@@ -108,20 +115,33 @@ fun MakeSettingsOnScreen(
                 onExpandedChange = { isExpandedTheme = it },
                 modifier = Modifier.weight(1f)
             ) {
-                DropdownMenuItem(
-                    text = { Text(text = stringResource(id = R.string.theme_light)) },
-                    onClick = { theme = "light"; isExpandedTheme = false }
+                TextField(
+                    value = language,
+                    onValueChange = {},
+                    readOnly = true,
+                    trailingIcon = {
+                        ExposedDropdownMenuDefaults.TrailingIcon(expanded = isExpandedLanguage)
+                    }
                 )
+                ExposedDropdownMenu(
+                    expanded = isExpandedLanguage,
+                    onDismissRequest = { isExpandedLanguage = false }
+                ) {
+                    DropdownMenuItem(
+                        text = { Text(text = stringResource(id = R.string.theme_light)) },
+                        onClick = { theme = "light"; isExpandedTheme = false }
+                    )
 
-                DropdownMenuItem(
-                    text = { Text(text = stringResource(id = R.string.theme_dark)) },
-                    onClick = { theme = "dark"; isExpandedTheme = false }
-                )
+                    DropdownMenuItem(
+                        text = { Text(text = stringResource(id = R.string.theme_dark)) },
+                        onClick = { theme = "dark"; isExpandedTheme = false }
+                    )
 
-                DropdownMenuItem(
-                    text = { Text(text = stringResource(id = R.string.theme_system)) },
-                    onClick = { theme = "system"; isExpandedTheme = false }
-                )
+                    DropdownMenuItem(
+                        text = { Text(text = stringResource(id = R.string.theme_system)) },
+                        onClick = { theme = "auto"; isExpandedTheme = false }
+                    )
+                }
             }
         }
 
@@ -138,20 +158,33 @@ fun MakeSettingsOnScreen(
                 onExpandedChange = { isExpandedLanguage = it },
                 modifier = Modifier.weight(1f)
             ) {
-                DropdownMenuItem(
-                    text = { Text(text = stringResource(id = R.string.language_bg)) },
-                    onClick = { theme = "bg"; isExpandedLanguage = false }
+                TextField(
+                    value = language,
+                    onValueChange = {},
+                    readOnly = true,
+                    trailingIcon = {
+                        ExposedDropdownMenuDefaults.TrailingIcon(expanded = isExpandedLanguage)
+                    }
                 )
+                ExposedDropdownMenu(
+                    expanded = isExpandedLanguage, 
+                    onDismissRequest = { isExpandedLanguage = false }
+                ) {
+                    DropdownMenuItem(
+                        text = { Text(text = stringResource(id = R.string.language_bg)) },
+                        onClick = { theme = "bg"; isExpandedLanguage = false }
+                    )
 
-                DropdownMenuItem(
-                    text = { Text(text = stringResource(id = R.string.language_en)) },
-                    onClick = { theme = "en"; isExpandedLanguage = false }
-                )
+                    DropdownMenuItem(
+                        text = { Text(text = stringResource(id = R.string.language_en)) },
+                        onClick = { theme = "en"; isExpandedLanguage = false }
+                    )
 
-                DropdownMenuItem(
-                    text = { Text(text = stringResource(id = R.string.language_system)) },
-                    onClick = { theme = "system"; isExpandedLanguage = false }
-                )
+                    DropdownMenuItem(
+                        text = { Text(text = stringResource(id = R.string.language_system)) },
+                        onClick = { theme = "auto"; isExpandedLanguage = false }
+                    )
+                }
             }
         }
 
