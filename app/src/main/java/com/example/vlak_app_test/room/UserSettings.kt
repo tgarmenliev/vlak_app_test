@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 data class UserSettings(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
-    val theme: String = "auto",
-    val language: String = "auto",
+    var theme: String = "auto",
+    var language: String = "auto",
     val name: String = "",
 )

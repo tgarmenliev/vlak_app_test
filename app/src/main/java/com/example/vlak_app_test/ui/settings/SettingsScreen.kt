@@ -26,6 +26,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
@@ -48,6 +49,19 @@ fun MakeSettingsScreen(
             LoadingScreen(modifier = Modifier.fillMaxSize())
         }
         is SettingsState.Success -> {
+            var data = viewModel.getSettings()
+            data.theme = when(data.theme) {
+                "light" -> stringResource(id = R.string.theme_light)
+                "dark" -> stringResource(id = R.string.theme_dark)
+                "auto" -> stringResource(id = R.string.theme_system)
+                else -> stringResource(id = R.string.theme_system)
+            }
+            data.language = when(data.language) {
+                "bg" -> stringResource(id = R.string.language_bg)
+                "en" -> stringResource(id = R.string.language_en)
+                "auto" -> stringResource(id = R.string.language_system)
+                else -> stringResource(id = R.string.language_system)
+            }
             MakeSettingsOnScreen(
                 data = viewModel.getSettings(),
                 onBackButton = onBackButton,
@@ -71,6 +85,8 @@ fun MakeSettingsOnScreen(
     onBackButton: () -> Unit,
     onSaveButton: (String, String, String) -> Unit
 ) {
+    val context = LocalContext.current
+
     var isExpandedTheme by remember {
         mutableStateOf(false)
     }
@@ -79,12 +95,20 @@ fun MakeSettingsOnScreen(
         mutableStateOf(data.theme)
     }
 
+    var themeCode by remember {
+        mutableStateOf("")
+    }
+
     var isExpandedLanguage by remember {
         mutableStateOf(false)
     }
 
     var language by remember {
         mutableStateOf(data.language)
+    }
+
+    var languageCode by remember {
+        mutableStateOf("")
     }
 
     var name by remember {
@@ -116,30 +140,43 @@ fun MakeSettingsOnScreen(
                 modifier = Modifier.weight(1f)
             ) {
                 TextField(
-                    value = language,
+                    value = theme,
                     onValueChange = {},
                     readOnly = true,
                     trailingIcon = {
-                        ExposedDropdownMenuDefaults.TrailingIcon(expanded = isExpandedLanguage)
-                    }
+                        ExposedDropdownMenuDefaults.TrailingIcon(expanded = isExpandedTheme)
+                    },
+                    modifier = Modifier.menuAnchor()
                 )
                 ExposedDropdownMenu(
-                    expanded = isExpandedLanguage,
-                    onDismissRequest = { isExpandedLanguage = false }
+                    expanded = isExpandedTheme,
+                    onDismissRequest = { isExpandedTheme = false }
                 ) {
                     DropdownMenuItem(
                         text = { Text(text = stringResource(id = R.string.theme_light)) },
-                        onClick = { theme = "light"; isExpandedTheme = false }
+                        onClick = {
+                            theme = context.getString(R.string.theme_light);
+                            themeCode="light";
+                            isExpandedTheme = false
+                        }
                     )
 
                     DropdownMenuItem(
                         text = { Text(text = stringResource(id = R.string.theme_dark)) },
-                        onClick = { theme = "dark"; isExpandedTheme = false }
+                        onClick = {
+                            theme = context.getString(R.string.theme_dark);
+                            themeCode="dark";
+                            isExpandedTheme = false
+                        }
                     )
 
                     DropdownMenuItem(
                         text = { Text(text = stringResource(id = R.string.theme_system)) },
-                        onClick = { theme = "auto"; isExpandedTheme = false }
+                        onClick = {
+                            theme = context.getString(R.string.theme_system);
+                            themeCode="auto";
+                            isExpandedTheme = false
+                        }
                     )
                 }
             }
@@ -164,7 +201,8 @@ fun MakeSettingsOnScreen(
                     readOnly = true,
                     trailingIcon = {
                         ExposedDropdownMenuDefaults.TrailingIcon(expanded = isExpandedLanguage)
-                    }
+                    },
+                    modifier = Modifier.menuAnchor()
                 )
                 ExposedDropdownMenu(
                     expanded = isExpandedLanguage, 
@@ -172,17 +210,28 @@ fun MakeSettingsOnScreen(
                 ) {
                     DropdownMenuItem(
                         text = { Text(text = stringResource(id = R.string.language_bg)) },
-                        onClick = { theme = "bg"; isExpandedLanguage = false }
+                        onClick = {
+                            language = context.getString(R.string.language_bg);
+                            languageCode="bg";
+                            isExpandedLanguage = false
+                        }
                     )
 
                     DropdownMenuItem(
                         text = { Text(text = stringResource(id = R.string.language_en)) },
-                        onClick = { theme = "en"; isExpandedLanguage = false }
+                        onClick = {
+                            language = context.getString(R.string.language_en);
+                            isExpandedLanguage = false
+                        }
                     )
 
                     DropdownMenuItem(
                         text = { Text(text = stringResource(id = R.string.language_system)) },
-                        onClick = { theme = "auto"; isExpandedLanguage = false }
+                        onClick = {
+                            language = context.getString(R.string.language_system);
+                            languageCode="auto";
+                            isExpandedLanguage = false
+                        }
                     )
                 }
             }

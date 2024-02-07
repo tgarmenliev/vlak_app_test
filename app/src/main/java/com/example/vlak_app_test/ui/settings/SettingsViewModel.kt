@@ -28,7 +28,11 @@ class SettingsViewModel(
     fun saveSettings(theme: String, language: String, name: String) {
         viewModelScope.launch {
             settingsState = SettingsState.Loading
-            dao.updateUserSettings(theme, language, name)
+            if (dao.getCount() == 0) {
+                dao.insertUserSettings(UserSettings(theme = theme, language = language, name = name))
+            } else {
+                dao.updateUserSettings(theme, language, name)
+            }
             val userSettings = dao.getUserSettings() ?: UserSettings()
             settingsState = SettingsState.Success(userSettings)
         }
