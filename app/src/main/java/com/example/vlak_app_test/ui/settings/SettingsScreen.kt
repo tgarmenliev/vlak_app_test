@@ -42,24 +42,14 @@ fun MakeSettingsScreen(
             LoadingScreen(modifier = Modifier.fillMaxSize())
         }
         is SettingsState.Success -> {
-            // Scaffold(
-            //     topBar = {
-            //         MakeTopBar(
-            //             titleText = R.string.settings,
-            //             haveCancelButton = true,
-            //             onCancelButtonPressed = onBackButton
-            //         )
-            //     }
-            // ) {
-            //     MakeSettingsScreenSec(
-            //         data = viewModel.getSettings(),
-            //         modifier = Modifier.padding(it),
-            //         onClickOption = { index ->
-            //             viewModel.setOptionIndex(index)
-            //             navController.navigate("settings_option_screen")
-            //         }
-            //     )
-            // }
+            MakeSettingsOnScreen(
+                data = viewModel.getSettings(),
+                onBackButton = onBackButton,
+                onSaveButton = {
+                    theme, language, name ->
+                    viewModel.saveSettings(theme, language, name)
+                }
+            )
         }
         is SettingsState.Error -> {
             ErrorScreen(error = settingsState.error, modifier = Modifier.fillMaxSize())

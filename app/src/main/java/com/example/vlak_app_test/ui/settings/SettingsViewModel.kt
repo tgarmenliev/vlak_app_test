@@ -29,10 +29,20 @@ class SettingsViewModel(
         }
     }
 
-    fun getSettings() {
+    fun retrieveSettings() {
         viewModelScope.launch {
             settingsState = SettingsState.Loading
             settingsState = SettingsState.Success(dao.getUserSettings())
+        }
+    }
+
+    fun getSettings(): UserSettings {
+        return settingsState.let {
+            if(it is SettingsState.Success) {
+                it.data
+            } else {
+                UserSettings()
+            }
         }
     }
 }
