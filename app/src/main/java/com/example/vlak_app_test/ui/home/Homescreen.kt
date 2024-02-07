@@ -2,6 +2,7 @@ package com.example.vlak_app_test.ui.home
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -33,6 +34,7 @@ import com.example.vlak_app_test.R
 import com.example.vlak_app_test.room.TripHeading
 import com.example.vlak_app_test.ui.composables.MakeButton
 import com.example.vlak_app_test.ui.composables.MakeImageHeader
+import com.example.vlak_app_test.ui.error.ErrorScreen
 
 @Composable
 fun Homescreen(
@@ -63,7 +65,7 @@ fun Homescreen(
             }
         }
         is HomeState.Error -> {
-            Text(text = stringResource(id = R.string.error))
+            ErrorScreen(error = homeState.error)
         }
     }
 }
@@ -89,6 +91,16 @@ fun MakeHomescreen(
             text = R.string.home,
             image = painterResource(id = R.drawable.home_back2),
             modifier = Modifier.height(200.dp)
+        )
+
+        Icon(
+            painter = painterResource(id = R.drawable.arrow_up),
+            contentDescription = "refresh",
+            modifier = Modifier
+                .size(30.dp)
+                .align(Alignment.End)
+                .padding(8.dp)
+                .clickable { viewModel.getRecentTrips() }
         )
 
         Box(modifier = Modifier.padding(8.dp)) {

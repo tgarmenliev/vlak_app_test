@@ -4,6 +4,7 @@ class TrainInfo {
     data class TrainInfoTable(
         val trainType: String = "",
         val trainNumber: String = "",
+        val date: String = "",
         val stations: List<StationOnTrainInfo>
     )
 

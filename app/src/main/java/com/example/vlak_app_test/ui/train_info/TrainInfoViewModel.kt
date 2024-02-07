@@ -24,21 +24,26 @@ class TrainInfoViewModel(
 ) : ViewModel() {
     var trainInfoState: TrainInfoState by mutableStateOf(TrainInfoState.Loading)
 
-    private val _selectedTrain = mutableStateOf("")
-    val selectedTrain: State<String> = _selectedTrain
+//    private val _selectedTrain = mutableStateOf("")
+//    val selectedTrain: State<String> = _selectedTrain
+
+    private val _selectedOption = mutableStateOf(TrainInfoOption("", ""))
+    val selectedOption: State<TrainInfoOption> = _selectedOption
 
     private val _recentSearches = mutableStateOf<List<SearchedTrainInfo>>(emptyList())
     val recentSearches: State<List<SearchedTrainInfo>> = _recentSearches
 
-    fun setTrain(train: String) {
-        _selectedTrain.value = train
-        println("Set train: ..$train..")
-        println("Selected train: ..${selectedTrain.value}..")
+//    fun setTrain(train: String) {
+//        _selectedTrain.value = train
+//    }
+
+    fun setOption(trainNumber: String, date: String) {
+        _selectedOption.value = TrainInfoOption(trainNumber, date)
     }
 
-    fun getTrain(): String {
-        return selectedTrain.value
-    }
+//    fun getTrain(): String {
+//        return selectedTrain.value
+//    }
 
     fun getTrainInfo(): TrainInfo.TrainInfoTable {
         return (trainInfoState as TrainInfoState.Success).data
@@ -52,13 +57,13 @@ class TrainInfoViewModel(
         viewModelScope.launch {
             trainInfoState = TrainInfoState.Loading
 
-            if (dao.getTrainInfoCount(selectedTrain.value) == 0) {
+            if (dao.getTrainInfoCount(selectedOption.value.trainNumber) == 0) {
                 dao.deleteOldSearches()
-                dao.insert(SearchedTrainInfo(trainNumber = selectedTrain.value))
+                dao.insert(SearchedTrainInfo(trainNumber = selectedOption.value.trainNumber))
             }
 
             trainInfoState = try {
-                val result = TrainApi.retrofitService.getTrainInfo(Locale.getDefault().language, selectedTrain.value)
+                val result = TrainApi.retrofitService.getTrainInfo(Locale.getDefault().language, selectedOption.value.trainNumber, selectedOption.value.date)
                 TrainInfoState.Success(result)
             } catch (e: Exception) {
                 TrainInfoState.Error(e)
@@ -66,3 +71,8 @@ class TrainInfoViewModel(
         }
     }
 }
+
+data class TrainInfoOption(
+    val trainNumber: String,
+    val date: String
+)

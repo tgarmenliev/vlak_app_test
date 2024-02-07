@@ -339,7 +339,7 @@ fun MakeScheduleSearchScreen(
 
                         Button(
                             onClick = {
-                                trainInfoViewModel.setTrain(trainInfo)
+                                trainInfoViewModel.setOption(trainInfo, date)
                                 trainInfoViewModel.getData()
                                 trainInfo = ""
                                 navController.navigate("train_info")
