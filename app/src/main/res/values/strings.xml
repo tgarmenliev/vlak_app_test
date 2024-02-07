@@ -52,4 +52,16 @@
     <string name="station_not_exist">Station does not exist! Please try again!</string>
     <string name="my_trips">My trips</string>
     <string name="view_all_trips">View all trips</string>
+    <string name="settings">Settings</string>
+    <string name="theme_light">Light</string>
+    <string name="theme_dark">Dark</string>
+    <string name="theme_system">System</string>
+    <string name="theme">Theme</string>
+    <string name="language">Language</string>
+    <string name="language_en">English</string>
+    <string name="language_bg">Bulgarian</string>
+    <string name="language_system">System</string>
+    <string name="name">Name</string>
+    <string name="save">Save</string>
+    <string name="return_to_home">Return to home</string>
 </resources>
