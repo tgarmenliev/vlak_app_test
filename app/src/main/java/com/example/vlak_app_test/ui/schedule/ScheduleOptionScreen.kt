@@ -68,8 +68,8 @@ fun MakeScheduleOptionScreen(
     ) {
         MakeScheduleOptionScreenSec(
             onAddToTripsButtonPressed = onAddToTripsButtonPressed,
-            getTrainInfo = { trainNum ->
-                trainInfoViewModel.setTrain(trainNum)
+            getTrainInfo = { trainNum, date ->
+                trainInfoViewModel.setOption(trainNum, date)
                 trainInfoViewModel.getData()
                 navController.navigate("train_info")
             },
@@ -83,7 +83,7 @@ fun MakeScheduleOptionScreen(
 @Composable
 fun MakeScheduleOptionScreenSec(
     onAddToTripsButtonPressed: (Schedule.Options, String) -> Unit,
-    getTrainInfo: (String) -> Unit,
+    getTrainInfo: (String, String) -> Unit,
     modifier: Modifier = Modifier,
     data: Schedule.Options,
     route: String,
@@ -217,7 +217,7 @@ private fun Circle(
 @Composable
 fun MakeTrainOnTransfer(
     data: Schedule.Trains,
-    getTrainInfo: (String) -> Unit = {},
+    getTrainInfo: (String, String) -> Unit,
 ) {
     Row(
         modifier = Modifier
@@ -253,6 +253,7 @@ fun MakeTrainOnTransfer(
                 MakeTrainForTransfers(
                     trainType = data.trainType,
                     trainNum = data.trainNumber,
+                    date = data.departDate,
                     modifier = Modifier
                         .padding(end = 8.dp)
                         .fillMaxWidth()
@@ -294,7 +295,7 @@ fun MakeTrainOnTransfer(
 
 @Composable
 private fun MakeTrainNumber(
-    getTrainInfo: (String) -> Unit,
+    getTrainInfo: (String, String) -> Unit,
     data: Schedule.Trains,
 ) {
     Row(
@@ -316,7 +317,7 @@ private fun MakeTrainNumber(
             ),
             modifier = Modifier
                 .padding(start = 2.dp)
-                .clickable { getTrainInfo(data.trainNumber) }
+                .clickable { getTrainInfo(data.trainNumber, data.departDate) }
         )
     }
 }
@@ -350,8 +351,9 @@ private fun MakeArrivalDepartureData(
 private fun MakeTrainForTransfers(
     trainType: String,
     trainNum: String,
+    date: String,
     modifier: Modifier = Modifier,
-    getTrainInfo: (String) -> Unit,
+    getTrainInfo: (String, String) -> Unit,
 ) {
     Row(
         modifier = modifier
@@ -371,7 +373,7 @@ private fun MakeTrainForTransfers(
             ),
             modifier = Modifier
                 .padding(start = 2.dp)
-                .clickable { getTrainInfo(trainNum) }
+                .clickable { getTrainInfo(trainNum, date) }
         )
     }
 }
