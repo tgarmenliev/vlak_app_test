@@ -13,18 +13,16 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisposableEffect
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -39,7 +37,6 @@ import com.example.vlak_app_test.ui.composables.MakeButton
 import com.example.vlak_app_test.ui.composables.MakeImageHeader
 import com.example.vlak_app_test.ui.error.ErrorScreen
 import com.example.vlak_app_test.ui.loading.LoadingScreen
-import com.example.vlak_app_test.ui.settings.SettingsViewModel
 
 @Composable
 fun Homescreen(
@@ -75,7 +72,7 @@ fun MakeHomescreen(
     onRefreshClick: () -> Unit = { },
     onClick: () -> Unit = { }
 ) {
-    var recentTrips by remember { mutableStateOf<List<TripHeading>>(emptyList()) }
+    //var recentTrips by remember { mutableStateOf<List<TripHeading>>(emptyList()) }
 
     Column(
         modifier = modifier
@@ -87,43 +84,38 @@ fun MakeHomescreen(
             modifier = Modifier.height(200.dp)
         )
 
-        Icon(
-            painter = painterResource(id = R.drawable.arrow_up),
-            contentDescription = "refresh",
+        Column(
             modifier = Modifier
-                .size(30.dp)
-                .align(Alignment.End)
-                .padding(top = 16.dp)
-                .clickable {
-                    onRefreshClick()
-                    //recentTrips = viewModel.recentTrips.value
-                }
-        )
+                .verticalScroll(rememberScrollState())
+                .fillMaxWidth()
 
-        Icon(
-            painter = painterResource(id = R.drawable.close),
-            contentDescription = "refresh",
-            modifier = Modifier
-                .size(30.dp)
-                .align(Alignment.End)
-                .padding(top = 16.dp)
-                .clickable { onSettingsClick() }
-        )
+        ) {
 
-        Box(modifier = Modifier.padding(8.dp)) {
-            Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .fillMaxHeight()
-                    .padding(8.dp)
-            ) {
-                MakeRecentTrips(
+            Box(modifier = Modifier.padding(8.dp)) {
+                Column(
                     modifier = Modifier
-                        .fillMaxWidth(),
-                    recentTrips = viewModel.recentTrips.value ,
-                    onClick = onClick
-                )
+                        .fillMaxWidth()
+                        .fillMaxHeight()
+                        .padding(8.dp)
+                ) {
+                    MakeRecentTrips(
+                        modifier = Modifier
+                            .fillMaxWidth(),
+                        recentTrips = viewModel.recentTrips.value,
+                        onClick = onClick,
+                        onRefreshClick = onRefreshClick
+                    )
+                }
             }
+
+            MakeButton(
+                text = R.string.settings,
+                onClick = onSettingsClick,
+                modifier = Modifier
+                    .fillMaxWidth(0.5f)
+                    .padding(8.dp)
+                    .align(Alignment.CenterHorizontally)
+            )
         }
     }
 }
@@ -132,19 +124,37 @@ fun MakeHomescreen(
 fun MakeRecentTrips(
     modifier: Modifier,
     recentTrips: List<TripHeading>,
-    onClick: () -> Unit = { }
+    onClick: () -> Unit = { },
+    onRefreshClick: () -> Unit = { }
 ) {
     if (recentTrips.isNotEmpty()) {
         Column(
             modifier = modifier
         ) {
-            Text(
-                text = stringResource(id = R.string.recent_trips),
-                style = MaterialTheme.typography.bodyMedium,
-                fontWeight = FontWeight.SemiBold,
-                modifier = Modifier
-                    .padding(8.dp)
-            )
+
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Text(
+                    text = stringResource(id = R.string.recent_trips),
+                    style = MaterialTheme.typography.bodyMedium,
+                    fontWeight = FontWeight.SemiBold,
+                    modifier = Modifier
+                        .padding(8.dp)
+                )
+
+                Icon(
+                    painter = painterResource(id = R.drawable.refresh),
+                    contentDescription = "refresh",
+                    modifier = Modifier
+                        .size(30.dp)
+                        .padding(top = 16.dp)
+                        .clickable {
+                            onRefreshClick()
+                        }
+                )
+            }
 
             recentTrips.forEach {
                 MakeRecentTrip(
