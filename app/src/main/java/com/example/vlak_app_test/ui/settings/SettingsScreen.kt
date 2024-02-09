@@ -1,5 +1,6 @@
 package com.example.vlak_app_test.ui.settings
 
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -7,14 +8,11 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuBox
 import androidx.compose.material3.ExposedDropdownMenuDefaults
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -31,6 +29,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import androidx.core.os.LocaleListCompat
 import com.example.vlak_app_test.R
 import com.example.vlak_app_test.room.UserSettings
 import com.example.vlak_app_test.ui.composables.MakeButton
@@ -63,11 +62,11 @@ fun MakeSettingsScreen(
                 else -> stringResource(id = R.string.language_system)
             }
             MakeSettingsOnScreen(
-                data = viewModel.getSettings(),
+                data = data,
                 onBackButton = onBackButton,
                 onSaveButton = {
                     theme, language, name ->
-                    viewModel.saveSettings(theme, language, name)
+                    viewModel.saveSettings(data.id, theme, language, name)
                 }
             )
         }
@@ -155,8 +154,8 @@ fun MakeSettingsOnScreen(
                     DropdownMenuItem(
                         text = { Text(text = stringResource(id = R.string.theme_light)) },
                         onClick = {
-                            theme = context.getString(R.string.theme_light);
-                            themeCode="light";
+                            theme = context.getString(R.string.theme_light)
+                            themeCode = "light"
                             isExpandedTheme = false
                         }
                     )
@@ -164,8 +163,8 @@ fun MakeSettingsOnScreen(
                     DropdownMenuItem(
                         text = { Text(text = stringResource(id = R.string.theme_dark)) },
                         onClick = {
-                            theme = context.getString(R.string.theme_dark);
-                            themeCode="dark";
+                            theme = context.getString(R.string.theme_dark)
+                            themeCode = "dark"
                             isExpandedTheme = false
                         }
                     )
@@ -173,8 +172,8 @@ fun MakeSettingsOnScreen(
                     DropdownMenuItem(
                         text = { Text(text = stringResource(id = R.string.theme_system)) },
                         onClick = {
-                            theme = context.getString(R.string.theme_system);
-                            themeCode="auto";
+                            theme = context.getString(R.string.theme_system)
+                            themeCode = "auto"
                             isExpandedTheme = false
                         }
                     )
@@ -211,25 +210,28 @@ fun MakeSettingsOnScreen(
                     DropdownMenuItem(
                         text = { Text(text = stringResource(id = R.string.language_bg)) },
                         onClick = {
-                            language = context.getString(R.string.language_bg);
-                            languageCode="bg";
+                            language = context.getString(R.string.language_bg)
+                            languageCode = "bg"
                             isExpandedLanguage = false
+                            AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags("bg"))
                         }
                     )
 
                     DropdownMenuItem(
                         text = { Text(text = stringResource(id = R.string.language_en)) },
                         onClick = {
-                            language = context.getString(R.string.language_en);
+                            language = context.getString(R.string.language_en)
+                            languageCode = "en"
                             isExpandedLanguage = false
+                            AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags("en"))
                         }
                     )
 
                     DropdownMenuItem(
                         text = { Text(text = stringResource(id = R.string.language_system)) },
                         onClick = {
-                            language = context.getString(R.string.language_system);
-                            languageCode="auto";
+                            language = context.getString(R.string.language_system)
+                            languageCode = "auto"
                             isExpandedLanguage = false
                         }
                     )
@@ -259,7 +261,7 @@ fun MakeSettingsOnScreen(
         MakeButton(
             text = R.string.save,
             onClick = {
-                onSaveButton(theme, language, name)
+                onSaveButton(themeCode, languageCode, name)
             },
             modifier = Modifier.fillMaxWidth(0.6f)
         )

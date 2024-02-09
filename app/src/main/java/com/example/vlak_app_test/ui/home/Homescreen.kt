@@ -77,6 +77,7 @@ fun MakeHomescreen(
     Column(
         modifier = modifier
             .fillMaxWidth()
+            .verticalScroll(rememberScrollState())
     ) {
         MakeImageHeader(
             text = R.string.home,
@@ -86,9 +87,7 @@ fun MakeHomescreen(
 
         Column(
             modifier = Modifier
-                .verticalScroll(rememberScrollState())
                 .fillMaxWidth()
-
         ) {
 
             Box(modifier = Modifier.padding(8.dp)) {
@@ -148,7 +147,8 @@ fun MakeRecentTrips(
                     painter = painterResource(id = R.drawable.refresh),
                     contentDescription = "refresh",
                     modifier = Modifier
-                        .size(32.dp)
+                        .size(28.dp)
+                        .padding(top = 4.dp)
                         .clickable {
                             onRefreshClick()
                         }

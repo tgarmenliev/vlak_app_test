@@ -10,20 +10,20 @@ interface UserSettingsDao {
     @Insert
     suspend fun insertUserSettings(userSettings: UserSettings)
 
-    @Query("SELECT * FROM user_settings WHERE id = 0")
+    @Query("SELECT * FROM user_settings")
     suspend fun getUserSettings(): UserSettings
 
-    @Query("UPDATE user_settings SET theme = :theme WHERE id = 0")
+    @Query("UPDATE user_settings SET theme = :theme")
     suspend fun updateTheme(theme: String)
 
-    @Query("UPDATE user_settings SET language = :language WHERE id = 0")
+    @Query("UPDATE user_settings SET language = :language")
     suspend fun updateLanguage(language: String)
 
-    @Query("UPDATE user_settings SET name = :name WHERE id = 0")
+    @Query("UPDATE user_settings SET name = :name")
     suspend fun updateName(name: String)
 
-    @Query("UPDATE user_settings SET theme = :theme, language = :language, name = :name WHERE id = 0")
-    suspend fun updateUserSettings(theme: String, language: String, name: String)
+    @Query("UPDATE user_settings SET theme = :theme, language = :language, name = :name WHERE id = :id")
+    suspend fun updateUserSettings(theme: String, language: String, name: String, id: Int = 1)
 
     @Query("SELECT COUNT(*) FROM user_settings")
     suspend fun getCount(): Int

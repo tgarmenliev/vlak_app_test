@@ -26,16 +26,16 @@ class SettingsViewModel(
         retrieveSettings()
     }
 
-    fun saveSettings(theme: String, language: String, name: String) {
+    fun saveSettings(id: Int = 1, theme: String, language: String, name: String) {
         viewModelScope.launch {
             settingsState = SettingsState.Loading
-            delay(1000L)
+            //delay(1000L)
             if (dao.getCount() == 0) {
                 dao.insertUserSettings(UserSettings(theme = theme, language = language, name = name))
             } else {
-                dao.updateUserSettings(theme, language, name)
+                dao.updateUserSettings(theme, language, name, id)
             }
-            val userSettings = dao.getUserSettings() ?: UserSettings()
+            val userSettings = dao.getUserSettings()
             settingsState = SettingsState.Success(userSettings)
         }
     }
@@ -43,8 +43,17 @@ class SettingsViewModel(
     fun retrieveSettings() {
         viewModelScope.launch {
             settingsState = SettingsState.Loading
-            val userSettings = dao.getUserSettings() ?: UserSettings()
-            settingsState = SettingsState.Success(userSettings)
+            if (dao.getCount() == 0) {
+                dao.insertUserSettings(UserSettings())
+            }
+
+            settingsState = try {
+                val userSettings = dao.getUserSettings()
+                println(userSettings)
+                SettingsState.Success(userSettings)
+            } catch (e: Exception) {
+                SettingsState.Error(e)
+            }
         }
     }
 
