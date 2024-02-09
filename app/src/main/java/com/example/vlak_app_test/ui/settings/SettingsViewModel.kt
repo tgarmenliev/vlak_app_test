@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.vlak_app_test.room.UserSettings
 import com.example.vlak_app_test.room.UserSettingsDao
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 sealed interface SettingsState {
@@ -28,6 +29,7 @@ class SettingsViewModel(
     fun saveSettings(theme: String, language: String, name: String) {
         viewModelScope.launch {
             settingsState = SettingsState.Loading
+            delay(1000L)
             if (dao.getCount() == 0) {
                 dao.insertUserSettings(UserSettings(theme = theme, language = language, name = name))
             } else {

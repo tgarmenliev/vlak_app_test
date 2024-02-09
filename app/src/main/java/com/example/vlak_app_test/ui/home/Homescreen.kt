@@ -23,6 +23,7 @@ import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -53,6 +54,7 @@ fun Homescreen(
                 modifier = modifier,
                 viewModel = viewModel,
                 onSettingsClick = onSettingsClick,
+                onRefreshClick = { viewModel.getRecentTrips() },
                 onClick = onClick
             )
         }
@@ -70,14 +72,10 @@ fun MakeHomescreen(
     modifier: Modifier = Modifier,
     viewModel: HomescreenViewModel,
     onSettingsClick: () -> Unit = { },
+    onRefreshClick: () -> Unit = { },
     onClick: () -> Unit = { }
 ) {
-    var recentTrips by rememberSaveable { mutableStateOf<List<TripHeading>>(emptyList()) }
-
-    LaunchedEffect(Unit) {
-        viewModel.getRecentTrips()
-        recentTrips = viewModel.recentTrips.value
-    }
+    var recentTrips by remember { mutableStateOf<List<TripHeading>>(emptyList()) }
 
     Column(
         modifier = modifier
@@ -96,7 +94,10 @@ fun MakeHomescreen(
                 .size(30.dp)
                 .align(Alignment.End)
                 .padding(top = 16.dp)
-                .clickable { viewModel.getRecentTrips() }
+                .clickable {
+                    onRefreshClick()
+                    //recentTrips = viewModel.recentTrips.value
+                }
         )
 
         Icon(
@@ -119,7 +120,7 @@ fun MakeHomescreen(
                 MakeRecentTrips(
                     modifier = Modifier
                         .fillMaxWidth(),
-                    recentTrips = recentTrips,
+                    recentTrips = viewModel.recentTrips.value ,
                     onClick = onClick
                 )
             }
