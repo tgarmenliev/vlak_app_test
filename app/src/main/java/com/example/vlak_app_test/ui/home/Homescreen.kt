@@ -148,8 +148,7 @@ fun MakeRecentTrips(
                     painter = painterResource(id = R.drawable.refresh),
                     contentDescription = "refresh",
                     modifier = Modifier
-                        .size(30.dp)
-                        .padding(top = 16.dp)
+                        .size(32.dp)
                         .clickable {
                             onRefreshClick()
                         }
