@@ -9,7 +9,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -25,7 +24,6 @@ import com.example.vlak_app_test.ui.guide.MakeGuideMoreInfoScreen
 import com.example.vlak_app_test.ui.guide.MakeGuideScreen
 import com.example.vlak_app_test.ui.home.Homescreen
 import com.example.vlak_app_test.ui.home.HomescreenViewModel
-import com.example.vlak_app_test.ui.home.MakeHomescreen
 import com.example.vlak_app_test.ui.home.MakeTripsScreen
 import com.example.vlak_app_test.ui.live.LiveViewModel
 import com.example.vlak_app_test.ui.live.MakeLiveScreenOne
@@ -35,7 +33,6 @@ import com.example.vlak_app_test.ui.schedule.MakeScheduleScreen
 import com.example.vlak_app_test.ui.schedule.MakeScheduleSearchScreen
 import com.example.vlak_app_test.ui.schedule.ScheduleViewModel
 import com.example.vlak_app_test.ui.settings.MakeSettingsScreen
-import com.example.vlak_app_test.ui.settings.SettingsViewModel
 import com.example.vlak_app_test.ui.train_info.MakeTrainInfoScreen
 import com.example.vlak_app_test.ui.train_info.TrainInfoViewModel
 
