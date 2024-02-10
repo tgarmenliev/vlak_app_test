@@ -58,6 +58,7 @@ class ScheduleViewModel(
     }
 
     fun checkIfStationExists(station: String): Boolean {
+        if (station.isEmpty()) return false
         val stations = stationsList
         val foundStation = stations.find {
             it.name.equals(station, ignoreCase = true) || it.englishName.equals(station, ignoreCase = true)

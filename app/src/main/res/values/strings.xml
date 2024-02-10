@@ -65,4 +65,5 @@
     <string name="save">Save</string>
     <string name="return_to_home">Return to home</string>
     <string name="dark_mode">Dark mode</string>
+    <string name="empty_train_info">Please provide train number and try again!</string>
 </resources>

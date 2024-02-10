@@ -339,10 +339,19 @@ fun MakeScheduleSearchScreen(
 
                         Button(
                             onClick = {
-                                trainInfoViewModel.setOption(trainInfo, date)
-                                trainInfoViewModel.getData()
-                                trainInfo = ""
-                                navController.navigate("train_info")
+                                if (trainInfo.isEmpty()) {
+                                    Toast.makeText(
+                                        context,
+                                        R.string.empty_train_info,
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                    trainInfo = ""
+                                } else {
+                                    trainInfoViewModel.setOption(trainInfo, date)
+                                    trainInfoViewModel.getData()
+                                    trainInfo = ""
+                                    navController.navigate("train_info")
+                                }
                             },
                             border = BorderStroke(2.dp, MaterialTheme.colorScheme.onBackground),
                             shape = RoundedCornerShape(16.dp),
