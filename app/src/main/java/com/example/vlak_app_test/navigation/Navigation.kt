@@ -40,7 +40,6 @@ import com.example.vlak_app_test.ui.train_info.TrainInfoViewModel
 fun AppNavigation(db: AppDatabase, dataStoreManager: DataStoreManager) {
     val navController = rememberNavController()
     val currentSelectedScreen = navController.currentBackStackEntryAsState().value?.destination?.route
-    //val context = LocalContext.current
 
     var selectedItemIndex by rememberSaveable {
         mutableIntStateOf(0)
