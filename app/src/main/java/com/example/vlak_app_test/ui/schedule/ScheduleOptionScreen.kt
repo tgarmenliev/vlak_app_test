@@ -167,15 +167,6 @@ fun MakeScheduleOptionScreenSec(
                         }
                     }
 
-//                    LazyColumn(content = {
-//                        items(data.trains.size) { index ->
-//                            MakeTrainOnTransfer(data = data.trains[index])
-//
-//                            if (index != data.trains.size - 1) {
-//                                MakeTransferComposable(timeToWaitNext = data.trains[index].timeToWaitNext)
-//                            }
-//                        }
-//                    })
                 }
             }
 
