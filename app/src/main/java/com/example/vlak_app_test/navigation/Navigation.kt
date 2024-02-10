@@ -64,9 +64,6 @@ fun AppNavigation(db: AppDatabase, dataStoreManager: DataStoreManager) {
     val trainInfoViewModel = remember { TrainInfoViewModel(db.trainInfoDao()) }
     val homescreenViewModel = remember { HomescreenViewModel(db.tripDao()) }
     val guideViewModel = remember { GuideViewModel() }
-    val settingsViewModel = remember {SettingsViewModel(db.userSettingsDao())}
-
-    //val dataStoreManager = remember { DataStoreManager(context) }
 
     homescreenViewModel.getRecentTrips()
 
@@ -85,7 +82,6 @@ fun AppNavigation(db: AppDatabase, dataStoreManager: DataStoreManager) {
             trainInfoViewModel = trainInfoViewModel,
             homescreenViewModel = homescreenViewModel,
             guideViewModel = guideViewModel,
-            settingsViewModel = settingsViewModel,
             dataStoreManager = dataStoreManager
         )
     }
@@ -100,11 +96,9 @@ fun Navigation(
     trainInfoViewModel: TrainInfoViewModel,
     homescreenViewModel: HomescreenViewModel,
     guideViewModel: GuideViewModel,
-    settingsViewModel: SettingsViewModel,
     dataStoreManager: DataStoreManager
 ) {
 
-    //val navController = rememberNavController()
 
     NavHost(navController = navController, startDestination = "home_graph") {
         navigation(
@@ -116,7 +110,6 @@ fun Navigation(
                     modifier = modifier,
                     viewModel = homescreenViewModel,
                     onSettingsClick = {
-                        settingsViewModel.retrieveSettings()
                         navController.navigate("settings")
                     },
                     onClick = {
