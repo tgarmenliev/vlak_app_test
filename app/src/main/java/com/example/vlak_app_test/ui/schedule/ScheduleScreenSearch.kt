@@ -338,11 +338,11 @@ fun MakeScheduleSearchScreen(
 
                         Button(
                             onClick = {
-                                if (trainInfo.isEmpty()) {
+                                if (trainInfo.isEmpty() || trainInfo.length < 3 || trainInfo.length > 5) {
                                     Toast.makeText(
                                         context,
                                         R.string.empty_train_info,
-                                        Toast.LENGTH_SHORT
+                                        Toast.LENGTH_LONG
                                     ).show()
                                     trainInfo = ""
                                 } else {
