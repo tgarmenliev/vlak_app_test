@@ -64,4 +64,5 @@
     <string name="name">Name</string>
     <string name="save">Save</string>
     <string name="return_to_home">Return to home</string>
+    <string name="dark_mode">Dark mode</string>
 </resources>

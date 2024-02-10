@@ -65,4 +65,5 @@
     <string name="name">Име:</string>
     <string name="save">Запази</string>
     <string name="return_to_home">Върни се към началото</string>
+    <string name="dark_mode">Тъмен режим</string>
 </resources>

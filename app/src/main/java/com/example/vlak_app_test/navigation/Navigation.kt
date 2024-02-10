@@ -9,6 +9,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -17,6 +18,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.vlak_app_test.ui.bottom_bar.BottomBarViewModel
 import com.example.vlak_app_test.ui.bottom_bar.MakeBottomBar
 import androidx.navigation.compose.currentBackStackEntryAsState
+import com.example.vlak_app_test.datastore.DataStoreManager
 import com.example.vlak_app_test.room.AppDatabase
 import com.example.vlak_app_test.ui.guide.GuideViewModel
 import com.example.vlak_app_test.ui.guide.MakeGuideMoreInfoScreen
@@ -38,9 +40,10 @@ import com.example.vlak_app_test.ui.train_info.MakeTrainInfoScreen
 import com.example.vlak_app_test.ui.train_info.TrainInfoViewModel
 
 @Composable
-fun AppNavigation(db: AppDatabase) {
+fun AppNavigation(db: AppDatabase, dataStoreManager: DataStoreManager) {
     val navController = rememberNavController()
     val currentSelectedScreen = navController.currentBackStackEntryAsState().value?.destination?.route
+    //val context = LocalContext.current
 
     var selectedItemIndex by rememberSaveable {
         mutableIntStateOf(0)
@@ -63,6 +66,8 @@ fun AppNavigation(db: AppDatabase) {
     val guideViewModel = remember { GuideViewModel() }
     val settingsViewModel = remember {SettingsViewModel(db.userSettingsDao())}
 
+    //val dataStoreManager = remember { DataStoreManager(context) }
+
     homescreenViewModel.getRecentTrips()
 
     Scaffold(
@@ -80,7 +85,8 @@ fun AppNavigation(db: AppDatabase) {
             trainInfoViewModel = trainInfoViewModel,
             homescreenViewModel = homescreenViewModel,
             guideViewModel = guideViewModel,
-            settingsViewModel = settingsViewModel
+            settingsViewModel = settingsViewModel,
+            dataStoreManager = dataStoreManager
         )
     }
 }
@@ -94,7 +100,8 @@ fun Navigation(
     trainInfoViewModel: TrainInfoViewModel,
     homescreenViewModel: HomescreenViewModel,
     guideViewModel: GuideViewModel,
-    settingsViewModel: SettingsViewModel
+    settingsViewModel: SettingsViewModel,
+    dataStoreManager: DataStoreManager
 ) {
 
     //val navController = rememberNavController()
@@ -124,7 +131,7 @@ fun Navigation(
             }
 
             composable("settings") {
-                MakeSettingsScreen(viewModel = settingsViewModel, onBackButton = { navController.popBackStack() })
+                MakeSettingsScreen(onBackButton = { navController.popBackStack() }, dataStoreManager = dataStoreManager)
             }
         }
 
