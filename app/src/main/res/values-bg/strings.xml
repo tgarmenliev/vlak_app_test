@@ -67,4 +67,8 @@
     <string name="return_to_home">Върни се към началото</string>
     <string name="dark_mode">Тъмен режим</string>
     <string name="empty_train_info">Моля, въведете правилен номер на влак и опитайте отново!</string>
+    <string name="for_date">За дата:</string>
+    <string name="trains_for_date">Влакове за дата:</string>
+    <string name="no_trains_schedule">Няма намерени влакове за избрания маршрут и дата! Моля, опитайте отново!</string>
+    <string name="total_trains">Брой намерени опции:</string>
 </resources>

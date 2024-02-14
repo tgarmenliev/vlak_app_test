@@ -4,6 +4,7 @@ class Schedule {
     data class ScheduleTable(
         val date: String = "",
         val route: String = "",
+        val totalTrains: Int = 0,
         val options: List<Options>
     )
 

@@ -99,8 +99,31 @@ fun MakeScheduleScreenSec(
                 .padding(top = 10.dp, start = 16.dp, end = 16.dp)
         ) {
             Text(
-                text = "${stringResource(id = R.string.trains)}:",
+                text = "${stringResource(id = R.string.trains_for_date)}: ${data.date}",
                 style = MaterialTheme.typography.headlineLarge
+            )
+        }
+
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(start = 16.dp, top = 4.dp, end = 16.dp, bottom = 4.dp),
+            contentAlignment = androidx.compose.ui.Alignment.Center
+        ) {
+            Text(
+                text =
+                if (data.totalTrains == 0)
+                    stringResource(id = R.string.no_trains_schedule)
+                else
+                    "${stringResource(id = R.string.total_trains)} ${data.totalTrains}",
+
+                style = MaterialTheme.typography.bodyMedium,
+
+                fontWeight =
+                if (data.totalTrains == 0)
+                    FontWeight.Bold
+                else
+                    FontWeight.Normal,
             )
         }
 

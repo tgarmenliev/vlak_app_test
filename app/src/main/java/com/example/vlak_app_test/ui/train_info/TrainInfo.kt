@@ -102,6 +102,19 @@ fun MakeTrainInfo(
                 )
             }
 
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 2.dp, start = 16.dp, end = 16.dp)
+            ) {
+                Text(
+                    text = "${stringResource(id = R.string.for_date)} ${data.date}",
+                    style = MaterialTheme.typography.headlineMedium.copy(
+                        fontWeight = FontWeight.Light
+                    )
+                )
+            }
+
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -120,7 +133,7 @@ fun MakeTrainInfo(
                 ) {
                     Text(
                         text = stringResource(id = R.string.station),
-                        modifier = Modifier.weight(3f),
+                        modifier = Modifier.weight(2.3f),
                         style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.SemiBold)
                     )
                     Text(
@@ -144,7 +157,7 @@ fun MakeTrainInfo(
                         ) {
                             Text(
                                 text = trainInfo.station,
-                                modifier = Modifier.weight(3f),
+                                modifier = Modifier.weight(2.3f),
                                 style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.Normal)
                             )
                             Text(

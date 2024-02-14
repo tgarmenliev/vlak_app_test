@@ -66,4 +66,8 @@
     <string name="return_to_home">Return to home</string>
     <string name="dark_mode">Dark mode</string>
     <string name="empty_train_info">Please provide correct train number and try again!</string>
+    <string name="for_date">For date:</string>
+    <string name="trains_for_date">Trains for date:</string>
+    <string name="no_trains_schedule">There are no available options for this route on this date! Please try again!</string>
+    <string name="total_trains">Total options found:</string>
 </resources>
