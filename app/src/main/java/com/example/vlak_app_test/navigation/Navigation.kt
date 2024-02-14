@@ -61,7 +61,7 @@ fun AppNavigation(db: AppDatabase, dataStoreManager: DataStoreManager) {
     val homescreenViewModel = remember { HomescreenViewModel(db.tripDao()) }
     val guideViewModel = remember { GuideViewModel() }
 
-    homescreenViewModel.getRecentTrips()
+    homescreenViewModel.deleteAndGetRecentTrips()
 
     Scaffold(
         bottomBar = {

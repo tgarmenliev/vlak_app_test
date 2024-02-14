@@ -12,6 +12,9 @@ import com.example.vlak_app_test.room.TripDao
 import com.example.vlak_app_test.room.TripHeading
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 sealed interface HomeState {
     object Loading : HomeState
@@ -63,6 +66,26 @@ class HomescreenViewModel(
         viewModelScope.launch {
             tripState = TripState.Loading
             tripState = TripState.Success(dao.getTrips())
+        }
+    }
+
+    private suspend fun getRecentTripsInit() {
+        _recentTrips.value = dao.getRecent3TripTitles()
+        homeState = HomeState.Success(_recentTrips.value)
+    }
+
+    private suspend fun deleteOldTrips() {
+        viewModelScope.launch {
+            val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+            val date = dateFormat.format(Date())
+            dao.deleteOldTrips(date)
+        }
+    }
+
+    fun deleteAndGetRecentTrips() {
+        viewModelScope.launch {
+            deleteOldTrips()
+            getRecentTripsInit()
         }
     }
 }
