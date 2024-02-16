@@ -21,4 +21,7 @@ interface TripDao {
 
     @Query("SELECT id, route, duration, departureTime, arrivalTime, departureDate, arrivalDate FROM trip ORDER BY timestamp ASC LIMIT 3")
     suspend fun getRecent3TripTitles(): List<TripHeading>
+
+    @Query("DELETE FROM trip WHERE id = :id")
+    suspend fun deleteTripById(id: Int)
 }

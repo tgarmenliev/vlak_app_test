@@ -15,6 +15,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -60,7 +61,8 @@ fun MakeTripsScreen(
              ) {
                 TripsScreen(
                     data = tripsState.data,
-                    modifier = Modifier.padding(it)
+                    modifier = Modifier.padding(it),
+                    onDeleteTrip = { id -> viewModel.deleteTripById(id) }
                 )
             }
         }
@@ -74,7 +76,8 @@ fun MakeTripsScreen(
 @Composable
 fun TripsScreen(
     modifier: Modifier = Modifier,
-    data: List<Trip> = listOf()
+    data: List<Trip> = listOf(),
+    onDeleteTrip: (Int) -> Unit = {}
 ) {
     Column(
         modifier = modifier
@@ -87,7 +90,8 @@ fun TripsScreen(
                 trip = trip,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(4.dp)
+                    .padding(4.dp),
+                onDeleteTrip = onDeleteTrip
             )
         }
     }
@@ -96,7 +100,8 @@ fun TripsScreen(
 @Composable
 fun TripCard(
     trip: Trip,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onDeleteTrip: (Int) -> Unit = {}
 ) {
     var isExpanded by remember { mutableStateOf(false) }
 
@@ -111,19 +116,38 @@ fun TripCard(
             .padding(8.dp)
     ) {
 
-        Text(
-            text = trip.departureDate,
-            style = MaterialTheme.typography.bodyMedium,
-            fontStyle = FontStyle.Italic,
-            modifier = Modifier.padding(start = 4.dp, end = 4.dp)
-        )
+        Row(
+            modifier = Modifier
+                .fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Column {
+                Text(
+                    text = trip.departureDate,
+                    style = MaterialTheme.typography.bodyMedium,
+                    fontStyle = FontStyle.Italic,
+                    modifier = Modifier.padding(start = 4.dp, end = 4.dp)
+                )
 
-        Text(
-            text = trip.route,
-            style = MaterialTheme.typography.bodyMedium,
-            fontWeight = FontWeight.Bold,
-            modifier = Modifier.padding(start = 4.dp, end = 4.dp),
-        )
+                Text(
+                    text = trip.route,
+                    style = MaterialTheme.typography.bodyMedium,
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.padding(start = 4.dp, end = 4.dp),
+                )
+            }
+
+            IconButton(onClick = { onDeleteTrip(trip.id) }) {
+                Icon(
+                    painter = painterResource(id = R.drawable.delete),
+                    contentDescription = "delete trip",
+                    modifier = Modifier
+                        .size(22.dp)
+                        .padding(end = 4.dp)
+                        .align(Alignment.Top)
+                )
+            }
+        }
 
         MakeTransfers(
             transfers = trip.numOfTransfers,

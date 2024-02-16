@@ -56,7 +56,6 @@ class HomescreenViewModel(
     fun getRecentTrips() {
         viewModelScope.launch {
             homeState = HomeState.Loading
-            //delay(1000L)
             _recentTrips.value = dao.getRecent3TripTitles()
             homeState = HomeState.Success(_recentTrips.value)
         }
@@ -86,6 +85,13 @@ class HomescreenViewModel(
         viewModelScope.launch {
             deleteOldTrips()
             getRecentTripsInit()
+        }
+    }
+
+    fun deleteTripById(id: Int) {
+        viewModelScope.launch {
+            dao.deleteTripById(id)
+            getTrips()
         }
     }
 }
