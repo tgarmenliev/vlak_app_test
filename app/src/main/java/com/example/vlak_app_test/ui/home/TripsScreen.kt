@@ -68,7 +68,6 @@ fun MakeTripsScreen(
         }
         is TripState.Error -> {
             ErrorScreen(error = tripsState.error, modifier = Modifier.fillMaxSize())
-            println(tripsState.error)
         }
     }
 }

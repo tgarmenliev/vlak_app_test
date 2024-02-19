@@ -9,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Path
 
-const val BASE_URL = "https://bultrain-backend-9e5d2178614e.herokuapp.com" // 10.0.2.2 192.168.1.5
+const val BASE_URL = "https://bultrain-backend-9e5d2178614e.herokuapp.com"
 
 private val retrofit = Retrofit.Builder()
     .addConverterFactory(GsonConverterFactory.create())

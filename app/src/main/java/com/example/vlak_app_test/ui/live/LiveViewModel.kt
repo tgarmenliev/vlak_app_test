@@ -67,7 +67,6 @@ class LiveViewModel(
     fun setStation(station: String) {
         _selectedStationName.value = station
         _selectedStation.value = getStationCode(station)
-        println("selectedStation: ..${_selectedStation.value}..")
     }
 
     fun setType(type: String) {

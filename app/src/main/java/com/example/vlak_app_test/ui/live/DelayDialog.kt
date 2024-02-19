@@ -83,7 +83,6 @@ fun MakeDelayDialog(
                     Text(
                         text = data.delayedTime,
                         style = MaterialTheme.typography.labelMedium.copy(
-                            //color = Color.Black,
                             textDecoration = TextDecoration.LineThrough
                         ),
                         modifier = Modifier.padding(top = 2.dp, end = 8.dp)

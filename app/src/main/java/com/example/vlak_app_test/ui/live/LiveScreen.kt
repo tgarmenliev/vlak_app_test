@@ -78,7 +78,6 @@ fun MakeLiveScreenOne(
         }
         is LiveState.Error -> {
             ErrorScreen(error = liveState.error, modifier = Modifier.fillMaxSize())
-            println(liveState.error)
         }
     }
 }
@@ -229,9 +228,7 @@ fun MakeLiveScreen(data: Live.LiveTable, type: String = "departures", modifier: 
                         }
                         Text(
                             text = annotatedString,
-                            style = MaterialTheme.typography.labelLarge.copy(
-                                //color = Color.Black,
-                            ),
+                            style = MaterialTheme.typography.labelLarge
                         )
                     }
                 }

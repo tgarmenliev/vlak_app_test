@@ -73,7 +73,6 @@ fun MakeDatePickerDialog(
             ) {
                 Text(
                     text = stringResource(id = R.string.cancel),
-                    //color = Color.White
                 )
             }
         },
