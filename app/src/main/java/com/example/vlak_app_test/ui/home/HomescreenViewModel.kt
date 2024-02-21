@@ -53,6 +53,14 @@ class HomescreenViewModel(
         }
     }
 
+    fun checkIfTripExists(route: String, trip: Schedule.Options): Boolean {
+        var count = 0;
+        viewModelScope.launch {
+            count = dao.checkIfTripExists(route, trip.departureDate, trip.departureTime)
+        }
+        return count == 0
+    }
+
     fun getRecentTrips() {
         viewModelScope.launch {
             homeState = HomeState.Loading

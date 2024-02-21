@@ -24,4 +24,7 @@ interface TripDao {
 
     @Query("DELETE FROM trip WHERE id = :id")
     suspend fun deleteTripById(id: Int)
+
+    @Query("SELECT COUNT(*) FROM trip WHERE route = :route AND departureDate = :departureDate AND departureTime = :departureTime")
+    suspend fun checkIfTripExists(route: String, departureDate: String, departureTime: String): Int
 }

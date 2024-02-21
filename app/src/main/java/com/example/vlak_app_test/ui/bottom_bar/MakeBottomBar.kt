@@ -29,13 +29,14 @@ fun MakeBottomBar(
                 selected = selectedItemIndex == index,
                 onClick = {
                     onItemSelected(index)
-                    navController.navigate(item.route) {
-                        popUpTo(navController.graph.startDestinationId) {
-                            saveState = true
-                        }
-                        launchSingleTop = true
-                        restoreState = true
-                    }
+                    navController.navigate(item.route)
+//                    navController.navigate(item.route) {
+//                        popUpTo(navController.graph.startDestinationId) {
+//                            saveState = true
+//                        }
+//                        launchSingleTop = true
+//                        restoreState = true
+//                    }
                 },
                 label = {
                     Text(
