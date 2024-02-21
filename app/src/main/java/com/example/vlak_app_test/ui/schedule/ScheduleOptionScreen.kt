@@ -52,7 +52,6 @@ import com.example.vlak_app_test.ui.train_info.TrainInfoViewModel
 @Composable
 fun MakeScheduleOptionScreen(
     onAddToTripsButtonPressed: (Schedule.Options, String) -> Unit,
-    checkIfTripExists: (String, Schedule.Options) -> Boolean,
     trainInfoViewModel: TrainInfoViewModel,
     onCancelButton: () -> Unit,
     viewModel: ScheduleViewModel,
@@ -69,7 +68,6 @@ fun MakeScheduleOptionScreen(
     ) {
         MakeScheduleOptionScreenSec(
             onAddToTripsButtonPressed = onAddToTripsButtonPressed,
-            checkIfTripExists = checkIfTripExists,
             getTrainInfo = { trainNum, date ->
                 trainInfoViewModel.setOption(trainNum, date)
                 trainInfoViewModel.getData()
@@ -85,7 +83,6 @@ fun MakeScheduleOptionScreen(
 @Composable
 fun MakeScheduleOptionScreenSec(
     onAddToTripsButtonPressed: (Schedule.Options, String) -> Unit,
-    checkIfTripExists: (String, Schedule.Options) -> Boolean,
     getTrainInfo: (String, String) -> Unit,
     modifier: Modifier = Modifier,
     data: Schedule.Options,
@@ -176,7 +173,6 @@ fun MakeScheduleOptionScreenSec(
             Spacer(modifier = Modifier.padding(vertical = 8.dp))
 
             val addedText = stringResource(id = R.string.added_to_trips)
-            val notAddedText = stringResource(id = R.string.trip_already_added)
 
             Box(
                 modifier = Modifier.align(Alignment.CenterHorizontally)
@@ -184,21 +180,12 @@ fun MakeScheduleOptionScreenSec(
                 MakeButton(
                     text = R.string.add_to_trips,
                     onClick = {
-                        if (checkIfTripExists(route, data)) {
-
-                            Toast.makeText(
-                                context,
-                                addedText,
-                                Toast.LENGTH_SHORT
-                            ).show()
-                            onAddToTripsButtonPressed(data, route)
-                        } else {
-                            Toast.makeText(
-                                context,
-                                notAddedText,
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }
+                        Toast.makeText(
+                            context,
+                            addedText,
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        onAddToTripsButtonPressed(data, route)
                     },
                     modifier = Modifier
                         .fillMaxWidth(0.6f)

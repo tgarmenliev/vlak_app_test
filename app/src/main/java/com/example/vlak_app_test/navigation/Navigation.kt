@@ -144,9 +144,6 @@ fun Navigation(
                             route = route
                         )
                     },
-                    checkIfTripExists = { route, trip ->
-                        homescreenViewModel.checkIfTripExists(route, trip)
-                    },
                     trainInfoViewModel = trainInfoViewModel,
                     viewModel = scheduleViewModel,
                     onCancelButton = { navController.popBackStack() },

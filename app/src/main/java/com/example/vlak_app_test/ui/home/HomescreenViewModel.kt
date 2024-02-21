@@ -40,25 +40,19 @@ class HomescreenViewModel(
 
     fun insertTrip(trip: Schedule.Options, route: String) {
         viewModelScope.launch {
-            Trip(
-                route = route,
-                duration = trip.duration,
-                departureTime = trip.departureTime,
-                arrivalTime = trip.arrivalTime,
-                departureDate = trip.departureDate,
-                arrivalDate = trip.arrivalDate,
-                numOfTransfers = trip.numOfTransfers,
-                trains = trip.trains
-            ).also { dao.insert(it) }
+            if (dao.checkIfTripExists(route, trip.departureDate, trip.departureTime) == 0) {
+                Trip(
+                    route = route,
+                    duration = trip.duration,
+                    departureTime = trip.departureTime,
+                    arrivalTime = trip.arrivalTime,
+                    departureDate = trip.departureDate,
+                    arrivalDate = trip.arrivalDate,
+                    numOfTransfers = trip.numOfTransfers,
+                    trains = trip.trains
+                ).also { dao.insert(it) }
+            }
         }
-    }
-
-    fun checkIfTripExists(route: String, trip: Schedule.Options): Boolean {
-        var count = 0;
-        viewModelScope.launch {
-            count = dao.checkIfTripExists(route, trip.departureDate, trip.departureTime)
-        }
-        return count == 0
     }
 
     fun getRecentTrips() {
