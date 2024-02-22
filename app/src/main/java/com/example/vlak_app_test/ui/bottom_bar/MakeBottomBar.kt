@@ -21,6 +21,16 @@ fun MakeBottomBar(
     onItemSelected: (Int) -> Unit
 ) {
 
+    navController.addOnDestinationChangedListener(
+        listener = { _, destination, _ ->
+            val selectedItem = items.find { it.firstScreenRoute == destination.route }
+            val index = items.indexOf(selectedItem)
+            if (index != selectedItemIndex) {
+                onItemSelected(index)
+            }
+        }
+    )
+
     NavigationBar(
         modifier = modifier,
     ) {
@@ -30,13 +40,6 @@ fun MakeBottomBar(
                 onClick = {
                     onItemSelected(index)
                     navController.navigate(item.route)
-//                    navController.navigate(item.route) {
-//                        popUpTo(navController.graph.startDestinationId) {
-//                            saveState = true
-//                        }
-//                        launchSingleTop = true
-//                        restoreState = true
-//                    }
                 },
                 label = {
                     Text(
