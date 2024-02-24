@@ -76,11 +76,12 @@ dependencies {
     implementation("androidx.multidex:multidex:2.0.1")
 
     implementation("androidx.constraintlayout:constraintlayout:2.2.0-alpha13")
-    // To use constraintlayout in compose
+    // Use constraintlayout in Compose
     implementation("androidx.constraintlayout:constraintlayout-compose:1.1.0-alpha13")
 
     implementation("androidx.compose.material3:material3:1.2.0-alpha02")
 
+    // Navigation
     val nav_version = "2.7.6"
 
     implementation("androidx.navigation:navigation-compose:$nav_version")
@@ -89,9 +90,6 @@ dependencies {
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     // Retrofit with Scalar Converter
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
-
-    // splash screen
-    implementation("androidx.core:core-splashscreen:1.0.1")
 
     // Room
     val room_version = "2.6.1"
@@ -104,10 +102,9 @@ dependencies {
 
     implementation("androidx.room:room-ktx:$room_version")
 
+    // Coil
     implementation("io.coil-kt:coil-compose:2.5.0")
 
-    // splash screen
-    implementation("androidx.core:core-splashscreen:1.0.1")
-
+    // DataStore
     implementation("androidx.datastore:datastore-preferences:1.0.0")
 }
