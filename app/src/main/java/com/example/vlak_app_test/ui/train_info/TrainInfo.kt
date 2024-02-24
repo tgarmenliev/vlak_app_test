@@ -133,7 +133,7 @@ fun MakeTrainInfo(
                 ) {
                     Text(
                         text = stringResource(id = R.string.station),
-                        modifier = Modifier.weight(2.3f),
+                        modifier = Modifier.weight(2.1f),
                         style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.SemiBold)
                     )
                     Text(
@@ -157,7 +157,7 @@ fun MakeTrainInfo(
                         ) {
                             Text(
                                 text = trainInfo.station,
-                                modifier = Modifier.weight(2.3f),
+                                modifier = Modifier.weight(2.1f),
                                 style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.Normal)
                             )
                             Text(
