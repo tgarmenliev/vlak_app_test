@@ -90,28 +90,3 @@ val Typography = Typography(
         letterSpacing = 0.sp
     ),
 )
-
-//val JostFont = FontFamily(
-//    fonts = listOf(
-//        Font(
-//            resId = R.font.jost_regular,
-//            weight = FontWeight.Normal
-//        ),
-//        Font(
-//            resId = R.font.jost_medium,
-//            weight = FontWeight.Medium
-//        ),
-//        Font(
-//            resId = R.font.jost_semibold,
-//            weight = FontWeight.SemiBold
-//        ),
-//        Font(
-//            resId = R.font.jost_bold,
-//            weight = FontWeight.Bold
-//        ),
-//        Font(
-//            resId = R.font.jost_black,
-//            weight = FontWeight.Black
-//        )
-//    )
-//)
