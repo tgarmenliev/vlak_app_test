@@ -10,20 +10,19 @@ import com.example.vlak_app_test.models.schedule.Schedule
 import com.example.vlak_app_test.room.Trip
 import com.example.vlak_app_test.room.TripDao
 import com.example.vlak_app_test.room.TripHeading
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
 sealed interface HomeState {
-    object Loading : HomeState
+    data object Loading : HomeState
     data class Success(val data: List<TripHeading>) : HomeState
     data class Error(val error: Throwable) : HomeState
 }
 
 sealed interface TripState {
-    object Loading : TripState
+    data object Loading : TripState
     data class Success(val data: List<Trip>) : TripState
     data class Error(val error: Throwable) : TripState
 }

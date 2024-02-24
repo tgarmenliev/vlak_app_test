@@ -215,7 +215,7 @@ fun TripCard(
             )
 
             for (index in trip.trains.indices) {
-                MakeTrainOnTransfer(data = trip.trains[index], getTrainInfo = {_, _ -> {} }, hasClickableTrainInfo = false)
+                MakeTrainOnTransfer(data = trip.trains[index], getTrainInfo = {_, _ -> run {} }, hasClickableTrainInfo = false)
 
                 if (index != trip.trains.size - 1) {
                     MakeTransferComposable(timeToWaitNext = trip.trains[index].timeToWaitNext)

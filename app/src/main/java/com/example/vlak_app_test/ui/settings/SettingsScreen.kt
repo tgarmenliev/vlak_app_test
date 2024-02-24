@@ -56,10 +56,6 @@ fun MakeSettingsScreen(
         DarkModeSwitch(darkMode, dataStoreManager, coroutineScope)
 
         MakeButton(
-            text = R.string.return_to_home,
-            onClick = {
-                onBackButton()
-            },
             modifier = Modifier
                 .fillMaxWidth(0.6f)
                 .border(
@@ -67,6 +63,10 @@ fun MakeSettingsScreen(
                     color = MaterialTheme.colorScheme.onBackground,
                     shape = RoundedCornerShape(16.dp)
                 ),
+            text = R.string.return_to_home,
+            onClick = {
+                onBackButton()
+            },
         )
     }
 }

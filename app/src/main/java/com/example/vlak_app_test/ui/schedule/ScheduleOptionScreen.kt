@@ -2,8 +2,6 @@ package com.example.vlak_app_test.ui.schedule
 
 import android.widget.Toast
 import androidx.compose.foundation.Canvas
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -20,7 +18,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -43,9 +40,6 @@ import androidx.navigation.NavController
 import com.example.vlak_app_test.R
 import com.example.vlak_app_test.models.schedule.Schedule
 import com.example.vlak_app_test.ui.composables.MakeButton
-import com.example.vlak_app_test.ui.theme.BackgroundColor
-import com.example.vlak_app_test.ui.theme.PrimaryDarkColor
-import com.example.vlak_app_test.ui.theme.TextDarkColor
 import com.example.vlak_app_test.ui.top_bar.MakeTopBar
 import com.example.vlak_app_test.ui.train_info.TrainInfoViewModel
 
@@ -178,6 +172,8 @@ fun MakeScheduleOptionScreenSec(
                 modifier = Modifier.align(Alignment.CenterHorizontally)
             ) {
                 MakeButton(
+                    modifier = Modifier
+                        .fillMaxWidth(0.6f),
                     text = R.string.add_to_trips,
                     onClick = {
                         Toast.makeText(
@@ -186,9 +182,7 @@ fun MakeScheduleOptionScreenSec(
                             Toast.LENGTH_SHORT
                         ).show()
                         onAddToTripsButtonPressed(data, route)
-                    },
-                    modifier = Modifier
-                        .fillMaxWidth(0.6f)
+                    }
                 )
             }
         }
@@ -197,7 +191,6 @@ fun MakeScheduleOptionScreenSec(
 
 @Composable
 private fun Circle(
-    modifier: Modifier = Modifier,
     color: Color = MaterialTheme.colorScheme.primary,
 ) {
     Canvas(modifier = Modifier.size(20.dp), onDraw = {
@@ -388,7 +381,7 @@ fun MakeTransferComposable(
 
         Text(text = "${stringResource(id = R.string.time_to_wait_next)} " +
                 "$timeToWaitNext " +
-                "${stringResource(id = R.string.hours_short)}",
+                stringResource(id = R.string.hours_short),
             style = MaterialTheme.typography.bodyMedium,
             modifier = Modifier
                 .padding(start = 16.dp)
@@ -400,7 +393,6 @@ fun MakeTransferComposable(
 
 @Composable
 private fun Line(
-    modifier: Modifier = Modifier,
     color: Color = MaterialTheme.colorScheme.primary,
 ) {
     val pathEffect = PathEffect.dashPathEffect(floatArrayOf(10f, 10f), 0f)

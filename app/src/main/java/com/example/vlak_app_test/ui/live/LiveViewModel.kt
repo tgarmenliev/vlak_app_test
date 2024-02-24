@@ -16,7 +16,7 @@ import kotlinx.coroutines.launch
 import java.util.Locale
 
 sealed interface LiveState {
-    object Loading : LiveState
+    data object Loading : LiveState
     data class Success(val data: Live.LiveTable) : LiveState
     data class Error(val error: Throwable) : LiveState
 }
@@ -27,24 +27,17 @@ class LiveViewModel(
     var liveState: LiveState by mutableStateOf(LiveState.Loading)
 
     private val _selectedStation = mutableIntStateOf(0)
-    val selectedStation: State<Int> = _selectedStation
+    private val selectedStation: State<Int> = _selectedStation
 
     private val _selectedStationName = mutableStateOf("")
 
     private val _selectedType = mutableStateOf("departures")
-    val selectedType: State<String> = _selectedType
+    private val selectedType: State<String> = _selectedType
 
     private val _recentSearches = mutableStateOf<List<SearchedStation>>(emptyList())
     val recentSearches: State<List<SearchedStation>> = _recentSearches
 
-    //private val _data = MutableLiveData<Live.LiveTable>()
-    //private val data: Live.LiveTable = sampleLiveInfo
-
-//    init {
-//        data.value = sampleLiveInfo
-//    }
-
-    fun getStationCode(station: String): Int {
+    private fun getStationCode(station: String): Int {
         // find the station id by its name
         val stations = stationsList
         val foundStation = stations.find {
@@ -66,7 +59,7 @@ class LiveViewModel(
 
     fun setStation(station: String) {
         _selectedStationName.value = station
-        _selectedStation.value = getStationCode(station)
+        _selectedStation.intValue = getStationCode(station)
     }
 
     fun setType(type: String) {

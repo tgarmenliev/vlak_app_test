@@ -7,12 +7,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.vlak_app_test.models.live.Live
 import com.example.vlak_app_test.models.schedule.Schedule
 import com.example.vlak_app_test.network.TrainApi
 import com.example.vlak_app_test.room.ScheduleDao
 import com.example.vlak_app_test.room.SearchedSchedule
-import com.example.vlak_app_test.room.SearchedStation
 import com.example.vlak_app_test.stationsList
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
@@ -21,7 +19,7 @@ import java.util.Date
 import java.util.Locale
 
 sealed interface ScheduleState {
-    object Loading : ScheduleState
+    data object Loading : ScheduleState
     data class Success(val data: Schedule.ScheduleTable) : ScheduleState
     data class Error(val error: Throwable) : ScheduleState
 }
@@ -42,19 +40,15 @@ class ScheduleViewModel(
     private val _recentSearches = mutableStateOf<List<SearchedSchedule>>(emptyList())
     val recentSearches: State<List<SearchedSchedule>> = _recentSearches
 
-    //private val data: Schedule.ScheduleTable = sampleScheduleInfo
-
     private fun getStationCode(station: String): Int? {
         // find the station id by its name
         val stations = stationsList
-        val foundStation = stations.find {
-            it.name.equals(station, ignoreCase = true) || it.englishName.equals(station, ignoreCase = true)
-        }
-        if(foundStation != null) {
-            return foundStation.id
-        } else {
-            return null
-        }
+        return stations.find {
+            it.name.equals(station, ignoreCase = true) || it.englishName.equals(
+                station,
+                ignoreCase = true
+            )
+        }?.id
     }
 
     fun checkIfStationExists(station: String): Boolean {
@@ -75,7 +69,7 @@ class ScheduleViewModel(
     }
 
     fun setOptionIndex(index: Int) {
-        _selectedOption.value = index
+        _selectedOption.intValue = index
     }
 
     fun getOptionIndex(): Int {

@@ -239,12 +239,12 @@ fun MakeScheduleSearchScreen(
                     }
 
                     MakeButton(
-                        text = R.string.search,
                         modifier = Modifier
                             .padding(top = 16.dp, bottom = 16.dp)
                             .fillMaxWidth(0.6f)
                             .height(50.dp)
                             .align(Alignment.CenterHorizontally),
+                        text = R.string.search,
                         onClick = {
                             if (!viewModel.checkIfStationExists(stationOne) || !viewModel.checkIfStationExists(stationTwo)) {
                                 Toast.makeText(

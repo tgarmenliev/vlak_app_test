@@ -1,6 +1,5 @@
 package com.example.vlak_app_test.ui.schedule
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -27,7 +26,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
@@ -38,10 +36,7 @@ import com.example.vlak_app_test.R
 import com.example.vlak_app_test.models.schedule.Schedule
 import com.example.vlak_app_test.ui.error.ErrorScreen
 import com.example.vlak_app_test.ui.loading.LoadingScreen
-import com.example.vlak_app_test.ui.theme.BackgroundColor
 import com.example.vlak_app_test.ui.top_bar.MakeTopBar
-import com.example.vlak_app_test.ui.theme.PrimaryDarkColor
-import com.example.vlak_app_test.ui.theme.TextDarkColor
 
 @Composable
 fun MakeScheduleScreen(
@@ -136,7 +131,7 @@ fun MakeScheduleScreenSec(
 
             // Table rows
             items(data.options) { option ->
-                val routeMaker = RouteMaker(option.trains)
+                val routeMaker = routeMaker(option.trains)
 
                 Row(
                     modifier = Modifier
@@ -210,7 +205,7 @@ fun MakeScheduleScreenSec(
     }
 }
 
-private fun RouteMaker(trains: List<Schedule.Trains>): String {
+private fun routeMaker(trains: List<Schedule.Trains>): String {
     var route = ""
     for (i in trains.indices) {
 
@@ -226,8 +221,7 @@ private fun RouteMaker(trains: List<Schedule.Trains>): String {
 
 @Composable
 fun MakeDepartArriveTime(
-    option: Schedule.Options,
-    modifier: Modifier = Modifier
+    option: Schedule.Options
 ) {
     Row {
         Text(
@@ -276,7 +270,7 @@ fun MakeDuration(
         )
 
         Text(
-            text = "${duration} ${stringResource(id = R.string.hours_short)}",
+            text = "$duration ${stringResource(id = R.string.hours_short)}",
             style = textStyle,
             modifier = Modifier
                 .padding(start = 4.dp, end = 4.dp)
@@ -286,8 +280,8 @@ fun MakeDuration(
 
 @Composable
 fun MakeTransfers(
-    transfers: Int = 0,
     modifier: Modifier = Modifier,
+    transfers: Int = 0,
     textStyle: TextStyle = MaterialTheme.typography.bodyMedium,
 ) {
     Row(

@@ -58,10 +58,6 @@ fun MakeStationInputField(
 
     val stations = stationsList
 
-//    var category by remember {
-//        mutableStateOf("")
-//    }
-
     val language = Locale.getDefault().language
 
     val heightTextFields by remember {
@@ -166,7 +162,7 @@ fun MakeStationInputField(
                         modifier = Modifier.heightIn(max = 150.dp),
                     ) {
                         val uniqueSuggestions = HashSet<String>()
-                        var name: String = ""
+                        var name: String
 
                         val sortedStations = stations.sortedBy { if (language == "bg") it.name else it.englishName }
                         items(sortedStations) { value ->

@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 import java.util.Locale
 
 sealed interface GuideState {
-    object Loading: GuideState
+    data object Loading: GuideState
     data class SuccessTopic(val data: Guide.Topic) : GuideState
     data class SuccessAllTopics(val data: List<Guide.AllTopics>) : GuideState
     data class Error(val error: Throwable) : GuideState
@@ -23,7 +23,7 @@ class GuideViewModel : ViewModel() {
     var guideState: GuideState by mutableStateOf(GuideState.Loading)
 
     private val _selectedTopic = mutableIntStateOf(-1)
-    val selectedTopic: State<Int> = _selectedTopic
+    private val selectedTopic: State<Int> = _selectedTopic
 
     private val _allTopics = mutableStateOf<List<Guide.AllTopics>>(emptyList())
 
@@ -44,7 +44,7 @@ class GuideViewModel : ViewModel() {
     }
 
     fun setSelectedTopic(id: Int) {
-        _selectedTopic.value = id
+        _selectedTopic.intValue = id
     }
 
     fun removeSuccessTopic() {
@@ -52,11 +52,11 @@ class GuideViewModel : ViewModel() {
     }
 
     fun setCurrentTopic(id: Int) {
-        _currentTopic.value = id
+        _currentTopic.intValue = id
     }
 
     fun getCurrentTopic(): Int {
-        return _currentTopic.value
+        return _currentTopic.intValue
     }
 
     fun getGuideTopic() {
