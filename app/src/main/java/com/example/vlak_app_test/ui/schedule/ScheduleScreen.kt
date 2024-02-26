@@ -129,7 +129,6 @@ fun MakeScheduleScreenSec(
         )
         {
 
-            // Table rows
             items(data.options) { option ->
                 val routeMaker = routeMaker(option.trains)
 
@@ -297,12 +296,10 @@ fun MakeTransfers(
 
         Text(
             text =
-            if (transfers == 0) {
-                " " + stringResource(id = R.string.direct_train)
-            } else if (transfers == 1) {
-                " $transfers ${stringResource(id = R.string.one_transfer)}"
-            } else {
-                " $transfers ${stringResource(id = R.string.many_transfers)}"
+            when (transfers) {
+                0 -> " " + stringResource(id = R.string.direct_train)
+                1 -> " $transfers ${stringResource(id = R.string.one_transfer)}"
+                else -> " $transfers ${stringResource(id = R.string.many_transfers)}"
             },
             style = textStyle,
         )

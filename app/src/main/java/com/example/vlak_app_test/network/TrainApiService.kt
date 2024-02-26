@@ -9,8 +9,10 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Path
 
+// Base URL for the API requests
 const val BASE_URL = "https://bultrain-backend-9e5d2178614e.herokuapp.com"
 
+// Retrofit object for the requests
 private val retrofit = Retrofit.Builder()
     .addConverterFactory(GsonConverterFactory.create())
     .baseUrl(BASE_URL)
@@ -59,6 +61,7 @@ interface TrainApiService {
     ): List<Guide.AllTopics>
 }
 
+// Singleton object to use the Retrofit functions
 object TrainApi {
     val retrofitService: TrainApiService by lazy {
         retrofit.create(TrainApiService::class.java)

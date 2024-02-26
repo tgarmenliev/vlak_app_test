@@ -55,6 +55,7 @@ fun AppNavigation(db: AppDatabase, dataStoreManager: DataStoreManager) {
     }
     val routes = listOf("home", "schedule_search", "live_search", "guide")
 
+    // ViewModels
     val scheduleViewModel = remember { ScheduleViewModel(db.scheduleDao()) }
     val liveViewModel = remember { LiveViewModel(db.stationDao()) }
     val trainInfoViewModel = remember { TrainInfoViewModel(db.trainInfoDao()) }
@@ -95,7 +96,7 @@ fun Navigation(
     dataStoreManager: DataStoreManager
 ) {
 
-
+    // Navigation with NavHosts
     NavHost(navController = navController, startDestination = "home_graph") {
         navigation(
             route = "home_graph",

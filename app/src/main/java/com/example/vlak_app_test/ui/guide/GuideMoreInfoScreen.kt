@@ -101,6 +101,7 @@ fun MakeGuideMoreInfoScreen(
                 )
 
                 if (it.image.isNotEmpty()) {
+                    // Load image from server with Coil
                     AsyncImage(
                         model = ImageRequest.Builder(LocalContext.current)
                             .data(url + "/guide/images/" + it.image)

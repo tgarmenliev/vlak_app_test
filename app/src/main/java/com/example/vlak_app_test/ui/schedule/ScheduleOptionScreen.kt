@@ -174,16 +174,15 @@ fun MakeScheduleOptionScreenSec(
                 MakeButton(
                     modifier = Modifier
                         .fillMaxWidth(0.6f),
-                    text = R.string.add_to_trips,
-                    onClick = {
-                        Toast.makeText(
-                            context,
-                            addedText,
-                            Toast.LENGTH_SHORT
-                        ).show()
-                        onAddToTripsButtonPressed(data, route)
-                    }
-                )
+                    text = R.string.add_to_trips
+                ) {
+                    Toast.makeText(
+                        context,
+                        addedText,
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    onAddToTripsButtonPressed(data, route)
+                }
             }
         }
     }
@@ -208,7 +207,7 @@ fun MakeTrainOnTransfer(
         modifier = Modifier
             .fillMaxWidth()
             .padding(start = 8.dp, top = 8.dp)
-            .height(IntrinsicSize.Max) // Позволява всички неща вътре да са с еднаква височина
+            .height(IntrinsicSize.Max) // Allows all things inside to be the same height
     ) {
         Column(
             modifier = Modifier

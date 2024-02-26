@@ -49,6 +49,7 @@ fun MakeLiveSearchScreen(
 
     val context = LocalContext.current
 
+    // Get recent searches
     LaunchedEffect(Unit) {
         viewModel.getRecentSearches()
         recentSearched = viewModel.recentSearches.value
@@ -148,22 +149,21 @@ fun MakeLiveSearchScreen(
                 modifier = Modifier
                     .fillMaxWidth(0.6f),
                 text = R.string.next,
-                onClick = {
-                    if (!viewModel.checkIfStationExists(titleText)) {
-                        Toast.makeText(
-                            context,
-                            R.string.station_not_exist,
-                            Toast.LENGTH_SHORT
-                        ).show()
-                        titleText = ""
-                    } else {
-                        viewModel.setStation(titleText)
-                        viewModel.getData()
-                        titleText = ""
-                        navController.navigate("live")
-                    }
-                },
-            )
+            ) {
+                if (!viewModel.checkIfStationExists(titleText)) {
+                    Toast.makeText(
+                        context,
+                        R.string.station_not_exist,
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    titleText = ""
+                } else {
+                    viewModel.setStation(titleText)
+                    viewModel.getData()
+                    titleText = ""
+                    navController.navigate("live")
+                }
+            }
         }
     }
 }

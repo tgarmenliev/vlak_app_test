@@ -17,11 +17,19 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
+            // Create a DataStoreManager instance
             val context = LocalContext.current
             val dataStoreManager = remember { DataStoreManager(context) }
+
+            // Collect the dark mode state from the DataStore
             val darkModeState by dataStoreManager.darkModeFlow.collectAsState(initial = false)
+
+            // Pass the dark mode state to the AppTheme
             AppTheme(useDarkTheme = darkModeState == true) {
+                // Create a Database instance
                 val db = DatabaseBuilder.buildDatabase(applicationContext)
+
+                // Pass the Database and DataStoreManager instances to the AppNavigation and display the UI
                 AppNavigation(db = db, dataStoreManager = dataStoreManager)
             }
         }

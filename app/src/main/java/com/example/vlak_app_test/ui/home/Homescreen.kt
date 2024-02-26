@@ -68,7 +68,6 @@ fun MakeHomescreen(
     onRefreshClick: () -> Unit = { },
     onClick: () -> Unit = { }
 ) {
-    //var recentTrips by remember { mutableStateOf<List<TripHeading>>(emptyList()) }
 
     Column(
         modifier = modifier

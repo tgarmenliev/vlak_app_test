@@ -120,9 +120,7 @@ fun MakeStationInputField(
                         Text(
                             text = stringResource(id = hintText),
                             modifier = Modifier.padding(end = 8.dp),
-                            style = MaterialTheme.typography.labelLarge.copy(
-                                //color = Color.Gray,
-                            )
+                            style = MaterialTheme.typography.labelLarge
                         )
                     },
                     colors = TextFieldDefaults.colors(
@@ -150,6 +148,7 @@ fun MakeStationInputField(
                 )
             }
 
+            // Create a list of suggestions
             AnimatedVisibility(visible = expanded && station.isNotEmpty()) {
                 Card(
                     modifier = Modifier

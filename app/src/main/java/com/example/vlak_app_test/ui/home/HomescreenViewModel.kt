@@ -39,6 +39,7 @@ class HomescreenViewModel(
 
     fun insertTrip(trip: Schedule.Options, route: String) {
         viewModelScope.launch {
+            // Check if trip already exists, if not insert it into the database
             if (dao.checkIfTripExists(route, trip.departureDate, trip.departureTime) == 0) {
                 Trip(
                     route = route,

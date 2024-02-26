@@ -93,15 +93,9 @@ fun MakeScheduleSearchScreen(
         trainRecentSearched = trainInfoViewModel.recentSearches.value
     }
 
-    //val imeState = rememberImeState()
     val scrollState = rememberScrollState()
 
-//    LaunchedEffect(key1 = imeState.value) {
-//        if (imeState.value){
-//            scrollState.animateScrollTo(scrollState.maxValue, tween(300))
-//        }
-//    }
-
+    // FocusRequester is used to request focus on the input field when it is clicked
     val focusRequester = FocusRequester()
 
     Column(
@@ -244,23 +238,25 @@ fun MakeScheduleSearchScreen(
                             .fillMaxWidth(0.6f)
                             .height(50.dp)
                             .align(Alignment.CenterHorizontally),
-                        text = R.string.search,
-                        onClick = {
-                            if (!viewModel.checkIfStationExists(stationOne) || !viewModel.checkIfStationExists(stationTwo)) {
-                                Toast.makeText(
-                                    context,
-                                    R.string.station_not_exist,
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                                stationOne = ""
-                                stationTwo = ""
-                            } else {
-                                viewModel.setOption(stationOne, stationTwo, date)
-                                viewModel.getData()
-                                navController.navigate("schedule_screen")
-                            }
+                        text = R.string.search
+                    ) {
+                        if (!viewModel.checkIfStationExists(stationOne) || !viewModel.checkIfStationExists(
+                                stationTwo
+                            )
+                        ) {
+                            Toast.makeText(
+                                context,
+                                R.string.station_not_exist,
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            stationOne = ""
+                            stationTwo = ""
+                        } else {
+                            viewModel.setOption(stationOne, stationTwo, date)
+                            viewModel.getData()
+                            navController.navigate("schedule_screen")
                         }
-                    )
+                    }
 
                     Divider(
                         modifier = Modifier

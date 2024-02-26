@@ -64,10 +64,9 @@ fun MakeSettingsScreen(
                     shape = RoundedCornerShape(16.dp)
                 ),
             text = R.string.return_to_home,
-            onClick = {
-                onBackButton()
-            },
-        )
+        ) {
+            onBackButton()
+        }
     }
 }
 

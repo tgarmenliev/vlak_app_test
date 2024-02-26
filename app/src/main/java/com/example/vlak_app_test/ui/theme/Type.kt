@@ -16,7 +16,6 @@ val fontFamilyJost = FontFamily(
     Font(R.font.jost_black, FontWeight.Black),
 )
 
-// Set of Material typography styles to start with
 val Typography = Typography(
     bodyLarge = TextStyle(
         fontFamily = fontFamilyJost,
@@ -32,7 +31,6 @@ val Typography = Typography(
         lineHeight = 20.sp,
         letterSpacing = 0.5.sp
     ),
-    /* Other default text styles to override */
     titleLarge = TextStyle(
         fontFamily = fontFamilyJost,
         fontWeight = FontWeight.Normal,

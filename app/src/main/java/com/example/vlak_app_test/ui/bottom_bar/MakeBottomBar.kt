@@ -21,6 +21,7 @@ fun MakeBottomBar(
     onItemSelected: (Int) -> Unit
 ) {
 
+    // Listen for navigation changes and update the selected item
     navController.addOnDestinationChangedListener(
         listener = { _, destination, _ ->
             val selectedItem = items.find { it.firstScreenRoute == destination.route }

@@ -55,14 +55,17 @@ fun CarouselScreen(
     viewModel: GuideViewModel
 ) {
 
+    // Define the delay between auto-scrolling to the next page
     val autoScrollDuration = 3000L
 
+    // Create a PagerState to keep track of the current page and the current page offset
     val pagerState = rememberPagerState(
         initialPage = viewModel.getCurrentTopic(),
         initialPageOffsetFraction = 0f,
         pageCount = { data.size }
     )
 
+    // Observe the isDragged state and start the auto-scrolling when the user stops dragging
     val isDragged by pagerState.interactionSource.collectIsDraggedAsState()
     if (isDragged.not()) {
         with(pagerState) {
@@ -78,6 +81,7 @@ fun CarouselScreen(
         }
     }
 
+    // Create a Modifier that applies a carousel transition based on the current page and the current page offset
     fun Modifier.carouselTransition(page: Int, pagerState: PagerState) =
         graphicsLayer {
             val pageOffset =

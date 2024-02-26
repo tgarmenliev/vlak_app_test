@@ -39,7 +39,6 @@ fun MakeGuideScreen(
         }
         is GuideState.Error -> {
             ErrorScreen(error = guideState.error, modifier = Modifier.fillMaxSize())
-            println(guideState.error)
         }
     }
 

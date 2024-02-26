@@ -207,13 +207,12 @@ fun MakeLiveScreen(modifier: Modifier = Modifier, data: Live.LiveTable, type: St
                         modifier = Modifier
                             .weight(2.1f)
                     ) {
+                        // Build annotated string to make the train category bold and the train number normal
                         val annotatedString = buildAnnotatedString {
-                            // Append the train type with a bold style
                             pushStyle(style = SpanStyle(fontWeight = FontWeight.SemiBold))
                             append(train.type)
                             pop()
 
-                            // Append the train number with the regular style
                             append(" ${train.trainNum}")
                         }
                         Text(

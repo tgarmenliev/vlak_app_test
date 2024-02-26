@@ -41,7 +41,6 @@ class ScheduleViewModel(
     val recentSearches: State<List<SearchedSchedule>> = _recentSearches
 
     private fun getStationCode(station: String): Int? {
-        // find the station id by its name
         val stations = stationsList
         return stations.find {
             it.name.equals(station, ignoreCase = true) || it.englishName.equals(
@@ -70,10 +69,6 @@ class ScheduleViewModel(
 
     fun setOptionIndex(index: Int) {
         _selectedOption.intValue = index
-    }
-
-    fun getOptionIndex(): Int {
-        return selectedOption.value
     }
 
     fun getDataOption(): Schedule.Options {

@@ -38,7 +38,6 @@ class LiveViewModel(
     val recentSearches: State<List<SearchedStation>> = _recentSearches
 
     private fun getStationCode(station: String): Int {
-        // find the station id by its name
         val stations = stationsList
         val foundStation = stations.find {
             it.name.equals(station, ignoreCase = true) || it.englishName.equals(station, ignoreCase = true)
@@ -82,6 +81,7 @@ class LiveViewModel(
         viewModelScope.launch {
             liveState = LiveState.Loading
 
+            // If the station is not in the database for recent searches, add it
             if (dao.getStationCount(selectedStation.value) == 0) {
                 dao.deleteOldSearches()
                 SearchedStation(stationName = _selectedStationName.value, stationCode = selectedStation.value).also {
@@ -89,6 +89,7 @@ class LiveViewModel(
                 }
             }
 
+            // Get the live info from the API
             liveState = try {
                 val result = TrainApi.retrofitService.getLiveInfo(Locale.getDefault().language, selectedStation.value, selectedType.value)
                 LiveState.Success(result)

@@ -16,13 +16,11 @@ import androidx.compose.ui.unit.dp
 fun MakeButton(
     modifier: Modifier = Modifier,
     text: Int,
-    onClick: () -> Unit,
-    enabled: Boolean = true
+    onClick: () -> Unit
 ) {
     Button(
         modifier = modifier,
         onClick = onClick,
-        enabled = enabled,
         shape = RoundedCornerShape(16.dp)
     ) {
         Text(

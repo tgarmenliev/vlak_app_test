@@ -24,6 +24,7 @@ fun MakeDatePickerDialog(
     val monthLaterCalendar = todayCalendar.clone() as Calendar
     monthLaterCalendar.add(Calendar.MONTH, 1)
 
+    // Create a DatePickerState that only allows dates from today to a month later
     val datePickerState = rememberDatePickerState(
         initialSelectedDateMillis = todayCalendar.timeInMillis,
         selectableDates = object : SelectableDates {
