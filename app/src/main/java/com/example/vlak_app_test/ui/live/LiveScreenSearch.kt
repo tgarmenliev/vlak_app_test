@@ -136,9 +136,7 @@ fun MakeLiveSearchScreen(
 
                 Text(
                     text = stringResource(id = R.string.arrivals),
-                    style = MaterialTheme.typography.bodyMedium.copy(
-                        //color = Color.Black,
-                    ),
+                    style = MaterialTheme.typography.bodyMedium,
                     modifier = Modifier
                         .padding(start = 10.dp),
                     fontWeight = if (checked) FontWeight.Bold else FontWeight.Normal
