@@ -5,15 +5,15 @@ plugins {
 }
 
 android {
-    namespace = "com.example.vlak_app_test"
+    namespace = "com.bultrain.vlak_app_test"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.vlak_app_test"
+        applicationId = "com.bultrain.vlak_app_test"
         minSdk = 24
         targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 2
+        versionName = "1.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
