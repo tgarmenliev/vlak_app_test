@@ -33,6 +33,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.bultrain.vlak_app_test.R
 import com.bultrain.vlak_app_test.room.Trip
+import com.bultrain.vlak_app_test.ui.composables.MakeDeleteTripDialog
 import com.bultrain.vlak_app_test.ui.error.ErrorScreen
 import com.bultrain.vlak_app_test.ui.loading.LoadingScreen
 import com.bultrain.vlak_app_test.ui.schedule.MakeTrainOnTransfer
@@ -103,6 +104,7 @@ fun TripCard(
     onDeleteTrip: (Int) -> Unit = {}
 ) {
     var isExpanded by remember { mutableStateOf(false) }
+    var showDialog by remember { mutableStateOf(false) }
 
     Column(
         modifier = modifier
@@ -136,7 +138,7 @@ fun TripCard(
                 )
             }
 
-            IconButton(onClick = { onDeleteTrip(trip.id) }) {
+            IconButton(onClick = { showDialog = true }) {//onDeleteTrip(trip.id) }) {
                 Icon(
                     painter = painterResource(id = R.drawable.delete),
                     contentDescription = "delete trip",
@@ -144,6 +146,13 @@ fun TripCard(
                         .size(22.dp)
                         .padding(end = 4.dp)
                         .align(Alignment.Top)
+                )
+            }
+
+            if (showDialog) {
+                MakeDeleteTripDialog(
+                    onDismiss = { showDialog = false },
+                    onDelete = { onDeleteTrip(trip.id) }
                 )
             }
         }

@@ -1,6 +1,7 @@
 package com.bultrain.vlak_app_test.ui.live
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -8,6 +9,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -34,7 +36,12 @@ fun MakeDelayDialog(
             modifier = modifier
                 .fillMaxWidth()
                 .padding(16.dp)
-                .background(color = MaterialTheme.colorScheme.onSecondary),
+                .background(color = MaterialTheme.colorScheme.onSecondary)
+                .border(
+                    width = 2.dp,
+                    color = MaterialTheme.colorScheme.onBackground,
+                    shape = RoundedCornerShape(16.dp)
+                ),
         ) {
             Icon(
                 painter = painterResource(id = R.drawable.close),

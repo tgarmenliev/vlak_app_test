@@ -70,4 +70,6 @@
     <string name="trains_for_date">Trains for date:</string>
     <string name="no_trains_schedule">There are no available options for this route on this date! Please try again!</string>
     <string name="total_trains">Total options found:</string>
+    <string name="question_delete_trip">Delete this trip?</string>
+    <string name="delete">Delete</string>
 </resources>
