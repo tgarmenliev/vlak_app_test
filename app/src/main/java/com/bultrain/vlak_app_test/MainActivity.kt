@@ -7,6 +7,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
+import androidx.core.view.WindowCompat
 import com.bultrain.vlak_app_test.datastore.DataStoreManager
 import com.bultrain.vlak_app_test.ui.theme.AppTheme
 import com.bultrain.vlak_app_test.navigation.AppNavigation

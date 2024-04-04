@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Clear
@@ -27,11 +28,14 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.onGloballyPositioned
@@ -53,12 +57,15 @@ fun MakeStationInputField(
     station: String,
     onStationSelected: (String) -> Unit,
     hintText: Int,
-    labelText: Int
+    labelText: Int,
+    isKeyboardVisible: MutableState<Boolean>
 ) {
 
     val stations = stationsList
 
     val language = Locale.getDefault().language
+
+    val keyboardController = LocalSoftwareKeyboardController.current
 
     val heightTextFields by remember {
         mutableStateOf(55.dp)
@@ -73,6 +80,12 @@ fun MakeStationInputField(
     }
     val interactionSource = remember {
         MutableInteractionSource()
+    }
+
+    val isKeyboardOpen by keyboardAsState()
+
+    LaunchedEffect(isKeyboardOpen) {
+        isKeyboardVisible.value = isKeyboardOpen == Keyboard.Opened
     }
 
     Column(
@@ -110,6 +123,9 @@ fun MakeStationInputField(
                         )
                         .onGloballyPositioned { coordinates ->
                             textFieldSize = coordinates.size.toSize()
+                        }
+                        .onFocusChanged {
+                            isKeyboardVisible.value = it.isFocused
                         },
                     value = station,
                     onValueChange = {
@@ -135,6 +151,10 @@ fun MakeStationInputField(
                         keyboardType = KeyboardType.Text,
                         imeAction = ImeAction.Done
                     ),
+                    keyboardActions = KeyboardActions(onDone = {
+                        keyboardController?.hide()
+                        isKeyboardVisible.value = false
+                    }),
                     singleLine = true,
                     trailingIcon = {
                         IconButton(onClick = { onStationSelected("") }) {

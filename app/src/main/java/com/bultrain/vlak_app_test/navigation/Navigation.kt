@@ -3,8 +3,10 @@ package com.bultrain.vlak_app_test.navigation
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -40,6 +42,7 @@ import com.bultrain.vlak_app_test.ui.train_info.TrainInfoViewModel
 fun AppNavigation(db: AppDatabase, dataStoreManager: DataStoreManager) {
     val navController = rememberNavController()
     val currentSelectedScreen = navController.currentBackStackEntryAsState().value?.destination?.route
+    var isKeyboardVisible = remember { mutableStateOf(false) }
 
     var selectedItemIndex by rememberSaveable {
         mutableIntStateOf(0)
@@ -49,7 +52,8 @@ fun AppNavigation(db: AppDatabase, dataStoreManager: DataStoreManager) {
             MakeBottomBar(
                 items = BottomBarViewModel().bottomBarItems, navController,
                 selectedItemIndex = selectedItemIndex,
-                onItemSelected = { selectedItemIndex = it }
+                onItemSelected = { selectedItemIndex = it },
+                isKeyboardVisible = isKeyboardVisible
             )
         }
     }
@@ -66,20 +70,21 @@ fun AppNavigation(db: AppDatabase, dataStoreManager: DataStoreManager) {
 
     Scaffold(
         bottomBar = {
-            if (routes.contains(currentSelectedScreen)) {
+            if (routes.contains(currentSelectedScreen)) { //!isKeyboardVisible.value &&
                 bottomBar()
             }
         },
     ) {
         Navigation(
             navController = navController,
-            modifier = Modifier.padding(it),
+            modifier = Modifier.padding (it),
             scheduleViewModel = scheduleViewModel,
             liveViewModel = liveViewModel,
             trainInfoViewModel = trainInfoViewModel,
             homescreenViewModel = homescreenViewModel,
             guideViewModel = guideViewModel,
-            dataStoreManager = dataStoreManager
+            dataStoreManager = dataStoreManager,
+            isKeyboardVisible = isKeyboardVisible
         )
     }
 }
@@ -93,7 +98,8 @@ fun Navigation(
     trainInfoViewModel: TrainInfoViewModel,
     homescreenViewModel: HomescreenViewModel,
     guideViewModel: GuideViewModel,
-    dataStoreManager: DataStoreManager
+    dataStoreManager: DataStoreManager,
+    isKeyboardVisible: MutableState<Boolean>
 ) {
 
     // Navigation with NavHosts
@@ -130,7 +136,7 @@ fun Navigation(
             startDestination = "schedule_search"
         ) {
             composable("schedule_search") {
-                MakeScheduleSearchScreen(modifier = modifier, navController = navController, viewModel = scheduleViewModel, trainInfoViewModel = trainInfoViewModel)
+                MakeScheduleSearchScreen(modifier = modifier, navController = navController, viewModel = scheduleViewModel, trainInfoViewModel = trainInfoViewModel, isKeyboardVisible = isKeyboardVisible)
             }
 
             composable("schedule_screen") {
@@ -162,7 +168,7 @@ fun Navigation(
             startDestination = "live_search"
         ) {
             composable("live_search") {
-                MakeLiveSearchScreen(modifier = modifier, navController = navController, viewModel = liveViewModel)
+                MakeLiveSearchScreen(modifier = modifier, navController = navController, viewModel = liveViewModel, isKeyboardVisible = isKeyboardVisible)
             }
 
             composable("live") {

@@ -18,6 +18,7 @@ import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -42,6 +43,7 @@ fun MakeLiveSearchScreen(
     modifier: Modifier = Modifier,
     navController: NavController,
     viewModel: LiveViewModel,
+    isKeyboardVisible: MutableState<Boolean>
 ) {
     var titleText by rememberSaveable { mutableStateOf("") }
     var checked by rememberSaveable { mutableStateOf(false) }
@@ -84,7 +86,8 @@ fun MakeLiveSearchScreen(
                 hintText = R.string.start_searching,
                 labelText = R.string.choose_station,
                 modifier = Modifier
-                    .padding(horizontal = 16.dp, vertical = 10.dp)
+                    .padding(horizontal = 16.dp, vertical = 10.dp),
+                isKeyboardVisible = isKeyboardVisible
             )
 
             Row(

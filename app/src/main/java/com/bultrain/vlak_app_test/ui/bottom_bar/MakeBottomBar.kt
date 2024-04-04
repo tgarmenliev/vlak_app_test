@@ -6,6 +6,7 @@ import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -18,8 +19,13 @@ fun MakeBottomBar(
     navController: NavController,
     modifier: Modifier = Modifier,
     selectedItemIndex: Int,
-    onItemSelected: (Int) -> Unit
+    onItemSelected: (Int) -> Unit,
+    isKeyboardVisible: MutableState<Boolean>
 ) {
+
+    if (isKeyboardVisible.value) {
+        return
+    }
 
     // Listen for navigation changes and update the selected item
     navController.addOnDestinationChangedListener(

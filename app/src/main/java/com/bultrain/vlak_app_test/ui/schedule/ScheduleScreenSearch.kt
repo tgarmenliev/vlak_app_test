@@ -26,6 +26,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -63,7 +64,8 @@ fun MakeScheduleSearchScreen(
     modifier: Modifier = Modifier,
     navController: NavController,
     viewModel: ScheduleViewModel,
-    trainInfoViewModel: TrainInfoViewModel
+    trainInfoViewModel: TrainInfoViewModel,
+    isKeyboardVisible: MutableState<Boolean>
 ) {
     var stationOne by rememberSaveable { mutableStateOf("") }
     var stationTwo by rememberSaveable { mutableStateOf("") }
@@ -165,7 +167,8 @@ fun MakeScheduleSearchScreen(
                         modifier = Modifier
                             .padding(top = 2.dp)
                             .align(Alignment.CenterHorizontally)
-                            .focusRequester(focusRequester)
+                            .focusRequester(focusRequester),
+                        isKeyboardVisible = isKeyboardVisible
                     )
 
                     MakeStationInputField(
@@ -178,7 +181,8 @@ fun MakeScheduleSearchScreen(
                         modifier = Modifier
                             .padding(top = 16.dp)
                             .align(Alignment.CenterHorizontally)
-                            .focusRequester(focusRequester)
+                            .focusRequester(focusRequester),
+                        isKeyboardVisible = isKeyboardVisible
                     )
 
                     Text(
@@ -329,7 +333,8 @@ fun MakeScheduleSearchScreen(
                             modifier = Modifier
                                 .padding(top = 8.dp)
                                 .weight(3.5f)
-                                .focusRequester(focusRequester)
+                                .focusRequester(focusRequester),
+                            isKeyboardVisible = isKeyboardVisible
                         )
 
                         Button(
