@@ -158,7 +158,6 @@ fun MakeScheduleSearchScreen(
 
 
                     MakeStationInputField(
-                        station = stationOne,
                         onStationSelected = {
                             stationOne = it
                         },
@@ -172,7 +171,6 @@ fun MakeScheduleSearchScreen(
                     )
 
                     MakeStationInputField(
-                        station = stationTwo,
                         onStationSelected = {
                             stationTwo = it
                         },
