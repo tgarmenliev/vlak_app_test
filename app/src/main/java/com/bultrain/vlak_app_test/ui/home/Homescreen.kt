@@ -26,6 +26,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.bultrain.vlak_app_test.R
 import com.bultrain.vlak_app_test.room.TripHeading
@@ -88,21 +89,17 @@ fun MakeHomescreen(
                 .fillMaxWidth()
         ) {
 
-            Box(modifier = Modifier.padding(8.dp)) {
-                Column(
+            Box(modifier = Modifier
+                .padding(16.dp)
+                .fillMaxWidth()
+            ) {
+                MakeRecentTrips(
                     modifier = Modifier
-                        .fillMaxWidth()
-                        .fillMaxHeight()
-                        .padding(8.dp)
-                ) {
-                    MakeRecentTrips(
-                        modifier = Modifier
-                            .fillMaxWidth(),
-                        recentTrips = viewModel.recentTrips.value,
-                        onClick = onClick,
-                        onRefreshClick = onRefreshClick
-                    )
-                }
+                        .fillMaxWidth(),
+                    recentTrips = viewModel.recentTrips.value,
+                    onClick = onClick,
+                    onRefreshClick = onRefreshClick
+                )
             }
         }
     }
@@ -163,7 +160,11 @@ fun MakeRecentTrips(
             )
         }
     } else {
-        Text(text = stringResource(id = R.string.no_added_trips))
+        Text(
+            text = stringResource(id = R.string.no_added_trips),
+            modifier = Modifier.fillMaxWidth(),
+            textAlign = TextAlign.Center
+        )
     }
 }
 
