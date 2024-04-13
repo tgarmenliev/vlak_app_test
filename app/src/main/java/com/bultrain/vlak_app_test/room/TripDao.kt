@@ -19,6 +19,9 @@ interface TripDao {
     @Query("SELECT * FROM trip ORDER BY timestamp ASC")
     suspend fun getTrips(): List<Trip>
 
+    @Query("SELECT * FROM trip WHERE id = :id")
+    suspend fun getTripById(id: Int): Trip
+
     @Query("SELECT id, route, duration, departureTime, arrivalTime, departureDate, arrivalDate FROM trip ORDER BY timestamp ASC LIMIT 3")
     suspend fun getRecent3TripTitles(): List<TripHeading>
 

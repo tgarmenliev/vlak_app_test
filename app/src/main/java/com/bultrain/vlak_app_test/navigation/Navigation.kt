@@ -63,7 +63,7 @@ fun AppNavigation(db: AppDatabase, dataStoreManager: DataStoreManager) {
     val scheduleViewModel = remember { ScheduleViewModel(db.scheduleDao()) }
     val liveViewModel = remember { LiveViewModel(db.stationDao()) }
     val trainInfoViewModel = remember { TrainInfoViewModel(db.trainInfoDao()) }
-    val homescreenViewModel = remember { HomescreenViewModel(db.tripDao()) }
+    val homescreenViewModel = remember { HomescreenViewModel(db.tripDao(), db.tripTrainsDao(), trainInfoViewModel) }
     val guideViewModel = remember { GuideViewModel() }
 
     homescreenViewModel.deleteAndGetRecentTrips()
@@ -123,7 +123,11 @@ fun Navigation(
             }
 
             composable("trips") {
-                MakeTripsScreen(viewModel = homescreenViewModel, onBackSelected = { navController.popBackStack() })
+                MakeTripsScreen(
+                    viewModel = homescreenViewModel,
+                    onBackSelected = { navController.popBackStack() },
+                    navController = navController
+                )
             }
 
             composable("settings") {

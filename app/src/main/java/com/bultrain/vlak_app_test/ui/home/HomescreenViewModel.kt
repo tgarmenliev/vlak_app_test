@@ -7,9 +7,15 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bultrain.vlak_app_test.models.schedule.Schedule
+import com.bultrain.vlak_app_test.models.train_info.TrainInfo
+import com.bultrain.vlak_app_test.network.TrainApi
 import com.bultrain.vlak_app_test.room.Trip
 import com.bultrain.vlak_app_test.room.TripDao
 import com.bultrain.vlak_app_test.room.TripHeading
+import com.bultrain.vlak_app_test.room.TripTrains
+import com.bultrain.vlak_app_test.room.TripTrainsDao
+import com.bultrain.vlak_app_test.ui.train_info.TrainInfoState
+import com.bultrain.vlak_app_test.ui.train_info.TrainInfoViewModel
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -28,7 +34,9 @@ sealed interface TripState {
 }
 
 class HomescreenViewModel(
-    private val dao: TripDao
+    private val dao: TripDao,
+    private val tripTrainsDao: TripTrainsDao,
+    private val trainInfoViewModel: TrainInfoViewModel
 ) : ViewModel() {
     var homeState: HomeState by mutableStateOf(HomeState.Loading)
 
@@ -36,6 +44,31 @@ class HomescreenViewModel(
 
     private val _recentTrips = mutableStateOf<List<TripHeading>>(emptyList())
     val recentTrips: State<List<TripHeading>> = _recentTrips
+
+    private fun insertTrainTrips(trips: List<Schedule.Trains>) {
+        viewModelScope.launch {
+            trips.forEach { train ->
+                if (tripTrainsDao.checkIfTripTrainsExists(train.trainNumber, train.departDate) == 0) {
+                    TripTrains(
+                        trainType = train.trainType,
+                        trainNumber = train.trainNumber,
+                        date = train.departDate,
+                        stations = try {
+                            val result = TrainApi.retrofitService.getTrainInfo(Locale.getDefault().language, train.trainNumber, train.departDate)
+                            TrainInfoState.Success(result)
+                        } catch (e: Exception) {
+                            TrainInfoState.Error(e)
+                        }.let {
+                            when (it) {
+                                is TrainInfoState.Success -> it.data.stations
+                                else -> emptyList()
+                            }
+                        }
+                    ).also { tripTrainsDao.insert(it) }
+                }
+            }
+        }
+    }
 
     fun insertTrip(trip: Schedule.Options, route: String) {
         viewModelScope.launch {
@@ -51,6 +84,7 @@ class HomescreenViewModel(
                     numOfTransfers = trip.numOfTransfers,
                     trains = trip.trains
                 ).also { dao.insert(it) }
+                insertTrainTrips(trip.trains)
             }
         }
     }
@@ -79,7 +113,14 @@ class HomescreenViewModel(
         viewModelScope.launch {
             val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
             val date = dateFormat.format(Date())
+            tripTrainsDao.deleteTripTrainsByDate(date)
             dao.deleteOldTrips(date)
+        }
+    }
+
+    private suspend fun deleteTripTrainsByTrainNumberAndDate(trainNumber: String, date: String) {
+        if (tripTrainsDao.checkIfTripTrainsExists(trainNumber, date) > 0) {
+            tripTrainsDao.deleteTripTrainsByTrainNumberAndDate(trainNumber, date)
         }
     }
 
@@ -92,8 +133,33 @@ class HomescreenViewModel(
 
     fun deleteTripById(id: Int) {
         viewModelScope.launch {
+            dao.getTripById(id).trains.forEach { train ->
+                deleteTripTrainsByTrainNumberAndDate(train.trainNumber, train.departDate)
+            }
             dao.deleteTripById(id)
             getTrips()
+        }
+    }
+
+    fun getTripTrain(trainNum: String, date: String) {
+        viewModelScope.launch {
+            trainInfoViewModel.trainInfoState = TrainInfoState.Loading
+            trainInfoViewModel.trainInfoState = try {
+                val result = tripTrainsDao.getTripTrainsByTrainNumberAndDate(trainNum, date)
+                if (result != null) {
+                    TrainInfoState.Success(TrainInfo.TrainInfoTable(
+                        trainType = result.trainType,
+                        trainNumber = result.trainNumber,
+                        date = result.date,
+                        stations = result.stations
+                    ))
+                } else {
+                    val newResult = TrainApi.retrofitService.getTrainInfo(Locale.getDefault().language, trainNum, date)
+                    TrainInfoState.Success(newResult)
+                }
+            } catch (e: Exception) {
+                TrainInfoState.Error(e)
+            }
         }
     }
 }

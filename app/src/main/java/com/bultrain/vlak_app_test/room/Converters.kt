@@ -18,4 +18,17 @@ class Converters {
         val type = object : TypeToken<List<Schedule.Trains>>() {}.type
         return gson.fromJson(value, type)
     }
+
+    @TypeConverter
+    fun fromTrainInfoList(value: List<TripTrains>): String {
+        val gson = Gson()
+        return gson.toJson(value)
+    }
+
+    @TypeConverter
+    fun toTrainInfoList(value: String): List<TripTrains> {
+        val gson = Gson()
+        val type = object : TypeToken<List<TripTrains>>() {}.type
+        return gson.fromJson(value, type)
+    }
 }

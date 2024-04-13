@@ -31,6 +31,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.bultrain.vlak_app_test.R
 import com.bultrain.vlak_app_test.room.Trip
 import com.bultrain.vlak_app_test.ui.composables.MakeDeleteTripDialog
@@ -44,7 +45,8 @@ import com.bultrain.vlak_app_test.ui.top_bar.MakeTopBar
 @Composable
 fun MakeTripsScreen(
     viewModel: HomescreenViewModel,
-    onBackSelected: () -> Unit = {}
+    onBackSelected: () -> Unit = {},
+    navController: NavController
 ) {
     when (val tripsState = viewModel.tripState) {
         is TripState.Loading -> {
@@ -63,7 +65,11 @@ fun MakeTripsScreen(
                 TripsScreen(
                     data = tripsState.data,
                     modifier = Modifier.padding(it),
-                    onDeleteTrip = { id -> viewModel.deleteTripById(id) }
+                    onDeleteTrip = { id -> viewModel.deleteTripById(id) },
+                    onGetTrips = { trainNum, date ->
+                        viewModel.getTripTrain(trainNum, date)
+                        navController.navigate("train_info")
+                    }
                 )
             }
         }
@@ -77,7 +83,8 @@ fun MakeTripsScreen(
 fun TripsScreen(
     modifier: Modifier = Modifier,
     data: List<Trip> = listOf(),
-    onDeleteTrip: (Int) -> Unit = {}
+    onDeleteTrip: (Int) -> Unit = {},
+    onGetTrips: (String, String) -> Unit = { _, _ -> }
 ) {
     Column(
         modifier = modifier
@@ -91,7 +98,8 @@ fun TripsScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(4.dp),
-                onDeleteTrip = onDeleteTrip
+                onDeleteTrip = onDeleteTrip,
+                onGetTrips = onGetTrips
             )
         }
     }
@@ -101,7 +109,8 @@ fun TripsScreen(
 fun TripCard(
     trip: Trip,
     modifier: Modifier = Modifier,
-    onDeleteTrip: (Int) -> Unit = {}
+    onDeleteTrip: (Int) -> Unit = {},
+    onGetTrips: (String, String) -> Unit = { _, _ -> }
 ) {
     var isExpanded by remember { mutableStateOf(false) }
     var showDialog by remember { mutableStateOf(false) }
@@ -224,7 +233,7 @@ fun TripCard(
             )
 
             for (index in trip.trains.indices) {
-                MakeTrainOnTransfer(data = trip.trains[index], getTrainInfo = {_, _ -> run {} }, hasClickableTrainInfo = false)
+                MakeTrainOnTransfer(data = trip.trains[index], getTrainInfo = onGetTrips)
 
                 if (index != trip.trains.size - 1) {
                     MakeTransferComposable(timeToWaitNext = trip.trains[index].timeToWaitNext)
@@ -234,7 +243,7 @@ fun TripCard(
 
         Icon(
             painter = painterResource(id = (if (isExpanded) R.drawable.arrow_up else R.drawable.arrow_down)),
-            contentDescription = "see more",
+            contentDescription = "See more",
             modifier = Modifier
                 .size(24.dp)
                 .align(Alignment.CenterHorizontally)
