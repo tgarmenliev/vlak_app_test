@@ -77,7 +77,10 @@ fun MakeHomescreen(
         MakeImageHeader(
             text = R.string.home,
             image = painterResource(id = R.drawable.home_back2),
-            modifier = Modifier.height(200.dp)
+            modifier = Modifier.height(200.dp),
+            hasButton = true,
+            buttonIcon = painterResource(id = R.drawable.settings),
+            onButtonClicked = onSettingsClick
         )
 
         Column(
@@ -101,15 +104,6 @@ fun MakeHomescreen(
                     )
                 }
             }
-
-            MakeButton(
-                modifier = Modifier
-                    .fillMaxWidth(0.5f)
-                    .padding(8.dp)
-                    .align(Alignment.CenterHorizontally),
-                text = R.string.settings,
-                onClick = onSettingsClick
-            )
         }
     }
 }
