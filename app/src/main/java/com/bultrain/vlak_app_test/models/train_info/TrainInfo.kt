@@ -5,7 +5,7 @@ class TrainInfo {
         val trainType: String = "",
         val trainNumber: String = "",
         val date: String = "",
-        val stations: List<StationOnTrainInfo>
+        val stations: List<StationOnTrainInfo> = emptyList()
     )
 
     data class StationOnTrainInfo(

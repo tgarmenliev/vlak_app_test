@@ -42,6 +42,19 @@ class TrainInfoViewModel(
         _recentSearches.value = dao.getRecentSearches()
     }
 
+    fun getDataWithoutSaveSearch() {
+        viewModelScope.launch {
+            trainInfoState = TrainInfoState.Loading
+
+            trainInfoState = try {
+                val result = TrainApi.retrofitService.getTrainInfo(Locale.getDefault().language, selectedOption.value.trainNumber, selectedOption.value.date)
+                TrainInfoState.Success(result)
+            } catch (e: Exception) {
+                TrainInfoState.Error(e)
+            }
+        }
+    }
+
     fun getData() {
         viewModelScope.launch {
             trainInfoState = TrainInfoState.Loading
