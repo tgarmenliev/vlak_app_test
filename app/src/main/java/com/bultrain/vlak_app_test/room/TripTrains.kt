@@ -11,5 +11,5 @@ data class TripTrains(
     val trainType: String,
     val trainNumber: String,
     val date: String,
-    val stations: List<TrainInfo.StationOnTrainInfo> = emptyList()
+    val stations: List<TrainInfo.StationOnTrainInfo>
 )

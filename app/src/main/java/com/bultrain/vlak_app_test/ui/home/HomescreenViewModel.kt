@@ -49,21 +49,24 @@ class HomescreenViewModel(
         viewModelScope.launch {
             trips.forEach { train ->
                 if (tripTrainsDao.checkIfTripTrainsExists(train.trainNumber, train.departDate) == 0) {
+                    var fetchedTrainType = train.trainType
+                    val stations = try {
+                        val result = TrainApi.retrofitService.getTrainInfo(Locale.getDefault().language, train.trainNumber, train.departDate)
+                        fetchedTrainType = result.trainType
+                        TrainInfoState.Success(result)
+                    } catch (e: Exception) {
+                        TrainInfoState.Error(e)
+                    }.let {
+                        when (it) {
+                            is TrainInfoState.Success -> it.data.stations
+                            else -> emptyList()
+                        }
+                    }
                     TripTrains(
-                        trainType = train.trainType,
+                        trainType = fetchedTrainType,
                         trainNumber = train.trainNumber,
                         date = train.departDate,
-                        stations = try {
-                            val result = TrainApi.retrofitService.getTrainInfo(Locale.getDefault().language, train.trainNumber, train.departDate)
-                            TrainInfoState.Success(result)
-                        } catch (e: Exception) {
-                            TrainInfoState.Error(e)
-                        }.let {
-                            when (it) {
-                                is TrainInfoState.Success -> it.data.stations
-                                else -> emptyList()
-                            }
-                        }
+                        stations = stations
                     ).also { tripTrainsDao.insert(it) }
                 }
             }
