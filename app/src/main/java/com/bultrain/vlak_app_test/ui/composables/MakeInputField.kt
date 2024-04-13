@@ -115,20 +115,7 @@ fun MakeSimpleInputField(
                 )
                 .onFocusChanged {
                     isKeyboardVisible.value = it.isFocused
-                }
-//                .onPreInterceptKeyBeforeSoftKeyboard { event ->
-//                    if (event.key.nativeKeyCode == android.view.KeyEvent.KEYCODE_BACK) {
-//                        // handle value when device back button clicked
-//                        isKeyboardVisible.value = false
-//                        keyboardController?.hide()
-//                        true
-//
-//                    } else {
-//                        false
-//
-//                    }
-//                },
-                    ,
+                },
             value = titleText,
             onValueChange = onValueChange,
             placeholder = {

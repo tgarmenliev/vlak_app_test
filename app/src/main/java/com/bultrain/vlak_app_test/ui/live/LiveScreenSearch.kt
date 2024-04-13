@@ -79,6 +79,7 @@ fun MakeLiveSearchScreen(
             Spacer(modifier = Modifier.height(20.dp))
 
             MakeStationInputField(
+                station = titleText,
                 onStationSelected = {
                     titleText = it
                 },
