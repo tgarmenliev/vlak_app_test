@@ -64,7 +64,7 @@ fun MakeScheduleOptionScreen(
             onAddToTripsButtonPressed = onAddToTripsButtonPressed,
             getTrainInfo = { trainNum, date ->
                 trainInfoViewModel.setOption(trainNum, date)
-                trainInfoViewModel.getData()
+                trainInfoViewModel.getDataWithoutSaveSearch()
                 navController.navigate("train_info")
             },
             data = viewModel.getDataOption(),
@@ -200,8 +200,7 @@ private fun Circle(
 @Composable
 fun MakeTrainOnTransfer(
     data: Schedule.Trains,
-    getTrainInfo: (String, String) -> Unit,
-    hasClickableTrainInfo: Boolean = true
+    getTrainInfo: (String, String) -> Unit
 ) {
     Row(
         modifier = Modifier
@@ -242,8 +241,7 @@ fun MakeTrainOnTransfer(
                         .padding(end = 8.dp)
                         .fillMaxWidth()
                         .weight(1f),
-                    getTrainInfo = getTrainInfo,
-                    hasClickableTrainInfo = hasClickableTrainInfo
+                    getTrainInfo = getTrainInfo
                 )
             }
 
@@ -338,8 +336,7 @@ private fun MakeTrainForTransfers(
     trainNum: String,
     date: String,
     modifier: Modifier = Modifier,
-    getTrainInfo: (String, String) -> Unit,
-    hasClickableTrainInfo: Boolean = true
+    getTrainInfo: (String, String) -> Unit
 ) {
     Row(
         modifier = modifier
@@ -360,9 +357,7 @@ private fun MakeTrainForTransfers(
             modifier = Modifier
                 .padding(start = 2.dp)
                 .clickable {
-                    if (hasClickableTrainInfo) {
-                        getTrainInfo(trainNum, date)
-                    }
+                    getTrainInfo(trainNum, date)
                 }
         )
     }
