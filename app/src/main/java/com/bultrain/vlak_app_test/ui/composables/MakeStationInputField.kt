@@ -90,6 +90,10 @@ fun MakeStationInputField(
 
     val isKeyboardOpen by keyboardAsState()
 
+    LaunchedEffect(station) {
+        textFieldValueState = TextFieldValue(text = station, selection = TextRange(station.length))
+    }
+
     LaunchedEffect(isKeyboardOpen) {
         isKeyboardVisible.value = isKeyboardOpen == Keyboard.Opened
     }
