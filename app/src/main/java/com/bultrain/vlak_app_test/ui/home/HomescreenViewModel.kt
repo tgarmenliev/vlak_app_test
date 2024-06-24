@@ -23,13 +23,13 @@ import java.util.Locale
 
 sealed interface HomeState {
     data object Loading : HomeState
-    data class Success(val data: List<TripHeading>) : HomeState
+    data class Success(val data: List<TripHeading>, val numbers: List<String>) : HomeState
     data class Error(val error: Throwable) : HomeState
 }
 
 sealed interface TripState {
     data object Loading : TripState
-    data class Success(val data: List<Trip>) : TripState
+    data class Success(val data: List<Trip>, val numbers: List<String>) : TripState
     data class Error(val error: Throwable) : TripState
 }
 
@@ -66,7 +66,8 @@ class HomescreenViewModel(
                         trainType = fetchedTrainType,
                         trainNumber = train.trainNumber,
                         date = train.departDate,
-                        stations = stations
+                        stations = stations,
+                        toBeShown = false
                     ).also { tripTrainsDao.insert(it) }
                 }
             }
@@ -96,20 +97,20 @@ class HomescreenViewModel(
         viewModelScope.launch {
             homeState = HomeState.Loading
             _recentTrips.value = dao.getRecent3TripTitles()
-            homeState = HomeState.Success(_recentTrips.value)
+            homeState = HomeState.Success(_recentTrips.value, tripTrainsDao.getTripTrainsToBeShown().map { it.trainNumber })
         }
     }
 
     fun getTrips() {
         viewModelScope.launch {
             tripState = TripState.Loading
-            tripState = TripState.Success(dao.getTrips())
+            tripState = TripState.Success(dao.getTrips(), tripTrainsDao.getTripTrainsToBeShown().map { it.trainNumber })
         }
     }
 
     private suspend fun getRecentTripsInit() {
         _recentTrips.value = dao.getRecent3TripTitles()
-        homeState = HomeState.Success(_recentTrips.value)
+        homeState = HomeState.Success(_recentTrips.value, tripTrainsDao.getTripTrainsToBeShown().map { it.trainNumber })
     }
 
     private suspend fun deleteOldTrips() {

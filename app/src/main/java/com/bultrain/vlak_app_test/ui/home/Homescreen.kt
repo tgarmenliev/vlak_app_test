@@ -1,54 +1,71 @@
 package com.bultrain.vlak_app_test.ui.home
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.PagerState
+import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.util.lerp
 import com.bultrain.vlak_app_test.R
 import com.bultrain.vlak_app_test.room.TripHeading
 import com.bultrain.vlak_app_test.ui.composables.MakeButton
 import com.bultrain.vlak_app_test.ui.composables.MakeImageHeader
 import com.bultrain.vlak_app_test.ui.error.ErrorScreen
 import com.bultrain.vlak_app_test.ui.loading.LoadingScreen
+import kotlin.math.absoluteValue
 
 @Composable
 fun Homescreen(
     modifier: Modifier = Modifier,
     viewModel: HomescreenViewModel,
     onSettingsClick: () -> Unit = { },
-    onClick: () -> Unit = { }
+    onNumberClick: (String) -> Unit = { },
+    onClick: () -> Unit = { },
 ) {
     when (val homeState = viewModel.homeState) {
         is HomeState.Success -> {
             MakeHomescreen(
                 modifier = modifier,
+                data = homeState.numbers,
                 viewModel = viewModel,
                 onSettingsClick = onSettingsClick,
                 onRefreshClick = { viewModel.getRecentTrips() },
-                onClick = onClick
+                onNumberClick = onNumberClick,
+                onClick = onClick,
             )
         }
         is HomeState.Loading -> {
@@ -60,14 +77,21 @@ fun Homescreen(
     }
 }
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun MakeHomescreen(
     modifier: Modifier = Modifier,
+    data: List<String>,
     viewModel: HomescreenViewModel,
     onSettingsClick: () -> Unit = { },
     onRefreshClick: () -> Unit = { },
-    onClick: () -> Unit = { }
+    onNumberClick: (String) -> Unit = { },
+    onClick: () -> Unit = { },
 ) {
+
+    val pagerState = rememberPagerState(pageCount = {
+        data.size
+    })
 
     Column(
         modifier = modifier
@@ -100,6 +124,105 @@ fun MakeHomescreen(
                     onRefreshClick = onRefreshClick
                 )
             }
+
+            fun Modifier.carouselTransition(page: Int, pagerState: PagerState) =
+                graphicsLayer {
+                    val pageOffset =
+                        ((pagerState.currentPage - page) + pagerState.currentPageOffsetFraction).absoluteValue
+
+                    val transformation =
+                        lerp(
+                            start = 0.7f,
+                            stop = 1f,
+                            fraction = 1f - pageOffset.coerceIn(0f, 1f)
+                        )
+                    alpha = transformation
+                    scaleY = transformation
+                }
+
+            MakeImageHeader(
+                text = R.string.explore,
+                image = painterResource(id = R.drawable.explore_pic),
+                modifier = Modifier
+                    .height(160.dp)
+                    .padding(bottom = 22.dp, start = 16.dp, end = 16.dp)
+                    .clip(RoundedCornerShape(16.dp))
+                    .border(2.dp, MaterialTheme.colorScheme.onBackground, RoundedCornerShape(16.dp))
+                    .shadow(10.dp, RoundedCornerShape(16.dp)),
+                hasButton = false,
+                leftAlignText = true
+            )
+
+            if (data.isNotEmpty()) {
+                Text(
+                    text = stringResource(id = R.string.saved_train_routes),
+                    style = MaterialTheme.typography.bodyMedium,
+                    fontWeight = FontWeight.SemiBold,
+                    modifier = Modifier
+                        .padding(horizontal = 24.dp)
+                )
+
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                ) {
+                    HorizontalPager(
+                        state = pagerState,
+                        modifier = Modifier
+                            .fillMaxWidth(),
+                        pageSpacing = 16.dp,
+                        contentPadding = PaddingValues(
+                            top = 16.dp,
+                            start = 24.dp,
+                            end = 24.dp,
+                            bottom = 8.dp
+                        )
+                    ) { index ->
+                        NumberItem(
+                            number = data[index],
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .carouselTransition(page = index, pagerState = pagerState),
+                            onClick = onNumberClick
+                        )
+                    }
+                }
+
+            }
+        }
+    }
+}
+
+@Composable
+fun NumberItem(
+    number: String,
+    modifier: Modifier = Modifier,
+    onClick: (String) -> Unit = { }
+) {
+    ElevatedCard(
+        modifier = modifier
+            .fillMaxWidth()
+            .clickable(onClick = { onClick(number) }),
+        shape = RoundedCornerShape(20.dp),
+        elevation = CardDefaults.cardElevation(
+            defaultElevation = 5.dp
+        )
+    ) {
+        Box(
+            modifier = modifier
+                .background(
+                    MaterialTheme.colorScheme.secondaryContainer,
+                    RoundedCornerShape(16.dp)
+                )
+                .padding(8.dp)
+        ) {
+            Text(
+                text = number,
+                style = MaterialTheme.typography.bodyMedium,
+                fontWeight = FontWeight.Bold,
+                fontStyle = FontStyle.Italic,
+                modifier = Modifier.padding(8.dp)
+            )
         }
     }
 }
@@ -162,6 +285,8 @@ fun MakeRecentTrips(
         Text(
             text = stringResource(id = R.string.no_added_trips),
             modifier = Modifier.fillMaxWidth(),
+            style = MaterialTheme.typography.bodyMedium,
+            fontWeight = FontWeight.SemiBold,
             textAlign = TextAlign.Center
         )
     }
