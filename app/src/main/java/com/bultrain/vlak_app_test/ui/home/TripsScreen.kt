@@ -41,10 +41,12 @@ import com.bultrain.vlak_app_test.ui.schedule.MakeTrainOnTransfer
 import com.bultrain.vlak_app_test.ui.schedule.MakeTransferComposable
 import com.bultrain.vlak_app_test.ui.schedule.MakeTransfers
 import com.bultrain.vlak_app_test.ui.top_bar.MakeTopBar
+import com.bultrain.vlak_app_test.ui.train_info.TrainInfoViewModel
 
 @Composable
 fun MakeTripsScreen(
     viewModel: HomescreenViewModel,
+    trainInfoViewModel: TrainInfoViewModel,
     onBackSelected: () -> Unit = {},
     navController: NavController
 ) {
@@ -67,6 +69,7 @@ fun MakeTripsScreen(
                     modifier = Modifier.padding(it),
                     onDeleteTrip = { id -> viewModel.deleteTripById(id) },
                     onGetTrips = { trainNum, date ->
+                        trainInfoViewModel.setCanDownload(false)
                         viewModel.getTripTrain(trainNum, date)
                         navController.navigate("train_info")
                     }

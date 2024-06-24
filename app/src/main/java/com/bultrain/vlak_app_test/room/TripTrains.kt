@@ -11,5 +11,6 @@ data class TripTrains(
     val trainType: String,
     val trainNumber: String,
     val date: String,
+    val toBeShown: Boolean,
     val stations: List<TrainInfo.StationOnTrainInfo>
 )

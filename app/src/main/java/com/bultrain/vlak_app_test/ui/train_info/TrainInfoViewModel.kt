@@ -10,17 +10,21 @@ import com.bultrain.vlak_app_test.models.train_info.TrainInfo
 import com.bultrain.vlak_app_test.network.TrainApi
 import com.bultrain.vlak_app_test.room.SearchedTrainInfo
 import com.bultrain.vlak_app_test.room.TrainInfoDao
+import com.bultrain.vlak_app_test.room.TripTrains
+import com.bultrain.vlak_app_test.room.TripTrainsDao
 import kotlinx.coroutines.launch
 import java.util.Locale
 
 sealed interface TrainInfoState {
     data object Loading : TrainInfoState
     data class Success(val data: TrainInfo.TrainInfoTable) : TrainInfoState
+    data class SuccessNumbers(val data: List<String>) : TrainInfoState
     data class Error(val error: Throwable) : TrainInfoState
 }
 
 class TrainInfoViewModel(
-    private val dao: TrainInfoDao
+    private val dao: TrainInfoDao,
+    private val tripTrainsDao: TripTrainsDao
 ) : ViewModel() {
     var trainInfoState: TrainInfoState by mutableStateOf(TrainInfoState.Loading)
 
@@ -29,6 +33,9 @@ class TrainInfoViewModel(
 
     private val _recentSearches = mutableStateOf<List<SearchedTrainInfo>>(emptyList())
     val recentSearches: State<List<SearchedTrainInfo>> = _recentSearches
+
+    private val _canDownload = mutableStateOf(true)
+    val canDownload: State<Boolean> = _canDownload
 
     fun setOption(trainNumber: String, date: String) {
         _selectedOption.value = TrainInfoOption(trainNumber, date)
@@ -40,6 +47,74 @@ class TrainInfoViewModel(
 
     suspend fun getRecentSearches() {
         _recentSearches.value = dao.getRecentSearches()
+    }
+
+    fun setCanDownload(value: Boolean) {
+        _canDownload.value = value
+    }
+
+    fun getCanDownload(): Boolean {
+        return canDownload.value
+    }
+
+    fun insertTripTrain() {
+        viewModelScope.launch {
+            val trainInfo = (trainInfoState as TrainInfoState.Success).data
+            tripTrainsDao.deleteTripTrainsByTrainNumber(trainInfo.trainNumber)
+            tripTrainsDao.insert(
+                TripTrains(
+                    trainType = trainInfo.trainType,
+                    trainNumber = trainInfo.trainNumber,
+                    date = trainInfo.date,
+                    toBeShown = true,
+                    stations = trainInfo.stations
+                )
+            )
+        }
+    }
+
+    fun deleteTripTrain(trainNum: String) {
+        viewModelScope.launch {
+            tripTrainsDao.deleteTripTrainsByTrainNumber(trainNum)
+        }
+    }
+
+    fun getAllShownNumbers() {
+        viewModelScope.launch {
+            trainInfoState = TrainInfoState.Loading
+
+            trainInfoState = try {
+                val result = tripTrainsDao.getTripTrainsToBeShown().map { it.trainNumber }
+                TrainInfoState.SuccessNumbers(result)
+            } catch (e: Exception) {
+                TrainInfoState.Error(e)
+            }
+        }
+    }
+
+    fun getTrainInfoByNumber(trainNum: String) {
+        viewModelScope.launch {
+            trainInfoState = TrainInfoState.Loading
+
+            trainInfoState = try {
+                val result = tripTrainsDao.getTripTrainsByTrainNumber(trainNum)
+                if (result != null) {
+                    TrainInfoState.Success(
+                        TrainInfo.TrainInfoTable(
+                            trainType = result.trainType,
+                            trainNumber = result.trainNumber,
+                            date = result.date,
+                            stations = result.stations
+                        )
+                    )
+                } else {
+                    val newResult = TrainApi.retrofitService.getTrainInfo(Locale.getDefault().language, trainNum, selectedOption.value.date)
+                    TrainInfoState.Success(newResult)
+                }
+            } catch (e: Exception) {
+                TrainInfoState.Error(e)
+            }
+        }
     }
 
     fun getDataWithoutSaveSearch() {
