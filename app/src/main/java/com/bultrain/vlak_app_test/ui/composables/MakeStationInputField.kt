@@ -65,8 +65,6 @@ fun MakeStationInputField(
 
     val stations = stationsList
 
-    val language = Locale.getDefault().language
-
     val keyboardController = LocalSoftwareKeyboardController.current
 
     val heightTextFields by remember {
@@ -194,9 +192,11 @@ fun MakeStationInputField(
                         val uniqueSuggestions = HashSet<String>()
                         var name: String
 
-                        val sortedStations = stations.sortedBy { if (language == "bg") it.name else it.englishName }
-                        items(sortedStations) { value ->
-                            name = if (language == "bg") value.name else value.englishName
+                        // Create a list that contains both English and Bulgarian station names
+                        val allStations = stations.flatMap { listOf(it.name, it.englishName) }
+
+                        items(allStations) { value ->
+                            name = value
                             val startsWithFirstLetters = name.lowercase().startsWith(station.lowercase())
                             if (uniqueSuggestions.add(name) && startsWithFirstLetters) {
                                 ItemsCategory(title = name) { title ->

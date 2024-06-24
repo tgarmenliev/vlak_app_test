@@ -25,7 +25,8 @@ fun MakeImageHeader(
     image: Painter,
     hasButton: Boolean = false,
     buttonIcon: Painter? = null,
-    onButtonClicked: () -> Unit = {}
+    onButtonClicked: () -> Unit = {},
+    leftAlignText: Boolean = false
 ) {
     Box(
         modifier = modifier.fillMaxWidth()
@@ -54,8 +55,8 @@ fun MakeImageHeader(
                 fontWeight = FontWeight.Bold
             ),
             modifier = Modifier
-                .align(Alignment.BottomEnd)
-                .padding(bottom = 16.dp, end = 16.dp)
+                .align(if (leftAlignText) Alignment.TopStart else Alignment.BottomEnd)
+                .padding(top = 8.dp, start = 16.dp, bottom = 16.dp, end = 16.dp)
         )
     }
 }

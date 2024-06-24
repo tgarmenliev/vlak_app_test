@@ -347,6 +347,7 @@ fun MakeScheduleSearchScreen(
                                     ).show()
                                     trainInfo = ""
                                 } else {
+                                    trainInfoViewModel.setCanDownload(true)
                                     trainInfoViewModel.setOption(trainInfo, date)
                                     trainInfoViewModel.getData()
                                     trainInfo = ""
