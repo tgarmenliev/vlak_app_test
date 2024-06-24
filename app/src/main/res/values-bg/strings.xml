@@ -47,7 +47,7 @@
     <string name="departs_to_short">За</string>
     <string name="recent_searches">Последни търсения:</string>
     <string name="no_recent_searches">Няма последни търсения</string>
-    <string name="no_added_trips">Няма добавени пътувания</string>
+    <string name="no_added_trips">Потърси и добави пътувания, които да се визуализират тук.</string>
     <string name="added_to_trips">Добавено към пътувания</string>
     <string name="recent_trips">Скорошни пътувания:</string>
     <string name="station_not_exist">Гарата не съществува! Моля, опитайте отново!</string>
@@ -73,4 +73,16 @@
     <string name="total_trains">Брой намерени опции:</string>
     <string name="question_delete_trip">Сигурни ли сте, че искате да изтриете това пътуване?</string>
     <string name="delete">Изтрий</string>
+    <string name="download">Изтегли маршрута на влака</string>
+    <string name="downloaded">Маршрутът на влака е изтеглен</string>
+    <string name="saved_train_routes">Любими маршрути на влакове:</string>
+    <string name="warning_saved_routes">Внимание: Този маршрут на влак е запазен в устройството Ви за конкретен ден! Маршрутът и разписанието на този влак могат да бъдат различни в друг ден при евентуални промени! За да бъдете сигурни, че маршрутът е верен, можете да го изтегляте регулярно или да проверите движението на влака в електронното табло на някоя от гарите му!</string>
+    <string name="language_settings">Настройки за езика</string>
+    <string name="bg_language">Български</string>
+    <string name="en_language">English</string>
+    <string name="language_warning">Внимание: Ако имате запазени предстоящи пътувания или маршрути на влакове на английски език те няма да променят своя език! За да промените техния език е нужно да ги изтеглите наново или да ги изтриете и запазите отново!</string>
+    <string name="change_language">Промяна на езика</string>
+    <string name="app_theme">Тема на приложението</string>
+    <string name="no_saved_routes">Няма запазени маршрути на влакове. Потърси сега!</string>
+    <string name="explore">Преоткрий</string>
 </resources>

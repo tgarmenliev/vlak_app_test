@@ -1,5 +1,6 @@
 package com.bultrain.vlak_app_test
 
+import android.content.Context
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -7,13 +8,21 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
-import androidx.core.view.WindowCompat
 import com.bultrain.vlak_app_test.datastore.DataStoreManager
 import com.bultrain.vlak_app_test.ui.theme.AppTheme
 import com.bultrain.vlak_app_test.navigation.AppNavigation
 import com.bultrain.vlak_app_test.room.DatabaseBuilder
+import com.bultrain.vlak_app_test.ui.language.LocaleManager
 
 class MainActivity : ComponentActivity() {
+
+    private lateinit var localeManager: LocaleManager
+
+    override fun attachBaseContext(newBase: Context) {
+        localeManager = LocaleManager(newBase)
+        super.attachBaseContext(localeManager.setLocale(newBase))
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

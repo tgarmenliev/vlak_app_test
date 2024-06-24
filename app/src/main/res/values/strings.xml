@@ -46,7 +46,7 @@
     <string name="departs_to_short">To</string>
     <string name="recent_searches">Recent searches:</string>
     <string name="no_recent_searches">No recent searches</string>
-    <string name="no_added_trips">No added trips</string>
+    <string name="no_added_trips">Search for trips now to show them here.</string>
     <string name="added_to_trips">Added to trips</string>
     <string name="recent_trips">Recent trips:</string>
     <string name="station_not_exist">Station does not exist! Please try again!</string>
@@ -72,4 +72,16 @@
     <string name="total_trains">Total options found:</string>
     <string name="question_delete_trip">Delete this trip?</string>
     <string name="delete">Delete</string>
+    <string name="download">Download train route</string>
+    <string name="downloaded">Downloaded train route</string>
+    <string name="saved_train_routes">Saved train routes:</string>
+    <string name="warning_saved_routes">Warning: This is a saved train route for a specific date! It may not be correct in different days if there are changes in its schedule! You can be sure that this schedule is correct by regularly downloading train route or checking the train in the live timetable!</string>
+    <string name="language_settings">Language settings</string>
+    <string name="bg_language">Български</string>
+    <string name="en_language">English</string>
+    <string name="language_warning">Warning: If you have saved trips or train routes in Bulgarian they will not change! To change them you can resave them then in English or delete and save again!</string>
+    <string name="change_language">Change language</string>
+    <string name="app_theme">App theme</string>
+    <string name="no_saved_routes">No saved train routes</string>
+    <string name="explore">Explore</string>
 </resources>
