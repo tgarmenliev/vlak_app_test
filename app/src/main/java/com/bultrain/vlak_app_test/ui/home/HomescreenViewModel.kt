@@ -166,4 +166,18 @@ class HomescreenViewModel(
             }
         }
     }
+
+    fun deleteTripTrainById(id: Int) {
+        viewModelScope.launch {
+            tripTrainsDao.deleteTripTrainsById(id)
+            getTrips()
+        }
+    }
+
+    fun deleteTripTrainsByTrainNumber(trainNumber: String) {
+        viewModelScope.launch {
+            tripTrainsDao.deleteTripTrainsByTrainNumber(trainNumber)
+            getTrips()
+        }
+    }
 }

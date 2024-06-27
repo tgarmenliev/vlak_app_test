@@ -21,12 +21,17 @@ import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.ArrowForward
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -46,6 +51,7 @@ import com.bultrain.vlak_app_test.ui.composables.MakeButton
 import com.bultrain.vlak_app_test.ui.composables.MakeImageHeader
 import com.bultrain.vlak_app_test.ui.error.ErrorScreen
 import com.bultrain.vlak_app_test.ui.loading.LoadingScreen
+import kotlinx.coroutines.launch
 import kotlin.math.absoluteValue
 
 @Composable
@@ -55,6 +61,7 @@ fun Homescreen(
     onSettingsClick: () -> Unit = { },
     onNumberClick: (String) -> Unit = { },
     onClick: () -> Unit = { },
+    onExploreClick: () -> Unit = { }
 ) {
     when (val homeState = viewModel.homeState) {
         is HomeState.Success -> {
@@ -66,6 +73,7 @@ fun Homescreen(
                 onRefreshClick = { viewModel.getRecentTrips() },
                 onNumberClick = onNumberClick,
                 onClick = onClick,
+                onExploreClick = onExploreClick
             )
         }
         is HomeState.Loading -> {
@@ -87,11 +95,12 @@ fun MakeHomescreen(
     onRefreshClick: () -> Unit = { },
     onNumberClick: (String) -> Unit = { },
     onClick: () -> Unit = { },
+    onExploreClick: () -> Unit = { },
 ) {
 
-    val pagerState = rememberPagerState(pageCount = {
-        data.size
-    })
+//    val pagerState = rememberPagerState(pageCount = {
+//        data.size
+//    })
 
     Column(
         modifier = modifier
@@ -125,20 +134,61 @@ fun MakeHomescreen(
                 )
             }
 
-            fun Modifier.carouselTransition(page: Int, pagerState: PagerState) =
-                graphicsLayer {
-                    val pageOffset =
-                        ((pagerState.currentPage - page) + pagerState.currentPageOffsetFraction).absoluteValue
+            HorizontalPagerWithArrows(data = data, onNumberClick = onNumberClick)
 
-                    val transformation =
-                        lerp(
-                            start = 0.7f,
-                            stop = 1f,
-                            fraction = 1f - pageOffset.coerceIn(0f, 1f)
-                        )
-                    alpha = transformation
-                    scaleY = transformation
-                }
+//            fun Modifier.carouselTransition(page: Int, pagerState: PagerState) =
+//                graphicsLayer {
+//                    val pageOffset =
+//                        ((pagerState.currentPage - page) + pagerState.currentPageOffsetFraction).absoluteValue
+//
+//                    val transformation =
+//                        lerp(
+//                            start = 0.7f,
+//                            stop = 1f,
+//                            fraction = 1f - pageOffset.coerceIn(0f, 1f)
+//                        )
+//                    alpha = transformation
+//                    scaleY = transformation
+//                }
+//
+//            if (data.isNotEmpty()) {
+//                Text(
+//                    text = stringResource(id = R.string.saved_train_routes),
+//                    style = MaterialTheme.typography.bodyMedium,
+//                    fontWeight = FontWeight.SemiBold,
+//                    modifier = Modifier
+//                        .padding(horizontal = 24.dp)
+//                )
+//
+//                Box(
+//                    modifier = Modifier
+//                        .fillMaxWidth()
+//                ) {
+//                    HorizontalPager(
+//                        state = pagerState,
+//                        modifier = Modifier
+//                            .fillMaxWidth(),
+//                        pageSpacing = 16.dp,
+//                        contentPadding = PaddingValues(
+//                            top = 16.dp,
+//                            start = 24.dp,
+//                            end = 24.dp,
+//                            bottom = 8.dp
+//                        )
+//                    ) { index ->
+//                        NumberItem(
+//                            number = data[index],
+//                            modifier = Modifier
+//                                .fillMaxWidth()
+//                                .carouselTransition(page = index, pagerState = pagerState),
+//                            onClick = onNumberClick
+//                        )
+//                    }
+//                }
+//
+//            }
+
+            Spacer(modifier = Modifier.height(16.dp))
 
             MakeImageHeader(
                 text = R.string.explore,
@@ -148,46 +198,124 @@ fun MakeHomescreen(
                     .padding(bottom = 22.dp, start = 16.dp, end = 16.dp)
                     .clip(RoundedCornerShape(16.dp))
                     .border(2.dp, MaterialTheme.colorScheme.onBackground, RoundedCornerShape(16.dp))
-                    .shadow(10.dp, RoundedCornerShape(16.dp)),
+                    .shadow(10.dp, RoundedCornerShape(16.dp))
+                    .clickable(onClick = onExploreClick),
                 hasButton = false,
                 leftAlignText = true
             )
+        }
+    }
+}
 
-            if (data.isNotEmpty()) {
-                Text(
-                    text = stringResource(id = R.string.saved_train_routes),
-                    style = MaterialTheme.typography.bodyMedium,
-                    fontWeight = FontWeight.SemiBold,
-                    modifier = Modifier
-                        .padding(horizontal = 24.dp)
+@OptIn(ExperimentalFoundationApi::class)
+@Composable
+fun HorizontalPagerWithArrows(data: List<String>, onNumberClick: (String) -> Unit) {
+    val pagerState = rememberPagerState(pageCount = {
+        data.size
+    })
+    val coroutineScope = rememberCoroutineScope()
+
+    fun Modifier.carouselTransition(page: Int, pagerState: PagerState) =
+        graphicsLayer {
+            val pageOffset =
+                ((pagerState.currentPage - page) + pagerState.currentPageOffsetFraction).absoluteValue
+
+            val transformation =
+                lerp(
+                    start = 0.7f,
+                    stop = 1f,
+                    fraction = 1f - pageOffset.coerceIn(0f, 1f)
                 )
+            alpha = transformation
+            scaleY = transformation
+        }
 
-                Box(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                ) {
-                    HorizontalPager(
-                        state = pagerState,
+    if (data.isNotEmpty()) {
+        Column(
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text(
+                text = stringResource(id = R.string.saved_train_routes),
+                style = MaterialTheme.typography.bodyMedium,
+                fontWeight = FontWeight.SemiBold,
+                modifier = Modifier
+                    .padding(horizontal = 24.dp)
+            )
+
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+            ) {
+                if (pagerState.currentPage > 0) {
+                    // Left arrow
+                    IconButton(
+                        onClick = {
+                            coroutineScope.launch {
+                                pagerState.animateScrollToPage(
+                                    (pagerState.currentPage - 1).coerceAtLeast(
+                                        0
+                                    )
+                                )
+                            }
+                        },
                         modifier = Modifier
-                            .fillMaxWidth(),
-                        pageSpacing = 16.dp,
-                        contentPadding = PaddingValues(
-                            top = 16.dp,
-                            start = 24.dp,
-                            end = 24.dp,
-                            bottom = 8.dp
-                        )
-                    ) { index ->
-                        NumberItem(
-                            number = data[index],
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .carouselTransition(page = index, pagerState = pagerState),
-                            onClick = onNumberClick
+                            .padding(start = 8.dp, top = 16.dp, bottom = 8.dp)
+                            .weight(0.2f)
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.ArrowBack,
+                            contentDescription = "Previous"
                         )
                     }
+                } else {
+                    Spacer(modifier = Modifier.weight(0.2f))
                 }
 
+                HorizontalPager(
+                    state = pagerState,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .weight(1f),
+                    pageSpacing = 16.dp,
+                    contentPadding = PaddingValues(
+                        top = 16.dp,
+                        start = 8.dp,
+                        end = 8.dp,
+                        bottom = 8.dp
+                    )
+                ) { index ->
+                    NumberItem(
+                        number = data[index],
+                        modifier = Modifier
+                            .carouselTransition(page = index, pagerState = pagerState),
+                        onClick = onNumberClick
+                    )
+                }
+
+                if (pagerState.currentPage < data.size - 1) {
+                    // Right arrow
+                    IconButton(
+                        onClick = {
+                            coroutineScope.launch {
+                                pagerState.animateScrollToPage(
+                                    (pagerState.currentPage + 1).coerceAtMost(
+                                        data.size - 1
+                                    )
+                                )
+                            }
+                        },
+                        modifier = Modifier
+                            .padding(top = 16.dp, end = 8.dp, bottom = 8.dp)
+                            .weight(0.2f)
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.ArrowForward,
+                            contentDescription = "Next"
+                        )
+                    }
+                } else {
+                    Spacer(modifier = Modifier.weight(0.2f))
+                }
             }
         }
     }
@@ -210,6 +338,7 @@ fun NumberItem(
     ) {
         Box(
             modifier = modifier
+                .fillMaxWidth()
                 .background(
                     MaterialTheme.colorScheme.secondaryContainer,
                     RoundedCornerShape(16.dp)
