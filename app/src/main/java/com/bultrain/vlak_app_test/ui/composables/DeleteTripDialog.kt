@@ -39,7 +39,7 @@ fun MakeDeleteTripDialog(
             modifier = modifier
                 .fillMaxWidth()
                 .padding(16.dp)
-                .background(color = MaterialTheme.colorScheme.onSecondary)
+                .background(color = MaterialTheme.colorScheme.onSecondary, shape = RoundedCornerShape(16.dp))
                 .border(
                     width = 2.dp,
                     color = MaterialTheme.colorScheme.onBackground,
