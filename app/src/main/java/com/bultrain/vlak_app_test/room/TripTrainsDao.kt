@@ -25,8 +25,12 @@ interface TripTrainsDao {
     @Query("DELETE FROM trip_trains WHERE trainNumber = :trainNumber AND date = :date AND toBeShown = 0")
     suspend fun deleteTripTrainsByTrainNumberAndDate(trainNumber: String, date: String)
 
+    // delete trip train by train number but if only toBeShown is true
     @Query("DELETE FROM trip_trains WHERE trainNumber = :trainNumber AND toBeShown = 1")
     suspend fun deleteTripTrainsByTrainNumber(trainNumber: String)
+
+    @Query("DELETE FROM trip_trains WHERE id = :id")
+    suspend fun deleteTripTrainsById(id: Int)
 
     @Query("DELETE FROM trip_trains WHERE date = :date")
     suspend fun deleteTripTrainsByDate(date: String)

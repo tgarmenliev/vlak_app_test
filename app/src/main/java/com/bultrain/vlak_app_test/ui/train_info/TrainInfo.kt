@@ -2,6 +2,7 @@ package com.bultrain.vlak_app_test.ui.train_info
 
 import android.widget.Toast
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -14,8 +15,10 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -30,6 +33,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.bultrain.vlak_app_test.R
 import com.bultrain.vlak_app_test.models.train_info.TrainInfo
 import com.bultrain.vlak_app_test.ui.error.ErrorScreen
@@ -59,7 +63,11 @@ fun MakeTrainInfoScreen(
                     data = viewModel.getTrainInfo(),
                     canDownload = viewModel.getCanDownload(),
                     modifier = Modifier.padding(it),
-                    downloadRoute = { viewModel.insertTripTrain() }
+                    downloadRoute = { viewModel.insertTripTrain() },
+                    deleteRoute = {
+                        viewModel.deleteTripTrain(it)
+                        onCancelButton()
+                    }
                 )
             }
         }
@@ -77,7 +85,8 @@ fun MakeTrainInfo(
     data: TrainInfo.TrainInfoTable,
     canDownload: Boolean = true,
     modifier: Modifier = Modifier,
-    downloadRoute: () -> Unit
+    downloadRoute: () -> Unit,
+    deleteRoute: (String) -> Unit = { }
 ) {
     val context = LocalContext.current
 
@@ -108,10 +117,11 @@ fun MakeTrainInfo(
                 )
             }
 
-            Box(
+            Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(top = 2.dp, start = 16.dp, end = 16.dp)
+                    .padding(top = 2.dp, start = 16.dp, end = 16.dp),
+                horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Text(
                     text = "${stringResource(id = R.string.for_date)} ${data.date}",
@@ -119,6 +129,51 @@ fun MakeTrainInfo(
                         fontWeight = FontWeight.Light
                     )
                 )
+
+                val text = if (canDownload) {
+                    stringResource(id = R.string.downloaded)
+                } else {
+                    stringResource(id = R.string.deleted)
+                }
+
+                Box(
+                    modifier = Modifier
+                        .size(44.dp)
+                        .clickable {
+                            Toast
+                                .makeText(
+                                    context,
+                                    text,
+                                    Toast.LENGTH_SHORT
+                                )
+                                .show()
+                            if (canDownload) {
+                                downloadRoute()
+                            } else {
+                                deleteRoute(data.trainNumber)
+                            }
+                        }
+                        .padding(end = 6.dp, bottom = 6.dp)
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .background(color = Color.Transparent, shape = CircleShape)
+                            .border(
+                                width = 2.dp,
+                                color = MaterialTheme.colorScheme.onBackground,
+                                shape = CircleShape
+                            )
+                    )
+
+                    Icon(
+                        painter = painterResource(if (canDownload) R.drawable.download else R.drawable.delete),
+                        contentDescription = text,
+                        modifier = Modifier
+                            .size(if (canDownload) 20.dp else 24.dp)
+                            .align(Alignment.Center),
+                    )
+                }
             }
 
             Column(

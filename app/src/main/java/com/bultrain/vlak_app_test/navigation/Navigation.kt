@@ -124,6 +124,9 @@ fun Navigation(
                         homescreenViewModel.getTrips()
                         navController.navigate("trips")
                     },
+                    onExploreClick = {
+                        navController.navigate("guide")
+                    },
                 )
             }
 
