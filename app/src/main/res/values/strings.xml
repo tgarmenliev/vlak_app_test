@@ -84,4 +84,6 @@
     <string name="app_theme">App theme</string>
     <string name="no_saved_routes">No saved train routes</string>
     <string name="explore">Explore</string>
+    <string name="deleted">Deleted</string>
+    <string name="downloaded_only">Downloaded</string>
 </resources>

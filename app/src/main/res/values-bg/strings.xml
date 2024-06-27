@@ -85,4 +85,6 @@
     <string name="app_theme">Тема на приложението</string>
     <string name="no_saved_routes">Няма запазени маршрути на влакове. Потърси сега!</string>
     <string name="explore">Преоткрий</string>
+    <string name="deleted">Изтрито</string>
+    <string name="downloaded_only">Изтеглено</string>
 </resources>
