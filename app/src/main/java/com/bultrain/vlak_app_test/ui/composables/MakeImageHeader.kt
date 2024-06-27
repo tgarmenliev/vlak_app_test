@@ -1,11 +1,16 @@
 package com.bultrain.vlak_app_test.ui.composables
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -14,9 +19,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.bultrain.vlak_app_test.R
 
 @Composable
 fun MakeImageHeader(
@@ -37,16 +44,36 @@ fun MakeImageHeader(
             contentScale = ContentScale.Crop,
         )
         if (hasButton) {
-            Image(
-                painter = buttonIcon!!,
-                contentDescription = "Button icon",
+
+            Box(
                 modifier = Modifier
+                    .size(58.dp)
+                    .clickable {
+                        onButtonClicked()
+                    }
                     .align(Alignment.TopStart)
-                    .padding(start = 8.dp)
-                    .padding(top = 8.dp)
-                    .size(36.dp)
-                    .clickable { onButtonClicked() }
-            )
+                    .padding(start = 18.dp, top = 18.dp)
+            ) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .background(color = Color.Transparent, shape = CircleShape)
+                        .border(
+                            width = 2.dp,
+                            color = Color.White,
+                            shape = CircleShape
+                        )
+                )
+
+                Icon(
+                    painter = buttonIcon!!,
+                    contentDescription = "Button icon",
+                    modifier = Modifier
+                        .size(30.dp)
+                        .align(Alignment.Center),
+                    tint = Color.White
+                )
+            }
         }
         Text(
             text = stringResource(id = text),

@@ -79,7 +79,7 @@ fun MakeTopBar(
                     Icon(
                         painter = painterResource(id = R.drawable.back),
                         contentDescription = "back",
-                        tint = Color.White,
+                        tint = MaterialTheme.colorScheme.onBackground
                     )
                 }
             }
