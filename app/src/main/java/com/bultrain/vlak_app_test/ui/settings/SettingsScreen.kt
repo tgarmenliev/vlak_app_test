@@ -121,6 +121,8 @@ fun MakeSettingsScreen(
         ) {
             onBackButton()
         }
+
+        Spacer(modifier = Modifier.height(16.dp))
     }
 }
 
@@ -132,7 +134,6 @@ fun LanguageSelectionScreen() {
     Column {
         MakeButton(
             modifier = Modifier
-                .fillMaxWidth(0.4f)
                 .padding(top = 16.dp, bottom = 8.dp, start = 8.dp, end = 8.dp)
                 .align(Alignment.CenterHorizontally),
             text = R.string.en_language,
@@ -145,7 +146,6 @@ fun LanguageSelectionScreen() {
 
         MakeButton(
             modifier = Modifier
-                .fillMaxWidth(0.4f)
                 .padding(start = 8.dp, end = 8.dp, bottom = 16.dp, top = 8.dp)
                 .align(Alignment.CenterHorizontally),
             text = R.string.bg_language,
